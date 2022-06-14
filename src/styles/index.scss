@@ -1,0 +1,119 @@
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  box-sizing: border-box;
+} 
+*,
+::before,
+::after {
+  /* 加上这段代码，height 和 width 会指定元素的实际宽和高。改变
+  内边距不会影响它们.但是，如果在网页中使用了带样式的第三方组
+  件，就可能会因此破坏其中一些组件的布局， 尤其是当第三
+  方组件在开发 CSS 的过程中没有考虑到使用者会修改盒模型时。
+  因为全局设置 border-box 时使用的通用选择器会选中第三方
+  组件内的每个元素，修改盒模型可能会有问题， 所以最终需要
+  写另外的样式将组件内的元素恢复为 content-box。 */
+  box-sizing: inherit;
+}
+*  {
+  /* 消除内外边距 */
+  margin: 0;
+  padding: 0;
+  /* 默认字体 */
+  font-family: 'Nunito', sans-serif;
+  /* 设置position的默认为relative */
+  /* 当要设置position: absolute到与其父级的父级相
+  关的元素时,在这种情况下，必须设置 position: static给父母 */
+   position: relative; 
+   /* 将所有的盒子设置为BFC */
+   /* overflow: auto; */
+}
+body {
+  height: 100vh;
+}
+
+
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-c {
+  /* 居中盒子 */
+  @apply flex flex-col justify-center items-center 
+}
+.flex-e {
+  /* 均匀分布盒子 */
+  @apply flex flex-col justify-evenly items-center
+}
+
+.full{
+ @apply w-full h-full
+}
+
+.between {
+  display:flex;
+  justify-content: space-between;
+}
+.overflow-none{
+  overflow:none;
+}
+
+
+
+
+/* form */
+form{
+  @apply flex flex-col gap-5 items-center   p-5  shadow-2xl bg-slate-100 shadow-slate-50 justify-between 
+}
+form label {
+  @apply font-medium text-gray-800 text-2xl 
+}
+form input {
+  @apply input rounded-none
+}
+form button {
+  @apply btn w-4/12 min-w-fit bg-red-500 
+}
+form textarea {
+  @apply border-slate-200 border-2;
+  /* border: 1px solid black; */
+  padding: 10px;
+  outline: none;
+  display: block;
+  width: 100%;
+  height:10rem;
+  box-sizing: border-box;
+  margin: 20px auto;
+}
+form input[type="file"] {
+  @apply max-w-full
+}
+
+/* btn */
+.btn-normal {
+  @apply btn bg-red-500 
+}
+.btn-nar {
+  @apply  btn text-xl  bg-inherit border-none  text-slate-800 hover:text-slate-50
+}
+
+/* error */
+.error {
+  color: red;
+  font-size: 14px;
+  margin: 16px 0;
+}
+ /* 强制不换行,溢出隐藏,超出显示省略号*/
+.p {
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden; 
+}
