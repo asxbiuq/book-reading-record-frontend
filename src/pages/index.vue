@@ -1,35 +1,87 @@
-<script setup>
-
-</script>
-
 <template>
-  <div>
-    <p>vue3</p>
-    <p>sass</p>
-    <p>tailwind</p>
-    <p>Element Plus</p>
-    <p>headless Ui</p>
-    <p>daisyui</p>
-    <p>vite</p>
-    <p>vite-plugin-components</p>
-    <p>vite-plugin-pages</p>
-    <p>vite-plugin-vue-layouts</p>
-    <p>animate.css</p>
-    <p>vueuse</p>
+  <div class="home">
+    <ul>
+      <li v-for="book in books" :key="book.id">
+        <div class="details">
+          <h3 @click="handleDelete(book)">{{ book.title }}</h3>
+          <p>By {{ book.author }}</p>
+        </div>
+        <div :class="{ icon: true, fav: book.isFav }" @click="handleUpdate(book)">
+          <span class="material-icons">favorite</span>
+        </div>
+      </li>
+    </ul>
+    <CreateBookForm/>
   </div>
 </template>
 
-<style scoped lang="scss">
-div{
+<script setup>
+// const { user } = getUser()
+// const { documents: books } = getCollection(
+//   'books',
+//   ['userUid', '==', user.value.uid]
+// )
+
+// // delete docs
+// const handleDelete = (book) => {
+//   const docRef = doc(db, 'books', book.id)
+
+//   deleteDoc(docRef)
+// }
+
+// // update doc
+// const handleUpdate = (book) => {
+//   const docRef = doc(db, 'books', book.id)
+
+//   updateDoc(docRef, {
+//     isFav: !book.isFav
+//   })
+// }
+
+</script>
+
+<style>
+.home {
   display: flex;
-  height: 100vh;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
-p {
+.home ul {
+  padding: 0;
+}
+
+.home li {
+  list-style-type: none;
+  background: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
   display: flex;
-  flex-direction: column;
-  color: #42b983;
+}
+
+.home li .details {
+  margin-right: auto;
+}
+
+.home li h3 {
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.home li h3:hover {
+  cursor: pointer;
+  text-decoration: line-through;
+}
+
+.home li p {
+  margin: 0;
+}
+
+.icon {
+  color: #bbbbbb;
+  cursor: pointer;
+}
+
+.icon.fav {
+  color: #f83f5e;
 }
 </style>

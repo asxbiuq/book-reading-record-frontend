@@ -22,7 +22,6 @@ specifiers:
   vite-plugin-vue-layouts: ^0.6.0
   vue: ^3.2.25
   vue-router: ^4.0.13
-  vue-skeletor: ^1.0.6
 
 dependencies:
   '@headlessui/vue': registry.npmmirror.com/@headlessui/vue/1.6.4_vue@3.2.37
@@ -35,7 +34,6 @@ dependencies:
   sass: registry.npmmirror.com/sass/1.52.3
   vue: registry.npmmirror.com/vue/3.2.37
   vue-router: registry.npmmirror.com/vue-router/4.0.16_vue@3.2.37
-  vue-skeletor: registry.npmmirror.com/vue-skeletor/1.0.6
 
 devDependencies:
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/2.3.3_vite@2.9.12+vue@3.2.37
@@ -2212,12 +2210,6 @@ packages:
     dependencies:
       '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.1.4
       vue: registry.npmmirror.com/vue/3.2.37
-
-  registry.npmmirror.com/vue-skeletor/1.0.6:
-    resolution: {integrity: sha512-ER4vHlFSXCW3ixK2DlczUE6CZliHsn4d2TvZ9/26C6Oq8zoyEY23BsqweMPtF8QULSz1+G5m2New1BwKNVOZhQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-skeletor/-/vue-skeletor-1.0.6.tgz}
-    name: vue-skeletor
-    version: 1.0.6
-    dev: false
 
   registry.npmmirror.com/vue/3.2.37:
     resolution: {integrity: sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue/-/vue-3.2.37.tgz}
