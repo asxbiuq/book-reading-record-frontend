@@ -18,7 +18,7 @@ const email = $ref('')
 const password = $ref('')
 
 const { error, login, isPending } = $(useLogin())
-const { router } = useRouter()
+const  router  = useRouter()
 
 const handleSubmit = async () => {
   await login(email, password)

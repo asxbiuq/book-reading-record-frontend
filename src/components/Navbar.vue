@@ -4,36 +4,34 @@
       <h1>My Book List</h1>
 
       <!-- logged in users -->
-      <div v-if="user">
+      <div v-if="userId">
         <router-link to="/">Home</router-link>
         <button @click="handleClick">Logout</button>
       </div>
 
       <!-- logged out users -->
-      <div v-if="!user">
+      <div v-if="!userId">
         <router-link to="/login">Login</router-link>
         <router-link to="/signup">Signup</router-link>
       </div>
     </nav>
 
     <!-- show user email -->
-    <p v-if="user">logged in as {{ user.email }}</p>
+    <p v-if="userId">logged in as {{ userId }}</p>
   </div>
 </template>
 
 <script setup>
-// const { user } = getUser()
-// const router = useRouter()
+const { logout } = $(useLogout())
+const { userId } = $(useLogin())
+const router = useRouter()
+// console.log(userId)
 
-// const handleClick = () => {
-//   signOut(auth)
-// }
+const handleClick =  () => {
+  logout()
+  router.push('/login')
+}
 
-// watchEffect(() => {
-//   if (!user.value) {
-//     router.push('/login')
-//   }
-// })
 </script>
 
 <style>

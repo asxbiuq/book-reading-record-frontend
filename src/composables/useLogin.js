@@ -1,5 +1,8 @@
+import useStore from 'store/index.js'
+
 const error = $ref(null)
 const isPending = $ref(false)
+const { userId, token, expiryDate } = $(useStore())
 
 const login = (email, password) => {
   error = null
@@ -26,16 +29,13 @@ const login = (email, password) => {
       return res.json()
     })
     .then(resData => {
-      console.log(resData)
-
-      localStorage.setItem('token', resData.token)
-      localStorage.setItem('userId', resData.userId)
+      token = resData.token
+      userId = resData.userId
       const remainingMilliseconds = 60 * 60 * 1000
-      const expiryDate = new Date(
+      expiryDate = new Date(
         new Date().getTime() + remainingMilliseconds
       )
-      localStorage.setItem('expiryDate', expiryDate.toISOString());
-
+      console.log('resData: ',resData)
       error = null
       isPending = false
     })
@@ -45,26 +45,10 @@ const login = (email, password) => {
       isPending = false
     })
 }
-// const login = async (email, password) => {
-//   error = null
-//   isPending = true
 
-//   try {
-//     const auth = getAuth()
-//     const res = await signInWithEmailAndPassword(auth, email, password)
-//     error = null
-//     isPending = false
-//     return res
-//   }
-//   catch (err) {
-//     console.log(err.message)
-//     error = 'Incorrect login credentials'
-//     isPending = false
-//   }
-// }
 
 const useLogin = () => {
-  return $$({ error, login, isPending })
+  return $$({ error, login, isPending, token, userId, expiryDate })
 }
 
 export default useLogin

@@ -11,11 +11,14 @@
         </div>
       </li>
     </ul>
-    <CreateBookForm/>
+    <CreateBookForm />
   </div>
 </template>
 
 <script setup>
+// useStorage('userId')
+// useStorage('token')
+// useStorage('expiryDate')
 // const { user } = getUser()
 // const { documents: books } = getCollection(
 //   'books',
@@ -45,6 +48,7 @@
   display: flex;
   align-items: center;
 }
+
 .home ul {
   padding: 0;
 }

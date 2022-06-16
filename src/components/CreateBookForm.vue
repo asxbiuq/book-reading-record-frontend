@@ -13,24 +13,24 @@
 </template>
 
 <script setup>
-// const { user } = getUser()
-// const title = ref('')
-// const author = ref('')
+const { addDoc } = useDocument()
+const { userId } = $(useUser())
+const title = $ref('')
+const author = $ref('')
 
-// const handleSubmit = async () => {
-//   const colRef = collection(db, 'books')
+const handleSubmit = async () => {
 
-//   await addDoc(colRef, {
-//     title: title.value,
-//     author: author.value,
-//     isFav: false,
-//     userUid: user.value.uid
-//   })
+  await addDoc({
+    title: title,
+    author: author,
+    isFav: false,
+    userUid: userId
+  })
 
-//   // reset the form
-//   title.value = ''
-//   author.value = ''
-// }
+  // reset the form
+  title.value = ''
+  author.value = ''
+}
 </script>
 
 <style>
