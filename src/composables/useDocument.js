@@ -1,12 +1,44 @@
+import useStore from 'store/index.js'
+
 const error = $ref(null)
 const isPending = $ref(false)
+const { userId, token, expiryDate } = $(useStore())
+
 
 const useDocument = (col, docId) => {
 
 
 
-    const addDoc = async () => {
+    const addDoc = async (postData) => {
 
+        const formData = new FormData()
+        formData.append('title', postData.title)
+        formData.append('author', postData.author)
+        formData.append('isFav', postData.isFav)
+        formData.append('userUid', postData.userUid)
+        // formData.append('image', postData.image)
+        let url = 'http://localhost:8080/feed/post'
+        let method = 'POST'
+
+        fetch(url, {
+            method: method,
+            body: formData,
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+        .then(res => {
+            if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Creating a post failed!')
+            }else {
+                console.log('Creating a post success!')
+            }
+            isPending = false
+        })
+        .catch(err => {
+            console.log(err)
+            error = 'Creating a post failed!'
+        })
     }
 
     const getDoc = async (col, que, order = 'createdAt') => {

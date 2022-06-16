@@ -27,9 +27,8 @@ const handleSubmit = async () => {
     userUid: userId
   })
 
-  // reset the form
-  title.value = ''
-  author.value = ''
+  title = ''
+  author = ''
 }
 </script>
 
