@@ -70,17 +70,15 @@ const useDocument = (col, docId) => {
         return $$({ docs })
     }
 
-    const updateDoc = async (PlaylistId, updates) => {
+    const updateDoc = async (postId, updateData) => {
         isPending = true
         error = null
-        const uid = auth.currentUser.uid
-
-        const PlaylistRef = doc(db, 'playlists', PlaylistId)
 
         try {
-            const res = await updateDocRaw(PlaylistRef, updates)
+            await deleteDoc(postId)
+            await addDoc(updateData)
+
             isPending = false
-            return res
         } catch (err) {
             console.log(err.message)
             isPending = false

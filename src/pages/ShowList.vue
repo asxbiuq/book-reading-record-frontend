@@ -18,9 +18,9 @@
 </template>
 
 <script setup>
-const { deleteDoc, getDoc, isPending, error } = $(useDocument())
+const { deleteDoc, getDoc, updateDoc ,isPending, error } = $(useDocument())
 const { docs } = $(await getDoc())
-
+const { userId } = $(useStore())
 const getBooks = async () => {
   const { docs: data } = $(await getDoc())
   docs = data
@@ -34,10 +34,14 @@ const handleDelete = async (book) => {
 }
 
 const handleUpdate = (book) => {
-  const docRef = doc(db, 'books', book.id)
-
-  updateDoc(docRef, {
-    isFav: !book.isFav
+  // console.log(book)
+  book.isFav = !book.isFav
+  console.log(book)
+  updateDoc(book._id, {
+    title: book.title,
+    author: book.author,
+    isFav: book.isFav,
+    userUid: userId
   })
 }
 

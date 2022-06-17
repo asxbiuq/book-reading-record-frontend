@@ -14,7 +14,7 @@
 
 <script setup>
 const { addDoc, isPending } = $(useDocument())
-const { userId } = $(useStore())
+const { userId } = $(useStore()) 
 const title = $ref('')
 const author = $ref('')
 const emits = defineEmits(['created'])
@@ -29,7 +29,7 @@ const handleSubmit = async () => {
   })
 
   emits('created')
-  
+
   title = ''
   author = ''
 }
