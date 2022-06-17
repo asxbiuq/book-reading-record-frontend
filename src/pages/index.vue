@@ -1,91 +1,33 @@
 <template>
-  <div class="home">
-    <ul>
-      <li v-for="book in books" :key="book.id">
-        <div class="details">
-          <h3 @click="handleDelete(book)">{{ book.title }}</h3>
-          <p>By {{ book.author }}</p>
-        </div>
-        <div :class="{ icon: true, fav: book.isFav }" @click="handleUpdate(book)">
-          <span class="material-icons">favorite</span>
-        </div>
-      </li>
-    </ul>
-    <CreateBookForm />
-  </div>
+  <form @submit.prevent="handleSubmit">
+    <h2>Login</h2>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" v-model="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" v-model="password" required>
+
+    <button>Login</button>
+    <div v-if="error">{{ error }}</div>
+  </form>
 </template>
 
 <script setup>
-// useStorage('userId')
-// useStorage('token')
-// useStorage('expiryDate')
-// const { user } = getUser()
-// const { documents: books } = getCollection(
-//   'books',
-//   ['userUid', '==', user.value.uid]
-// )
+const email = $ref('')
+const password = $ref('')
 
-// // delete docs
-// const handleDelete = (book) => {
-//   const docRef = doc(db, 'books', book.id)
+const { error, login, isPending } = $(useLogin())
+const  router  = useRouter()
 
-//   deleteDoc(docRef)
-// }
+const handleSubmit = async () => {
+  await login(email, password)
 
-// // update doc
-// const handleUpdate = (book) => {
-//   const docRef = doc(db, 'books', book.id)
-
-//   updateDoc(docRef, {
-//     isFav: !book.isFav
-//   })
-// }
-
+  // if (!error) {
+  //   console.log('routeing...')
+  //   router.push({ name: 'ShowList' })
+  //   console.log('routed')
+  // }
+}
+  
 </script>
-
-<style>
-.home {
-  display: flex;
-  align-items: center;
-}
-
-.home ul {
-  padding: 0;
-}
-
-.home li {
-  list-style-type: none;
-  background: #fff;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 12px;
-  display: flex;
-}
-
-.home li .details {
-  margin-right: auto;
-}
-
-.home li h3 {
-  margin: 0;
-  margin-bottom: 4px;
-}
-
-.home li h3:hover {
-  cursor: pointer;
-  text-decoration: line-through;
-}
-
-.home li p {
-  margin: 0;
-}
-
-.icon {
-  color: #bbbbbb;
-  cursor: pointer;
-}
-
-.icon.fav {
-  color: #f83f5e;
-}
-</style>

@@ -1,23 +1,25 @@
 <template>
-  <div class="home">
-    <ul>
-      <li v-for="book in books" :key="book.id">
-        <div class="details">
-          <h3 @click="handleDelete(book)">{{ book.title }}</h3>
-          <p>By {{ book.author }}</p>
-        </div>
-        <div :class="{ icon: true, fav: book.isFav }" @click="handleUpdate(book)">
-          <span class="material-icons">favorite</span>
-        </div>
-      </li>
-    </ul>
-    <CreateBookForm />
-  </div>
+  <Suspense>
+    <div class="home">
+      <ul>
+        <li v-for="book in books" :key="book.id">
+          <div class="details">
+            <h3 @click="handleDelete(book)">{{ book.title }}</h3>
+            <p>By {{ book.author }}</p>
+          </div>
+          <div :class="{ icon: true, fav: book.isFav }" @click="handleUpdate(book)">
+            <span class="material-icons">favorite</span>
+          </div>
+        </li>
+      </ul>
+      <CreateBookForm />
+    </div>
+  </Suspense>
 </template>
 
 <script setup>
 
-// const { deleteDoc, getDoc, isPending, error } = useDocument()
+const { deleteDoc, getDoc, isPending, error } = $(useDocument())
 
 // useStorage('userId')
 // useStorage('token')
@@ -27,13 +29,16 @@
 //   'books',
 //   ['userUid', '==', user.value.uid]
 // )
-const { docs: books} = await getDoc()
-
+const { docs } = await getDoc()
+const books = docs.posts
+console.log(books)
 // delete docs
 const handleDelete = (book) => {
   deleteDoc(book.id)
 }
-
+if (error) {
+  console.log(error)
+}
 // // update doc
 // const handleUpdate = (book) => {
 //   const docRef = doc(db, 'books', book.id)

@@ -7,8 +7,6 @@ const { userId, token, expiryDate } = $(useStore())
 
 const useDocument = (col, docId) => {
 
-
-
     const addDoc = async (postData) => {
 
         const formData = new FormData()
@@ -27,42 +25,53 @@ const useDocument = (col, docId) => {
                 Authorization: 'Bearer ' + token
             }
         })
-        .then(res => {
-            if (res.status !== 200 && res.status !== 201) {
-                throw new Error('Creating a post failed!')
-            }else {
-                console.log('Creating a post success!')
-            }
-            isPending = false
-        })
-        .catch(err => {
-            console.log(err)
-            error = 'Creating a post failed!'
-        })
-    }
-
-    const getDoc = async (col, que, order = 'createdAt') => {
-
-        const data = reactive([])
-
-        try {
-            const q = query(collection(db, col), where(...que), orderBy(order));
-
-            const querySnapshot = await getDocs(q);
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                // console.log(doc.id, " => ", doc.data());
-                data.push({ ...doc.data(), id: doc.id })
-                error = null
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                    throw new Error('Creating a post failed!')
+                } else {
+                    console.log('Creating a post success!')
+                }
+                isPending = false
             })
-        } catch (err) {
-            console.log(err)
-            error = 'could not fetch data (getDoc.js)'
-        }
-
-
-        return $$({ data })
+            .catch(err => {
+                console.log(err)
+                error = 'Creating a post failed!'
+            })
     }
+
+    const getDoc = async (page, order = 'createdAt') => {
+        let docs
+        // console.log('in useDocument token: ', token)
+        await fetch('http://localhost:8080/feed/posts', {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+            .then(res => {
+                if (res.status !== 200) {
+                    throw new Error('Failed to fetch posts.')
+                }
+                return res.json()
+            })
+            .then(resData => {
+
+                docs = {
+                    posts: resData.posts,
+                    totalPosts: resData.totalItems,
+                }
+                console.log('get docs: ', docs)
+
+            })
+            .catch(err => {
+                if (err) {
+                    console.log(err)
+                }
+                error = 'get posts failed!'
+            })
+        return { docs }
+    }
+
     const updateDoc = async (PlaylistId, updates) => {
         isPending = true
         error = null
@@ -80,25 +89,40 @@ const useDocument = (col, docId) => {
             error = 'could not update the document'
         }
     }
-    const deleteDoc = async () => {
+
+    const deleteDoc = async (postId) => {
         isPending = true
         error = null
 
-        try {
-            await deleteDocRaw(doc(db, col, docId));
-            const res = await docRef.delete()
-            isPending = false
-            return res
-        } catch (err) {
-            console.log(err.message)
-            isPending = false
-            error = 'could not delete the document'
-        }
+        fetch('http://localhost:8080/feed/post/' + postId, {
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                    throw new Error('Deleting a post failed!');
+                }
+                return res.json();
+            })
+            .then(resData => {
+                console.log('delete success')
+                console.log('resData: ', resData);
+                isPending = false
+                error = null
+            })
+            .catch(err => {
+                console.log(err);
+                error = 'Deleting a post failed!'
+            });
     }
 
 
     watchEffect(() => {
-        console.log('error:', error)
+        if (error) {
+            console.log('error:', error)
+        }
     })
 
     return $$({ getDoc, addDoc, updateDoc, deleteDoc, error, isPending })

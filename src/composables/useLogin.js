@@ -35,7 +35,7 @@ const login = (email, password) => {
       expiryDate = new Date(
         new Date().getTime() + remainingMilliseconds
       )
-      console.log('resData: ',resData)
+      // console.log('resData: ',resData)
       error = null
       isPending = false
     })

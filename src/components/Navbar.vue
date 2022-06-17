@@ -5,13 +5,13 @@
 
       <!-- logged in users -->
       <div v-if="userId">
-        <router-link to="/">Home</router-link>
+        <router-link to="/showlist">showlist</router-link>
         <button @click="handleClick">Logout</button>
       </div>
 
       <!-- logged out users -->
       <div v-if="!userId">
-        <router-link to="/login">Login</router-link>
+        <router-link to="/">Login</router-link>
         <router-link to="/signup">Signup</router-link>
       </div>
     </nav>
@@ -22,14 +22,15 @@
 </template>
 
 <script setup>
+import useStore from '../store';
 const { logout } = $(useLogout())
-const { userId } = $(useLogin())
+const { userId } = $(useStore())
 const router = useRouter()
 // console.log(userId)
 
 const handleClick =  () => {
   logout()
-  router.push('/login')
+  router.push('/')
 }
 
 </script>
