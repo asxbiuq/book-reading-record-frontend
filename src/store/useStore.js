@@ -1,4 +1,4 @@
-let userId,token,expiryDate
+let userId, token, expiryDate,docs
 
 // 先判断是否有先前留下来的状态
 (() => {

@@ -29,7 +29,7 @@ const router = useRouter()
 
 const handleClick =  () => {
   logout()
-  router.push({name:'Home'})
+  router.push('/')
 }
 
 </script>

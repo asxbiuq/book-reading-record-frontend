@@ -38,7 +38,7 @@ const useDocument = (col, docId) => {
     }
 
     const getDoc = async (page, order = 'createdAt') => {
-        let docs
+        const docs = $ref(null)
         // console.log('in useDocument token: ', token)
         await fetch('http://localhost:8080/feed/posts', {
             method: 'GET',
@@ -67,7 +67,7 @@ const useDocument = (col, docId) => {
                 }
                 error = 'get posts failed!'
             })
-        return { docs }
+        return $$({ docs })
     }
 
     const updateDoc = async (PlaylistId, updates) => {
@@ -92,7 +92,7 @@ const useDocument = (col, docId) => {
         isPending = true
         error = null
 
-        fetch('http://localhost:8080/feed/post/' + postId, {
+        await fetch('http://localhost:8080/feed/post/' + postId, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + token

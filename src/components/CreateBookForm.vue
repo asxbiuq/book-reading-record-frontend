@@ -17,6 +17,7 @@ const { addDoc, isPending } = $(useDocument())
 const { userId } = $(useStore())
 const title = $ref('')
 const author = $ref('')
+const emits = defineEmits(['created'])
 
 const handleSubmit = async () => {
 
@@ -27,6 +28,8 @@ const handleSubmit = async () => {
     userUid: userId
   })
 
+  emits('created')
+  
   title = ''
   author = ''
 }

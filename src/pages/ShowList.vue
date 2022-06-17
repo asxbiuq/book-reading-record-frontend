@@ -2,7 +2,7 @@
   <Suspense>
     <div class="home">
       <ul>
-        <li v-for="book in books" :key="book.id">
+        <li v-for="book in docs.posts" :key="book.id">
           <div class="details">
             <h3 @click="handleDelete(book)">{{ book.title }}</h3>
             <p>By {{ book.author }}</p>
@@ -12,28 +12,34 @@
           </div>
         </li>
       </ul>
-      <CreateBookForm />
+      <CreateBookForm @created="getBooks" />
     </div>
   </Suspense>
 </template>
 
 <script setup>
 const { deleteDoc, getDoc, isPending, error } = $(useDocument())
+const { docs } = $(await getDoc())
 
-const { docs } = await getDoc()
-const books = docs.posts
-
-const handleDelete = (book) => {
-  deleteDoc(book.id)
+const getBooks = async () => {
+  const { docs: data } = $(await getDoc())
+  docs = data
 }
 
-// const handleUpdate = (book) => {
-//   const docRef = doc(db, 'books', book.id)
 
-//   updateDoc(docRef, {
-//     isFav: !book.isFav
-//   })
-// }
+const handleDelete = async (book) => {
+  await deleteDoc(book._id)
+  const { docs: data } = $(await getDoc())
+  docs = data
+}
+
+const handleUpdate = (book) => {
+  const docRef = doc(db, 'books', book.id)
+
+  updateDoc(docRef, {
+    isFav: !book.isFav
+  })
+}
 
 if (error) {
   console.log(error)
