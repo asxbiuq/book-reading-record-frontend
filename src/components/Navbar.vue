@@ -22,15 +22,14 @@
 </template>
 
 <script setup>
-import useStore from '../store';
 const { logout } = $(useLogout())
 const { userId } = $(useStore())
 const router = useRouter()
-// console.log(userId)
+
 
 const handleClick =  () => {
   logout()
-  router.push('/')
+  router.push({name:'Home'})
 }
 
 </script>

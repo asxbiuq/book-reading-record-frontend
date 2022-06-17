@@ -1,5 +1,3 @@
-import useStore from 'store/index.js'
-
 const { userId, token, expiryDate } = $(useStore())
 const error = $ref(null)
 const isPending = $ref(false)

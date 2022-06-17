@@ -18,28 +18,15 @@
 </template>
 
 <script setup>
-
 const { deleteDoc, getDoc, isPending, error } = $(useDocument())
 
-// useStorage('userId')
-// useStorage('token')
-// useStorage('expiryDate')
-// const { user } = getUser()
-// const { documents: books } = getCollection(
-//   'books',
-//   ['userUid', '==', user.value.uid]
-// )
 const { docs } = await getDoc()
 const books = docs.posts
-console.log(books)
-// delete docs
+
 const handleDelete = (book) => {
   deleteDoc(book.id)
 }
-if (error) {
-  console.log(error)
-}
-// // update doc
+
 // const handleUpdate = (book) => {
 //   const docRef = doc(db, 'books', book.id)
 
@@ -48,6 +35,9 @@ if (error) {
 //   })
 // }
 
+if (error) {
+  console.log(error)
+}
 </script>
 
 <style>

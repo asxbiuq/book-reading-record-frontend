@@ -13,8 +13,8 @@
 </template>
 
 <script setup>
-const { addDoc, isPending } = useDocument()
-const { userId } = $(useUser())
+const { addDoc, isPending } = $(useDocument())
+const { userId } = $(useStore())
 const title = $ref('')
 const author = $ref('')
 

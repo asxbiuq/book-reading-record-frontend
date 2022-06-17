@@ -1,5 +1,3 @@
-
-
 const error = $ref(null)
 const isPending = $ref(false)
 
