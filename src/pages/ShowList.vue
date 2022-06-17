@@ -1,8 +1,7 @@
 <template>
-  <Suspense>
     <div class="home">
       <ul>
-        <li v-for="book in docs.posts" :key="book.id">
+        <li v-for="book in docs.posts" :key="book.id" class="w-full">
           <div class="details">
             <h3 @click="handleDelete(book)">{{ book.title }}</h3>
             <p>By {{ book.author }}</p>
@@ -12,9 +11,8 @@
           </div>
         </li>
       </ul>
-      <CreateBookForm @created="getBooks" />
+      <CreateBookForm @created="getBooks" class="bg-black"/>
     </div>
-  </Suspense>
 </template>
 
 <script setup>
