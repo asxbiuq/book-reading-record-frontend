@@ -23,11 +23,9 @@ const  router  = useRouter()
 const handleSubmit = async () => {
   await login(email, password)
 
-  // if (!error) {
-  //   console.log('routeing...')
-  //   router.push({ name: 'ShowList' })
-  //   console.log('routed')
-  // }
+  if (!error) {
+    router.push({ name: 'ShowList' })
+  }
 }
   
 </script>

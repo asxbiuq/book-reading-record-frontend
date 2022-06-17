@@ -4,11 +4,11 @@ const error = $ref(null)
 const isPending = $ref(false)
 const { userId, token, expiryDate } = $(useStore())
 
-const login = (email, password) => {
+const login = async (email, password) => {
   error = null
   isPending = true
 
-  fetch('http://localhost:8080/auth/login', {
+  await fetch('http://localhost:8080/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
