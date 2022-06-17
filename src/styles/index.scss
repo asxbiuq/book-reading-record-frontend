@@ -31,3 +31,31 @@ button {
   padding: 6px;
   cursor: pointer;
 }
+
+
+form{
+  @apply flex flex-col gap-5 items-center   p-5  shadow-2xl bg-slate-100 shadow-slate-50 justify-between 
+}
+form label {
+  @apply font-medium text-gray-800 text-2xl 
+}
+form input {
+  @apply input rounded-none
+}
+form button {
+  @apply btn w-4/12 min-w-fit bg-red-500 
+}
+form textarea {
+  @apply border-slate-200 border-2;
+  /* border: 1px solid black; */
+  padding: 10px;
+  outline: none;
+  display: block;
+  width: 100%;
+  height:10rem;
+  box-sizing: border-box;
+  margin: 20px auto;
+}
+form input[type="file"] {
+  @apply max-w-full
+}

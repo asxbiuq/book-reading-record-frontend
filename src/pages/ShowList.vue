@@ -1,7 +1,7 @@
 <template>
-    <div class="home">
+    <div class="">
       <ul>
-        <li v-for="book in docs.posts" :key="book.id" class="w-full">
+        <li v-for="book in docs.posts" :key="book.id" class="">
           <div class="details">
             <h3 @click="handleDelete(book)">{{ book.title }}</h3>
             <p>By {{ book.author }}</p>
@@ -11,7 +11,10 @@
           </div>
         </li>
       </ul>
-      <CreateBookForm @created="getBooks" class="bg-black"/>
+      <div  class="flex items-center">
+
+        <CreateBookForm @created="getBooks" class="p-10"/>
+      </div>
     </div>
 </template>
 

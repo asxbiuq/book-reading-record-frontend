@@ -1,20 +1,28 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <h3>Add a New Book</h3>
 
-    <label for="title">Book title:</label>
-    <input type="text" name="title" v-model="title" required>
+    <label>Add a New Book</label>
 
-    <label for="author">Book author:</label>
-    <input type="text" name="author" v-model="author" required>
+    <div class="flex flex-row items-center gap-5">
+      <label for="title">Book title:</label>
+      <input type="text" name="title" v-model="title" required class="h-10">
+    </div>
 
-    <button>Add Book</button>
+    <div class="flex flex-row items-center gap-5">
+      <label for="author">Book author:</label>
+      <input type="text" name="author" v-model="author" required class="h-10">
+    </div>
+
+    <div>
+      <button>Add Book</button>
+    </div>
+
   </form>
 </template>
 
 <script setup>
 const { addDoc, isPending } = $(useDocument())
-const { userId } = $(useStore()) 
+const { userId } = $(useStore())
 const title = $ref('')
 const author = $ref('')
 const emits = defineEmits(['created'])
