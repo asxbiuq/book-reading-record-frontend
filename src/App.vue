@@ -5,7 +5,7 @@
 <template>
   <Navbar />
   <router-view />
-  <!-- <helloWorld/> -->
+  
 </template>
 
 <style>

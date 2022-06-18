@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit">
-
+    <label class="title">登陆</label>
 
     <div class="container">
       <label for="email"><b>邮箱</b></label>
@@ -50,6 +50,9 @@ const handleSubmit = async () => {
 </script>
 
 <style lang="scss" scoped>
+.title{
+  @apply text-xl text-gray-900
+}
 /* Bordered form */
 form {
   border: 3px solid #f1f1f1;
