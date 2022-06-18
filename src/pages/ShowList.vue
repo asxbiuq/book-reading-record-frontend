@@ -1,7 +1,7 @@
 <template>
-    <div class="">
-      <ul>
-        <li v-for="book in docs.posts" :key="book.id" class="">
+    <div>
+      <ul class="bg-red">
+        <li v-for="book in docs.posts" :key="book.id" class="bg-orange-400 w-[50%] flex justify-between">
           <div class="details">
             <h3 @click="handleDelete(book)">{{ book.title }}</h3>
             <p>By {{ book.author }}</p>

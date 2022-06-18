@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <!-- <form @submit.prevent="handleSubmit">
     <h2>Login</h2>
 
     <label for="email">Email:</label>
@@ -10,7 +10,14 @@
 
     <button>Login</button>
     <div v-if="error">{{ error }}</div>
-  </form>
+  </form> -->
+  <div class="loginform">
+    <LoginForm 
+      v-model:email="email"
+      v-model:password="password"
+      @login="handleLogin"
+    />
+  </div>
 </template>
 
 <script setup>
@@ -20,7 +27,7 @@ const password = $ref('')
 const { error, login, isPending } = $(useLogin())
 const  router  = useRouter()
 
-const handleSubmit = async () => {
+const handleLogin = async () => {
   await login(email, password)
 
   if (!error) {
@@ -29,3 +36,15 @@ const handleSubmit = async () => {
 }
   
 </script>
+<route lang="yaml">
+{
+  meta: {
+    layout: "home",
+  }
+}
+</route>
+<style>
+.loginform {
+  @apply flex justify-center items-center  w-1/2
+}
+</style>

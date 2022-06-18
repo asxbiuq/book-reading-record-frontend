@@ -1,5 +1,4 @@
 <template>
-  <div>
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
         <!-- <Transition mode="out-in"> -->
@@ -17,13 +16,7 @@
         <!-- </Transition> -->
       </template>
     </RouterView>
-  </div>
 </template>
 <style lang="scss">
-div {
-  display: flex;
-  // justify-content: center;
-  // align-items: center;
-  flex-direction: column;
-}
+
 </style>
