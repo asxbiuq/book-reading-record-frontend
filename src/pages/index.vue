@@ -2,19 +2,27 @@
   <div>
     <div v-if="error" class="error">{{ error }}</div>
     <div v-if="userId">
-
-      <ul class="bg-red">
-        <li v-for="book in docs.posts" :key="book.id" class="bg-orange-400 w-[50%] flex justify-between">
-          <div class="details">
-            <h3 @click="handleDelete(book)">{{ book.title }}</h3>
-            <p>By {{ book.author }}</p>
-          </div>
-          <div :class="{ icon: true, fav: book.isFav }" @click="handleUpdate(book)">
-            <span class="material-icons">favorite</span>
-          </div>
+      <ul  class="flex gap-10">
+        <li v-for="book in docs.posts" :key="book.id">
+          <!-- <card
+            :title="book.title"
+            :description="book.author"
+            :btnName="'删除'"
+            @clickTitle=""
+            @clickBtn=""
+          /> -->
+          <BookCell
+            :title="book.title"
+            :description="book.author"
+            :btnName="'删除'"
+            @clickBtn="handleDelete(book)"
+          />
         </li>
       </ul>
-      <div class="flex items-center">
+
+
+
+      <div class="flex items-center justify-center">
         <CreateBookForm @created="getBooks" class="p-10" />
       </div>
     </div>
@@ -22,9 +30,11 @@
       请登录
     </div>
   </div>
+  
 </template>
 
 <script setup>
+undefined
 const { deleteDoc, getDoc, updateDoc, isPending, error } = $(useDocument())
 const { docs } = $(await getDoc())
 const { userId } = $(useStore())
