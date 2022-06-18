@@ -1,51 +1,106 @@
 <template>
-  <!-- <form @submit.prevent="handleSubmit">
-    <h2>Login</h2>
+  <div>
+    <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="userId">
 
-    <label for="email">Email:</label>
-    <input type="email" name="email" v-model="email" required>
-
-    <label for="password">Password:</label>
-    <input type="password" name="password" v-model="password" required>
-
-    <button>Login</button>
-    <div v-if="error">{{ error }}</div>
-  </form> -->
-  <div class="loginform">
-    <LoginForm 
-      v-model:email="email"
-      v-model:password="password"
-      @login="handleLogin"
-    />
+      <ul class="bg-red">
+        <li v-for="book in docs.posts" :key="book.id" class="bg-orange-400 w-[50%] flex justify-between">
+          <div class="details">
+            <h3 @click="handleDelete(book)">{{ book.title }}</h3>
+            <p>By {{ book.author }}</p>
+          </div>
+          <div :class="{ icon: true, fav: book.isFav }" @click="handleUpdate(book)">
+            <span class="material-icons">favorite</span>
+          </div>
+        </li>
+      </ul>
+      <div class="flex items-center">
+        <CreateBookForm @created="getBooks" class="p-10" />
+      </div>
+    </div>
+    <div v-else>
+      请登录
+    </div>
   </div>
-  
 </template>
 
 <script setup>
-const email = $ref('')
-const password = $ref('')
-
-const { error, login, isPending } = $(useLogin())
-const  router  = useRouter()
-
-const handleLogin = async () => {
-  await login(email, password)
-
-  if (!error) {
-    router.push({ name: 'ShowList' })
-  }
+const { deleteDoc, getDoc, updateDoc, isPending, error } = $(useDocument())
+const { docs } = $(await getDoc())
+const { userId } = $(useStore())
+console.log('userId',userId)
+const getBooks = async () => {
+  const { docs: data } = $(await getDoc())
+  docs = data
 }
-  
+
+
+const handleDelete = async (book) => {
+  await deleteDoc(book._id)
+  const { docs: data } = $(await getDoc())
+  docs = data
+}
+
+const handleUpdate = (book) => {
+  // console.log(book)
+  book.isFav = !book.isFav
+  console.log(book)
+  updateDoc(book._id, {
+    title: book.title,
+    author: book.author,
+    isFav: book.isFav,
+    userUid: userId
+  })
+}
+
+if (error) {
+  console.log(error)
+}
 </script>
-<route lang="yaml">
-{
-  meta: {
-    layout: "home",
-  }
-}
-</route>
+
 <style>
-.loginform {
-  @apply flex justify-center items-center  w-1/2
+.home {
+  display: flex;
+  align-items: center;
+}
+
+.home ul {
+  padding: 0;
+}
+
+.home li {
+  list-style-type: none;
+  background: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.home li .details {
+  margin-right: auto;
+}
+
+.home li h3 {
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.home li h3:hover {
+  cursor: pointer;
+  text-decoration: line-through;
+}
+
+.home li p {
+  margin: 0;
+}
+
+.icon {
+  color: #bbbbbb;
+  cursor: pointer;
+}
+
+.icon.fav {
+  color: #f83f5e;
 }
 </style>

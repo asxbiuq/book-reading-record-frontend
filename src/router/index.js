@@ -3,6 +3,8 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
 
 const routes = setupLayouts(generatedRoutes)
+const { userId } = $(useStore())
+console.log(userId)
 
 const router = createRouter({
   history: createWebHistory(),
@@ -10,9 +12,16 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  /*     */
-  
-  next()
+  if (
+    to.name !== 'Login' &&
+    to.name !== 'Signup' &&
+    to.name == '/' &&
+    !userId
+  ) {
+    next({ name: 'Login' })
+  } else {
+    next()
+  }
 })
 
 export default router

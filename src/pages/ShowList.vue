@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="userId">
       <ul class="bg-red">
         <li v-for="book in docs.posts" :key="book.id" class="bg-orange-400 w-[50%] flex justify-between">
           <div class="details">
@@ -15,6 +15,9 @@
 
         <CreateBookForm @created="getBooks" class="p-10"/>
       </div>
+    </div>
+    <div v-else>
+      null
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="signupform">
+  <div class="signupform-shell">
     <SignupForm 
       v-model:email="email" 
       v-model:password="password" 
@@ -37,7 +37,7 @@ const handlePswError = () => {
 }
 </route>
 <style>
-.signupform {
+.signupform-shell {
   @apply flex justify-center items-center w-1/2
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <div class="container">
-      <label class="title">注册</label>
+      <p class="title">注册</p>
 
       <hr>
       <label for="name"><b>用户名</b></label>
@@ -94,13 +94,16 @@ const handleSubmit = async () => {
 
 <style lang="scss" scoped>
 .title {
-  @apply text-xl text-gray-900
+  @apply text-xl text-gray-900 text-center
 }
 
 * {
   box-sizing: border-box
 }
-
+form {
+  border: 3px solid #f1f1f1;
+  @apply flex flex-col items-center
+}
 /* Full-width input fields */
 input[type=text],
 input[type=password] {
