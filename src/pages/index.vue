@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <div v-if="error" class="error">{{ error }}</div>
     <div v-if="userId">
       <ul  class="flex gap-10">
@@ -13,11 +14,14 @@
           /> -->
           <BookCell
             :title="book.title"
-            :description="book.author"
+            :author="book.author"
+            :description="book.description"
             :btnName="'删除'"
             @clickBtn="handleDelete(book)"
           />
+         
         </li>
+          
       </ul>
 
 
@@ -34,7 +38,6 @@
 </template>
 
 <script setup>
-undefined
 const { deleteDoc, getDoc, updateDoc, isPending, error } = $(useDocument())
 const { docs } = $(await getDoc())
 const { userId } = $(useStore())
@@ -46,6 +49,7 @@ const getBooks = async () => {
 
 
 const handleDelete = async (book) => {
+  console.log(book)
   await deleteDoc(book._id)
   const { docs: data } = $(await getDoc())
   docs = data
@@ -68,7 +72,7 @@ if (error) {
 }
 </script>
 
-<style>
+<style scoped>
 .home {
   display: flex;
   align-items: center;

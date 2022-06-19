@@ -6,7 +6,12 @@
           <img :src="imgUrl" alt="image" class="book-photo">
         </div>
         <div class="book-content">
-          <div class="book-title">{{ title }}</div>
+          <div class="flex justify-between">
+
+            <div class="book-title">{{ title }}</div>
+             <!-- <i-ic:outline-star-purple500 style="font-size:2em" id="star"/> -->
+             <i-emojione:star style="font-size:2em;" ref="star"/>
+          </div>
           <div class="book-author">by {{ author }}</div>
           <div class="rate">
             <fieldset class="rating">
@@ -32,6 +37,11 @@
 </template>
 
 <script setup>
+// const star = ref()
+// onMounted(() => {
+//   console.log(star)
+// });
+
 const props = defineProps({
   title: { type: String, default: '标题', required: false },
   author: { type: String, default: '作者', required: false },

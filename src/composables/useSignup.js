@@ -22,8 +22,8 @@ const signup = (email, password, name) => {
           )
         }
         if (res.status !== 200 && res.status !== 201) {
-          console.log('Error!');
-          throw new Error('创建用户失败!');
+          console.log('Error!')
+          throw new Error('创建用户失败!')
         }
         return res.json()
       })
@@ -33,7 +33,7 @@ const signup = (email, password, name) => {
         isPending = false
       })
       .catch(err => {
-        console.log(err.message);
+        console.log(err.message)
         error = err.message
         isPending = false
       })

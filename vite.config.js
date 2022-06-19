@@ -9,6 +9,8 @@ import {
   ElementPlusResolver,
   HeadlessUiResolver,
 } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -85,7 +87,7 @@ export default defineConfig({
     }),
     Components({
       // relative paths to the directory to search for components.
-      dirs: ['src/components', 'src/pages'],
+      dirs: ['src/components', 'src/pages','@iconify/vue'],
 
       // valid file extensions for components.
       extensions: ['vue'],
@@ -95,6 +97,7 @@ export default defineConfig({
       resolvers: [
         ElementPlusResolver(),
         HeadlessUiResolver(),
+        IconsResolver(),
       ],
 
       // generate `components.d.ts` global declarations,
@@ -131,6 +134,7 @@ export default defineConfig({
     Layouts({
       defaultLayout: 'default'
     }),
+    Icons({ autoInstall: true }),
   ],
   resolve: {
     alias: {

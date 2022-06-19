@@ -1,11 +1,13 @@
 const error = $ref(null)
 const isPending = $ref(false)
-const { userId, token, expiryDate } = $(useStore())
+const { userId, token } = $(useStore())
 
 
 const useDocument = (col, docId) => {
 
     const addDoc = async (postData) => {
+        isPending = true
+        error = null
 
         const formData = new FormData()
         formData.append('title', postData.title)
@@ -13,16 +15,14 @@ const useDocument = (col, docId) => {
         formData.append('isFav', postData.isFav)
         formData.append('userUid', postData.userUid)
         // formData.append('image', postData.image)
-        let url = 'http://localhost:8080/feed/post'
-        let method = 'POST'
 
-        fetch(url, {
-            method: method,
+
+        fetch('http://localhost:8080/feed/post', {
+            method: 'POST',
             body: formData,
             headers: {
                 Authorization: 'Bearer ' + token
-            }
-        })
+            }})
             .then(res => {
                 if (res.status !== 200 && res.status !== 201) {
                     throw new Error('Creating a post failed!')
@@ -34,39 +34,43 @@ const useDocument = (col, docId) => {
             .catch(err => {
                 console.log(err)
                 error = 'Creating a post failed!'
+                isPending = false
             })
     }
 
     const getDoc = async (page, order = 'createdAt') => {
+        isPending = true
+        error = null
         const docs = $ref(null)
         // console.log('in useDocument token: ', token)
-        await fetch('http://localhost:8080/feed/posts', {
-            method: 'GET',
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        })
-            .then(res => {
-                if (res.status !== 200) {
-                    throw new Error('Failed to fetch posts.')
-                }
-                return res.json()
-            })
-            .then(resData => {
+        await fetch('http://localhost:8080/feed/posts/' + userId, {
+                method: 'GET',
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }})
+                .then(res => {
+                    if (res.status !== 200) {
+                        throw new Error('Failed to fetch posts.')
+                    }
+                    return res.json()
+                })
+                .then(resData => {
 
-                docs = {
-                    posts: resData.posts,
-                    totalPosts: resData.totalItems,
-                }
-                console.log('get docs: ', docs)
+                    docs = {
+                        posts: resData.posts,
+                        totalPosts: resData.totalItems,
+                    }
+                    console.log('get docs: ', docs)
+                    isPending = false
+                })
+                .catch(err => {
+                    if (err) {
+                        console.log(err)
+                    }
+                    isPending = false
+                    error = 'get posts failed!'
+                })
 
-            })
-            .catch(err => {
-                if (err) {
-                    console.log(err)
-                }
-                error = 'get posts failed!'
-            })
         return $$({ docs })
     }
 
@@ -91,27 +95,27 @@ const useDocument = (col, docId) => {
         error = null
 
         await fetch('http://localhost:8080/feed/post/' + postId, {
-            method: 'DELETE',
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        })
-            .then(res => {
-                if (res.status !== 200 && res.status !== 201) {
-                    throw new Error('Deleting a post failed!');
-                }
-                return res.json();
-            })
-            .then(resData => {
-                console.log('delete success')
-                console.log('resData: ', resData);
-                isPending = false
-                error = null
-            })
-            .catch(err => {
-                console.log(err);
-                error = 'Deleting a post failed!'
-            });
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                })
+                .then(res => {
+                    if (res.status !== 200 && res.status !== 201) {
+                        throw new Error('Deleting a post failed!')
+                    }
+                    return res.json()
+                })
+                .then(resData => {
+                    console.log('delete success')
+                    console.log('resData: ', resData)
+                    isPending = false
+                })
+                .catch(err => {
+                    console.log(err)
+                    error = 'Deleting a post failed!'
+                    isPending = false
+                })
     }
 
 

@@ -43,7 +43,7 @@ const handleSubmit = async () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 form {
   @apply flex flex-col gap-5 items-center p-5 shadow-2xl bg-slate-100 shadow-slate-50 justify-between
 }

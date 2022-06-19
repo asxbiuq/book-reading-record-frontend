@@ -1,10 +1,10 @@
 import { storage } from '@/firebase/config'
 import { ref } from "vue"
 import getUser from "composables/getUser"
-import { uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc, deleteDoc } from "firebase/firestore";
-import { db } from '../firebase/config';
-import { getStorage, ref as fireRef, deleteObject } from "firebase/storage";
+import { uploadBytes, getDownloadURL } from "firebase/storage"
+import { doc, deleteDoc } from "firebase/firestore"
+import { db } from '../firebase/config'
+import { getStorage, ref as fireRef, deleteObject } from "firebase/storage"
 
 
 const { user } = $(getUser())
@@ -18,7 +18,7 @@ const useStorage = () => {
     const uploadImage = async (file) => {
         isPending = true
         filePath = `covers/${user.uid}/${file.name}`
-        const storageRef = fireRef(storage, filePath);
+        const storageRef = fireRef(storage, filePath)
         try {
             //需要先上传,所以这里需要阻塞一下
             await uploadBytes(storageRef, file)
@@ -44,7 +44,7 @@ const useStorage = () => {
     const deleteImage = async (filePath) => {
         isPending = true
         // filePath = `covers/${user.uid}/${file.name}`
-        const desertRef = fireRef(storage, filePath);
+        const desertRef = fireRef(storage, filePath)
         // Delete the file
         deleteObject(desertRef).then(() => {
             // File deleted successfully
@@ -62,7 +62,7 @@ const useStorage = () => {
     const uploadMusic = async (file) => {
         isPending = true
         filePath = `musics/${user.uid}/${file.name}`
-        const storageRef = fireRef(storage, filePath);
+        const storageRef = fireRef(storage, filePath)
         try {
             //需要先上传,所以这里需要阻塞一下
             await uploadBytes(storageRef, file)
@@ -87,7 +87,7 @@ const useStorage = () => {
     const deleteMusic = async (filePath) => {
         isPending = true
         // filePath = `covers/${user.uid}/${file.name}`
-        const desertRef = fireRef(storage, filePath);
+        const desertRef = fireRef(storage, filePath)
         // Delete the file
         deleteObject(desertRef).then(() => {
             // File deleted successfully
