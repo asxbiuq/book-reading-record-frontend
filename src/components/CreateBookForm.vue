@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-const { addDoc, isPending } = $(useDocument())
+const { addDoc, isPending } = $(useDocument('http://localhost:8080/feed/post/'))
 const { userId } = $(useStore())
 const title = $ref('')
 const author = $ref('')

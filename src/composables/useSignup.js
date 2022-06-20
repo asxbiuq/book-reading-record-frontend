@@ -1,9 +1,9 @@
 const error = $ref(null)
 const isPending = $ref(false)
+const useSignup = (url) => {
 
-const signup = (email, password, name) => {
-
-    fetch('http://localhost:8080/auth/signup', {
+  const signup = (email, password, name) => {
+    fetch(url, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ const signup = (email, password, name) => {
         return res.json()
       })
       .then(resData => {
-        console.log('resData: ',resData)
+        console.log('resData: ', resData)
         error = null
         isPending = false
       })
@@ -38,7 +38,7 @@ const signup = (email, password, name) => {
         isPending = false
       })
   }
-const useSignup = () => {
-    return $$({ error, signup, isPending })
+
+  return $$({ error, signup, isPending })
 }
 export default useSignup  

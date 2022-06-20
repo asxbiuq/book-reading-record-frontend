@@ -1,17 +1,9 @@
 <template>
   <div>
-    
     <div v-if="error" class="error">{{ error }}</div>
     <div v-if="userId">
       <ul  class="flex gap-10">
         <li v-for="book in docs.posts" :key="book.id">
-          <!-- <card
-            :title="book.title"
-            :description="book.author"
-            :btnName="'删除'"
-            @clickTitle=""
-            @clickBtn=""
-          /> -->
           <BookCell
             :title="book.title"
             :author="book.author"
@@ -19,44 +11,37 @@
             :btnName="'删除'"
             @clickBtn="handleDelete(book)"
           />
-         
         </li>
-          
       </ul>
-
-
 
       <div class="flex items-center justify-center">
         <CreateBookForm @created="getBooks" class="p-10" />
       </div>
     </div>
     <div v-else>
-      请登录
+      <p>请登录</p>
     </div>
   </div>
   
 </template>
 
 <script setup>
-const { deleteDoc, getDoc, updateDoc, isPending, error } = $(useDocument())
+const { deleteDoc, getDoc, updateDoc, isPending, error } = $(useDocument('http://localhost:8080/feed/post/'))
 const { docs } = $(await getDoc())
 const { userId } = $(useStore())
-console.log('userId',userId)
+
 const getBooks = async () => {
   const { docs: data } = $(await getDoc())
   docs = data
 }
 
-
 const handleDelete = async (book) => {
-  console.log(book)
   await deleteDoc(book._id)
   const { docs: data } = $(await getDoc())
   docs = data
 }
 
 const handleUpdate = (book) => {
-  // console.log(book)
   book.isFav = !book.isFav
   console.log(book)
   updateDoc(book._id, {
@@ -67,9 +52,6 @@ const handleUpdate = (book) => {
   })
 }
 
-if (error) {
-  console.log(error)
-}
 </script>
 
 <style scoped>

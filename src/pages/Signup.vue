@@ -15,7 +15,7 @@ const email = $(ref(''))
 const password = $(ref(''))
 const name = $(ref(''))
 
-const { signup, error, isPending } = $(useSignup())
+const { signup, error, isPending } = $(useSignup('http://localhost:8080/auth/signup'))
 const router = useRouter()
 
 const handleSignup = async () => {

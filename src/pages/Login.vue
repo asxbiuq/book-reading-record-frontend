@@ -12,7 +12,7 @@
 const email = $ref('')
 const password = $ref('')
 
-const { error, login, isPending } = $(useLogin())
+const { error, login, isPending } = $(useLogin('http://localhost:8080/auth/login/'))
 const  router  = useRouter()
 
 const handleLogin = async () => {
