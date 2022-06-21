@@ -2,15 +2,10 @@
   <div>
     <div v-if="error" class="error">{{ error }}</div>
     <div v-if="userId">
-      <ul  class="flex gap-10">
+      <ul class="flex gap-10">
         <li v-for="book in docs.posts" :key="book.id">
-          <BookCell
-            :title="book.title"
-            :author="book.author"
-            :description="book.description"
-            :btnName="'删除'"
-            @clickBtn="handleDelete(book)"
-          />
+          <BookCell :title="book.title" :author="book.author" :description="book.description" :btnName="'删除'"
+            @clickBtn="handleDelete(book)" />
         </li>
       </ul>
 
@@ -22,23 +17,30 @@
       <p>请登录</p>
     </div>
   </div>
-  
+
 </template>
 
 <script setup>
-const { deleteDoc, getDoc, updateDoc, isPending, error } = $(useDocument('http://localhost:8080/feed/post/'))
-const { docs } = $(await getDoc())
+const { deleteDoc, getDoc, getAllDocs, updateDoc, isPending, error } = $(useDocument('http://localhost:8080/feed/post/'))
 const { userId } = $(useStore())
+const router = useRouter()
+
+const { docs } = $(await getAllDocs('http://localhost:8080/feed/posts/'))
+
 
 const getBooks = async () => {
-  const { docs: data } = $(await getDoc())
-  docs = data
+  const { docs: dadas } = $(await getAllDocs('http://localhost:8080/feed/posts/'))
+  docs = dadas
 }
 
 const handleDelete = async (book) => {
   await deleteDoc(book._id)
-  const { docs: data } = $(await getDoc())
-  docs = data
+  if (!error) {
+    console.log(docs.posts)
+    docs.posts = docs.posts.filter((post) => {
+      post._id = book._id
+    })
+  }
 }
 
 const handleUpdate = (book) => {
@@ -52,6 +54,9 @@ const handleUpdate = (book) => {
   })
 }
 
+if (!userId) {
+  router.push({ name: 'Login' })
+}
 </script>
 
 <style scoped>

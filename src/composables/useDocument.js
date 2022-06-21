@@ -4,7 +4,42 @@ const { userId, token } = $(useStore())
 
 
 const useDocument = (url) => {
+    const getAllDocs = async (getAllDocsUrl) => {
+        isPending = true
+        error = null
+        const docs = $ref(null)
+        // console.log('in useDocument token: ', token)
+        await fetch(getAllDocsUrl + userId, {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+            .then(res => {
+                if (res.status !== 200) {
+                    throw new Error('Failed to fetch posts.')
+                }
+                return res.json()
+            })
+            .then(resData => {
 
+                docs = {
+                    posts: resData.posts,
+                    totalPosts: resData.totalItems,
+                }
+                console.log('get docs: ', docs)
+                isPending = false
+            })
+            .catch(err => {
+                if (err) {
+                    console.log(err)
+                }
+                isPending = false
+                error = 'get posts failed!'
+            })
+
+        return $$({ docs })
+    }
     const addDoc = async (postData) => {
         isPending = true
         error = null
@@ -38,12 +73,12 @@ const useDocument = (url) => {
             })
     }
 
-    const getDoc = async (page, order = 'createdAt') => {
+    const getDoc = async (docId,page, order = 'createdAt') => {
         isPending = true
         error = null
-        const docs = $ref(null)
+        const doc = $ref(null)
         // console.log('in useDocument token: ', token)
-        await fetch(url + userId, {
+        await fetch(url + docId, {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + token
@@ -51,17 +86,17 @@ const useDocument = (url) => {
         })
             .then(res => {
                 if (res.status !== 200) {
-                    throw new Error('Failed to fetch posts.')
+                    throw new Error('Failed to fetch post.')
                 }
                 return res.json()
             })
             .then(resData => {
 
-                docs = {
-                    posts: resData.posts,
-                    totalPosts: resData.totalItems,
+                doc = {
+                    post: resData.post,
+                    totalPost: resData.totalItem,
                 }
-                console.log('get docs: ', docs)
+                console.log('get doc: ', doc)
                 isPending = false
             })
             .catch(err => {
@@ -69,10 +104,10 @@ const useDocument = (url) => {
                     console.log(err)
                 }
                 isPending = false
-                error = 'get posts failed!'
+                error = 'get post failed!'
             })
 
-        return $$({ docs })
+        return $$({ doc })
     }
 
     const updateDoc = async (postId, updateData) => {
@@ -126,7 +161,7 @@ const useDocument = (url) => {
         }
     })
 
-    return $$({ getDoc, addDoc, updateDoc, deleteDoc, error, isPending })
+    return $$({ getDoc,getAllDocs, addDoc, updateDoc, deleteDoc, error, isPending })
 }
 
 export default useDocument

@@ -19,8 +19,8 @@ const { userId } = $(useStore())
 const router = useRouter()
 
 const handleLogout = () => {
+  router.push({ name: 'Login' })
   logout()
-  router.push({ name: 'login' })
 }
 </script>
 
