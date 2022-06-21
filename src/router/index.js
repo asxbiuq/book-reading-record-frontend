@@ -4,7 +4,7 @@ import generatedRoutes from 'virtual:generated-pages'
 
 const routes = setupLayouts(generatedRoutes)
 const { userId } = $(useStore())
-console.log(userId)
+// console.log(userId)
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,5 +23,6 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+// console.log(routes)
 
 export default router

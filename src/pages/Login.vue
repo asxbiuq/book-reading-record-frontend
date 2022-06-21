@@ -11,8 +11,10 @@
 <script setup>
 const email = $ref('')
 const password = $ref('')
+const url = $ref('http://localhost:8080/auth/login/')
 
-const { error, login, isPending } = $(useLogin('http://localhost:8080/auth/login/'))
+const { error, login, isPending } = $(useLogin(url))
+
 const  router  = useRouter()
 
 const handleLogin = async () => {

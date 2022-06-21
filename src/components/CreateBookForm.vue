@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-const { addDoc, isPending } = $(useDocument('http://localhost:8080/feed/post/'))
+const { useFetchAddDoc } = $(useDocument())
 const { userId } = $(useStore())
 const title = $ref('')
 const author = $ref('')
@@ -29,7 +29,7 @@ const emits = defineEmits(['created'])
 
 const handleSubmit = async () => {
 
-  await addDoc({
+  await useFetchAddDoc('/feed/post/').post({
     title: title,
     author: author,
     isFav: false,
