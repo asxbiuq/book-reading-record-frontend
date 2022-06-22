@@ -11,7 +11,7 @@
 <script setup>
 const email = $ref('')
 const password = $ref('')
-const url = $ref('http://localhost:8080/auth/login/')
+const url = 'http://localhost:8080/auth/login/'
 const { userId : store_userId, token : store_token, expiryDate : store_expiryDate } = $(useStore())
 const { error, login, isPending } = $(useLogin(url))
 
@@ -19,10 +19,7 @@ const  router  = useRouter()
 
 const handleLogin = async () => {
   const { token, userId, expiryDate } = await login(email, password)
-
-  store_userId = userId
-  store_token = token
-  store_expiryDate = expiryDate
+  
 
   if (!error) {
     router.push('/')

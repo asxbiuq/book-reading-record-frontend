@@ -24,7 +24,6 @@ const useLogin = (url) => {
           throw new Error('Validation failed.')
         }
         if (res.status !== 200 && res.status !== 201) {
-          console.log('Error!')
           throw new Error('Could not authenticate you!')
         }
         return res.json()
@@ -32,7 +31,7 @@ const useLogin = (url) => {
       .then(resData => {
         token = resData.token
         userId = resData.userId
-        const remainingMilliseconds = 60 * 60 * 1000
+        const remainingMilliseconds = 24 * 60 * 60 * 1000
         expiryDate = new Date(
           new Date().getTime() + remainingMilliseconds
         )  

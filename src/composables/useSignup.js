@@ -1,9 +1,12 @@
 const error = $ref(null)
 const isPending = $ref(false)
+
 const useSignup = (url) => {
 
-  const signup = (email, password, name) => {
-    fetch(url, {
+  const signup = async (email, password, name) => {
+    let userId, token,expiryDate
+
+    await fetch(url, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -29,6 +32,12 @@ const useSignup = (url) => {
       })
       .then(resData => {
         console.log('resData: ', resData)
+        const remainingMilliseconds = 24 * 60 * 60 * 1000
+        expiryDate = new Date(
+          new Date().getTime() + remainingMilliseconds
+        )  
+        userId = resData.userId
+        token = resData.token
         error = null
         isPending = false
       })
@@ -37,6 +46,7 @@ const useSignup = (url) => {
         error = err.message
         isPending = false
       })
+      return { userId, token,expiryDate } 
   }
 
   return $$({ error, signup, isPending })
