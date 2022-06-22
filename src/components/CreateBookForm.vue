@@ -21,20 +21,25 @@
 </template>
 
 <script setup>
-const { useFetchAddDoc } = $(useDocument())
-const { userId } = $(useStore())
+const baseUrl = 'http://localhost:8080'
+const { userId,token } = $(useStore())
+const { useFetch_AddDoc } = $(useFetchDoc(baseUrl,token))
 const title = $ref('')
 const author = $ref('')
+
 const emits = defineEmits(['created'])
 
 const handleSubmit = async () => {
 
-  await useFetchAddDoc('/feed/post/').post({
-    title: title,
-    author: author,
-    isFav: false,
-    userUid: userId
-  })
+  await useFetch_AddDoc(
+      '/feed/post/'
+    )
+    .post({
+      title: title,
+      author: author,
+      isFav: false,
+      userUid: userId
+    })
 
   emits('created')
 

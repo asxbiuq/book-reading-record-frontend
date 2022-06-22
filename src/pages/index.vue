@@ -3,8 +3,13 @@
     <div v-if="userId">
       <ul class="flex gap-10">
         <li v-for="book in data.posts" :key="book._id">
-          <BookCell :title="book.title" :author="book.author" :description="book.description" :btnName="'删除'"
-            @clickBtn="handleDelete(book)" />
+          <BookCell 
+            :title="book.title" 
+            :author="book.author" 
+            :description="book.description" 
+            :btnName="'删除'"
+            @clickBtn="handleDelete(book)" 
+          />
           <p class="text-red-500 mt-12" @click="handleUpdate(book)">
             {{ book.isFav }}
           </p>
@@ -23,22 +28,35 @@
 </template>
 
 <script setup>
-const { useFetchDocsAll, useFetchDeleteDoc, updateDoc, useFetchUpdateDoc } = $(useDocument('http://localhost:8080/feed/post/'))
-const { userId } = $(useStore())
+const baseUrl = 'http://localhost:8080/feed'
+const data = reactive({})
+const { userId, token } = $(useStore())
 const router = useRouter()
-const data = reactive({posts:[]})
+const { useFetch_GetDocsAll, useFetch_DeleteDoc, useFetch_UpdateDoc } = $(useFetchDoc(baseUrl,token))
 
-const { isFetching, error: useFetchDocsAllError, data:newData } = $(await useFetchDocsAll('/feed/posts/' + userId).json())
+const { isFetching, error: useFetchDocsAllError, data : newData } = $(
+  await useFetch_GetDocsAll(
+      '/posts/' + userId
+    )
+    .json())
 
 data.posts = [...newData.posts]
 
 const getBooks = async () => {
-  const { data: newData } = $(await useFetchDocsAll('/feed/posts/' + userId).json())
+  const { data: newData } = $(
+    await useFetch_GetDocsAll(
+        '/posts/' + userId
+      )
+      .json())
   data.posts = [...newData.posts]
 }
 
 const handleDelete = async (book) => {
-  const { error: useFetchDeleteDocError } = $(await useFetchDeleteDoc('/feed/post/' + book._id).delete())
+  const { error: useFetchDeleteDocError } = $(
+    await useFetch_DeleteDoc(
+        '/post/' + book._id
+      )
+      .delete())
 
   if (!useFetchDeleteDocError) {
     data.posts = data.posts.filter((post) =>
@@ -49,12 +67,18 @@ const handleDelete = async (book) => {
 
 const handleUpdate = async (book) => {
   book.isFav = !book.isFav
-  const { data: UpdatedData, error: useFetchUpdateDocError } = $(await useFetchUpdateDoc('/feed/post/' + book._id).put({
-    title: book.title,
-    author: book.author,
-    isFav: book.isFav,
-    userUid: userId
-  }).json())
+  
+  const { data: UpdatedData, error: useFetchUpdateDocError } = $(
+    await useFetch_UpdateDoc(
+        '/post/' + book._id
+      )
+      .put({
+          title: book.title,
+          author: book.author,
+          isFav: book.isFav,
+          userUid: userId
+      })
+      .json())
 
   if (!useFetchUpdateDocError) {
     data.posts.forEach(post => {

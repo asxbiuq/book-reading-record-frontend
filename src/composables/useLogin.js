@@ -1,10 +1,13 @@
 const error = $ref(null)
 const isPending = $ref(false)
-const { userId, token, expiryDate } = $(useStore())
+
+
 const useLogin = (url) => {
+
   const login = async (email, password) => {
     error = null
     isPending = true
+    let token, userId, expiryDate
 
     await fetch(url, {
       method: 'POST',
@@ -32,7 +35,10 @@ const useLogin = (url) => {
         const remainingMilliseconds = 60 * 60 * 1000
         expiryDate = new Date(
           new Date().getTime() + remainingMilliseconds
-        )
+        )  
+
+        
+
         // console.log('resData: ',resData)
         error = null
         isPending = false
@@ -42,11 +48,12 @@ const useLogin = (url) => {
         error = 'Incorrect login credentials'
         isPending = false
       })
+      return { token, userId, expiryDate }
   }
 
 
 
-  return $$({ error, login, isPending, token, userId, expiryDate })
+  return $$({ error, login, isPending })
 }
 
 export default useLogin
