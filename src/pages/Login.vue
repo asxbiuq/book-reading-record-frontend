@@ -4,6 +4,7 @@
       v-model:email="email"
       v-model:password="password"
       @login="handleLogin"
+      novalidate
     />
   </div>
 </template>

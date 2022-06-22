@@ -6,6 +6,7 @@
       v-model:name="name" 
       @signup="handleSignup"
       @pswError="handlePswError" 
+      novalidate
     />
   </div>
 </template>
