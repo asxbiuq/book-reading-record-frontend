@@ -19,7 +19,10 @@ const  router  = useRouter()
 
 const handleLogin = async () => {
   const { token, userId, expiryDate } = await login(email, password)
-  
+  console.log(token)
+  store_userId = userId
+  store_token = token
+  store_expiryDate = expiryDate
 
   if (!error) {
     router.push('/')
