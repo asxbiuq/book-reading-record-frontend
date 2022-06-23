@@ -12,6 +12,11 @@
       <label for="author">作者:</label>
       <input type="text" name="author" v-model="author" required class="h-10">
     </div>
+    <div class="flex flex-row items-center gap-5">
+      <label for="image">图片:</label>
+      <input type="file" @change="handleSelected" required class="h-10">
+      <div class="error">{{ fileError }}</div>
+    </div>
 
     <div class="w-full text-center">
       <button class="w-1/3">添加</button>
@@ -22,24 +27,42 @@
 
 <script setup>
 const baseUrl = 'http://localhost:8080'
-const { userId,token } = $(useStore())
-const { useFetch_AddDoc } = $(useFetchDoc(baseUrl,token))
+const { userId, token } = $(useStore())
+const { useFetch_AddDoc } = $(useFetchDoc(baseUrl, token))
 const title = $ref('')
 const author = $ref('')
+const file = $ref(null)
+const fileError = $ref(null)
 
 const emits = defineEmits(['created'])
 
+// 允许上传的数据类型
+const types = ['image/png', 'image/jpeg']
+const handleSelected = (e) => {
+  const selected = e.target.files[0]
+  console.log(selected)
+  if (selected && types.includes(selected.type)) {
+    file = selected
+    fileError = null
+  } else {
+    file = null
+    fileError = 'Please select an image file (jpg)'
+  }
+}
+
 const handleSubmit = async () => {
+
+  const formData = new FormData()
+  formData.append('title', title)
+  formData.append('author', author)
+  formData.append('isFav', false)
+  formData.append('userUid', userId)
+  formData.append('image', file)
 
   await useFetch_AddDoc(
       '/feed/post/'
     )
-    .post({
-      title: title,
-      author: author,
-      isFav: false,
-      userUid: userId
-    })
+      .post(formData)
 
   emits('created')
 

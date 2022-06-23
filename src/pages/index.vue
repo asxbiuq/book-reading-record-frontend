@@ -8,6 +8,7 @@
             :author="book.author" 
             :description="book.description" 
             :btnName="'删除'"
+            :imgUrl = "book.imageUrl"
             @clickBtn="handleDelete(book)" 
           />
           <p class="text-red-500 mt-12" @click="handleUpdate(book)">
@@ -78,7 +79,8 @@ const handleUpdate = async (book) => {
           title: book.title,
           author: book.author,
           isFav: book.isFav,
-          userUid: userId
+          userUid: book.userId,
+          image: book.imageUrl
       })
       .json())
 

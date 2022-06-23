@@ -45,7 +45,7 @@ const useDocument = (url, userId, token) => {
         formData.append('author', postData.author)
         formData.append('isFav', postData.isFav)
         formData.append('userUid', postData.userUid)
-        // formData.append('image', postData.image)
+        formData.append('image', postData.image)
         try {
             const res = await fetch(url, {
                 method: 'POST',
@@ -143,7 +143,7 @@ const useDocument = (url, userId, token) => {
         }
     })
 
-    return $$({ useFetchUpdateDoc, getDoc, getAllDocs, useFetchDocsAll, useFetchAddDoc, useFetchDeleteDoc, addDoc, updateDoc, deleteDoc, error, isPending })
+    return $$({ getDoc, getAllDocs, addDoc, updateDoc, deleteDoc, error, isPending })
 }
 
 export default useDocument
