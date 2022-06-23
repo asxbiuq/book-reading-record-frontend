@@ -17,15 +17,12 @@ const useSignup = (url) => {
           name: name
         })
       })
-      if (res.status === 422) {
-        throw new Error(
-          "注册失败。确保注册信息尚未使用！"
-        )
-      }
+
       if (res.status !== 200 && res.status !== 201) {
-        console.log('Error!')
-        throw new Error('创建用户失败!')
+        const resData = await res.json()
+        throw new Error('创建用户失败!',resData.message)
       }
+
       const resData = await res.json()
       console.log('resData: ', resData)
       const remainingMilliseconds = 24 * 60 * 60 * 1000

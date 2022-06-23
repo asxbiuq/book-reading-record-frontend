@@ -15,17 +15,18 @@ const useFetchDoc = (baseUrl, token) => {
         return { options }
       },
       // 在请求后处理数据，如：拦截错误、处理过期
-      afterFetch({ data, response }) {
+      async afterFetch({ data, response }) {
         // code...
         if (response.status !== 200) {
-          throw new Error('Failed to fetch posts.')
+          const resData = await data.json()
+          throw new Error('Failed to fetch posts.'+' '+resData.message)
         }
-
         return { data, response }
       },
       // 请求错误
-      onFetchError({ data, error }) {
-        console.error(error)
+      async onFetchError({ data, error }) {
+        const resData =   await JSON.parse(data)
+        console.log(resData.message)
         return { data, error }
       },
     },
@@ -47,18 +48,21 @@ const useFetchDoc = (baseUrl, token) => {
         return { options }
       },
       // 在请求后处理数据，如：拦截错误、处理过期
-      afterFetch({ data, response }) {
+      async afterFetch({ data, response }) {
         // code...
         if (response.status !== 200 && response.status !== 201) {
-          throw new Error('Creating a post failed!')
+          const resData = await data.json()
+          console.log(resData)
+          throw new Error('Creating a post failed!'+' '+resData.message)
         } else {
           console.log('addDoc success')
         }
         return { data, response }
       },
       // 请求错误
-      onFetchError({ data, error }) {
-        console.error(error)
+      async onFetchError({ data, error }) {
+        const resData =  await JSON.parse(data)
+        console.log(resData.message)
         return { data, error }
       },
     },
@@ -80,20 +84,20 @@ const useFetchDoc = (baseUrl, token) => {
         return { options }
       },
       // 在请求后处理数据，如：拦截错误、处理过期
-      afterFetch({ data, response }) {
+      async afterFetch({ data, response }) {
         // code...
         if (response.status !== 200) {
-          console.log(response)
-          throw new Error('Could not update the document')
-
+          const resData = await data.json()
+          throw new Error('Could not update the document'+' '+resData.message)
         } else {
           console.log('Update the document')
         }
         return { data, response }
       },
       // 请求错误
-      onFetchError({ data, error }) {
-        console.error(error)
+      async onFetchError({ data, error }) {
+        const resData =  await JSON.parse(data)
+        console.log(resData.message)
         return { data, error }
       },
     },
@@ -115,18 +119,20 @@ const useFetchDoc = (baseUrl, token) => {
         return { options }
       },
       // 在请求后处理数据，如：拦截错误、处理过期
-      afterFetch({ data, response }) {
+      async afterFetch({ data, response }) {
         // code...
         if (response.status !== 200 && response.status !== 201) {
-          throw new Error('Deleting a post failed!')
+          const resData = await data.json()
+          throw new Error('Deleting a post failed!'+' '+resData.message)
         } else {
           console.log('delete success')
         }
         return { data, response }
       },
       // 请求错误
-      onFetchError({ data, error }) {
-        console.error(error)
+      async onFetchError({ data, error }) {
+        const resData =  await JSON.parse(data)
+        console.log(resData.message)
         return { data, error }
       },
     },
@@ -148,17 +154,19 @@ const useFetchDoc = (baseUrl, token) => {
         return { options }
       },
       // 在请求后处理数据，如：拦截错误、处理过期
-      afterFetch({ data, response }) {
+      async afterFetch({ data, response }) {
         // code...
         if (response.status !== 200) {
-          throw new Error('Failed to fetch posts.')
+          const resData = await data.json()
+          throw new Error('Failed to fetch posts.'+' '+resData.message)
         }
 
         return { data, response }
       },
       // 请求错误
-      onFetchError({ data, error }) {
-        console.error(error)
+      async onFetchError({ data, error }) {
+        const resData =  await JSON.parse(data)
+        console.log(resData.message)
         return { data, error }
       },
     },
