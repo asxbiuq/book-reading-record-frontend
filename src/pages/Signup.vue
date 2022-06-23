@@ -15,8 +15,8 @@
 const email = $(ref(''))
 const password = $(ref(''))
 const name = $(ref(''))
-const login_url = 'http://localhost:8080/auth/login/'
-const signup_url = 'http://localhost:8080/auth/signup'
+const login_url = import.meta.env.VITE_AUTH_URL + '/login'
+const signup_url = import.meta.env.VITE_AUTH_URL + '/signup'
 const { login, error : login_error, isPending :login_isPending} = $(useLogin(login_url))
 const { signup, error : signup_error , isPending: signup_isPending} = $(useSignup(signup_url))
 const router = useRouter()

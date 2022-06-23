@@ -28,7 +28,9 @@
 </template>
 
 <script setup>
-const baseUrl = 'http://localhost:8080/feed'
+
+const baseUrl = import.meta.env.VITE_FEED_URL
+console.log(baseUrl)
 const data = reactive({})
 const { userId, token } = $(useStore())
 const router = useRouter()

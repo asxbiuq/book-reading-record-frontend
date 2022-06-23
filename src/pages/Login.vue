@@ -12,7 +12,7 @@
 <script setup>
 const email = $ref('')
 const password = $ref('')
-const url = 'http://localhost:8080/auth/login/'
+const url = import.meta.env.VITE_AUTH_URL + '/login'
 const { userId : store_userId, token : store_token, expiryDate : store_expiryDate } = $(useStore())
 const { error, login, isPending } = $(useLogin(url))
 
