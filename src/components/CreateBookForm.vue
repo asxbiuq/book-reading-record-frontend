@@ -5,16 +5,24 @@
 
     <div class="flex flex-row items-center gap-5">
       <label for="title">书名:</label>
-      <input type="text" name="title" v-model="title" required class="h-10">
+      <input 
+        type="text" 
+        name="title" 
+        v-model="title" 
+        required 
+        :pattern="title_pattern" 
+        class="h-10"
+        @keydown="handleKeydown(this)"
+      >
     </div>
 
     <div class="flex flex-row items-center gap-5">
       <label for="author">作者:</label>
-      <input type="text" name="author" v-model="author" required class="h-10">
+      <input type="text" name="author" v-model="author" required :pattern="author_pattern" class="h-10">
     </div>
     <div class="flex flex-row items-center gap-5">
       <label for="image">图片:</label>
-      <input type="file" @change="handleSelected" required class="h-10">
+      <input type="file" @change="handleSelected" required  class="h-10">
       <div class="error">{{ fileError }}</div>
     </div>
 
@@ -33,6 +41,8 @@ const title = $ref('')
 const author = $ref('')
 const file = $ref(null)
 const fileError = $ref(null)
+let title_pattern
+let author_pattern = /\u{1,16}/
 
 const emits = defineEmits(['created'])
 
@@ -66,9 +76,14 @@ const handleSubmit = async () => {
 
   emits('created')
 
-  title = ''
-  author = ''
+  // title = ''
+  // author = ''
 }
+
+const handleKeydown = (elRef) => {
+  title_pattern = /\u{1,16}/
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -102,5 +117,12 @@ form textarea {
 
 form input[type="file"] {
   @apply max-w-full
+}
+form input:invalid {
+  border: 2px solid red;
+}
+
+form input:valid {
+  border: 2px solid rgb(150, 223, 118);
 }
 </style>

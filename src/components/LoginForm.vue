@@ -42,7 +42,7 @@ defineProps({
   password: String
 })
 
-const emits = defineEmits(['update:email','update:password'])
+const emits = defineEmits(['login','update:email','update:password'])
 
 const handleSubmit = async () => {
   emits('login')
