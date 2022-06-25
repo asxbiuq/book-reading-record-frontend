@@ -70,7 +70,7 @@ const handleDelete = async (book) => {
 
 const handleUpdate = async (book) => {
   book.isFav = !book.isFav
-  
+  console.log(book.imageUrl.toString())
   const { data: UpdatedData, error: useFetchUpdateDocError } = $(
     await useFetch_UpdateDoc(
         '/post/' + book._id
@@ -80,7 +80,7 @@ const handleUpdate = async (book) => {
           author: book.author,
           isFav: book.isFav,
           userUid: book.userId,
-          image: book.imageUrl
+          imageUrl: book.imageUrl
       })
       .json())
 

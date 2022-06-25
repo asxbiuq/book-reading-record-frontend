@@ -59,6 +59,7 @@ const file_type = ['image/png', 'image/jpeg']
     formData.append('isFav', false)
     formData.append('userUid', userId)
     formData.append('image', file)
+
     await useFetch_AddDoc(
       'feed/post/'
     )
