@@ -1,7 +1,10 @@
 <template>
-  <form @submit.prevent="handleSubmit">
 
-    <label>添加新的书籍</label>
+  <m_form
+    :formLabel="'添加新的书籍'"
+    :btnName="'添加'"
+    @submit.prevent="handleSubmit"  
+  >
 
     <!-- 书名输入栏 -->
       <m_input 
@@ -29,12 +32,9 @@
         :file_type="file_type"
         @emit_file="handleFile"
       />
-    
-    <!-- 添加按钮 -->
-    <button>添加</button>
 
-  </form>
-
+  </m_form>
+  
 </template>
 
 <script setup>
