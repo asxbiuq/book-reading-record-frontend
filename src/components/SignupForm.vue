@@ -1,68 +1,56 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <div class="container">
-      <p class="title">注册</p>
+  <m_form 
+    @submit.prevent="handleSubmit"
+    :formLabel="'注册'"
+    :btnName="'注册'"
+  >
+      <m_input 
+        :placeholder="'用户名'"
+        :reg="/^\S{1,10}$/"
+        v-model:data="name"
+        :type="'text'"
+        :dataTip="'用户名长度在1-10'"
+        :value="name"
+        @input="$emit('update:name', $event.target.value)"
+      />
 
-      <hr>
-      <label for="name"><b>用户名</b></label>
-      <input 
-        :value="name" 
-        @input="$emit('update:name', $event.target.value)" 
-        type="text" 
-        placeholder="输入用户名"
-        name="name" 
-        required
-      >
-      <label for="email"><b>邮箱</b></label>
-      <input 
-        :value="email" 
-        @input="$emit('update:email', $event.target.value)" 
-        type="text" 
-        placeholder="输入邮箱"
-        name="email" 
-        required
-      >
+      <m_input 
+        :placeholder="'邮箱'"
+        :reg="/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/"
+        v-model:data="email"
+        :type="'email'"
+        :dataTip="'请输入正确的邮箱地址'"
+        :value="email"
+        @input="$emit('update:email', $event.target.value)"
+      />
 
-      <label for="psw"><b>密码</b></label>
-      <input 
-        :value="password" 
-        @input="$emit('update:password', $event.target.value)" 
-        type="password" placeholder="输入密码"
-        name="psw" 
-        required
-      >
+      <m_input 
+        :placeholder="'密码'"
+        v-model:data="password"
+        :type="'password'"
+        :reg="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/"
+        :dataTip="'密码至少包含 数字和英文,长度6-20'"
+        :value="password"
+        @input="$emit('update:password', $event.target.value)"
+      />
 
-      <label for="psw-repeat"><b>确认密码</b></label>
-      <input 
-        v-model="pswRepeat" 
-        type="password" 
-        placeholder="输入密码" 
-        name="psw-repeat" 
-        required
-      >
-
-      <label>
-        <input 
-          type="checkbox" 
-          checked="checked" 
-          name="remember" 
-          style="margin-bottom:15px"
-        >
-        记住密码
-      </label>
-
-      <p><a href="#" style="color:dodgerblue">创建帐户即表示您同意我们的条款和隐私</a></p>
-
-      <div class="clearfix">
-        <button type="button" class="cancelbtn">
-          取消
-        </button>
-        <button type="submit" class="signupbtn">
-          注册
-        </button>
+      <m_input 
+        :placeholder="'确认密码'"
+        v-model:data="pswRepeat"
+        :type="'password'"
+        :value="pswRepeat"
+        @input="$emit('update:pswRepeat', $event.target.value)"
+        :reg="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/"
+        :dataTip="'密码不一致'"
+      />
+      
+      <div class="flex justify-between w-full">
+        <span>
+          <input type="checkbox" checked="checked" name="remember"><a href="#" style="color:dodgerblue">创建帐户即表示您同意我们的条款和隐私</a>
+        </span>
       </div>
-    </div>
-  </form>
+
+  </m_form>
 </template>
 
 <script setup>

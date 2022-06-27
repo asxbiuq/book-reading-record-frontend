@@ -1,9 +1,9 @@
 <template>
-  <div class="input_title w-full flex gap-5 justify-between items-center">
+  <div class="input_title w-full flex gap-5 justify-between items-center ">
 
-    <label class="title flex-none">{{ label }}:</label>
+    <!-- <label class="title">{{ label }}:</label> -->
 
-    <div class="flex-1">
+
       <div 
         class="w-full" 
         :data-tip="dataTip"
@@ -16,31 +16,19 @@
           @keydown="handleKeydown($event)" 
           @change="checkSelectedFile"
           @input="$emit('update:data', $event.target.value)"
+          :placeholder="placeholder"
         >
 
       </div>
-    </div>
+
   </div>
 </template>
 
 <script setup>
-const props = defineProps(['label', 'reg', 'data', 'type', 'size', 'dataTip', 'file_type'])
+const props = defineProps(['label', 'reg', 'data', 'type', 'size', 'dataTip', 'file_type','placeholder'])
 
 const emits = defineEmits(['update:data', 'emit_file', 'fileTypeError'])
 
-// const handleKeydown = (e) => {
-//     let value = e.target.value
-//     console.log('Keydown')
-//     if (!props.reg.test(value)) {
-//       e.target.classList.remove("input--info")
-//       e.target.classList.add("input--error")
-//       e.target.parentNode.classList.add("tooltip--error")
-//     } else {
-//       e.target.classList.remove("input--error")
-//       e.target.classList.add("input--info")
-//       e.target.parentNode.classList.remove("tooltip--error")
-//     }
-// }
 
 // 允许上传的数据类型
 const fileTypes = props.file_type
@@ -56,17 +44,7 @@ const checkSelectedFile = (e) => {
     }
   }
 }
-function debounce(fun, time) {
-  let timer
-  return function () {
-    clearTimeout(timer)
-    let args = arguments
-    timer = setTimeout(() => {
-      console.log('debounce')
-      fun.apply(this, args)
-    }, time)
-  }
-}
+
 const handleKeydown = (e) => {
   if (e.target.timeout) 
     clearTimeout(e.target.timeout); 

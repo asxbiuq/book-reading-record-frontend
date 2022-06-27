@@ -1,39 +1,34 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <label class="title">登陆</label>
-
-    <div class="container">
-      <label for="email"><b>邮箱</b></label>
-      <input 
+  <m_form
+    :formLabel="'登陆'"
+    :btnName="'登陆'"
+    @submit.prevent="handleSubmit($event)"  
+  >
+      <m_input 
+        :placeholder="'邮箱'"
+        :reg="/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/"
+        v-model:data="email"
+        :type="'email'"
+        :dataTip="'请输入正确的邮箱'"
         :value="email"
         @input="$emit('update:email', $event.target.value)"
-        type="text" 
-        placeholder="输入邮箱" 
-        name="email" 
-        required
-      >
-
-      <label for="psw"><b>密码</b></label>
-      <input 
+      />
+      <m_input 
+        :placeholder="'密码'"
+        v-model:data="password"
+        :type="'password'"
         :value="password"
         @input="$emit('update:password', $event.target.value)"
-        type="password" 
-        placeholder="输入密码" 
-        name="psw" 
-        required
-      >
-
-      <button type="submit">登陆</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> 记住密码
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">取消</button>
-      <span class="psw"><a href="#">忘记密码?</a></span>
-    </div>
-  </form>
+        :reg="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/"
+        :dataTip="'密码至少包含 数字和英文,长度6-20'"
+      />
+      <div class="flex justify-between w-full">
+        <span>
+          <input type="checkbox" checked="checked" name="remember"> 记住密码
+        </span>
+        <span ><a href="#">忘记密码?</a></span>
+      </div>
+  </m_form>
 </template>
 
 <script setup>

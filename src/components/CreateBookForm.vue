@@ -13,6 +13,7 @@
         v-model:data="title"
         :type="'text'"
         :dataTip="'长度需要为4-10'"
+        :placeholder="'书名'"
       />
 
     <!-- 作者输入栏 -->
@@ -22,6 +23,7 @@
         v-model:data="author"
         :type="'text'"
         :dataTip="'长度需要为4-10'"
+        :placeholder="'作者'"
       />
 
     <!-- 作图片输入栏 -->
