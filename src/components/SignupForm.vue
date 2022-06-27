@@ -82,14 +82,14 @@ const confirm = $computed(() => {
     return false
   }
 })
-
-const handleSubmit = async () => {
+const handleSubmit = useThrottleFn(() => {
+  // do something, it will be called at most 1 time per second
   if (confirm) {
     emits('signup')
   }else{
     emits('pswError')
   }
-}
+}, 1000)
 </script>
 
 <style lang="scss" scoped>

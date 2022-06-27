@@ -43,11 +43,12 @@ defineProps({
 })
 
 const emits = defineEmits(['login','update:email','update:password'])
-
-const handleSubmit = async () => {
-  
+// 节流 登陆按钮
+const handleSubmit = useThrottleFn(() => {
+  // do something, it will be called at most 1 time per second
   emits('login')
-}
+}, 1000)
+
 </script>
 
 <style lang="scss" scoped>
