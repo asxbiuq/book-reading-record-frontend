@@ -3,7 +3,7 @@
   <m_form
     :formLabel="'添加新的书籍'"
     :btnName="'添加'"
-    @submit.prevent="handleSubmit"  
+    @submit.prevent="handleSubmit($event)"  
   >
 
     <!-- 书名输入栏 -->
@@ -51,15 +51,21 @@ const emits = defineEmits(['created'])
 // 允许上传的数据类型
 const file_type = ['image/png', 'image/jpeg']
 
-  const handleSubmit = async () => {
-
+const handleSubmit = async (e) => {
+  // 节流
+  if (!e.target.t1) {
+    e.target.t1 = Date.now()
+  }
+  let t1 = e.target.t1
+  let t2 = Date.now()
+  if (t2 - t1 > 1000) {
     const formData = new FormData()
     formData.append('title', title)
     formData.append('author', author)
     formData.append('isFav', false)
     formData.append('userUid', userId)
     formData.append('image', file)
-
+  
     await useFetch_AddDoc(
       'feed/post/'
     )
@@ -70,25 +76,28 @@ const file_type = ['image/png', 'image/jpeg']
     title = ''
     author = ''
     file = null
+    // 节流的时间重置
+    e.target.t1 = t2
   }
+}
 const handleFile = (f) => {
   file = f
 }
 
 
-// const debounce = (fn, delay) => {
-//     let timer; // 维护一个 timer
-//     return  function () {
-//         let _this = this; // 取debounce执行作用域的this
-//         let args = arguments;
-//         if (timer) {
-//             clearTimeout(timer);
-//         }
-//         timer = setTimeout(() => {
-//             fn.apply(_this, args); // 用apply指向调用debounce的对象，相当于_this.fn(args);
-//         }, delay);
-//     };
-// }
+const debounce = (fn, delay) => {
+    let timer // 维护一个 timer
+    return  function () {
+        let _this = this // 取debounce执行作用域的this
+        let args = arguments
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+            fn.apply(_this, args) // 用apply指向调用debounce的对象，相当于_this.fn(args);
+        }, delay)
+    }
+}
 
 
 </script>
