@@ -1,9 +1,9 @@
 <template>
   <div class="card">
-    <div class="book-img">
-      <img :src="imgUrl" alt="image" class="book-photo cursor-pointer" @click="handleClickImage">
+    <div class="img-shell" @click="handleClickImage">
+      <img :src="imgUrl" alt="image" >
     </div>
-    <div class="flex flex-col gap-5">
+    <main class="flex flex-col gap-5">
       <div class="flex justify-between">
         <div class="book-title">{{ title }}</div>
         <div @click="handleClickStar" class="cursor-pointer ">
@@ -25,7 +25,7 @@
       </div>
       <div class="book-description">{{ description }}</div>
       <div class="btn-danger" @click="handleClickBtn">{{ btnName }}</div>
-    </div>
+    </main>
   </div>  
 </template>
 
@@ -53,22 +53,22 @@ const handleClickImage = () => {
 </script>
 
 <style lang="css" scoped>
-* {
+/* * {
   color: #ffffff;
 }
 .book-card {
   @apply container mx-auto bg-teal-400 rounded-2xl  w-[95vw] flex flex-col items-center  p-8 gap-5 max-w-2xl transition-all duration-150 ease-out hover:ease-in
   sm:flex-row sm:w-[90vw] sm:h-[40vh]
-}
+} */
 
-.book-title {
+/* .book-title {
   @apply truncate font-bold;
-}
-.book-photo {
+} */
+/* .book-photo {
   @apply w-[80%] transition-all shadow-lg hover:scale-105 duration-[.3s]  object-cover h-full;
 }
 .book-img{
   @apply  w-full h-40 flex justify-center content-between 
   sm:w-full sm:h-full
-}
+} */
 </style>
