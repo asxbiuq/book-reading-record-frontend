@@ -11,9 +11,9 @@
 </template>
 
 <script setup>
-const email = ref('')
-const password = ref('')
-const name = ref('')
+const email = $ref('')
+const password = $ref('')
+const name = $ref('')
 
 const login_url = import.meta.env.VITE_AUTH_URL + '/login'
 const signup_url = import.meta.env.VITE_AUTH_URL + '/signup'

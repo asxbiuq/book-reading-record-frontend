@@ -59,10 +59,6 @@ const props = defineProps({
 
 const pswRepeat = $ref('')
 const emits = defineEmits(['update:email', 'update:password','update:name'])
-watchEffect(()=>{
-  console.log(props.password,pswRepeat)
-})
-
 </script>
 
 <style lang="scss" scoped>
