@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="el" class="relative top-[5rem]">
     <div v-if="userId">
       <ul class="flex gap-10 justify-center">
         <li v-for="book in data.posts" :key="book._id">
@@ -14,14 +14,11 @@
             @clickStar="handleUpdate(book)" 
             @clickImage="handleDetails"
           />
-          <!-- <p class="text-red-500 mt-12" @click="handleUpdate(book)">
-            {{ book.isFav }}
-          </p> -->
 
         </li>
       </ul>
 
-      <div class="container mx-auto flex justify-center absolute bottom-6">
+      <div class="container mx-auto flex justify-center bottom-6 fixed" ref="target">
         <CreateBookForm @created="getBooks" />
       </div>
     </div>
@@ -33,11 +30,9 @@
 </template>
 
 <script setup>
-import Card from '../components/Card.vue';
-
 const baseUrl = import.meta.env.VITE_FEED_URL
-// console.log(baseUrl)
 const data = reactive({})
+const target = ref(null)
 const { userId, token } = $(useStore())
 const router = useRouter()
 const { useFetch_GetDocsAll, useFetch_DeleteDoc, useFetch_UpdateDoc } = $(useFetchDoc(baseUrl,token))
@@ -100,7 +95,9 @@ const handleUpdate = async (book) => {
 const handleDetails = () => {
   console.log('handleDetails')
 }
-
+onMounted(() => {
+  hideElementOnScroll(target.value)
+})
 if (!userId) {
   router.push({ name: 'Login' })
 }

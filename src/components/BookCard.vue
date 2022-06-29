@@ -52,23 +52,6 @@ const handleClickImage = () => {
 }
 </script>
 
-<style lang="css" scoped>
-/* * {
-  color: #ffffff;
-}
-.book-card {
-  @apply container mx-auto bg-teal-400 rounded-2xl  w-[95vw] flex flex-col items-center  p-8 gap-5 max-w-2xl transition-all duration-150 ease-out hover:ease-in
-  sm:flex-row sm:w-[90vw] sm:h-[40vh]
-} */
+<style scoped>
 
-/* .book-title {
-  @apply truncate font-bold;
-} */
-/* .book-photo {
-  @apply w-[80%] transition-all shadow-lg hover:scale-105 duration-[.3s]  object-cover h-full;
-}
-.book-img{
-  @apply  w-full h-40 flex justify-center content-between 
-  sm:w-full sm:h-full
-} */
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-navbar bg-info text-primary-content">
+  <div class="p-navbar bg-info text-primary-content fixed top-[0%] duration-700 z-10" ref="el">
     <div class="flex-1">
       <div v-if="userId">
         <router-link to="/" class="p-btn p-btn-ghost normal-case text-xl"><i-ant-design:home-twotone  /></router-link>
@@ -28,6 +28,13 @@ const handleLogout = () => {
   router.push({ name: 'Login' })
   logout()
 }
+const el = ref(null)
+
+onMounted(() => {
+  hideElementOnScroll(el.value)
+})
+
+
 </script>
 
 <style>
