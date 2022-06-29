@@ -233,9 +233,9 @@ body {
   width: 100%;
   height: 37vh;
   margin-right: 1px;
-
+  border-radius: 3rem;
   &:nth-child(1) {
-    background-color: #fbadaf;
+    background-color: #1dab98;
   }
 
   &:nth-child(2) {
@@ -446,50 +446,12 @@ h1 {
 }
 
 .book-see {
-  margin-top: 25px;
-  text-align: center;
-  background-color: #fff;
-  color: #fbadaf;
-  font-weight: 600;
-  padding: 8px;
-  font-size: 14px;
-  width: 160px;
-  border-radius: 20px;
-
-  &:hover {
-    color: #ff6e72;
-  }
-
-  &.book-blue {
-    color: #a4e0eb;
-
-    &:hover {
-      color: #22cdec;
-    }
-  }
-
-  &.book-pink {
-    color: #edb9d6;
-
-    &:hover {
-      color: #ff6dbe;
-    }
-  }
-
-  &.book-yellow {
-    color: #fdca95;
-
-    &:hover {
-      color: #fb9124;
-    }
-  }
-
-  &.book-purple {
-    color: #cbb5e2;
-
-    &:hover {
-      color: #a764ec;
-    }
+  @apply btn btn-info btn-wide rounded-3xl shadow-xl;
+  background: #ffffff;
+  
+  &:hover, &:active,&:focus {
+    background: #4ccdf7;
+    color: #ffffff;
   }
 }
 

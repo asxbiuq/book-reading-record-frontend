@@ -1,14 +1,20 @@
 <template>
-  <div class="top-nav">
-    <div v-if="userId">
-      <router-link to="/" class="active">首页</router-link>
+  <div class="navbar bg-info text-primary-content">
+    <div class="flex-1">
+      <div v-if="userId">
+        <router-link to="/" class="btn btn-ghost normal-case text-xl"><i-ant-design:home-twotone  /></router-link>
+      </div>
+      <div v-if="!userId">
+        <router-link to="/login" class="btn btn-ghost normal-case text-xl">登陆</router-link>
+        <router-link to="/signup" class="btn btn-ghost normal-case text-xl">注册</router-link>
+      </div>
     </div>
-    <div v-if="!userId">
-      <router-link to="/login">登陆</router-link>
-      <router-link to="/signup">注册</router-link>
-    </div>
-    <div v-if="userId">
-      <a @click="handleLogout">登出</a>
+    <div class="flex-none">
+      <div v-if="userId">
+        <button class="btn btn-square btn-ghost">
+          <i-bytesize:sign-out @click="handleLogout" />
+        </button>
+      </div>
     </div>
   </div>
 </template>

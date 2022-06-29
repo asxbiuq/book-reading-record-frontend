@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-const props = defineProps(['label', 'reg', 'data', 'type', 'size', 'dataTip', 'file_type','placeholder'])
+const props = defineProps(['label', 'reg', 'data', 'type', 'size', 'dataTip', 'file_type','placeholder','dataConfirm'])
 
 const emits = defineEmits(['update:data', 'emit_file', 'fileTypeError'])
 
@@ -51,7 +51,7 @@ const handleKeydown = (e) => {
 
   e.target.timeout = setTimeout(() => {
     let value = e.target.value
-    if (!props.reg.test(value)) {
+    if (props.reg && !props.reg.test(value) && !props.dataConfirm) {
       e.target.classList.remove("input--info")
       e.target.classList.add("input--error")
       e.target.parentNode.classList.add("tooltip--error")
@@ -60,7 +60,17 @@ const handleKeydown = (e) => {
       e.target.classList.add("input--info")
       e.target.parentNode.classList.remove("tooltip--error")
     }
+    if (props.dataConfirm && props.dataConfirm !== props.data) {
+        e.target.classList.remove("input--info")
+        e.target.classList.add("input--error")
+        e.target.parentNode.classList.add("tooltip--error")
+    } else {
+        e.target.classList.remove("input--error")
+        e.target.classList.add("input--info")
+        e.target.parentNode.classList.remove("tooltip--error")
+    }
   }, 1000); // delay
+
 }
 </script>
 

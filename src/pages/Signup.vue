@@ -4,17 +4,17 @@
       v-model:email="email" 
       v-model:password="password" 
       v-model:name="name" 
-      @signup="handleSignup"
-      @pswError="handlePswError" 
       novalidate
+      @submit.prevent="handleSignup"
     />
   </div>
 </template>
 
 <script setup>
-const email = $(ref(''))
-const password = $(ref(''))
-const name = $(ref(''))
+const email = ref('')
+const password = ref('')
+const name = ref('')
+
 const login_url = import.meta.env.VITE_AUTH_URL + '/login'
 const signup_url = import.meta.env.VITE_AUTH_URL + '/signup'
 const { login, error : login_error, isPending :login_isPending} = $(useLogin(login_url))
@@ -23,6 +23,7 @@ const router = useRouter()
 const { userId : store_userId, token : store_token, expiryDate : store_expiryDate } = $(useStore())
 
 const handleSignup = async () => {
+
   const { token, userId, expiryDate } = await signup(email, password, name)
 
   store_userId = userId
@@ -33,9 +34,7 @@ const handleSignup = async () => {
     router.push('/')
   }
 }
-const handlePswError = () => {
-  alert('请再次确认密码')
-}
+
 </script>
 <route lang="yaml">
 {

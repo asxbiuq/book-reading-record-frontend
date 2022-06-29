@@ -1,6 +1,5 @@
 <template>
   <m_form 
-    @submit.prevent="handleSubmit"
     :formLabel="'注册'"
     :btnName="'注册'"
   >
@@ -37,11 +36,9 @@
       <m_input 
         :placeholder="'确认密码'"
         v-model:data="pswRepeat"
+        v-model:dataConfirm="password"
         :type="'password'"
-        :value="pswRepeat"
-        @input="$emit('update:pswRepeat', $event.target.value)"
-        :reg="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/"
-        :dataTip="'密码不一致'"
+        :dataTip="'请再次确认密码'"
       />
       
       <div class="flex justify-between w-full">
@@ -59,25 +56,13 @@ const props = defineProps({
   password: String,
   name: String
 })
+
 const pswRepeat = $ref('')
-
-const emits = defineEmits(['update:email', 'update:password','update:name','pswError'])
-
-const confirm = $computed(() => {
-  if (pswRepeat === props.password) {
-    return true
-  } else {
-    return false
-  }
+const emits = defineEmits(['update:email', 'update:password','update:name'])
+watchEffect(()=>{
+  console.log(props.password,pswRepeat)
 })
-const handleSubmit = useThrottleFn(() => {
-  // do something, it will be called at most 1 time per second
-  if (confirm) {
-    emits('signup')
-  }else{
-    emits('pswError')
-  }
-}, 1000)
+
 </script>
 
 <style lang="scss" scoped>

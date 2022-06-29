@@ -11,14 +11,16 @@
             :imgUrl = "book.imageUrl"
             @clickBtn="handleDelete(book)" 
           />
+
           <p class="text-red-500 mt-12" @click="handleUpdate(book)">
             {{ book.isFav }}
           </p>
+
         </li>
       </ul>
 
       <div class="flex items-center justify-center">
-        <CreateBookForm @created="getBooks" class="p-10" />
+        <CreateBookForm @created="getBooks" />
       </div>
     </div>
     <div v-else>
@@ -29,6 +31,7 @@
 </template>
 
 <script setup>
+import Card from '../components/Card.vue';
 
 const baseUrl = import.meta.env.VITE_FEED_URL
 // console.log(baseUrl)

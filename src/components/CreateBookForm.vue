@@ -1,41 +1,56 @@
 <template>
 
-  <m_form
-    :formLabel="'添加新的书籍'"
-    :btnName="'添加'"
-    @submit.prevent="handleSubmit($event)"  
+    <button
+      type="button"
+      @click="openModal"
+      class="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+    >
+      添加书籍
+    </button>
+
+  <m_Dialog
+    :isOpen="isOpen"
+    class="dialog"
   >
+    <m_form
+      :formLabel="'添加新的书籍'"
+      :btnName="'添加'"
+      @submit.prevent="handleSubmit($event)"
+      ref="target"
+    >
 
-    <!-- 书名输入栏 -->
-      <m_input 
-        :label="'书名'"
-        :reg="/^\S{4,10}$/"
-        v-model:data="title"
-        :type="'text'"
-        :dataTip="'长度需要为4-10'"
-        :placeholder="'书名'"
-      />
+      <!-- 书名输入栏 -->
+        <m_input 
+          :label="'书名'"
+          :reg="/^\S{4,10}$/"
+          v-model:data="title"
+          :type="'text'"
+          :dataTip="'长度需要为4-10'"
+          :placeholder="'书名'"
+        />
 
-    <!-- 作者输入栏 -->
-      <m_input 
-        :label="'作者'"
-        :reg="/^\S{4,10}$/"
-        v-model:data="author"
-        :type="'text'"
-        :dataTip="'长度需要为4-10'"
-        :placeholder="'作者'"
-      />
+      <!-- 作者输入栏 -->
+        <m_input 
+          :label="'作者'"
+          :reg="/^\S{4,10}$/"
+          v-model:data="author"
+          :type="'text'"
+          :dataTip="'长度需要为4-10'"
+          :placeholder="'作者'"
+        />
 
-    <!-- 作图片输入栏 -->
-    <!-- file_type 需要为数组 -->
-      <m_input 
-        :label="'图片'"
-        :type="'file'"
-        :file_type="file_type"
-        @emit_file="handleFile"
-      />
+      <!-- 作图片输入栏 -->
+      <!-- file_type 需要为数组 -->
+        <m_input 
+          :label="'图片'"
+          :type="'file'"
+          :file_type="file_type"
+          @emit_file="handleFile"
+          :dataTip="'选择的文件类型错误,应为 png 或 jpeg'"
+        />
 
-  </m_form>
+    </m_form>
+  </m_Dialog>
   
 </template>
 
@@ -46,7 +61,18 @@ const { useFetch_AddDoc } = $(useFetchDoc(baseUrl, token))
 const title = $ref('')
 const author = $ref('')
 const file = $ref(null)
+const isOpen = $ref(false)
 
+const target = ref(null)
+
+onClickOutside(target, () => closeModal())
+
+function closeModal() {
+  isOpen = false
+}
+function openModal() {
+  isOpen = true
+}
 
 const emits = defineEmits(['created'])
 
@@ -86,19 +112,8 @@ const handleFile = (f) => {
   file = f
 }
 
+const handFileTypeError = () => {
 
-const debounce = (fn, delay) => {
-    let timer // 维护一个 timer
-    return  function () {
-        let _this = this // 取debounce执行作用域的this
-        let args = arguments
-        if (timer) {
-            clearTimeout(timer)
-        }
-        timer = setTimeout(() => {
-            fn.apply(_this, args) // 用apply指向调用debounce的对象，相当于_this.fn(args);
-        }, delay)
-    }
 }
 
 
@@ -106,37 +121,6 @@ const debounce = (fn, delay) => {
 
 <style lang="scss" scoped>
 
-form {
-  @apply flex flex-col gap-5 items-center p-5 shadow-2xl bg-slate-100 shadow-slate-50 justify-between;
-  
-  label {
-    @apply font-medium text-gray-800 text-2xl;
-  }
-  input {
-     @apply input w-full input-bordered;
-   }
-  button {
-    @apply btn w-full bg-red-500;
-  }
-  textarea {
-    @apply border-slate-200 border-2;
-    /* border: 1px solid black; */
-    padding: 10px;
-    outline: none;
-    display: block;
-    width: 100%;
-    height: 10rem;
-    box-sizing: border-box;
-    margin: 20px auto;
-  }
-}
-// .active {
-//   background-color: red;
-// }
-// .error {
-//   background-color: #fce4e4;
-//   border: 1px solid #cc0033;
-//   outline: none;
-// }
+
 
 </style>
