@@ -1,4 +1,5 @@
 <template>
+<div id="top"></div>
   <div ref="el" class="relative top-[5rem]">
     <div v-if="userId">
       <ul class="flex gap-10 justify-center">
@@ -26,7 +27,10 @@
       <p>请登录</p>
     </div>
   </div>
-
+  <div class="fixed bottom-5 right-5 hover:text-blue-700  cursor-pointer click" @click="handleToTop" >
+  <i-bi:arrow-up-circle-fill style="font-size:2em"
+  />
+  </div>
 </template>
 
 <script setup>
@@ -98,6 +102,29 @@ const handleDetails = () => {
 onMounted(() => {
   hideElementOnScroll(target.value)
 })
+const throttledFn = useThrottleFn(() => {
+  // do something, it will be called at most 1 time per second
+  console.log('Throttle')
+}, 1000)
+document.addEventListener('scroll', throttledFn)
+
+const handleToTop = () => {
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    })
+// scrollToTop()
+}
+// var oDiv = document.getElementById('top');
+// oDiv.onclick = function() {
+//     window.scrollTo({
+//         top:0,
+//         behavior:"smooth"
+//     })
+// }
+
+
 if (!userId) {
   router.push({ name: 'Login' })
 }
