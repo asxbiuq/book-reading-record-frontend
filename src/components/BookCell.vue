@@ -29,7 +29,7 @@
             <span class="book-voters">1.987 voters</span>
           </div>
           <div class="book-sum">{{ description }}</div>
-          <div class="book-see" @click="handleClickBtn">{{ btnName }}</div>
+          <div class="btn-danger" @click="handleClickBtn">{{ btnName }}</div>
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@ const handleClickTitle = () => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
@@ -447,11 +447,12 @@ h1 {
 
 .book-see {
   @apply btn btn-info btn-wide rounded-3xl shadow-xl;
-  background: #ffffff;
+  background: #cf4747;
+  color: #fffaf8;
   
   &:hover, &:active,&:focus {
     background: #4ccdf7;
-    color: #ffffff;
+    color: #111111;
   }
 }
 

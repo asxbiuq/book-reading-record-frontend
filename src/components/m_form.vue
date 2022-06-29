@@ -16,7 +16,7 @@
 const props = defineProps(['formLabel','btnName'])
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 form {
   @apply flex flex-col gap-5 items-center p-10 shadow-2xl bg-slate-100 shadow-slate-50 justify-between;
@@ -25,10 +25,10 @@ form {
     @apply font-medium text-gray-800 text-2xl truncate;
   }
   input {
-     @apply input w-full input-bordered;
+     @apply p-input w-full p-input-bordered;
    }
   button {
-    @apply btn w-full bg-indigo-400;
+    @apply p-btn w-full bg-indigo-400;
   }
   textarea {
     @apply border-slate-200 border-2;

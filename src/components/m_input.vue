@@ -1,18 +1,15 @@
 <template>
-  <div class="input_title w-full flex gap-5 justify-between items-center ">
-
-    <!-- <label class="title">{{ label }}:</label> -->
-
+  <div class="input_title w-full flex gap-5 justify-between items-center">
 
       <div 
-        class="w-full" 
+        :class="tooltip" 
         :data-tip="dataTip"
       >
         <input 
           :type="type" 
           :name="label" 
           :value="data" 
-          class="h-10 w-full"
+          :class="input"
           @keydown="handleKeydown($event)" 
           @change="checkSelectedFile"
           @input="$emit('update:data', $event.target.value)"
@@ -25,7 +22,11 @@
 </template>
 
 <script setup>
-const props = defineProps(['label', 'reg', 'data', 'type', 'size', 'dataTip', 'file_type','placeholder','dataConfirm'])
+const props = defineProps(
+  [
+    'label', 'reg', 'data', 'type', 'size', 'dataTip', 'file_type','placeholder','dataConfirm',
+    'tooltip','input'
+  ])
 
 const emits = defineEmits(['update:data', 'emit_file', 'fileTypeError'])
 
@@ -37,9 +38,15 @@ const checkSelectedFile = (e) => {
     const selected = e.target.files[0]
 
     if (selected && fileTypes.includes(selected.type)) {
-      emits('emit_file', selected)
+        e.target.classList.remove("input-error")
+        e.target.classList.add("input-info")
+        e.target.parentNode.classList.remove("tooltip-error")
+        emits('emit_file', selected)
     } else {
-      emits('fileTypeError')
+      e.target.classList.remove("input-info")
+      e.target.classList.add("input-error")
+      e.target.parentNode.classList.add("tooltip-error")
+      // emits('fileTypeError')
       console.log('fileType  Error')
     }
   }
@@ -51,42 +58,46 @@ const handleKeydown = (e) => {
 
   e.target.timeout = setTimeout(() => {
     let value = e.target.value
-    if (props.reg && !props.reg.test(value) && !props.dataConfirm) {
-      e.target.classList.remove("input--info")
-      e.target.classList.add("input--error")
-      e.target.parentNode.classList.add("tooltip--error")
-    } else {
-      e.target.classList.remove("input--error")
-      e.target.classList.add("input--info")
-      e.target.parentNode.classList.remove("tooltip--error")
+    if (props.reg) {
+      if (!props.reg.test(value) && !props.dataConfirm) {
+        e.target.classList.remove("input-info")
+        e.target.classList.add("input-error")
+        e.target.parentNode.classList.add("tooltip-error")
+      } else {
+        e.target.classList.remove("input-error")
+        e.target.classList.add("input-info")
+        e.target.parentNode.classList.remove("tooltip-error")
+      }
     }
-    if (props.dataConfirm && props.dataConfirm !== props.data) {
-        e.target.classList.remove("input--info")
-        e.target.classList.add("input--error")
-        e.target.parentNode.classList.add("tooltip--error")
-    } else {
-        e.target.classList.remove("input--error")
-        e.target.classList.add("input--info")
-        e.target.parentNode.classList.remove("tooltip--error")
+    if (props.dataConfirm) {
+      if ( props.dataConfirm !== props.data) {
+          e.target.classList.remove("input-info")
+          e.target.classList.add("input-error")
+          e.target.parentNode.classList.add("tooltip-error")
+      } else {
+          e.target.classList.remove("input-error")
+          e.target.classList.add("input-info")
+          e.target.parentNode.classList.remove("tooltip-error")
+      }
     }
   }, 1000); // delay
 
 }
 </script>
 
-<style lang="scss" scoped>
-.input--info {
-  @apply input input-bordered input-info;
+<style lang="css" scoped>
+/* .input--info {
+  @apply p-input p-input-bordered p-input-info;
   background-color: #cffafe;
 }
 
 .input--error {
-  @apply input input-bordered input-error;
+  @apply p-input p-input-bordered p-input-error;
   background-color: #fce4e4;
 }
 
 .tooltip--error {
-  @apply tooltip tooltip-open tooltip-right tooltip-error;
+  @apply p-tooltip p-tooltip-open p-tooltip-bottom p-tooltip-error;
 
   &:before,
   &:after {
@@ -95,6 +106,6 @@ const handleKeydown = (e) => {
 }
 
 input {
-  @apply input input-bordered;
-}
+  @apply p-input p-input-bordered;
+} */
 </style>

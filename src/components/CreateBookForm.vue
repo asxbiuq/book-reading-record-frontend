@@ -1,13 +1,11 @@
 <template>
 
-    <button
-      type="button"
-      @click="openModal"
-      class="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-    >
-      添加书籍
-    </button>
-
+  <div 
+    class="btn-info"
+    @click="openModal"
+  >
+    添加书籍
+  </div>
   <m_Dialog
     :isOpen="isOpen"
     class="dialog"
@@ -21,6 +19,8 @@
 
       <!-- 书名输入栏 -->
         <m_input 
+          :input="'h-10 w-full input'"
+          :tooltip="'w-full'"
           :label="'书名'"
           :reg="/^\S{4,10}$/"
           v-model:data="title"
@@ -30,7 +30,9 @@
         />
 
       <!-- 作者输入栏 -->
-        <m_input 
+        <m_input
+          :input="'h-10 w-full input'"
+          :tooltip="'w-full'" 
           :label="'作者'"
           :reg="/^\S{4,10}$/"
           v-model:data="author"
@@ -41,7 +43,10 @@
 
       <!-- 作图片输入栏 -->
       <!-- file_type 需要为数组 -->
+      
         <m_input 
+          :input="'h-10 w-full input'"
+          :tooltip="'w-full'" 
           :label="'图片'"
           :type="'file'"
           :file_type="file_type"
@@ -106,20 +111,20 @@ const handleSubmit = async (e) => {
     file = null
     // 节流的时间重置
     e.target.t1 = t2
+
+    closeModal()
   }
 }
 const handleFile = (f) => {
   file = f
 }
 
-const handFileTypeError = () => {
 
-}
 
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 
 

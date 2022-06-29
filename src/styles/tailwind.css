@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+/* .m-btn{
+  @apply btn btn-info btn-wide rounded-3xl shadow-xl click;
+  background: #ffffff;
+  
+  &:hover, &:active,&:focus {
+    background: #4ccdf7;
+    color: #ffffff;
+  }
+} */
+/* .m-btn-danger {
+  @apply btn btn-info btn-wide rounded-3xl shadow-xl ;
+  background: #cf4747;
+  color: #fffaf8;
+  
+  &:hover, &:active,&:focus {
+    background: #4ccdf7;
+    color: #111111;
+  }
+}
+.m-btn-loading {
+  @apply btn btn-square loading click
+}
+.m-btn-info {
+  @apply btn btn-outline btn-info click
+}
+.m-btn-warning {
+  @apply btn btn-outline btn-warning click
+} */
+/* .click {
+  @apply hover:scale-105 active:scale-95 duration-300
+} */
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  /* ... */
+}
+@layer components {
+  .card {
+    @apply container mx-auto bg-teal-400 rounded-2xl  w-[95vw] flex flex-col items-center  p-8 gap-5 max-w-2xl transition-all duration-150 ease-out hover:ease-in
+    sm:flex-row sm:w-[90vw] sm:h-[40vh];
+
+    /* & .click {
+      @apply hover:scale-105 active:scale-95 duration-300
+    } */
+    
+  }
+
+  /* btn */
+  .btn{
+    @apply p-btn p-btn-wide rounded-3xl shadow-xl click;
+  }
+  .btn-danger{
+    @apply btn p-btn-error;
+      /* background: #cf4747;
+      color: #fffaf8; */
+      
+      &:hover, &:active,&:focus {
+        background: #4ccdf7;
+        color: #111111;
+      }
+  }
+  .btn-warning{
+    @apply p-btn p-btn-warning p-btn-wide rounded-3xl shadow-xl click;
+
+      
+      &:hover, &:active,&:focus {
+        background: #4ccdf7;
+        color: #111111;
+      }
+  }
+  .btn-loading{
+    @apply p-btn p-btn-loading p-btn-wide rounded-3xl shadow-xl click;
+
+      
+      &:hover, &:active,&:focus {
+        background: #4ccdf7;
+        color: #111111;
+      }
+  }
+  .btn-info{
+    @apply p-btn p-btn-info p-btn-wide rounded-3xl shadow-xl click ;
+      &:hover, &:active,&:focus {
+        background: #4ccdf7;
+        color: white;
+      }
+  }
+  .btn-warning{
+    @apply p-btn p-btn-warning p-btn-wide rounded-3xl shadow-xl click;
+
+      
+      &:hover, &:active,&:focus {
+        background: #4ccdf7;
+        color: #111111;
+      }
+  }
+  .btn-warning{
+    @apply p-btn p-btn-error p-btn-wide rounded-3xl shadow-xl click;
+
+      
+      &:hover, &:active,&:focus {
+        background: #4ccdf7;
+        color: #111111;
+      }
+  }
+
+  /* input */
+  .input {
+    @apply p-input p-input-bordered rounded-xl;
+  }
+  .input-info {
+    @apply input p-input-info;
+    background-color: #cffafe;
+  }
+  .input-error {
+    @apply input p-input-error;
+    background-color: #fce4e4;
+  }
+  .input-warning {
+    @apply input p-input-warning;
+    background-color: #fce4e4;
+  }
+
+  /* tooltip */
+  .tooltip-info {
+    @apply p-tooltip p-tooltip-open p-tooltip-bottom p-tooltip-info ;
+  
+    &:before,
+    &:after {
+      opacity: 1;
+    }
+  }
+  .tooltip-warning {
+    @apply p-tooltip p-tooltip-open p-tooltip-bottom p-tooltip-warning;
+  
+    &:before,
+    &:after {
+      opacity: 1;
+    }
+  }
+  .tooltip-error {
+    @apply p-tooltip p-tooltip-open p-tooltip-bottom p-tooltip-error;
+  
+    &:before,
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+@layer utilities {
+  .click {
+    @apply hover:scale-105 active:scale-95 duration-300
+  }
+  .container-f {
+    @apply w-full flex gap-5 justify-between items-center
+  }
+}

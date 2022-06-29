@@ -1,25 +1,27 @@
 <template>
   <div>
     <div v-if="userId">
-      <ul class="flex gap-10">
+      <ul class="flex gap-10 justify-center">
         <li v-for="book in data.posts" :key="book._id">
-          <BookCell 
+          <BookCard
             :title="book.title" 
             :author="book.author" 
             :description="book.description" 
             :btnName="'删除'"
             :imgUrl = "book.imageUrl"
+            :isFav="book.isFav"
             @clickBtn="handleDelete(book)" 
+            @clickStar="handleUpdate(book)" 
+            @clickImage="handleDetails"
           />
-
-          <p class="text-red-500 mt-12" @click="handleUpdate(book)">
+          <!-- <p class="text-red-500 mt-12" @click="handleUpdate(book)">
             {{ book.isFav }}
-          </p>
+          </p> -->
 
         </li>
       </ul>
 
-      <div class="flex items-center justify-center">
+      <div class="container mx-auto flex justify-center absolute bottom-6">
         <CreateBookForm @created="getBooks" />
       </div>
     </div>
@@ -94,6 +96,9 @@ const handleUpdate = async (book) => {
       }
     })
   }
+}
+const handleDetails = () => {
+  console.log('handleDetails')
 }
 
 if (!userId) {
