@@ -158,16 +158,16 @@
   .form {
     @apply flex flex-col gap-5 items-center p-10 shadow-2xl bg-slate-100 shadow-slate-50 justify-between;
   
-    &label {
+    label {
       @apply font-medium text-gray-800 text-2xl truncate;
     }
-    &input {
+    input {
        @apply p-input w-full p-input-bordered;
      }
-    &button {
+    button {
       @apply p-btn w-full bg-indigo-400;
     }
-    &textarea {
+    textarea {
       @apply border-slate-200 border-2;
   
       padding: 10px;
