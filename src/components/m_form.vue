@@ -17,7 +17,7 @@ const props = defineProps(['formLabel','btnName'])
 </script>
 
 <style scoped>
-
+/* 
 form {
   @apply flex flex-col gap-5 items-center p-10 shadow-2xl bg-slate-100 shadow-slate-50 justify-between;
 
@@ -41,5 +41,5 @@ form {
     box-sizing: border-box;
     margin: 20px auto;
   }
-}
+} */
 </style>

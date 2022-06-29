@@ -15,6 +15,7 @@
       :btnName="'添加'"
       @submit.prevent="handleSubmit($event)"
       ref="target"
+      class="form"
     >
 
       <!-- 书名输入栏 -->
