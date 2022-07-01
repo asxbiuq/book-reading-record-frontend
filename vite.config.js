@@ -1,16 +1,16 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import Pages from 'vite-plugin-pages'
-import Layouts from 'vite-plugin-vue-layouts'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import path from "path";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import Pages from "vite-plugin-pages";
+import Layouts from "vite-plugin-vue-layouts";
 import {
   ElementPlusResolver,
   HeadlessUiResolver,
-} from 'unplugin-vue-components/resolvers'
-import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
+} from "unplugin-vue-components/resolvers";
+import Icons from "unplugin-icons/vite";
+import IconsResolver from "unplugin-icons/resolver";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,22 +18,23 @@ export default defineConfig({
   plugins: [
     vue({
       //$语法糖
-      reactivityTransform: true
+      reactivityTransform: true,
     }),
     AutoImport({
       // targets to transform
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-        /\.vue$/, /\.vue\?vue/, // .vue
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
         /\.md$/, // .md
       ],
 
       // global imports to register
       imports: [
         // presets
-        'vue',
-        'vue-router',
-        '@vueuse/core',
+        "vue",
+        "vue-router",
+        "@vueuse/core",
         // custom
         {
           // '@vueuse/core': [
@@ -42,30 +43,25 @@ export default defineConfig({
           //   // alias
           //   ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
           // ],
-          'axios': [
+          axios: [
             // default imports
-            ['default', 'axios'], // import { default as axios } from 'axios',
+            ["default", "axios"], // import { default as axios } from 'axios',
           ],
-          '[package-name]': [
-            '[import-names]',
-            // alias
-            ['[from]', '[alias]'],
-          ],
+          // "[package-name]": [
+          //   "[import-names]",
+          //   // alias
+          //   ["[from]", "[alias]"],
+          // ],
         },
       ],
 
       // Auto import for all module exports under directories
-      dirs: [
-        'src/hooks',
-        'src/composables',
-        'src/views',
-        'src/store',
-      ],
+      dirs: ["src/hooks", "src/composables", "src/views", "src/store"],
 
       // Filepath to generate corresponding .d.ts file.
       // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
       // Set `false` to disable.
-      dts: './auto-imports.d.ts',
+      dts: "./auto-imports.d.ts",
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15
@@ -81,24 +77,20 @@ export default defineConfig({
       // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
       eslintrc: {
         enabled: false, // Default `false`
-        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+        filepath: "./.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
     }),
     Components({
       // relative paths to the directory to search for components.
-      dirs: ['src/components', 'src/pages','@iconify/vue'],
+      dirs: ["src/components", "src/pages", "@iconify/vue"],
 
       // valid file extensions for components.
-      extensions: ['vue'],
+      extensions: ["vue"],
       // search for subdirectories
       deep: true,
       // resolvers for custom components
-      resolvers: [
-        ElementPlusResolver(),
-        HeadlessUiResolver(),
-        IconsResolver(),
-      ],
+      resolvers: [ElementPlusResolver(), HeadlessUiResolver(), IconsResolver()],
 
       // generate `components.d.ts` global declarations,
       // also accepts a path for custom filename
@@ -118,21 +110,25 @@ export default defineConfig({
       directives: true,
 
       // Transform path before resolving
-      importPathTransform: v => v,
+      importPathTransform: (v) => v,
 
       // Allow for components to override other components with the same name
       allowOverrides: false,
 
       // filters for transforming targets
       include: [/\.vue$/, /\.vue\?vue/],
-      exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
+      exclude: [
+        /[\\/]node_modules[\\/]/,
+        /[\\/]\.git[\\/]/,
+        /[\\/]\.nuxt[\\/]/,
+      ],
     }),
     Pages({
-      dirs: 'src/pages',  // File directory where routing needs to be generated
-      exclude: ['**/components/*.vue']  // Excluded directories, i.e. the directories under all components directories are not included vue file generation route
+      dirs: "src/pages", // File directory where routing needs to be generated
+      exclude: ["**/components/*.vue"], // Excluded directories, i.e. the directories under all components directories are not included vue file generation route
     }),
     Layouts({
-      defaultLayout: 'default'
+      defaultLayout: "default",
     }),
     Icons({ autoInstall: true }),
   ],
@@ -149,6 +145,6 @@ export default defineConfig({
       apis: path.resolve(__dirname, "src/apis"),
       dirs: path.resolve(__dirname, "src/directives"),
       store: path.resolve(__dirname, "src/store"),
-    }
-  }
-})
+    },
+  },
+});

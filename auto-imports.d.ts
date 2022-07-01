@@ -2,8 +2,6 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
-  const [alias]: typeof import('[package-name]')['[from]']
-  const [import-names]: typeof import('[package-name]')['[import-names]']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const axios: typeof import('axios')['default']
@@ -254,8 +252,6 @@ declare global {
 declare module 'vue' {
   interface ComponentCustomProperties {
     EffectScope: typeof import('vue')['EffectScope']
-    [alias]: typeof import('[package-name]')['[from]']
-    [import-names]: typeof import('[package-name]')['[import-names]']
     asyncComputed: typeof import('@vueuse/core')['asyncComputed']
     autoResetRef: typeof import('@vueuse/core')['autoResetRef']
     axios: typeof import('axios')['default']

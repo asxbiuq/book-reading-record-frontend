@@ -1,19 +1,17 @@
-
 const hideElementOnScroll = (el) => {
-  let prevScrollpos = window.pageYOffset
+  let prevScrollpos = window.pageYOffset;
 
-  window.addEventListener('scroll', () => {
-      let currentScrollPos = window.pageYOffset
-      if (prevScrollpos > currentScrollPos) {
-        el.style.opacity = "100%"
-        // el.style.top = "0"
-      } else {
-        // el.classList.toggle("0")
-        el.style.opacity = "0"
-        // el.style.top = "-100%"
-      }
-      prevScrollpos = currentScrollPos
+  window.addEventListener("scroll", () => {
+    let currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      el.style.opacity = "100%";
+      // el.style.top = "0"
+    } else {
+      // el.classList.toggle("0")
+      el.style.opacity = "0";
+      // el.style.top = "-100%"
     }
-  )
-}
-export default hideElementOnScroll
+    prevScrollpos = currentScrollPos;
+  });
+};
+export default hideElementOnScroll;

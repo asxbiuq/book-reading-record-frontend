@@ -1,5 +1,7 @@
-# 模板1
+# 模板 1
+
 ## 包含的依赖
+
 vue3
 sass
 tailwind

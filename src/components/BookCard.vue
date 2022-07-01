@@ -1,57 +1,80 @@
 <template>
   <div class="card">
     <div class="img-shell" @click="handleClickImage">
-      <img :src="imgUrl" alt="image" >
+      <img :src="imgUrl" alt="image" />
     </div>
     <main class="flex flex-col gap-5">
       <div class="flex justify-between">
         <div class="book-title">{{ title }}</div>
-        <div @click="handleClickStar" class="cursor-pointer ">
+        <div class="cursor-pointer" @click="handleClickStar">
           <div v-if="isFav">
-              <i-emojione:star style="font-size:2em;"/>
+            <i-emojione:star style="font-size: 2em" />
           </div>
           <div v-else>
-            <i-codicon:star-full style="font-size:2em;"/>
+            <i-codicon:star-full style="font-size: 2em" />
           </div>
         </div>
       </div>
-      <div class="book-author"> {{ author }}</div>
+      <div class="book-author">{{ author }}</div>
       <div class="p-rating">
-        <input type="radio" name="rating-2" class="p-mask p-mask-star-2 bg-orange-400" />
-        <input type="radio" name="rating-2" class="p-mask p-mask-star-2 bg-orange-400" checked />
-        <input type="radio" name="rating-2" class="p-mask p-mask-star-2 bg-orange-400" />
-        <input type="radio" name="rating-2" class="p-mask p-mask-star-2 bg-orange-400" />
-        <input type="radio" name="rating-2" class="p-mask p-mask-star-2 bg-orange-400" />
+        <input
+          type="radio"
+          name="rating-2"
+          class="p-mask p-mask-star-2 bg-orange-400"
+        />
+        <input
+          type="radio"
+          name="rating-2"
+          class="p-mask p-mask-star-2 bg-orange-400"
+          checked
+        />
+        <input
+          type="radio"
+          name="rating-2"
+          class="p-mask p-mask-star-2 bg-orange-400"
+        />
+        <input
+          type="radio"
+          name="rating-2"
+          class="p-mask p-mask-star-2 bg-orange-400"
+        />
+        <input
+          type="radio"
+          name="rating-2"
+          class="p-mask p-mask-star-2 bg-orange-400"
+        />
       </div>
       <div class="book-description">{{ description }}</div>
       <div class="btn-danger" @click="handleClickBtn">{{ btnName }}</div>
     </main>
-  </div>  
+  </div>
 </template>
 
 <script setup>
 const props = defineProps({
-  title: { type: String, default: '标题', required: false },
-  author: { type: String, default: '作者', required: false },
-  description: { type: String, default: '简介', required: false },
-  imgUrl: { type: String, default: 'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg', required: false },
-  btnName: { type: String, default: '阅读', required: false },
+  title: { type: String, default: "标题", required: false },
+  author: { type: String, default: "作者", required: false },
+  description: { type: String, default: "简介", required: false },
+  imgUrl: {
+    type: String,
+    default: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
+    required: false,
+  },
+  btnName: { type: String, default: "阅读", required: false },
   isFav: { type: Boolean, default: false, required: false },
-})
+});
 
-const emits = defineEmits(['clickBtn', 'clickStar','clickImage'])
+const emits = defineEmits(["clickBtn", "clickStar", "clickImage"]);
 
 const handleClickBtn = () => {
-  emits('clickBtn')
-}
+  emits("clickBtn");
+};
 const handleClickStar = () => {
-  emits('clickStar')
-}
+  emits("clickStar");
+};
 const handleClickImage = () => {
-  emits('clickImage')
-}
+  emits("clickImage");
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

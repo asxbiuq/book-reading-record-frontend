@@ -1,18 +1,15 @@
 <template>
-
   <!-- Trigger/Open The Modal -->
-  <button @click="open" id="myBtn">Open Modal</button>
-<teleport to="body">
-  <!-- The Modal -->
-  <div id="myModal" ref="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span @click="close" class="close">&times;</span>
-      <p>Some text in the Modal..</p>
+  <button id="myBtn" @click="open">Open Modal</button>
+  <teleport to="body">
+    <!-- The Modal -->
+    <div id="myModal" ref="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" @click="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
     </div>
-
-  </div>
   </teleport>
 </template>
 
@@ -20,11 +17,10 @@
 // const myModal = ref(null)
 
 // // Get the modal
-onMounted(()=>{
-  })
-  const myModal = ref(null)
-  // let modal = document.getElementById("myModal");
-  console.log(myModal.value)
+onMounted(() => {});
+const myModal = ref(null);
+// let modal = document.getElementById("myModal");
+console.log(myModal.value);
 
 // // Get the button that opens the modal
 // let btn = document.getElementById("myBtn");
@@ -33,23 +29,23 @@ onMounted(()=>{
 // let span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-const open =  () => {
-  console.log('open',myModal.value)
+const open = () => {
+  console.log("open", myModal.value);
   myModal.value.style.display = "block";
-  console.log(myModal.value.style.display)
-}
+  console.log(myModal.value.style.display);
+};
 
 // When the user clicks on <span> (x), close the modal
 const close = () => {
   myModal.value.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == myModal) {
     myModal.value.style.display = "none";
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

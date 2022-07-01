@@ -1,52 +1,54 @@
 <template>
-  <m_form 
-    :formLabel="'注册'"
-    :btnName="'注册'"
-  >
-      <m_input 
-        :placeholder="'用户名'"
-        :reg="/^\S{1,10}$/"
-        v-model:data="name"
-        :type="'text'"
-        :dataTip="'用户名长度在1-10'"
-        :value="name"
-        @input="$emit('update:name', $event.target.value)"
-      />
+  <m_form :form-label="'注册'" :btn-name="'注册'">
+    <m_input
+      v-model:data="name"
+      :placeholder="'用户名'"
+      :reg="/^\S{1,10}$/"
+      :type="'text'"
+      :data-tip="'用户名长度在1-10'"
+      :value="name"
+      @input="$emit('update:name', $event.target.value)"
+    />
 
-      <m_input 
-        :placeholder="'邮箱'"
-        :reg="/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/"
-        v-model:data="email"
-        :type="'email'"
-        :dataTip="'请输入正确的邮箱地址'"
-        :value="email"
-        @input="$emit('update:email', $event.target.value)"
-      />
+    <m_input
+      v-model:data="email"
+      :placeholder="'邮箱'"
+      :reg="
+        /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
+      "
+      :type="'email'"
+      :data-tip="'请输入正确的邮箱地址'"
+      :value="email"
+      @input="$emit('update:email', $event.target.value)"
+    />
 
-      <m_input 
-        :placeholder="'密码'"
-        v-model:data="password"
-        :type="'password'"
-        :reg="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/"
-        :dataTip="'密码至少包含 数字和英文,长度6-20'"
-        :value="password"
-        @input="$emit('update:password', $event.target.value)"
-      />
+    <m_input
+      v-model:data="password"
+      :placeholder="'密码'"
+      :type="'password'"
+      :reg="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/"
+      :data-tip="'密码至少包含 数字和英文,长度6-20'"
+      :value="password"
+      @input="$emit('update:password', $event.target.value)"
+    />
 
-      <m_input 
-        :placeholder="'确认密码'"
-        v-model:data="pswRepeat"
-        v-model:dataConfirm="password"
-        :type="'password'"
-        :dataTip="'请再次确认密码'"
-      />
-      
-      <div class="flex justify-between w-full">
-        <span>
-          <input type="checkbox" checked="checked" name="remember"><a href="#" style="color:dodgerblue">创建帐户即表示您同意我们的条款和隐私</a>
-        </span>
-      </div>
+    <m_input
+      v-model:data="pswRepeat"
+      v-model:dataConfirm="password"
+      :placeholder="'确认密码'"
+      :type="'password'"
+      :data-tip="'请再次确认密码'"
+    />
 
+    <div class="flex justify-between w-full">
+      <span>
+        <input type="checkbox" checked="checked" name="remember" /><a
+          href="#"
+          style="color: dodgerblue"
+          >创建帐户即表示您同意我们的条款和隐私</a
+        >
+      </span>
+    </div>
   </m_form>
 </template>
 
@@ -54,28 +56,28 @@
 const props = defineProps({
   email: String,
   password: String,
-  name: String
-})
+  name: String,
+});
 
-const pswRepeat = $ref('')
-const emits = defineEmits(['update:email', 'update:password','update:name'])
+const pswRepeat = $ref("");
+const emits = defineEmits(["update:email", "update:password", "update:name"]);
 </script>
 
 <style lang="scss" scoped>
 .title {
-  @apply text-xl text-gray-900 text-center
+  @apply text-xl text-gray-900 text-center;
 }
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 form {
   border: 3px solid #f1f1f1;
-  @apply flex flex-col items-center
+  @apply flex flex-col items-center;
 }
 /* Full-width input fields */
-input[type=text],
-input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -84,8 +86,8 @@ input[type=password] {
   background: #f1f1f1;
 }
 
-input[type=text]:focus,
-input[type=password]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -97,7 +99,7 @@ hr {
 
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -138,7 +140,6 @@ button:hover {
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
-
   .cancelbtn,
   .signupbtn {
     width: 100%;

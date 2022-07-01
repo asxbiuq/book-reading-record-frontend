@@ -1,45 +1,44 @@
 <template>
-  <div class="loginform-shell">
-    <LoginForm 
+  <div class="login-form-shell">
+    <LoginForm
       v-model:email="email"
       v-model:password="password"
-      @login="handleLogin"
       novalidate
+      @login="handleLogin"
     />
   </div>
 </template>
 
 <script setup>
-const email = $ref('')
-const password = $ref('')
-const url = import.meta.env.VITE_AUTH_URL + '/login'
-const { userId : store_userId, token : store_token, expiryDate : store_expiryDate } = $(useStore())
-const { error, login, isPending } = $(useLogin(url))
+const email = $ref("");
+const password = $ref("");
+const url = import.meta.env.VITE_AUTH_URL + "/login";
+const {
+  userId: store_userId,
+  token: store_token,
+  expiryDate: store_expiryDate,
+} = $(useStore());
+const { error, login, isPending } = $(useLogin(url));
 
-const  router  = useRouter()
+const router = useRouter();
 
 const handleLogin = async () => {
-  const { token, userId, expiryDate } = await login(email, password)
-  console.log(token)
-  store_userId = userId
-  store_token = token
-  store_expiryDate = expiryDate
+  const { token, userId, expiryDate } = await login(email, password);
+  console.log(token);
+  store_userId = userId;
+  store_token = token;
+  store_expiryDate = expiryDate;
 
   if (!error) {
-    router.push('/')
+    router.push("/");
   }
-}
-  
+};
 </script>
 <route lang="yaml">
-{
-  meta: {
-    layout: "home",
-  }
-}
+{ meta: { layout: "home" } }
 </route>
 <style>
-.loginform-shell {
-  @apply flex justify-center items-center  w-1/2
+.login-form-shell {
+  @apply flex justify-center items-center w-1/2;
 }
 </style>

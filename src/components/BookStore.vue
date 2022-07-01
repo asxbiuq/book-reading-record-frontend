@@ -28,140 +28,172 @@
       </div>
     </div> -->
     <div class="book-slide">
-      <div class="book js-flickity flex" data-flickity-options='{ "wrapAround": true }'>
+      <div
+        class="book js-flickity flex"
+        data-flickity-options='{ "wrapAround": true }'
+      >
         <div class="book-cell">
           <div class="book-img">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg" alt="" class="book-photo">
+            <img
+              src="https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg"
+              alt=""
+              class="book-photo"
+            />
           </div>
           <div class="book-content">
             <div class="book-title">BIG MAGIC</div>
             <div class="book-author">by Elizabeth Gilbert</div>
             <div class="rate">
               <fieldset class="rating">
-                <input type="checkbox" id="star5" name="rating" value="5" />
+                <input id="star5" type="checkbox" name="rating" value="5" />
                 <label class="full" for="star5"></label>
-                <input type="checkbox" id="star4" name="rating" value="4" />
+                <input id="star4" type="checkbox" name="rating" value="4" />
                 <label class="full" for="star4"></label>
-                <input type="checkbox" id="star3" name="rating" value="3" />
+                <input id="star3" type="checkbox" name="rating" value="3" />
                 <label class="full" for="star3"></label>
-                <input type="checkbox" id="star2" name="rating" value="2" />
+                <input id="star2" type="checkbox" name="rating" value="2" />
                 <label class="full" for="star2"></label>
-                <input type="checkbox" id="star1" name="rating" value="1" />
+                <input id="star1" type="checkbox" name="rating" value="1" />
                 <label class="full" for="star1"></label>
               </fieldset>
               <span class="book-voters">1.987 voters</span>
             </div>
-            <div class="book-sum">Readers of all ages and walks of life have drawn inspiration and empowerment from
-              Elizabeth Gilbert’s books for years. </div>
+            <div class="book-sum">
+              Readers of all ages and walks of life have drawn inspiration and
+              empowerment from Elizabeth Gilbert’s books for years.
+            </div>
             <div class="book-see">See The Book</div>
           </div>
         </div>
         <div class="book-cell">
           <div class="book-img">
-            <img src="https://i.pinimg.com/originals/a8/b9/ff/a8b9ff74ed0f3efd97e09a7a0447f892.jpg" alt=""
-              class="book-photo">
+            <img
+              src="https://i.pinimg.com/originals/a8/b9/ff/a8b9ff74ed0f3efd97e09a7a0447f892.jpg"
+              alt=""
+              class="book-photo"
+            />
           </div>
           <div class="book-content">
             <div class="book-title">Ten Thousand Skies Above You</div>
             <div class="book-author">by Claudia Gray</div>
             <div class="rate">
               <fieldset class="rating blue">
-                <input type="checkbox" id="star6" name="rating" value="5" />
+                <input id="star6" type="checkbox" name="rating" value="5" />
                 <label class="full1" for="star6"></label>
-                <input type="checkbox" id="star7" name="rating" value="4" />
+                <input id="star7" type="checkbox" name="rating" value="4" />
                 <label class="full1" for="star7"></label>
-                <input type="checkbox" id="star8" name="rating" value="3" />
+                <input id="star8" type="checkbox" name="rating" value="3" />
                 <label class="full1" for="star8"></label>
-                <input type="checkbox" id="star9" name="rating" value="2" />
+                <input id="star9" type="checkbox" name="rating" value="2" />
                 <label class="full1" for="star9"></label>
-                <input type="checkbox" id="star10" name="rating" value="1" />
+                <input id="star10" type="checkbox" name="rating" value="1" />
                 <label class="full1" for="star10"></label>
               </fieldset>
               <span class="book-voters">1.987 voters</span>
             </div>
-            <div class="book-sum">The hunt for each splinter of Paul's soul sends Marguerite racing through a war-torn
-              San Francisco.</div>
+            <div class="book-sum">
+              The hunt for each splinter of Paul's soul sends Marguerite racing
+              through a war-torn San Francisco.
+            </div>
             <div class="book-see book-blue">See The Book</div>
           </div>
         </div>
         <div class="book-cell">
           <div class="book-img">
-            <img src="https://www.abebooks.com/blog/wp-content/uploads/2016/08/10.jpg" alt="" class="book-photo">
+            <img
+              src="https://www.abebooks.com/blog/wp-content/uploads/2016/08/10.jpg"
+              alt=""
+              class="book-photo"
+            />
           </div>
           <div class="book-content">
             <div class="book-title">A Tale For The Time Being</div>
             <div class="book-author">by Ruth Ozeki</div>
             <div class="rate">
               <fieldset class="rating purple">
-                <input type="checkbox" id="star11" name="rating" value="5" />
+                <input id="star11" type="checkbox" name="rating" value="5" />
                 <label class="full" for="star11"></label>
-                <input type="checkbox" id="star12" name="rating" value="4" />
+                <input id="star12" type="checkbox" name="rating" value="4" />
                 <label class="full" for="star12"></label>
-                <input type="checkbox" id="star13" name="rating" value="3" />
+                <input id="star13" type="checkbox" name="rating" value="3" />
                 <label class="full" for="star13"></label>
-                <input type="checkbox" id="star14" name="rating" value="2" />
+                <input id="star14" type="checkbox" name="rating" value="2" />
                 <label class="full" for="star14"></label>
-                <input type="checkbox" id="star15" name="rating" value="1" />
+                <input id="star15" type="checkbox" name="rating" value="1" />
                 <label class="full" for="star15"></label>
               </fieldset>
               <span class="book-voters">1.987 voters</span>
             </div>
-            <div class="book-sum">In Tokyo, sixteen-year-old Nao has decided there’s only one escape from her aching
-              loneliness and her classmates’ bullying.</div>
+            <div class="book-sum">
+              In Tokyo, sixteen-year-old Nao has decided there’s only one escape
+              from her aching loneliness and her classmates’ bullying.
+            </div>
             <div class="book-see book-pink">See The Book</div>
           </div>
         </div>
         <div class="book-cell">
           <div class="book-img">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg" alt="" class="book-photo">
+            <img
+              src="https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg"
+              alt=""
+              class="book-photo"
+            />
           </div>
           <div class="book-content">
             <div class="book-title">The Great Gatsby</div>
             <div class="book-author">by F.Scott Fitzgerald</div>
             <div class="rate">
               <fieldset class="rating yellow">
-                <input type="checkbox" id="star16" name="rating" value="5" />
+                <input id="star16" type="checkbox" name="rating" value="5" />
                 <label class="full" for="star16"></label>
-                <input type="checkbox" id="star17" name="rating" value="4" />
+                <input id="star17" type="checkbox" name="rating" value="4" />
                 <label class="full" for="star17"></label>
-                <input type="checkbox" id="star18" name="rating" value="3" />
+                <input id="star18" type="checkbox" name="rating" value="3" />
                 <label class="full" for="star18"></label>
-                <input type="checkbox" id="star19" name="rating" value="2" />
+                <input id="star19" type="checkbox" name="rating" value="2" />
                 <label class="full" for="star19"></label>
-                <input type="checkbox" id="star20" name="rating" value="1" />
+                <input id="star20" type="checkbox" name="rating" value="1" />
                 <label class="full" for="star20"></label>
               </fieldset>
               <span class="book-voters">1.987 voters</span>
             </div>
-            <div class="book-sum">The Great Gatsby, F. Scott Fitzgerald’s third book, stands as the supreme achievement
-              of his career.</div>
+            <div class="book-sum">
+              The Great Gatsby, F. Scott Fitzgerald’s third book, stands as the
+              supreme achievement of his career.
+            </div>
             <div class="book-see book-yellow">See The Book</div>
           </div>
         </div>
         <div class="book-cell">
           <div class="book-img">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/81UWB7oUZ0L.jpg" alt="" class="book-photo">
+            <img
+              src="https://images-na.ssl-images-amazon.com/images/I/81UWB7oUZ0L.jpg"
+              alt=""
+              class="book-photo"
+            />
           </div>
           <div class="book-content">
             <div class="book-title">After You</div>
             <div class="book-author">by Jojo Moyes</div>
             <div class="rate">
               <fieldset class="rating dark-purp">
-                <input type="checkbox" id="star21" name="rating" value="5" />
+                <input id="star21" type="checkbox" name="rating" value="5" />
                 <label class="full" for="star21"></label>
-                <input type="checkbox" id="star22" name="rating" value="4" />
+                <input id="star22" type="checkbox" name="rating" value="4" />
                 <label class="full" for="star22"></label>
-                <input type="checkbox" id="star23" name="rating" value="3" />
+                <input id="star23" type="checkbox" name="rating" value="3" />
                 <label class="full" for="star23"></label>
-                <input type="checkbox" id="star24" name="rating" value="2" />
+                <input id="star24" type="checkbox" name="rating" value="2" />
                 <label class="full" for="star24"></label>
-                <input type="checkbox" id="star25" name="rating" value="1" />
+                <input id="star25" type="checkbox" name="rating" value="1" />
                 <label class="full" for="star25"></label>
               </fieldset>
               <span class="book-voters">1.987 voters</span>
             </div>
-            <div class="book-sum">Louisa Clark is no longer just an ordinary girl living an ordinary life. After the
-              transformative six months spent.</div>
+            <div class="book-sum">
+              Louisa Clark is no longer just an ordinary girl living an ordinary
+              life. After the transformative six months spent.
+            </div>
             <div class="book-see book-purple">See The Book</div>
           </div>
         </div>
@@ -576,9 +608,7 @@
   </div>
 </template>
 
-<script>
-
-</script>
+<script></script>
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
@@ -813,7 +843,7 @@ body {
   left: 35px;
   border-radius: 2px;
   box-shadow: -2px 6px 19px 0px #7f818e;
-  transition: .3s ease;
+  transition: 0.3s ease;
 
   &:hover {
     transform: scale(1.03);
@@ -866,11 +896,11 @@ h1 {
   border: none;
 }
 
-.rating>input {
+.rating > input {
   display: none;
 }
 
-.rating>label:before {
+.rating > label:before {
   margin-right: 5px;
   margin-top: 10px;
   font-size: 0.9em;
@@ -879,73 +909,73 @@ h1 {
   content: "\f005";
 }
 
-.rating>label {
+.rating > label {
   color: #fff;
   float: right;
 }
 
-.rating>input:checked~label,
-.rating:not(:checked)>label:hover,
-.rating:not(:checked)>label:hover~label {
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
   color: #d85d61;
 }
 
-.rating>input:checked+label:hover,
-.rating>input:checked~label:hover,
-.rating>label:hover~input:checked~label,
-.rating>input:checked~label:hover~label {
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
   color: #d85d61;
 }
 
-.blue>input:checked~label,
-.blue:not(:checked)>label:hover,
-.blue:not(:checked)>label:hover~label {
+.blue > input:checked ~ label,
+.blue:not(:checked) > label:hover,
+.blue:not(:checked) > label:hover ~ label {
   color: #458997;
 }
 
-.blue>input:checked+label:hover,
-.blue>input:checked~label:hover,
-.blue>label:hover~input:checked~label,
-.blue>input:checked~label:hover~label {
+.blue > input:checked + label:hover,
+.blue > input:checked ~ label:hover,
+.blue > label:hover ~ input:checked ~ label,
+.blue > input:checked ~ label:hover ~ label {
   color: #458997;
 }
 
-.purple>input:checked~label,
-.purple:not(:checked)>label:hover,
-.purple:not(:checked)>label:hover~label {
+.purple > input:checked ~ label,
+.purple:not(:checked) > label:hover,
+.purple:not(:checked) > label:hover ~ label {
   color: #a76287;
 }
 
-.purple>input:checked+label:hover,
-.purple>input:checked~label:hover,
-.purple>label:hover~input:checked~label,
-.purple>input:checked~label:hover~label {
+.purple > input:checked + label:hover,
+.purple > input:checked ~ label:hover,
+.purple > label:hover ~ input:checked ~ label,
+.purple > input:checked ~ label:hover ~ label {
   color: #a76287;
 }
 
-.yellow>input:checked~label,
-.yellow:not(:checked)>label:hover,
-.yellow:not(:checked)>label:hover~label {
+.yellow > input:checked ~ label,
+.yellow:not(:checked) > label:hover,
+.yellow:not(:checked) > label:hover ~ label {
   color: #ffad58;
 }
 
-.yellow>input:checked+label:hover,
-.yellow>input:checked~label:hover,
-.yellow>label:hover~input:checked~label,
-.yellow>input:checked~label:hover~label {
+.yellow > input:checked + label:hover,
+.yellow > input:checked ~ label:hover,
+.yellow > label:hover ~ input:checked ~ label,
+.yellow > input:checked ~ label:hover ~ label {
   color: #ffad58;
 }
 
-.dark-purp>input:checked~label,
-.dark-purp:not(:checked)>label:hover,
-.dark-purp:not(:checked)>label:hover~label {
+.dark-purp > input:checked ~ label,
+.dark-purp:not(:checked) > label:hover,
+.dark-purp:not(:checked) > label:hover ~ label {
   color: #905587;
 }
 
-.dark-purp>input:checked+label:hover,
-.dark-purp>input:checked~label:hover,
-.dark-purp>label:hover~input:checked~label,
-.dark-purp>input:checked~label:hover~label {
+.dark-purp > input:checked + label:hover,
+.dark-purp > input:checked ~ label:hover,
+.dark-purp > label:hover ~ input:checked ~ label,
+.dark-purp > input:checked ~ label:hover ~ label {
   color: #905587;
 }
 
@@ -1065,7 +1095,7 @@ h1 {
   }
 }
 
-.book-type+.book-type {
+.book-type + .book-type {
   margin-left: 20px;
 }
 
@@ -1075,7 +1105,7 @@ h1 {
 
   &.active,
   &:hover {
-    -webkit-text-stroke: .3px;
+    -webkit-text-stroke: 0.3px;
 
     &:before {
       content: "";
@@ -1113,7 +1143,7 @@ h1 {
 .author {
   @extend %display;
 
-  &+& {
+  & + & {
     margin-top: 20px;
   }
 
@@ -1158,7 +1188,7 @@ h1 {
     font-size: 13px;
   }
 
-  &+& {
+  & + & {
     margin-top: 20px;
   }
 }
@@ -1175,10 +1205,12 @@ h1 {
   left: 0;
   width: 340px;
   flex-shrink: 0;
-  background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0) 0%,
-      #f2f5f7 65%,
-      #f2f5f7 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #f2f5f7 65%,
+    #f2f5f7 100%
+  );
   height: 60px;
   margin-left: -35px;
 }
@@ -1213,13 +1245,12 @@ h1 {
   border-bottom: 1px solid #dcddde;
   object-fit: cover;
   margin-bottom: 20px;
-  transition: .3s ease;
+  transition: 0.3s ease;
 
   &:hover {
     transform: scale(1.04);
   }
 }
-
 
 .card-content {
   color: var(--body-color);
@@ -1244,7 +1275,7 @@ h1 {
   white-space: nowrap;
 }
 
-.book-rate>label {
+.book-rate > label {
   color: #cccccc;
 }
 
@@ -1253,16 +1284,16 @@ h1 {
   white-space: nowrap;
 }
 
-.book-rate>input:checked~label,
-.book-rate:not(:checked)>label:hover,
-.book-rate:not(:checked)>label:hover~label {
+.book-rate > input:checked ~ label,
+.book-rate:not(:checked) > label:hover,
+.book-rate:not(:checked) > label:hover ~ label {
   color: #ff9700;
 }
 
-.book-rate>input:checked+label:hover,
-.book-rate>input:checked~label:hover,
-.book-rate>label:hover~input:checked~label,
-.book-rate>input:checked~label:hover~label {
+.book-rate > input:checked + label:hover,
+.book-rate > input:checked ~ label:hover,
+.book-rate > label:hover ~ input:checked ~ label,
+.book-rate > input:checked ~ label:hover ~ label {
   color: #ff9700;
 }
 
@@ -1303,7 +1334,7 @@ h1 {
 .like-profile {
   margin-top: 8px;
 
-  &+& {
+  & + & {
     margin-left: -5px;
   }
 }
@@ -1330,7 +1361,6 @@ h1 {
 .likes {
   @extend %display;
 }
-
 
 @media (max-width: 1103px) {
   .book-cell {
@@ -1376,7 +1406,7 @@ h1 {
 }
 
 @media (max-width: 360px) {
-  .rating>label:before {
+  .rating > label:before {
     font-size: 0.8em;
   }
 }
@@ -1388,8 +1418,8 @@ h1 {
 }
 
 @media (max-width: 1085px) {
-  .book-rate>label {
-    font-size: .7em;
+  .book-rate > label {
+    font-size: 0.7em;
   }
 }
 
@@ -1400,7 +1430,6 @@ h1 {
 }
 
 @media (max-width: 725px) {
-
   .browse-category,
   .search-bar {
     display: none;

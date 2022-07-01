@@ -1,43 +1,29 @@
 <script setup>
-const el = ref(null)
-onMounted(() => {
-  // hideElementOnScroll(el.value)
-  const { x, y, isScrolling, arrivedState, directions } = useScroll(el)
-  watchEffect(()=>{
-    console.log(isScrolling.value)
-  })
-})
-
+//通过这种方式,事件本身获取不到,得到的是event.target
+function handleClick() {
+  console.log('1')
+}
 </script>
 
 <template>
-<div id="navbar" ref="el">
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
+<div class="flex justify-center items-center">
+  <!-- <button 
+    @click="handleClick(this)"
+  >
+  click
+  </button> -->
+    <button 
+      onclick="handleClick()"
+    >
+    click
+    </button>
 </div>
 </template>
 <style>
-#navbar {
-  background-color: #333; /* Black background color */
-  position: fixed; /* Make it stick/fixed */
-  top: 0; /* Stay on top */
-  width: 100%; /* Full width */
-  transition: top 0.3s; /* Transition effect when sliding down (and up) */
+div {
+  height: 100vh;
 }
-
-/* Style the navbar links */
-#navbar a {
-  float: left;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  text-decoration: none;
-}
-
-#navbar a:hover {
-  background-color: #ddd;
-  color: black;
+button {
+  @apply btn-info
 }
 </style>

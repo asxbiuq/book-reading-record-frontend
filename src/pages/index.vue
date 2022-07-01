@@ -1,25 +1,27 @@
 <template>
-<div id="top"></div>
+  <div id="top"></div>
   <div ref="el" class="relative top-[5rem]">
     <div v-if="userId">
       <ul class="flex gap-10 justify-center">
         <li v-for="book in data.posts" :key="book._id">
           <BookCard
-            :title="book.title" 
-            :author="book.author" 
-            :description="book.description" 
-            :btnName="'删除'"
-            :imgUrl = "book.imageUrl"
-            :isFav="book.isFav"
-            @clickBtn="handleDelete(book)" 
-            @clickStar="handleUpdate(book)" 
-            @clickImage="handleDetails"
+            :title="book.title"
+            :author="book.author"
+            :description="book.description"
+            :btn-name="'删除'"
+            :img-url="book.imageUrl"
+            :is-fav="book.isFav"
+            @click-btn="handleDelete(book)"
+            @click-star="handleUpdate(book)"
+            @click-image="handleDetails"
           />
-
         </li>
       </ul>
 
-      <div class="container mx-auto flex justify-center bottom-6 fixed" ref="target">
+      <div
+        ref="target"
+        class="container mx-auto flex justify-center bottom-6 fixed"
+      >
         <CreateBookForm @created="getBooks" />
       </div>
     </div>
@@ -27,95 +29,92 @@
       <p>请登录</p>
     </div>
   </div>
-  <div class="fixed bottom-5 right-5 hover:text-blue-700  cursor-pointer click" @click="handleToTop" >
-  <i-bi:arrow-up-circle-fill style="font-size:2em"
-  />
+  <div
+    class="fixed bottom-5 right-5 hover:text-blue-700 cursor-pointer click"
+    @click="handleToTop"
+  >
+    <i-bi:arrow-up-circle-fill style="font-size: 2em" />
   </div>
 </template>
 
 <script setup>
-const baseUrl = import.meta.env.VITE_FEED_URL
-const data = reactive({})
-const target = ref(null)
-const { userId, token } = $(useStore())
-const router = useRouter()
-const { useFetch_GetDocsAll, useFetch_DeleteDoc, useFetch_UpdateDoc } = $(useFetchDoc(baseUrl,token))
+const baseUrl = import.meta.env.VITE_FEED_URL;
+const data = reactive({});
+const target = ref(null);
+const { userId, token } = $(useStore());
+const router = useRouter();
+const { useFetch_GetDocsAll, useFetch_DeleteDoc, useFetch_UpdateDoc } = $(
+  useFetchDoc(baseUrl, token)
+);
 
-const { isFetching, error: useFetchDocsAllError, data : newData } = $(
-  await useFetch_GetDocsAll(
-      '/posts/' + userId
-    )
-    .json())
+const {
+  isFetching,
+  error: useFetchDocsAllError,
+  data: newData,
+} = $(await useFetch_GetDocsAll("/posts/" + userId).json())
 
-data.posts = [...newData.posts]
+
+data.posts = [...newData.posts];
 
 const getBooks = async () => {
   const { data: newData } = $(
-    await useFetch_GetDocsAll(
-        '/posts/' + userId
-      )
-      .json())
-  data.posts = [...newData.posts]
-}
+    await useFetch_GetDocsAll("/posts/" + userId).json()
+  );
+  data.posts = [...newData.posts];
+};
 
 const handleDelete = async (book) => {
   const { error: useFetchDeleteDocError } = $(
-    await useFetch_DeleteDoc(
-        '/post/' + book._id
-      )
-      .delete())
+    await useFetch_DeleteDoc("/post/" + book._id).delete()
+  );
 
   if (!useFetchDeleteDocError) {
-    data.posts = data.posts.filter((post) =>
-      post._id != book._id
-    )
+    data.posts = data.posts.filter((post) => post._id != book._id);
   }
-}
+};
 
 const handleUpdate = async (book) => {
-  book.isFav = !book.isFav
-  console.log(book.imageUrl.toString())
+  book.isFav = !book.isFav;
+  console.log(book.imageUrl.toString());
   const { data: UpdatedData, error: useFetchUpdateDocError } = $(
-    await useFetch_UpdateDoc(
-        '/post/' + book._id
-      )
+    await useFetch_UpdateDoc("/post/" + book._id)
       .put({
-          title: book.title,
-          author: book.author,
-          isFav: book.isFav,
-          userUid: book.userId,
-          imageUrl: book.imageUrl
+        title: book.title,
+        author: book.author,
+        isFav: book.isFav,
+        userUid: book.userId,
+        imageUrl: book.imageUrl,
       })
-      .json())
+      .json()
+  );
 
   if (!useFetchUpdateDocError) {
-    data.posts.forEach(post => {
+    data.posts.forEach((post) => {
       if (post._id === UpdatedData.post._id) {
-        post = UpdatedData.post
+        post = UpdatedData.post;
       }
-    })
+    });
   }
-}
+};
 const handleDetails = () => {
-  console.log('handleDetails')
-}
+  console.log("handleDetails");
+};
 onMounted(() => {
-  hideElementOnScroll(target.value)
-})
+  hideElementOnScroll(target.value);
+});
 const throttledFn = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
-  console.log('Throttle')
-}, 1000)
-document.addEventListener('scroll', throttledFn)
+  console.log("Throttle");
+}, 1000);
+document.addEventListener("scroll", throttledFn);
 
 const handleToTop = () => {
-
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    })
-// scrollToTop()
-}
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+  // scrollToTop()
+};
 // var oDiv = document.getElementById('top');
 // oDiv.onclick = function() {
 //     window.scrollTo({
@@ -124,9 +123,8 @@ const handleToTop = () => {
 //     })
 // }
 
-
 if (!userId) {
-  router.push({ name: 'Login' })
+  router.push({ name: "Login" });
 }
 </script>
 

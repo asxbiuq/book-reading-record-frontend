@@ -1,12 +1,21 @@
 <template>
-  <div class="p-navbar bg-info text-primary-content fixed top-[0%] duration-700 z-10" ref="el">
+  <div
+    ref="el"
+    class="p-navbar bg-info text-primary-content fixed top-[0%] duration-700 z-10"
+  >
     <div class="flex-1">
       <div v-if="userId">
-        <router-link to="/" class="p-btn p-btn-ghost normal-case text-xl"><i-ant-design:home-twotone  /></router-link>
+        <router-link to="/" class="p-btn p-btn-ghost normal-case text-xl"
+          ><i-ant-design:home-twotone
+        /></router-link>
       </div>
       <div v-if="!userId">
-        <router-link to="/login" class="p-btn p-btn-ghost normal-case text-xl">登陆</router-link>
-        <router-link to="/signup" class="p-btn p-btn-ghost normal-case text-xl">注册</router-link>
+        <router-link to="/login" class="p-btn p-btn-ghost normal-case text-xl"
+          >登陆</router-link
+        >
+        <router-link to="/signup" class="p-btn p-btn-ghost normal-case text-xl"
+          >注册</router-link
+        >
       </div>
     </div>
     <div class="flex-none">
@@ -20,21 +29,19 @@
 </template>
 
 <script setup>
-const { logout } = $(useLogout())
-const { userId } = $(useStore())
-const router = useRouter()
+const { logout } = $(useLogout());
+const { userId } = $(useStore());
+const router = useRouter();
 
 const handleLogout = () => {
-  router.push({ name: 'Login' })
-  logout()
-}
-const el = ref(null)
+  router.push({ name: "Login" });
+  logout();
+};
+const el = ref(null);
 
 onMounted(() => {
-  hideElementOnScroll(el.value)
-})
-
-
+  hideElementOnScroll(el.value);
+});
 </script>
 
 <style>
@@ -42,7 +49,7 @@ onMounted(() => {
 .top-nav {
   background-color: #333;
   overflow: hidden;
-  @apply flex justify-between
+  @apply flex justify-between;
 }
 
 /* Style the links inside the navigation bar */
@@ -63,7 +70,7 @@ onMounted(() => {
 
 /* Add a color to the active/current link */
 .top-nav a.active {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
 }
 </style>

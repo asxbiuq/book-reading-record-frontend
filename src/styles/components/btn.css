@@ -1,0 +1,67 @@
+@layer components {
+  /* btn */
+  .btn {
+    @apply p-btn p-btn-wide rounded-3xl shadow-xl click;
+  }
+  .btn-danger {
+    @apply btn p-btn-error;
+    /* background: #cf4747;
+      color: #fffaf8; */
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: #4ccdf7;
+      color: #111111;
+    }
+  }
+  .btn-warning {
+    @apply p-btn p-btn-warning p-btn-wide rounded-3xl shadow-xl click;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: #4ccdf7;
+      color: #111111;
+    }
+  }
+  .btn-loading {
+    @apply p-btn p-btn-loading p-btn-wide rounded-3xl shadow-xl click;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: #4ccdf7;
+      color: #111111;
+    }
+  }
+  .btn-info {
+    @apply p-btn p-btn-info p-btn-wide rounded-3xl shadow-xl click;
+    &:hover,
+    &:active,
+    &:focus {
+      background: #4ccdf7;
+      color: white;
+    }
+  }
+  .btn-warning {
+    @apply p-btn p-btn-warning p-btn-wide rounded-3xl shadow-xl click;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: #4ccdf7;
+      color: #111111;
+    }
+  }
+  .btn-warning {
+    @apply p-btn p-btn-error p-btn-wide rounded-3xl shadow-xl click;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: #4ccdf7;
+      color: #111111;
+    }
+  }
+}

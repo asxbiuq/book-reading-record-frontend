@@ -1,0 +1,41 @@
+@layer components {
+  /* card */
+  .card {
+    @apply container mx-auto bg-teal-400 rounded-2xl w-[95vw] 
+    flex flex-col items-center  p-12 gap-10 max-w-[40rem] transition-all text-white
+    duration-150 ease-out hover:ease-in  
+
+    sm:flex-row sm:w-[90vw] sm:h-[50vh];
+
+    h {
+      @apply truncate font-bold;
+    }
+    h2 {
+      @apply truncate font-normal;
+    }
+    h3 {
+      @apply truncate font-thin;
+    }
+    main {
+      @apply font-normal;
+    }
+    .img-shell {
+      @apply w-full  max-w-4xl container-f 
+      sm:w-full sm:h-full;
+    }
+    img {
+      @apply container mx-auto w-[100%] 
+      transition-all shadow-lg hover:scale-105 duration-[.3s]  object-cover max-h-full
+
+      sm:w-[12rem] sm:max-w-sm sm:max-h-60
+      sm:aspect-vertical;
+    }
+
+    button {
+      @apply btn-danger;
+    }
+    /* & .click {
+      @apply hover:scale-105 active:scale-95 duration-300
+    } */
+  }
+}

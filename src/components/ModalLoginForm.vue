@@ -1,27 +1,40 @@
 <template>
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+  <button
+    onclick="document.getElementById('id01').style.display='block'"
+    style="width: auto"
+  >
+    Login
+  </button>
 
   <div id="id01" class="modal">
-
     <form class="modal-content animate" action="/action_page.php" method="post">
-
-
       <div class="container">
         <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input type="text" placeholder="Enter Username" name="uname" required />
 
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+        />
 
         <button type="submit">Login</button>
         <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
+          <input type="checkbox" checked="checked" name="remember" /> Remember
+          me
         </label>
       </div>
 
-      <div class="container" style="background-color:#f1f1f1">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'"
-          class="cancelbtn">Cancel</button>
+      <div class="container" style="background-color: #f1f1f1">
+        <button
+          type="button"
+          onclick="document.getElementById('id01').style.display='none'"
+          class="cancelbtn"
+        >
+          Cancel
+        </button>
         <span class="psw">Forgot <a href="#">password?</a></span>
       </div>
     </form>
@@ -30,14 +43,14 @@
 
 <script setup>
 // Get the modal
-let modal = document.getElementById('id01');
+let modal = document.getElementById("id01");
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -46,8 +59,8 @@ body {
 }
 
 /* Full-width input fields */
-input[type=text],
-input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -58,7 +71,7 @@ input[type=password] {
 
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -151,26 +164,26 @@ span.psw {
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+  animation: animatezoom 0.6s;
 }
 
 @-webkit-keyframes animatezoom {
   from {
-    -webkit-transform: scale(0)
+    -webkit-transform: scale(0);
   }
 
   to {
-    -webkit-transform: scale(1)
+    -webkit-transform: scale(1);
   }
 }
 
 @keyframes animatezoom {
   from {
-    transform: scale(0)
+    transform: scale(0);
   }
 
   to {
-    transform: scale(1)
+    transform: scale(1);
   }
 }
 

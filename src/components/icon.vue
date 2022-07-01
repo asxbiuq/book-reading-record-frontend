@@ -3,9 +3,7 @@
 </template>
 
 <script setup>
-
-defineProps(['icon'])
+defineProps(["icon"]);
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

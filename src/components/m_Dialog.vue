@@ -1,7 +1,6 @@
 <template>
-
   <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div"  class="relative z-10">
+    <Dialog as="div" class="relative z-10">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -27,9 +26,7 @@
             leave-from="opacity-100 scale-100"
             leave-to="opacity-0 scale-95"
           >
-            <DialogPanel
-              class="dialog-panel"
-            >
+            <DialogPanel class="dialog-panel">
               <slot></slot>
             </DialogPanel>
           </TransitionChild>
@@ -45,17 +42,12 @@ import {
   TransitionChild,
   Dialog,
   DialogPanel,
-} from '@headlessui/vue'
+} from "@headlessui/vue";
 
-const props = defineProps(['isOpen'])
-
-
-
-
-
+const props = defineProps(["isOpen"]);
 </script>
 <style scoped>
 .dialog-panel {
- @apply w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all
+  @apply w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all;
 }
 </style>

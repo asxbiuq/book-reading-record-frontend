@@ -1,64 +1,65 @@
 <template>
   <m_form
-    :formLabel="'登陆'"
-    :btnName="'登陆'"
-    @submit.prevent="handleSubmit($event)"  
+    :form-label="'登陆'"
+    :btn-name="'登陆'"
+    @submit.prevent="handleSubmit($event)"
   >
-      <m_input 
-        :placeholder="'邮箱'"
-        :reg="/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/"
-        v-model:data="email"
-        :type="'email'"
-        :dataTip="'请输入正确的邮箱'"
-        :value="email"
-        @input="$emit('update:email', $event.target.value)"
-      />
-      <m_input 
-        :placeholder="'密码'"
-        v-model:data="password"
-        :type="'password'"
-        :value="password"
-        @input="$emit('update:password', $event.target.value)"
-        :reg="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/"
-        :dataTip="'密码至少包含 数字和英文,长度6-20'"
-      />
-      <div class="flex justify-between w-full">
-        <span>
-          <input type="checkbox" checked="checked" name="remember"> 记住密码
-        </span>
-        <span ><a href="#">忘记密码?</a></span>
-      </div>
+    <m_input
+      v-model:data="email"
+      :placeholder="'邮箱'"
+      :reg="
+        /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
+      "
+      :type="'email'"
+      :data-tip="'请输入正确的邮箱'"
+      :value="email"
+      @input="$emit('update:email', $event.target.value)"
+    />
+    <m_input
+      v-model:data="password"
+      :placeholder="'密码'"
+      :type="'password'"
+      :value="password"
+      :reg="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/"
+      :data-tip="'密码至少包含 数字和英文,长度6-20'"
+      @input="$emit('update:password', $event.target.value)"
+    />
+    <div class="flex justify-between w-full">
+      <span>
+        <input type="checkbox" checked="checked" name="remember" /> 记住密码
+      </span>
+      <span><a href="#">忘记密码?</a></span>
+    </div>
   </m_form>
 </template>
 
 <script setup>
 defineProps({
   email: String,
-  password: String
-})
+  password: String,
+});
 
-const emits = defineEmits(['login','update:email','update:password'])
+const emits = defineEmits(["login", "update:email", "update:password"]);
 // 节流 登陆按钮
 const handleSubmit = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
-  emits('login')
-}, 1000)
-
+  emits("login");
+}, 1000);
 </script>
 
 <style lang="scss" scoped>
-.title{
-  @apply text-xl text-gray-900
+.title {
+  @apply text-xl text-gray-900;
 }
 /* Bordered form */
 form {
   border: 3px solid #f1f1f1;
-  @apply flex flex-col items-center
+  @apply flex flex-col items-center;
 }
 
 /* Full-width inputs */
-input[type=text],
-input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -69,7 +70,7 @@ input[type=password] {
 
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -94,7 +95,7 @@ button:hover {
 .imgcontainer {
   // text-align: center;
   // margin: 24px 0 12px 0;
-  @apply text-center w-[20%] flex justify-center
+  @apply text-center w-[20%] flex justify-center;
 }
 
 /* Avatar image */

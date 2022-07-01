@@ -1,29 +1,31 @@
 <template>
   <div class="book-slide">
-    <div class="book js-flickity" data-flickity-options='{ "wrapAround": true }'>
+    <div
+      class="book js-flickity"
+      data-flickity-options='{ "wrapAround": true }'
+    >
       <div class="book-cell">
         <div class="book-img">
-          <img :src="imgUrl" alt="image" class="book-photo">
+          <img :src="imgUrl" alt="image" class="book-photo" />
         </div>
         <div class="book-content">
           <div class="flex justify-between">
-
             <div class="book-title">{{ title }}</div>
-             <!-- <i-ic:outline-star-purple500 style="font-size:2em" id="star"/> -->
-             <i-emojione:star style="font-size:2em;" ref="star"/>
+            <!-- <i-ic:outline-star-purple500 style="font-size:2em" id="star"/> -->
+            <i-emojione:star ref="star" style="font-size: 2em" />
           </div>
           <div class="book-author">by {{ author }}</div>
           <div class="rate">
             <fieldset class="rating">
-              <input type="checkbox" id="star5" name="rating" value="5" />
+              <input id="star5" type="checkbox" name="rating" value="5" />
               <label class="full" for="star5"></label>
-              <input type="checkbox" id="star4" name="rating" value="4" />
+              <input id="star4" type="checkbox" name="rating" value="4" />
               <label class="full" for="star4"></label>
-              <input type="checkbox" id="star3" name="rating" value="3" />
+              <input id="star3" type="checkbox" name="rating" value="3" />
               <label class="full" for="star3"></label>
-              <input type="checkbox" id="star2" name="rating" value="2" />
+              <input id="star2" type="checkbox" name="rating" value="2" />
               <label class="full" for="star2"></label>
-              <input type="checkbox" id="star1" name="rating" value="1" />
+              <input id="star1" type="checkbox" name="rating" value="1" />
               <label class="full" for="star1"></label>
             </fieldset>
             <span class="book-voters">1.987 voters</span>
@@ -43,19 +45,23 @@
 // });
 
 const props = defineProps({
-  title: { type: String, default: '标题', required: false },
-  author: { type: String, default: '作者', required: false },
-  description: { type: String, default: '简介', required: false },
-  imgUrl: { type: String, default: 'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg', required: false },
-  btnName: { type: String, default: '阅读', required: false },
+  title: { type: String, default: "标题", required: false },
+  author: { type: String, default: "作者", required: false },
+  description: { type: String, default: "简介", required: false },
+  imgUrl: {
+    type: String,
+    default: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
+    required: false,
+  },
+  btnName: { type: String, default: "阅读", required: false },
 });
-const emits = defineEmits(['clickBtn', 'clickTitle'])
+const emits = defineEmits(["clickBtn", "clickTitle"]);
 const handleClickBtn = () => {
-  emits('clickBtn')
-}
+  emits("clickBtn");
+};
 const handleClickTitle = () => {
-  emits('clickTitle')
-}
+  emits("clickTitle");
+};
 </script>
 
 <style scoped>
@@ -291,7 +297,7 @@ body {
   left: 35px;
   border-radius: 2px;
   box-shadow: -2px 6px 19px 0px #7f818e;
-  transition: .3s ease;
+  transition: 0.3s ease;
 
   &:hover {
     transform: scale(1.03);
@@ -344,11 +350,11 @@ h1 {
   border: none;
 }
 
-.rating>input {
+.rating > input {
   display: none;
 }
 
-.rating>label:before {
+.rating > label:before {
   margin-right: 5px;
   margin-top: 10px;
   font-size: 0.9em;
@@ -357,73 +363,73 @@ h1 {
   content: "\f005";
 }
 
-.rating>label {
+.rating > label {
   color: #fff;
   float: right;
 }
 
-.rating>input:checked~label,
-.rating:not(:checked)>label:hover,
-.rating:not(:checked)>label:hover~label {
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
   color: #d85d61;
 }
 
-.rating>input:checked+label:hover,
-.rating>input:checked~label:hover,
-.rating>label:hover~input:checked~label,
-.rating>input:checked~label:hover~label {
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
   color: #d85d61;
 }
 
-.blue>input:checked~label,
-.blue:not(:checked)>label:hover,
-.blue:not(:checked)>label:hover~label {
+.blue > input:checked ~ label,
+.blue:not(:checked) > label:hover,
+.blue:not(:checked) > label:hover ~ label {
   color: #458997;
 }
 
-.blue>input:checked+label:hover,
-.blue>input:checked~label:hover,
-.blue>label:hover~input:checked~label,
-.blue>input:checked~label:hover~label {
+.blue > input:checked + label:hover,
+.blue > input:checked ~ label:hover,
+.blue > label:hover ~ input:checked ~ label,
+.blue > input:checked ~ label:hover ~ label {
   color: #458997;
 }
 
-.purple>input:checked~label,
-.purple:not(:checked)>label:hover,
-.purple:not(:checked)>label:hover~label {
+.purple > input:checked ~ label,
+.purple:not(:checked) > label:hover,
+.purple:not(:checked) > label:hover ~ label {
   color: #a76287;
 }
 
-.purple>input:checked+label:hover,
-.purple>input:checked~label:hover,
-.purple>label:hover~input:checked~label,
-.purple>input:checked~label:hover~label {
+.purple > input:checked + label:hover,
+.purple > input:checked ~ label:hover,
+.purple > label:hover ~ input:checked ~ label,
+.purple > input:checked ~ label:hover ~ label {
   color: #a76287;
 }
 
-.yellow>input:checked~label,
-.yellow:not(:checked)>label:hover,
-.yellow:not(:checked)>label:hover~label {
+.yellow > input:checked ~ label,
+.yellow:not(:checked) > label:hover,
+.yellow:not(:checked) > label:hover ~ label {
   color: #ffad58;
 }
 
-.yellow>input:checked+label:hover,
-.yellow>input:checked~label:hover,
-.yellow>label:hover~input:checked~label,
-.yellow>input:checked~label:hover~label {
+.yellow > input:checked + label:hover,
+.yellow > input:checked ~ label:hover,
+.yellow > label:hover ~ input:checked ~ label,
+.yellow > input:checked ~ label:hover ~ label {
   color: #ffad58;
 }
 
-.dark-purp>input:checked~label,
-.dark-purp:not(:checked)>label:hover,
-.dark-purp:not(:checked)>label:hover~label {
+.dark-purp > input:checked ~ label,
+.dark-purp:not(:checked) > label:hover,
+.dark-purp:not(:checked) > label:hover ~ label {
   color: #905587;
 }
 
-.dark-purp>input:checked+label:hover,
-.dark-purp>input:checked~label:hover,
-.dark-purp>label:hover~input:checked~label,
-.dark-purp>input:checked~label:hover~label {
+.dark-purp > input:checked + label:hover,
+.dark-purp > input:checked ~ label:hover,
+.dark-purp > label:hover ~ input:checked ~ label,
+.dark-purp > input:checked ~ label:hover ~ label {
   color: #905587;
 }
 
@@ -449,8 +455,10 @@ h1 {
   @apply btn btn-info btn-wide rounded-3xl shadow-xl;
   background: #cf4747;
   color: #fffaf8;
-  
-  &:hover, &:active,&:focus {
+
+  &:hover,
+  &:active,
+  &:focus {
     background: #4ccdf7;
     color: #111111;
   }
@@ -506,7 +514,7 @@ h1 {
   }
 }
 
-.book-type+.book-type {
+.book-type + .book-type {
   margin-left: 20px;
 }
 
@@ -516,7 +524,7 @@ h1 {
 
   &.active,
   &:hover {
-    -webkit-text-stroke: .3px;
+    -webkit-text-stroke: 0.3px;
 
     &:before {
       content: "";
@@ -554,7 +562,7 @@ h1 {
 .author {
   @extend %display;
 
-  &+& {
+  & + & {
     margin-top: 20px;
   }
 
@@ -599,7 +607,7 @@ h1 {
     font-size: 13px;
   }
 
-  &+& {
+  & + & {
     margin-top: 20px;
   }
 }
@@ -616,10 +624,12 @@ h1 {
   left: 0;
   width: 340px;
   flex-shrink: 0;
-  background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0) 0%,
-      #f2f5f7 65%,
-      #f2f5f7 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #f2f5f7 65%,
+    #f2f5f7 100%
+  );
   height: 60px;
   margin-left: -35px;
 }
@@ -654,13 +664,12 @@ h1 {
   border-bottom: 1px solid #dcddde;
   object-fit: cover;
   margin-bottom: 20px;
-  transition: .3s ease;
+  transition: 0.3s ease;
 
   &:hover {
     transform: scale(1.04);
   }
 }
-
 
 .card-content {
   color: var(--body-color);
@@ -685,7 +694,7 @@ h1 {
   white-space: nowrap;
 }
 
-.book-rate>label {
+.book-rate > label {
   color: #cccccc;
 }
 
@@ -694,16 +703,16 @@ h1 {
   white-space: nowrap;
 }
 
-.book-rate>input:checked~label,
-.book-rate:not(:checked)>label:hover,
-.book-rate:not(:checked)>label:hover~label {
+.book-rate > input:checked ~ label,
+.book-rate:not(:checked) > label:hover,
+.book-rate:not(:checked) > label:hover ~ label {
   color: #ff9700;
 }
 
-.book-rate>input:checked+label:hover,
-.book-rate>input:checked~label:hover,
-.book-rate>label:hover~input:checked~label,
-.book-rate>input:checked~label:hover~label {
+.book-rate > input:checked + label:hover,
+.book-rate > input:checked ~ label:hover,
+.book-rate > label:hover ~ input:checked ~ label,
+.book-rate > input:checked ~ label:hover ~ label {
   color: #ff9700;
 }
 
@@ -744,7 +753,7 @@ h1 {
 .like-profile {
   margin-top: 8px;
 
-  &+& {
+  & + & {
     margin-left: -5px;
   }
 }
@@ -771,7 +780,6 @@ h1 {
 .likes {
   @extend %display;
 }
-
 
 @media (max-width: 1103px) {
   .book-cell {
@@ -817,7 +825,7 @@ h1 {
 }
 
 @media (max-width: 360px) {
-  .rating>label:before {
+  .rating > label:before {
     font-size: 0.8em;
   }
 }
@@ -829,8 +837,8 @@ h1 {
 }
 
 @media (max-width: 1085px) {
-  .book-rate>label {
-    font-size: .7em;
+  .book-rate > label {
+    font-size: 0.7em;
   }
 }
 
@@ -841,7 +849,6 @@ h1 {
 }
 
 @media (max-width: 725px) {
-
   .browse-category,
   .search-bar {
     display: none;
