@@ -50,7 +50,9 @@ const handleSignup = async () => {
 { meta: { layout: "signup" } }
 </route>
 <style>
+@import "styles/components/form.css";
+@tailwind components;
 .signup-form-shell {
-  @apply flex justify-center items-center w-1/2;
+  @apply flex justify-center items-center relative top-24;
 }
 </style>

@@ -40,7 +40,7 @@
         :tooltip="'w-full'"
         :label="'图片'"
         :type="'file'"
-        :file_type="file_type"
+        :fileType="fileType"
         :data-tip="'选择的文件类型错误,应为 png 或 jpeg'"
         @emit_file="handleFile"
       />
@@ -71,7 +71,7 @@ function openModal() {
 const emits = defineEmits(["created"]);
 
 // 允许上传的数据类型
-const file_type = ["image/png", "image/jpeg"];
+const fileType = ["image/png", "image/jpeg"];
 
 const handleSubmit = async (e) => {
   // 节流

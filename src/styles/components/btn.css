@@ -2,6 +2,7 @@
   /* btn */
   .btn {
     @apply p-btn p-btn-wide rounded-3xl shadow-xl click;
+    
   }
   .btn-danger {
     @apply btn p-btn-error;
@@ -36,13 +37,14 @@
     }
   }
   .btn-info {
-    @apply p-btn p-btn-info p-btn-wide rounded-3xl shadow-xl click;
+    @apply p-btn p-btn-info p-btn-wide rounded-3xl shadow-xl click hover:text-red-50 hover:border-blue-500 hover:bg-blue-800;
     &:hover,
     &:active,
     &:focus {
       background: #4ccdf7;
       color: white;
     }
+
   }
   .btn-warning {
     @apply p-btn p-btn-warning p-btn-wide rounded-3xl shadow-xl click;

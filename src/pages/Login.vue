@@ -39,6 +39,6 @@ const handleLogin = async () => {
 </route>
 <style>
 .login-form-shell {
-  @apply flex justify-center items-center w-1/2;
+  @apply flex justify-center items-center relative top-24;
 }
 </style>

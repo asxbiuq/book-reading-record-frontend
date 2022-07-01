@@ -2,7 +2,7 @@
   <div id="top"></div>
   <div ref="el" class="relative top-[5rem]">
     <div v-if="userId">
-      <ul class="flex gap-10 justify-center">
+      <ul class="flex flex-col gap-10 justify-center">
         <li v-for="book in data.posts" :key="book._id">
           <BookCard
             :title="book.title"
@@ -38,6 +38,7 @@
 </template>
 
 <script setup>
+import {assign} from 'lodash-es'
 const baseUrl = import.meta.env.VITE_FEED_URL;
 const data = reactive({});
 const target = ref(null);

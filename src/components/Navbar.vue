@@ -6,7 +6,7 @@
     <div class="flex-1">
       <div v-if="userId">
         <router-link to="/" class="p-btn p-btn-ghost normal-case text-xl"
-          ><i-ant-design:home-twotone
+          ><i-ant-design:home-twotone  style="color:white;font-size:1.5rem"
         /></router-link>
       </div>
       <div v-if="!userId">
@@ -21,7 +21,7 @@
     <div class="flex-none">
       <div v-if="userId">
         <button class="p-btn p-btn-square p-btn-ghost">
-          <i-bytesize:sign-out @click="handleLogout" />
+          <i-bytesize:sign-out @click="handleLogout" style="color:white;font-size:1.5rem"/>
         </button>
       </div>
     </div>

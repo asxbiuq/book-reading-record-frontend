@@ -1,5 +1,5 @@
 <template>
-  <div class="input_title w-full flex gap-5 justify-between items-center">
+  <div class="input_title w-full">
     <div :class="tooltip" :data-tip="dataTip">
       <input
         :type="type"
@@ -38,7 +38,7 @@ const checkSelectedFile = (e) => {
     const selected = e.target.files[0];
 
     if (selected && props.fileType.includes(selected.type)) {
-      style.e.target.classList.remove("input-error");
+      e.target.classList.remove("input-error");
       e.target.classList.add("input-info");
       e.target.parentNode.classList.remove("tooltip-error");
       emits("emit_file", selected);

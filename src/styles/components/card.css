@@ -32,7 +32,22 @@
     }
 
     button {
-      @apply btn-danger;
+      @apply p-btn-error bg-red-400;
+      &:hover,
+      &:active,
+      &:focus {
+        background: #4ccdf7;
+        color: #111111;
+      }
+    }
+    .btn {
+      @apply p-btn-error bg-red-400 hover:text-red-50 hover:border-blue-500 ;
+      &:hover,
+      &:active,
+      &:focus {
+        background: #4ccdf7;
+        color: #white;
+      }
     }
     /* & .click {
       @apply hover:scale-105 active:scale-95 duration-300

@@ -1,24 +1,21 @@
-function de(fn, delay) {
-  let timer;
-  return function () {
-    let a = arguments;
-    if (timer) {
-      clearTimeout(timer);
-    }
-    setTimeout(() => {
-      fn().apply(this, a); //用的是apply,因为a是类数组
-    }, delay);
-  };
-}
-function throttle(fun, time) {
-  let t1 = 0; //初始时间
-  return function () {
-    let t2 = new Date(); //当前时间
-    if (t2 - t1 > time) {
-      fun.apply(this, arguments);
-      t1 = t2;
-    }
-  };
-}
+import { isEqual } from "lodash-es";
 
-throttle(console.log("32165"), 3000);
+
+const hideElementOnScroll = (el) => {
+  let prevScrollpos = window.pageYOffset;
+
+  window.addEventListener("scroll", () => {
+    console.log(isEqual({a:0},{b:0}))
+    let currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      el.style.opacity = "100%";
+      // el.style.top = "0"
+    } else {
+      // el.classList.toggle("0")
+      el.style.opacity = "0";
+      // el.style.top = "-100%"
+    }
+    prevScrollpos = currentScrollPos;
+  });
+};
+export default hideElementOnScroll;
