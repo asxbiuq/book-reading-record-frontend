@@ -1,7 +1,5 @@
 <template>
-  <form
-  class="form"
-  >
+  <form>
     <slot name="above_label"></slot>
     <!-- 表单标题 -->
     <label>{{ formLabel }}</label>
@@ -18,7 +16,4 @@
 const props = defineProps(["formLabel", "btnName"]);
 </script>
 
-<style scoped>
-@import "styles/components/form.css";
-@tailwind components;
-</style>
+<style scoped></style>

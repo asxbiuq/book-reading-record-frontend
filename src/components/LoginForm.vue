@@ -1,10 +1,10 @@
 <template>
-  <m_form
+  <MForm
     :form-label="'登陆'"
     :btn-name="'登陆'"
     @submit.prevent="handleSubmit($event)"
   >
-    <m_input
+    <MInput
       v-model:data="email"
       :placeholder="'邮箱'"
       :reg="
@@ -15,7 +15,7 @@
       :value="email"
       @input="$emit('update:email', $event.target.value)"
     />
-    <m_input
+    <MInput
       v-model:data="password"
       :placeholder="'密码'"
       :type="'password'"
@@ -30,13 +30,14 @@
       </span>
       <span><a href="#">忘记密码?</a></span>
     </div>
-  </m_form>
+  </MForm>
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   email: String,
   password: String,
+  delay:Number
 });
 
 const emits = defineEmits(["login", "update:email", "update:password"]);
@@ -44,7 +45,7 @@ const emits = defineEmits(["login", "update:email", "update:password"]);
 const handleSubmit = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
   emits("login");
-}, 1000);
+}, props.delay);
 </script>
 
 <style scoped>

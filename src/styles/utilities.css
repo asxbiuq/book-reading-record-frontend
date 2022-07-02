@@ -1,6 +1,6 @@
 @layer utilities {
   .click {
-    @apply hover:scale-105 active:scale-95 duration-300;
+    @apply hover:scale-105 active:scale-95 duration-300 cursor-pointer;
   }
   .container-f {
     @apply w-full flex gap-5 justify-between items-center;

@@ -3,6 +3,10 @@
   .form {
     @apply flex flex-col gap-5 items-center p-10 shadow-2xl bg-slate-100 shadow-gray-400 justify-between rounded-2xl;
 
+
+    div{
+      @apply w-full
+    }
     label {
       @apply font-medium text-gray-800 text-2xl truncate;
     }

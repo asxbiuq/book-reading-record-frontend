@@ -4,6 +4,7 @@
       v-model:email="email"
       v-model:password="password"
       novalidate
+      :delay="1000"
       @login="handleLogin"
     />
   </div>

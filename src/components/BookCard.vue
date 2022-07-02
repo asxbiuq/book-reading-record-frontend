@@ -6,7 +6,7 @@
     <main class="flex flex-col gap-5">
       <div class="flex justify-between">
         <div class="book-title">{{ title }}</div>
-        <div class="cursor-pointer" @click="handleClickStar">
+        <div class="icon cursor-pointer" @click="handleClickStar">
           <div v-if="isFav">
             <i-emojione:star style="font-size: 2em" />
           </div>

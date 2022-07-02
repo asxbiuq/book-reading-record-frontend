@@ -1,17 +1,14 @@
 <template>
-  <div class="input_title w-full">
-    <div :class="tooltip" :data-tip="dataTip">
-      <input
-        :type="type"
-        :name="label"
-        :value="data"
-        :class="input"
-        :placeholder="placeholder"
-        @keydown="handleKeydown($event)"
-        @change="checkSelectedFile"
-        @input="$emit('update:data', $event.target.value)"
-      />
-    </div>
+  <div :data-tip="dataTip">
+    <input
+      :type="type"
+      :name="label"
+      :value="data"
+      :placeholder="placeholder"
+      @keydown="handleKeydown($event)"
+      @change="checkSelectedFile"
+      @input="$emit('update:data', $event.target.value)"
+    />
   </div>
 </template>
 
@@ -26,12 +23,10 @@ const props = defineProps([
   "fileType",
   "placeholder",
   "dataConfirm",
-  "tooltip",
-  "input",
+  "inputStyle",
 ]);
 
 const emits = defineEmits(["update:data", "emit_file", "fileTypeError"]);
-
 
 const checkSelectedFile = (e) => {
   if (props.type === "file") {
@@ -84,21 +79,23 @@ const handleKeydown = (e) => {
 </script>
 
 <style scoped>
-@import "styles/components/input.css";
+@layer components {
+  .input-info {
+    @apply p-input p-input-info rounded-xl w-full border-none;
+    background-color: #cffafe;
+  }
+  .input-error {
+    @apply p-input p-input-error rounded-xl w-full border-none;
+    background-color: #fce4e4;
+  }
+  .tooltip-error {
+    @apply p-tooltip p-tooltip-open p-tooltip-bottom p-tooltip-error;
+
+    &:before,
+    &:after {
+      @apply z-20 opacity-100
+    }
+  }
+}
 @tailwind components;
-/* .input--info {
-  @apply input-info;
-}
-
-.input--error {
-  @apply input-error;
-}
-
-.tooltip--error {
-  @apply tooltip-error;
-}
-
-input {
-  @apply p-input p-input-bordered;
-} */
 </style>

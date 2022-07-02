@@ -20,11 +20,11 @@
       @apply font-normal;
     }
     .img-shell {
-      @apply w-full  max-w-4xl container-f 
+      @apply w-full  max-w-4xl container-f click
       sm:w-full sm:h-full;
     }
     img {
-      @apply container mx-auto w-[100%] 
+      @apply container mx-auto w-[100%] click
       transition-all shadow-lg hover:scale-105 duration-[.3s]  object-cover max-h-full
 
       sm:w-[12rem] sm:max-w-sm sm:max-h-60
@@ -49,8 +49,8 @@
         color: #white;
       }
     }
-    /* & .click {
-      @apply hover:scale-105 active:scale-95 duration-300
-    } */
+    .icon {
+      @apply cursor-pointer click
+    }
   }
 }

@@ -56,7 +56,7 @@ export default defineConfig({
       ],
 
       // Auto import for all module exports under directories
-      dirs: ["src/hooks", "src/composables", "src/views", "src/store"],
+      dirs: ["src/hooks", "src/composables", "src/views", "src/store","src/api"],
 
       // Filepath to generate corresponding .d.ts file.
       // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
@@ -90,7 +90,7 @@ export default defineConfig({
       // search for subdirectories
       deep: true,
       // resolvers for custom components
-      resolvers: [ElementPlusResolver(), HeadlessUiResolver(), IconsResolver()],
+      resolvers: [HeadlessUiResolver(), IconsResolver()],
 
       // generate `components.d.ts` global declarations,
       // also accepts a path for custom filename

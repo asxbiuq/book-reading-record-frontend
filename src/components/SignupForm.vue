@@ -1,6 +1,6 @@
 <template>
-  <m_form :form-label="'注册'" :btn-name="'注册'">
-    <m_input
+  <MForm :form-label="'注册'" :btn-name="'注册'">
+    <MInput
       v-model:data="name"
       :placeholder="'用户名'"
       :reg="/^\S{1,10}$/"
@@ -10,7 +10,7 @@
       @input="$emit('update:name', $event.target.value)"
     />
 
-    <m_input
+    <MInput
       v-model:data="email"
       :placeholder="'邮箱'"
       :reg="
@@ -22,7 +22,7 @@
       @input="$emit('update:email', $event.target.value)"
     />
 
-    <m_input
+    <MInput
       v-model:data="password"
       :placeholder="'密码'"
       :type="'password'"
@@ -32,7 +32,7 @@
       @input="$emit('update:password', $event.target.value)"
     />
 
-    <m_input
+    <MInput
       v-model:data="pswRepeat"
       v-model:dataConfirm="password"
       :placeholder="'确认密码'"
@@ -40,23 +40,14 @@
       :data-tip="'请再次确认密码'"
     />
 
-    <!-- <div class="flex flex-col justify-between"> -->
-      <!-- <span>
-        <input type="checkbox" checked="checked" name="remember" /><a
-          href="#"
-          class="checkbox checkbox-primary h-1"
-          >创建帐户即表示您同意我们的条款和隐私</a
-        >
-        
-      </span> -->
       <label class="cursor-pointer label flex ">
         <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
         <span class="label-text text-sm"
           >创建帐户即表示您同意我们的条款和隐私</span
         >
       </label>
-    <!-- </div> -->
-  </m_form>
+
+  </MForm>
 </template>
 
 <script setup>

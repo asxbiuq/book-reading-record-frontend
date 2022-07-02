@@ -1,4 +1,5 @@
 <template>
+  <!-- top 定位 向上滚动 -->
   <div id="top"></div>
   <div ref="el" class="relative top-[5rem]">
     <div v-if="userId">
@@ -16,6 +17,7 @@
             @click-image="handleDetails"
           />
         </li>
+        
       </ul>
 
       <div
@@ -38,7 +40,6 @@
 </template>
 
 <script setup>
-import {assign} from 'lodash-es'
 const baseUrl = import.meta.env.VITE_FEED_URL;
 const data = reactive({});
 const target = ref(null);
@@ -52,8 +53,7 @@ const {
   isFetching,
   error: useFetchDocsAllError,
   data: newData,
-} = $(await useFetch_GetDocsAll("/posts/" + userId).json())
-
+} = $(await useFetch_GetDocsAll("/posts/" + userId).json());
 
 data.posts = [...newData.posts];
 
