@@ -51,6 +51,7 @@
 </template>
 
 <script setup>
+// data
 const props = defineProps({
   title: { type: String, default: "标题", required: false },
   author: { type: String, default: "作者", required: false },
@@ -64,8 +65,10 @@ const props = defineProps({
   isFav: { type: Boolean, default: false, required: false },
 });
 
+// event
 const emits = defineEmits(["clickBtn", "clickStar", "clickImage"]);
 
+// function
 const handleClickBtn = () => {
   emits("clickBtn");
 };

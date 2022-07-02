@@ -34,13 +34,17 @@
 </template>
 
 <script setup>
+// data
 const props = defineProps({
   email: String,
   password: String,
   delay:Number
 });
 
+// event
 const emits = defineEmits(["login", "update:email", "update:password"]);
+
+// function
 // 节流 登陆按钮
 const handleSubmit = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second

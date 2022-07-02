@@ -10,18 +10,21 @@
 </template>
 
 <script setup>
+// data
 const email = $ref("");
 const password = $ref("");
 const url = import.meta.env.VITE_AUTH_URL + "/login";
+
+// composables
 const {
   userId: store_userId,
   token: store_token,
   expiryDate: store_expiryDate,
 } = $(useStore());
 const { error, login, isPending } = $(useLogin(url));
-
 const router = useRouter();
 
+// function
 const handleLogin = async () => {
   const { token, userId, expiryDate } = await login(email, password);
   console.log(token);

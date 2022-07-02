@@ -41,21 +41,25 @@
 </template>
 
 <script setup>
+// data
 const baseUrl = import.meta.env.VITE_FEED_URL;
 const data = reactive({});
 const target = ref(null);
+
+// composables
 const { userId, token } = $(useStore());
 const router = useRouter();
 const { useFetch_GetDocsAll, useFetch_DeleteDoc, useFetch_UpdateDoc } = $(
   useFetchDoc(baseUrl, token)
 );
-
 const {
   isFetching,
   error: useFetchDocsAllError,
   data: newData,
 } = $(await useFetch_GetDocsAll("/posts/" + userId).json());
 
+
+// function
 data.posts = [...newData.posts];
 
 const getBooks = async () => {
@@ -115,15 +119,8 @@ const handleToTop = () => {
     top: 0,
     behavior: "smooth",
   });
-  // scrollToTop()
 };
-// var oDiv = document.getElementById('top');
-// oDiv.onclick = function() {
-//     window.scrollTo({
-//         top:0,
-//         behavior:"smooth"
-//     })
-// }
+
 
 if (!userId) {
   router.push({ name: "Login" });

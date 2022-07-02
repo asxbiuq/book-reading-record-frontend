@@ -29,10 +29,14 @@
 </template>
 
 <script setup>
+// data
+
+// composables
 const { logout } = $(useLogout());
 const { userId } = $(useStore());
 const router = useRouter();
 
+// function
 const handleLogout = () => {
   router.push({ name: "Login" });
   logout();

@@ -10,12 +10,14 @@
 </template>
 
 <script setup>
+// data
 const email = $ref("");
 const password = $ref("");
 const name = $ref("");
-
 const login_url = import.meta.env.VITE_AUTH_URL + "/login";
 const signup_url = import.meta.env.VITE_AUTH_URL + "/signup";
+
+// composables
 const {
   login,
   error: login_error,
@@ -33,6 +35,7 @@ const {
   expiryDate: store_expiryDate,
 } = $(useStore());
 
+// function
 const handleSignup = async () => {
   const { token, userId, expiryDate } = await signup(email, password, name);
 
