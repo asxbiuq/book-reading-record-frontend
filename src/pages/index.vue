@@ -18,7 +18,6 @@
             class="book-card"
           />
         </li>
-
       </ul>
 
       <div
@@ -42,48 +41,47 @@
 
 <script setup>
 // data
-const baseUrl = import.meta.env.VITE_FEED_URL;
-const data = reactive({});
-const target = ref(null);
+const baseUrl = import.meta.env.VITE_FEED_URL
+const data = reactive({})
+const target = ref(null)
 
 // composables
-const { userId, token } = $(useStore());
-const router = useRouter();
+const { userId, token } = $(useStore())
+const router = useRouter()
 const { useFetch_GetDocsAll, useFetch_DeleteDoc, useFetch_UpdateDoc } = $(
   useFetchDoc(baseUrl, token)
-);
+)
 const {
   isFetching,
   error: useFetchDocsAllError,
   data: newData,
-} = $(await useFetch_GetDocsAll("/posts/" + userId).json());
-
+} = $(await useFetch_GetDocsAll('/posts/' + userId).json())
 
 // function
-data.posts = [...newData.posts];
+data.posts = [...newData.posts]
 
 const getBooks = async () => {
   const { data: newData } = $(
-    await useFetch_GetDocsAll("/posts/" + userId).json()
-  );
-  data.posts = [...newData.posts];
-};
+    await useFetch_GetDocsAll('/posts/' + userId).json()
+  )
+  data.posts = [...newData.posts]
+}
 
 const handleDelete = async (book) => {
   const { error: useFetchDeleteDocError } = $(
-    await useFetch_DeleteDoc("/post/" + book._id).delete()
-  );
+    await useFetch_DeleteDoc('/post/' + book._id).delete()
+  )
 
   if (!useFetchDeleteDocError) {
-    data.posts = data.posts.filter((post) => post._id != book._id);
+    data.posts = data.posts.filter((post) => post._id != book._id)
   }
-};
+}
 
 const handleUpdate = async (book) => {
-  book.isFav = !book.isFav;
-  console.log(book.imageUrl.toString());
+  book.isFav = !book.isFav
+  console.log(book.imageUrl.toString())
   const { data: UpdatedData, error: useFetchUpdateDocError } = $(
-    await useFetch_UpdateDoc("/post/" + book._id)
+    await useFetch_UpdateDoc('/post/' + book._id)
       .put({
         title: book.title,
         author: book.author,
@@ -92,38 +90,37 @@ const handleUpdate = async (book) => {
         imageUrl: book.imageUrl,
       })
       .json()
-  );
+  )
 
   if (!useFetchUpdateDocError) {
     data.posts.forEach((post) => {
       if (post._id === UpdatedData.post._id) {
-        post = UpdatedData.post;
+        post = UpdatedData.post
       }
-    });
+    })
   }
-};
+}
 const handleDetails = () => {
-  console.log("handleDetails");
-};
+  console.log('handleDetails')
+}
 onMounted(() => {
-  hideElementOnScroll(target.value);
-});
+  hideElementOnScroll(target.value)
+})
 const throttledFn = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
-  console.log("Throttle");
-}, 1000);
-document.addEventListener("scroll", throttledFn);
+  console.log('Throttle')
+}, 1000)
+document.addEventListener('scroll', throttledFn)
 
 const handleToTop = () => {
   window.scrollTo({
     top: 0,
-    behavior: "smooth",
-  });
-};
-
+    behavior: 'smooth',
+  })
+}
 
 if (!userId) {
-  router.push({ name: "Login" });
+  router.push({ name: 'Login' })
 }
 </script>
 

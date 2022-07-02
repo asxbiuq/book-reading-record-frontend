@@ -14,68 +14,68 @@
 
 <script setup>
 const props = defineProps([
-  "label",
-  "reg",
-  "data",
-  "type",
-  "size",
-  "dataTip",
-  "fileType",
-  "placeholder",
-  "dataConfirm",
-  "inputStyle",
-]);
+  'label',
+  'reg',
+  'data',
+  'type',
+  'size',
+  'dataTip',
+  'fileType',
+  'placeholder',
+  'dataConfirm',
+  'inputStyle',
+])
 
-const emits = defineEmits(["update:data", "emit_file", "fileTypeError"]);
+const emits = defineEmits(['update:data', 'emit_file', 'fileTypeError'])
 
 const checkSelectedFile = (e) => {
-  if (props.type === "file") {
-    const selected = e.target.files[0];
+  if (props.type === 'file') {
+    const selected = e.target.files[0]
 
     if (selected && props.fileType.includes(selected.type)) {
-      e.target.classList.remove("input-error");
-      e.target.classList.add("input-info");
-      e.target.parentNode.classList.remove("tooltip-error");
-      emits("emit_file", selected);
+      e.target.classList.remove('input-error')
+      e.target.classList.add('input-info')
+      e.target.parentNode.classList.remove('tooltip-error')
+      emits('emit_file', selected)
     } else {
-      e.target.classList.remove("input-info");
-      e.target.classList.add("input-error");
-      e.target.parentNode.classList.add("tooltip-error");
+      e.target.classList.remove('input-info')
+      e.target.classList.add('input-error')
+      e.target.parentNode.classList.add('tooltip-error')
       // emits('fileTypeError')
-      console.log("fileType  Error");
+      console.log('fileType  Error')
     }
   }
-};
+}
 
 const handleKeydown = (e) => {
-  if (e.target.timeout) clearTimeout(e.target.timeout);
+  if (e.target.timeout) clearTimeout(e.target.timeout)
 
   e.target.timeout = setTimeout(() => {
-    let value = e.target.value;
+    let value = e.target.value
     if (props.reg) {
       if (!props.reg.test(value) && !props.dataConfirm) {
-        e.target.classList.remove("input-info");
-        e.target.classList.add("input-error");
-        e.target.parentNode.classList.add("tooltip-error");
+        e.target.classList.remove('input-info')
+        e.target.classList.add('input-error')
+        e.target.parentNode.classList.add('tooltip-error')
       } else {
-        e.target.classList.remove("input-error");
-        e.target.classList.add("input-info");
-        e.target.parentNode.classList.remove("tooltip-error");
+        e.target.classList.remove('input-error')
+        e.target.classList.add('input-info')
+        e.target.parentNode.classList.remove('tooltip-error')
       }
     }
     if (props.dataConfirm) {
       if (props.dataConfirm !== props.data) {
-        e.target.classList.remove("input-info");
-        e.target.classList.add("input-error");
-        e.target.parentNode.classList.add("tooltip-error");
+        e.target.classList.remove('input-info')
+        e.target.classList.add('input-error')
+        e.target.parentNode.classList.add('tooltip-error')
       } else {
-        e.target.classList.remove("input-error");
-        e.target.classList.add("input-info");
-        e.target.parentNode.classList.remove("tooltip-error");
+        e.target.classList.remove('input-error')
+        e.target.classList.add('input-info')
+        e.target.parentNode.classList.remove('tooltip-error')
       }
     }
-  }, 1000); // delay
-};
+  }, 1000) // delay
+}
 </script>
 
 <style scoped>
@@ -93,7 +93,7 @@ const handleKeydown = (e) => {
 
     &:before,
     &:after {
-      @apply z-20 opacity-100
+      @apply z-20 opacity-100;
     }
   }
 }

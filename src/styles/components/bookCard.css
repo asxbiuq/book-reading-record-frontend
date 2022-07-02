@@ -41,7 +41,7 @@
       }
     }
     .btn {
-      @apply p-btn-error bg-red-400 hover:text-red-50 hover:border-blue-500 ;
+      @apply p-btn-error bg-red-400 hover:text-red-50 hover:border-blue-500;
       &:hover,
       &:active,
       &:focus {
@@ -50,7 +50,7 @@
       }
     }
     .icon {
-      @apply cursor-pointer click
+      @apply cursor-pointer click;
     }
   }
 }

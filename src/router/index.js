@@ -1,28 +1,28 @@
-import { createRouter, createWebHistory } from "vue-router";
-import { setupLayouts } from "virtual:generated-layouts";
-import generatedRoutes from "virtual:generated-pages";
+import { createRouter, createWebHistory } from 'vue-router'
+import { setupLayouts } from 'virtual:generated-layouts'
+import generatedRoutes from 'virtual:generated-pages'
 
-const routes = setupLayouts(generatedRoutes);
-const { userId } = $(useStore());
+const routes = setupLayouts(generatedRoutes)
+const { userId } = $(useStore())
 // console.log(userId)
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
 router.beforeEach((to, from, next) => {
   if (
-    to.name !== "Login" &&
-    to.name !== "Signup" &&
-    to.name == "/" &&
+    to.name !== 'Login' &&
+    to.name !== 'Signup' &&
+    to.name == '/' &&
     !userId
   ) {
-    next({ name: "Login" });
+    next({ name: 'Login' })
   } else {
-    next();
+    next()
   }
-});
+})
 // console.log(router)
 
-export default router;
+export default router

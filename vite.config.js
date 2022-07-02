@@ -1,16 +1,15 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import path from "path";
-import AutoImport from "unplugin-auto-import/vite";
-import Components from "unplugin-vue-components/vite";
-import Pages from "vite-plugin-pages";
-import Layouts from "vite-plugin-vue-layouts";
-import {
-  ElementPlusResolver,
-  HeadlessUiResolver,
-} from "unplugin-vue-components/resolvers";
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import Pages from 'vite-plugin-pages'
+import Layouts from 'vite-plugin-vue-layouts'
+import { HeadlessUiResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import { fileURLToPath } from 'url'
+import { Url } from 'url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,9 +31,9 @@ export default defineConfig({
       // global imports to register
       imports: [
         // presets
-        "vue",
-        "vue-router",
-        "@vueuse/core",
+        'vue',
+        'vue-router',
+        '@vueuse/core',
         // custom
         {
           // '@vueuse/core': [
@@ -45,7 +44,7 @@ export default defineConfig({
           // ],
           axios: [
             // default imports
-            ["default", "axios"], // import { default as axios } from 'axios',
+            ['default', 'axios'], // import { default as axios } from 'axios',
           ],
           // "[package-name]": [
           //   "[import-names]",
@@ -56,12 +55,18 @@ export default defineConfig({
       ],
 
       // Auto import for all module exports under directories
-      dirs: ["src/hooks", "src/composables", "src/views", "src/store","src/api"],
+      dirs: [
+        'src/hooks',
+        'src/composables',
+        'src/views',
+        'src/store',
+        'src/api',
+      ],
 
       // Filepath to generate corresponding .d.ts file.
       // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
       // Set `false` to disable.
-      dts: "./auto-imports.d.ts",
+      dts: './auto-imports.d.ts',
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15
@@ -77,16 +82,16 @@ export default defineConfig({
       // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
       eslintrc: {
         enabled: false, // Default `false`
-        filepath: "./.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
+        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
     }),
     Components({
       // relative paths to the directory to search for components.
-      dirs: ["src/components", "src/pages", "@iconify/vue"],
+      dirs: ['src/components', 'src/pages', '@iconify/vue'],
 
       // valid file extensions for components.
-      extensions: ["vue"],
+      extensions: ['vue'],
       // search for subdirectories
       deep: true,
       // resolvers for custom components
@@ -124,27 +129,27 @@ export default defineConfig({
       ],
     }),
     Pages({
-      dirs: "src/pages", // File directory where routing needs to be generated
-      exclude: ["**/components/*.vue"], // Excluded directories, i.e. the directories under all components directories are not included vue file generation route
+      dirs: 'src/pages', // File directory where routing needs to be generated
+      exclude: ['**/components/*.vue'], // Excluded directories, i.e. the directories under all components directories are not included vue file generation route
     }),
     Layouts({
-      defaultLayout: "default",
+      defaultLayout: 'default',
     }),
     Icons({ autoInstall: true }),
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
-      components: path.resolve(__dirname, "src/components"),
-      composables: path.resolve(__dirname, "src/composables"),
-      styles: path.resolve(__dirname, "src/styles"),
-      plugins: path.resolve(__dirname, "src/plugins"),
-      views: path.resolve(__dirname, "src/views"),
-      layouts: path.resolve(__dirname, "src/layouts"),
-      utils: path.resolve(__dirname, "src/utils"),
-      apis: path.resolve(__dirname, "src/apis"),
-      dirs: path.resolve(__dirname, "src/directives"),
-      store: path.resolve(__dirname, "src/store"),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      components: fileURLToPath(new URL('./src/components', import.meta.url)),
+      composables: fileURLToPath(new URL('./src/composables', import.meta.url)),
+      styles: fileURLToPath(new URL('./src/styles', import.meta.url)),
+      plugins: fileURLToPath(new URL('./src/plugins', import.meta.url)),
+      views: fileURLToPath(new URL('./src/views', import.meta.url)),
+      layouts: fileURLToPath(new URL('./src/layouts', import.meta.url)),
+      utils: fileURLToPath(new URL('./src/utils', import.meta.url)),
+      apis: fileURLToPath(new URL('./src/apis', import.meta.url)),
+      dirs: fileURLToPath(new URL('./src/dirs', import.meta.url)),
+      store: fileURLToPath(new URL('./src/store', import.meta.url)),
     },
   },
-});
+})

@@ -42,9 +42,9 @@ import {
   TransitionChild,
   Dialog,
   DialogPanel,
-} from "@headlessui/vue";
+} from '@headlessui/vue'
 
-const props = defineProps(["isOpen"]);
+const props = defineProps(['isOpen'])
 </script>
 <style scoped>
 .dialog-panel {

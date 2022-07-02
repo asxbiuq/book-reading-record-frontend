@@ -38,20 +38,18 @@
 const props = defineProps({
   email: String,
   password: String,
-  delay:Number
-});
+  delay: Number,
+})
 
 // event
-const emits = defineEmits(["login", "update:email", "update:password"]);
+const emits = defineEmits(['login', 'update:email', 'update:password'])
 
 // function
 // 节流 登陆按钮
 const handleSubmit = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
-  emits("login");
-}, props.delay);
+  emits('login')
+}, props.delay)
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -49,61 +49,61 @@
 
 <script setup>
 // data
-const baseUrl = import.meta.env.VITE_LOCATION_ORIGIN;
-const title = $ref("");
-const author = $ref("");
-const file = $ref(null);
-const isOpen = $ref(false);
-const target = ref(null);
-const fileType = ["image/png", "image/jpeg"]; // 允许上传的数据类型
+const baseUrl = import.meta.env.VITE_LOCATION_ORIGIN
+const title = $ref('')
+const author = $ref('')
+const file = $ref(null)
+const isOpen = $ref(false)
+const target = ref(null)
+const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 
 // composables
-const { userId, token } = $(useStore());
-const { useFetch_AddDoc } = $(useFetchDoc(baseUrl, token));
+const { userId, token } = $(useStore())
+const { useFetch_AddDoc } = $(useFetchDoc(baseUrl, token))
 
 // event
-const emits = defineEmits(["created"]);
+const emits = defineEmits(['created'])
 
 // function
-onClickOutside(target, () => closeModal());
+onClickOutside(target, () => closeModal())
 
 const closeModal = () => {
-  isOpen = false;
-};
+  isOpen = false
+}
 const openModal = () => {
-  isOpen = true;
-};
+  isOpen = true
+}
 const handleFile = (f) => {
-  file = f;
-};
+  file = f
+}
 const handleSubmit = async (e) => {
   // 节流
   if (!e.target.t1) {
-    e.target.t1 = Date.now();
+    e.target.t1 = Date.now()
   }
-  let t1 = e.target.t1;
-  let t2 = Date.now();
+  let t1 = e.target.t1
+  let t2 = Date.now()
   if (t2 - t1 > 1000) {
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("author", author);
-    formData.append("isFav", false);
-    formData.append("userUid", userId);
-    formData.append("image", file);
+    const formData = new FormData()
+    formData.append('title', title)
+    formData.append('author', author)
+    formData.append('isFav', false)
+    formData.append('userUid', userId)
+    formData.append('image', file)
 
-    await useFetch_AddDoc("feed/post/").post(formData);
+    await useFetch_AddDoc('feed/post/').post(formData)
 
-    emits("created");
+    emits('created')
 
-    title = "";
-    author = "";
-    file = null;
+    title = ''
+    author = ''
+    file = null
     // 节流的时间重置
-    e.target.t1 = t2;
+    e.target.t1 = t2
 
-    closeModal();
+    closeModal()
   }
-};
+}
 </script>
 
 <style scoped></style>

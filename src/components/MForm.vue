@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-const props = defineProps(["formLabel", "btnName"]);
+const props = defineProps(['formLabel', 'btnName'])
 </script>
 
 <style scoped></style>

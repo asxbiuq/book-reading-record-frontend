@@ -1,58 +1,56 @@
 <template>
-    <SignupForm
-      v-model:email="email"
-      v-model:password="password"
-      v-model:name="name"
-      novalidate
-      @submit.prevent="handleSignup"
-      class="form"
-    />
+  <SignupForm
+    v-model:email="email"
+    v-model:password="password"
+    v-model:name="name"
+    novalidate
+    @submit.prevent="handleSignup"
+    class="form"
+  />
 </template>
 
 <script setup>
 // data
-const email = $ref("");
-const password = $ref("");
-const name = $ref("");
-const login_url = import.meta.env.VITE_AUTH_URL + "/login";
-const signup_url = import.meta.env.VITE_AUTH_URL + "/signup";
+const email = $ref('')
+const password = $ref('')
+const name = $ref('')
+const login_url = import.meta.env.VITE_AUTH_URL + '/login'
+const signup_url = import.meta.env.VITE_AUTH_URL + '/signup'
 
 // composables
 const {
   login,
   error: login_error,
   isPending: login_isPending,
-} = $(useLogin(login_url));
+} = $(useLogin(login_url))
 const {
   signup,
   error: signup_error,
   isPending: signup_isPending,
-} = $(useSignup(signup_url));
-const router = useRouter();
+} = $(useSignup(signup_url))
+const router = useRouter()
 const {
   userId: store_userId,
   token: store_token,
   expiryDate: store_expiryDate,
-} = $(useStore());
+} = $(useStore())
 
 // function
 const handleSignup = async () => {
-  const { token, userId, expiryDate } = await signup(email, password, name);
+  const { token, userId, expiryDate } = await signup(email, password, name)
 
-  store_userId = userId;
-  store_token = token;
-  store_expiryDate = expiryDate;
+  store_userId = userId
+  store_token = token
+  store_expiryDate = expiryDate
 
   if (!(login_error && signup_error)) {
-    router.push("/");
+    router.push('/')
   }
-};
+}
 </script>
 
 <route lang="yaml">
-{ meta: { layout: "signup" } }
+{ meta: { layout: 'signup' } }
 </route>
 
-<style>
-
-</style>
+<style></style>

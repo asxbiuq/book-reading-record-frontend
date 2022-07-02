@@ -53,31 +53,31 @@
 <script setup>
 // data
 const props = defineProps({
-  title: { type: String, default: "标题", required: false },
-  author: { type: String, default: "作者", required: false },
-  description: { type: String, default: "简介", required: false },
+  title: { type: String, default: '标题', required: false },
+  author: { type: String, default: '作者', required: false },
+  description: { type: String, default: '简介', required: false },
   imgUrl: {
     type: String,
-    default: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
+    default: 'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg',
     required: false,
   },
-  btnName: { type: String, default: "阅读", required: false },
+  btnName: { type: String, default: '阅读', required: false },
   isFav: { type: Boolean, default: false, required: false },
-});
+})
 
 // event
-const emits = defineEmits(["clickBtn", "clickStar", "clickImage"]);
+const emits = defineEmits(['clickBtn', 'clickStar', 'clickImage'])
 
 // function
 const handleClickBtn = () => {
-  emits("clickBtn");
-};
+  emits('clickBtn')
+}
 const handleClickStar = () => {
-  emits("clickStar");
-};
+  emits('clickStar')
+}
 const handleClickImage = () => {
-  emits("clickImage");
-};
+  emits('clickImage')
+}
 </script>
 
 <style scoped></style>

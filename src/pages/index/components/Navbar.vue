@@ -6,7 +6,7 @@
     <div class="flex-1">
       <div v-if="userId">
         <router-link to="/" class="p-btn p-btn-ghost normal-case text-xl"
-          ><i-ant-design:home-twotone  style="color:white;font-size:1.5rem"
+          ><i-ant-design:home-twotone style="color: white; font-size: 1.5rem"
         /></router-link>
       </div>
       <div v-if="!userId">
@@ -21,7 +21,10 @@
     <div class="flex-none">
       <div v-if="userId">
         <button class="p-btn p-btn-square p-btn-ghost">
-          <i-bytesize:sign-out style="color:white;font-size:1.5rem" @click="handleLogout"/>
+          <i-bytesize:sign-out
+            style="color: white; font-size: 1.5rem"
+            @click="handleLogout"
+          />
         </button>
       </div>
     </div>
@@ -32,20 +35,20 @@
 // data
 
 // composables
-const { logout } = $(useLogout());
-const { userId } = $(useStore());
-const router = useRouter();
+const { logout } = $(useLogout())
+const { userId } = $(useStore())
+const router = useRouter()
 
 // function
 const handleLogout = () => {
-  router.push({ name: "Login" });
-  logout();
-};
-const el = ref(null);
+  router.push({ name: 'Login' })
+  logout()
+}
+const el = ref(null)
 
 onMounted(() => {
-  hideElementOnScroll(el.value);
-});
+  hideElementOnScroll(el.value)
+})
 </script>
 
 <style>
