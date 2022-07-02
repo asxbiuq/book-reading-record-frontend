@@ -1,5 +1,4 @@
 <template>
-<!-- 注意 Dialog 里用了teleport dom层级在body下,与app一个层级,所以样式需要手动从这里导入 -->
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" class="relative z-10">
       <TransitionChild

@@ -1,13 +1,12 @@
 <template>
-  <div class="signup-form-shell">
     <SignupForm
       v-model:email="email"
       v-model:password="password"
       v-model:name="name"
       novalidate
       @submit.prevent="handleSignup"
+      class="form"
     />
-  </div>
 </template>
 
 <script setup>
@@ -46,13 +45,11 @@ const handleSignup = async () => {
   }
 };
 </script>
+
 <route lang="yaml">
 { meta: { layout: "signup" } }
 </route>
+
 <style>
-@import "styles/components/form.css";
-@tailwind components;
-.signup-form-shell {
-  @apply flex justify-center items-center relative top-24;
-}
+
 </style>

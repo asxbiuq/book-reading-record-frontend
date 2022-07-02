@@ -4,9 +4,7 @@
 </script>
 
 <template>
-<div class="input-info">
-  asdasd
-</div>
+
 </template>
 <style>
 

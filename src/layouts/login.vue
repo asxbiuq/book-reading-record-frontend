@@ -19,6 +19,9 @@
 </template>
 <style>
 .login-layout {
-  @apply flex flex-col items-center;
+  @apply flex justify-center items-center relative top-24;
 }
+/* .login-form-shell {
+  @apply flex justify-center items-center relative top-24;
+} */
 </style>

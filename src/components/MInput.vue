@@ -81,11 +81,11 @@ const handleKeydown = (e) => {
 <style scoped>
 @layer components {
   .input-info {
-    @apply p-input p-input-info rounded-xl w-full border-none;
+    @apply p-input p-input-info rounded-xl w-full;
     background-color: #cffafe;
   }
   .input-error {
-    @apply p-input p-input-error rounded-xl w-full border-none;
+    @apply p-input p-input-error rounded-xl w-full;
     background-color: #fce4e4;
   }
   .tooltip-error {

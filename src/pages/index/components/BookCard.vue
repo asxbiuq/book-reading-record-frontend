@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div>
     <div class="img-shell" @click="handleClickImage">
       <img :src="imgUrl" alt="image" />
     </div>

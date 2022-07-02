@@ -15,9 +15,10 @@
             @click-btn="handleDelete(book)"
             @click-star="handleUpdate(book)"
             @click-image="handleDetails"
+            class="card"
           />
         </li>
-        
+
       </ul>
 
       <div

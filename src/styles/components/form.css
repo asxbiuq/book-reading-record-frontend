@@ -10,14 +10,8 @@
     label {
       @apply font-medium text-gray-800 text-2xl truncate;
     }
-    input[type="text"] {
-      @apply p-input w-full p-input-bordered;
-    }
-    input[type="email"] {
-      @apply p-input w-full p-input-bordered;
-    }
-    input[type="password"] {
-      @apply p-input w-full p-input-bordered;
+    input {
+      @apply p-input w-full p-input-bordered ;
     }
     button {
       @apply p-btn w-full bg-indigo-400;

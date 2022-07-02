@@ -1,13 +1,12 @@
 <template>
-  <div class="login-form-shell">
     <LoginForm
       v-model:email="email"
       v-model:password="password"
       novalidate
       :delay="1000"
       @login="handleLogin"
+      class="form"
     />
-  </div>
 </template>
 
 <script setup>
@@ -35,11 +34,11 @@ const handleLogin = async () => {
   }
 };
 </script>
+
 <route lang="yaml">
-{ meta: { layout: "home" } }
+{ meta: { layout: "login" } }
 </route>
+
 <style>
-.login-form-shell {
-  @apply flex justify-center items-center relative top-24;
-}
+
 </style>

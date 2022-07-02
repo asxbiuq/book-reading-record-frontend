@@ -19,6 +19,6 @@
 </template>
 <style>
 .signup-layout {
-  @apply flex flex-col items-center;
+  @apply flex justify-center items-center relative top-24;
 }
 </style>
