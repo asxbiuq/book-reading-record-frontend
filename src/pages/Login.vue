@@ -6,6 +6,7 @@
     :delay="1000"
     @login="handleLogin"
     class="form"
+    :isPending="state.isPending"
   />
 </template>
 
@@ -16,25 +17,23 @@ const password = $ref('')
 const url = import.meta.env.VITE_AUTH_URL + '/login'
 
 // composables
-const {
-  userId: store_userId,
-  token: store_token,
-  expiryDate: store_expiryDate,
-} = $(useStore())
-const { error, login, isPending } = $(useLogin(url))
+const { error, login, isPending: isPending_login } = $(useLogin(url))
 const router = useRouter()
-
+const state = $(useState())
+console.log(state)
 // function
 const handleLogin = async () => {
+  state.isPending = true
   const { token, userId, expiryDate } = await login(email, password)
-  console.log(token)
-  store_userId = userId
-  store_token = token
-  store_expiryDate = expiryDate
+  state.userId = userId
+  state.token = token
+  state.expiryDate = expiryDate
 
   if (!error) {
     router.push('/')
   }
+
+  state.isPending = false
 }
 </script>
 

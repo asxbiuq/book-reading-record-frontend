@@ -3,6 +3,7 @@
     :form-label="'登陆'"
     :btn-name="'登陆'"
     @submit.prevent="handleSubmit($event)"
+    ref="el"
   >
     <MInput
       v-model:data="email"
@@ -34,13 +35,14 @@
 </template>
 
 <script setup>
-import { useThrottleFn } from '@vueuse/core';
+import { useThrottleFn } from '@vueuse/core'
 // data
 const props = defineProps({
   email: String,
   password: String,
   delay: Number,
 })
+const el = $ref(null)
 
 // event
 const emits = defineEmits(['login', 'update:email', 'update:password'])

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`LoginForm 1`] = `
-"<mform form-label=\\"登陆\\" btn-name=\\"登陆\\">
+"<mform form-label=\\"登陆\\" btn-name=\\"登陆\\" ispending=\\"false\\">
   <minput placeholder=\\"邮箱\\" reg=\\"/[\\\\w!#$%&amp;'*+/=?^_\`{|}~-]+(?:\\\\.[\\\\w!#$%&amp;'*+/=?^_\`{|}~-]+)*@(?:[\\\\w](?:[\\\\w-]*[\\\\w])?\\\\.)+[\\\\w](?:[\\\\w-]*[\\\\w])?/\\" type=\\"email\\" data-tip=\\"请输入正确的邮箱\\"></minput>
   <minput placeholder=\\"密码\\" type=\\"password\\" reg=\\"/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/\\" data-tip=\\"密码至少包含 数字和英文,长度6-20\\"></minput>
   <div class=\\"flex justify-between w-full\\"><span><input type=\\"checkbox\\" name=\\"remember\\"> 记住密码 </span><a href=\\"#\\">忘记密码?</a></div>

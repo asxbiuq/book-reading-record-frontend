@@ -24,9 +24,11 @@ const props = defineProps([
   'placeholder',
   'dataConfirm',
   'inputStyle',
+  'isPending'
 ])
 
 const emits = defineEmits(['update:data', 'emit_file', 'fileTypeError'])
+
 
 const checkSelectedFile = (e) => {
   if (props.type === 'file') {
@@ -76,6 +78,8 @@ const handleKeydown = (e) => {
     }
   }, 1000) // delay
 }
+
+
 </script>
 
 <style scoped>
@@ -96,6 +100,7 @@ const handleKeydown = (e) => {
       @apply z-20 opacity-100;
     }
   }
+
 }
 @tailwind components;
 </style>

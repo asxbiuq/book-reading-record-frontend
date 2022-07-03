@@ -2,7 +2,7 @@
   <!-- top 定位 向上滚动 -->
   <div id="top"></div>
   <div ref="el" class="relative top-[5rem]">
-    <div v-if="userId">
+    <div v-if="state.userId">
       <ul class="flex flex-col gap-10 justify-center">
         <li v-for="book in data.posts" :key="book._id">
           <BookCard
@@ -37,6 +37,7 @@
   >
     <i-bi:arrow-up-circle-fill style="font-size: 2em" />
   </div>
+  <!-- <Loading/> -->
 </template>
 
 <script setup>
@@ -46,23 +47,23 @@ const data = reactive({})
 const target = ref(null)
 
 // composables
-const { userId, token } = $(useStore())
+const state = $(useState())
 const router = useRouter()
 const { useFetch_GetDocsAll, useFetch_DeleteDoc, useFetch_UpdateDoc } = $(
-  useFetchDoc(baseUrl, token)
+  useFetchDoc(baseUrl, state.token)
 )
 const {
   isFetching,
   error: useFetchDocsAllError,
   data: newData,
-} = $(await useFetch_GetDocsAll('/posts/' + userId).json())
+} = $(await useFetch_GetDocsAll('/posts/' + state.userId).json())
 
 // function
 data.posts = [...newData.posts]
 
 const getBooks = async () => {
   const { data: newData } = $(
-    await useFetch_GetDocsAll('/posts/' + userId).json()
+    await useFetch_GetDocsAll('/posts/' + state.userId).json()
   )
   data.posts = [...newData.posts]
 }
@@ -119,7 +120,7 @@ const handleToTop = () => {
   })
 }
 
-if (!userId) {
+if (!state.userId) {
   router.push({ name: 'Login' })
 }
 </script>

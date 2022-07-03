@@ -5,14 +5,14 @@
   }
   .btn-danger {
     @apply btn p-btn-error;
-    /* background: #cf4747;
-      color: #fffaf8; */
+    background: #cf4747;
+    color: #fffaf8;
 
     &:hover,
     &:active,
     &:focus {
-      background: #4ccdf7;
-      color: #111111;
+      @apply bg-amber-200 text-red-500;
+      
     }
   }
   .btn-warning {
@@ -26,8 +26,8 @@
     }
   }
   .btn-loading {
-    @apply p-btn p-btn-loading p-btn-wide rounded-3xl shadow-xl click;
-
+    @apply p-btn p-loading p-btn-wide rounded-3xl shadow-xl click p-btn-info p-btn-square ;
+    
     &:hover,
     &:active,
     &:focus {

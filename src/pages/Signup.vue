@@ -6,6 +6,7 @@
     novalidate
     @submit.prevent="handleSignup"
     class="form"
+    :isPending="login_isPending || signup_isPending"
   />
 </template>
 
@@ -43,10 +44,16 @@ const handleSignup = async () => {
   store_token = token
   store_expiryDate = expiryDate
 
-  if (!(login_error && signup_error)) {
+  if (!(login_error || signup_error)) {
     router.push('/')
   }
 }
+const isPending = computed(() => {
+  
+})
+watchEffect(() => {
+  console.log(login_isPending || signup_isPending)
+})
 </script>
 
 <route lang="yaml">
