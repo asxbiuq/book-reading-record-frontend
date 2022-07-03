@@ -20,7 +20,7 @@ const url = import.meta.env.VITE_AUTH_URL + '/login'
 const { error, login, isPending: isPending_login } = $(useLogin(url))
 const router = useRouter()
 const state = $(useState())
-console.log(state)
+
 // function
 const handleLogin = async () => {
   state.isPending = true

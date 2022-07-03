@@ -1,4 +1,5 @@
-const { userId, token, expiryDate } = $(useStore())
+const state = $(useState())
+
 const error = $ref(null)
 const isPending = $ref(false)
 
@@ -7,9 +8,9 @@ const logout = async () => {
   isPending = true
 
   try {
-    token = null
-    expiryDate = null
-    userId = null
+    state.token = null
+    state.expiryDate = null
+    state.userId = null
     isPending = false
     console.log('logout!')
   } catch (err) {

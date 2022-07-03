@@ -58,7 +58,7 @@ const target = ref(null)
 const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 
 // composables
-const { userId, token } = $(useStore())
+const { userId, token } = $(useState())
 const { useFetch_AddDoc } = $(useFetchDoc(baseUrl, token))
 
 // event

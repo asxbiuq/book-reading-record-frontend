@@ -3,7 +3,7 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
 
 const routes = setupLayouts(generatedRoutes)
-const { userId } = $(useStore())
+const { userId } = $(useState())
 // console.log(userId)
 
 const router = createRouter({
