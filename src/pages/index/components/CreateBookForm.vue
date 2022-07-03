@@ -8,6 +8,7 @@
         :form-label="'添加新的书籍'"
         :btn-name="'添加'"
         @submit.prevent="handleSubmit($event)"
+        :isPending="state.isPending"
       >
         <!-- 书名输入栏 -->
         <MInput
@@ -58,8 +59,8 @@ const target = ref(null)
 const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 
 // composables
-const { userId, token } = $(useState())
-const { useFetch_AddDoc } = $(useFetchDoc(baseUrl, token))
+const state = $(useState())
+const { useFetch_AddDoc } = $(useFetchDoc(baseUrl, state.token))
 
 // event
 const emits = defineEmits(['created'])
@@ -77,6 +78,7 @@ const handleFile = (f) => {
   file = f
 }
 const handleSubmit = async (e) => {
+  state.isPending = true
   // 节流
   if (!e.target.t1) {
     e.target.t1 = Date.now()
@@ -88,7 +90,7 @@ const handleSubmit = async (e) => {
     formData.append('title', title)
     formData.append('author', author)
     formData.append('isFav', false)
-    formData.append('userUid', userId)
+    formData.append('userUid', state.userId)
     formData.append('image', file)
 
     await useFetch_AddDoc('feed/post/').post(formData)
@@ -103,6 +105,8 @@ const handleSubmit = async (e) => {
 
     closeModal()
   }
+
+  state.isPending = false
 }
 </script>
 

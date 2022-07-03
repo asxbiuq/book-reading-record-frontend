@@ -69,6 +69,7 @@ const getBooks = async () => {
 }
 
 const handleDelete = async (book) => {
+  state.isPending = true
   const { error: useFetchDeleteDocError } = $(
     await useFetch_DeleteDoc('/post/' + book._id).delete()
   )
@@ -76,9 +77,11 @@ const handleDelete = async (book) => {
   if (!useFetchDeleteDocError) {
     data.posts = data.posts.filter((post) => post._id != book._id)
   }
+  state.isPending = false
 }
 
 const handleUpdate = async (book) => {
+  state.isPending = true
   book.isFav = !book.isFav
   console.log(book.imageUrl.toString())
   const { data: UpdatedData, error: useFetchUpdateDocError } = $(
@@ -100,6 +103,7 @@ const handleUpdate = async (book) => {
       }
     })
   }
+  state.isPending = false
 }
 const handleDetails = () => {
   console.log('handleDetails')
