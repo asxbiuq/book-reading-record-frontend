@@ -154,6 +154,7 @@ export default defineConfig({
       apis: fileURLToPath(new URL('./src/apis', import.meta.url)),
       dirs: fileURLToPath(new URL('./src/dirs', import.meta.url)),
       store: fileURLToPath(new URL('./src/store', import.meta.url)),
+      pages: fileURLToPath(new URL('./src/pages', import.meta.url)),
     },
   },
 })

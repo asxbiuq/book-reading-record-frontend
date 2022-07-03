@@ -40,12 +40,12 @@
       :data-tip="'请再次确认密码'"
     />
 
-    <label class="cursor-pointer label flex">
+    <div>
       <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
       <span class="label-text text-sm"
         >创建帐户即表示您同意我们的条款和隐私</span
       >
-    </label>
+    </div>
   </MForm>
 </template>
 

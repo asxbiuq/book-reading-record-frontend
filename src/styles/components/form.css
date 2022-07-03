@@ -4,7 +4,7 @@
     @apply flex flex-col gap-5 items-center p-10 shadow-2xl bg-slate-100 shadow-gray-400 justify-between rounded-2xl;
 
     div {
-      @apply w-full;
+      @apply w-full flex items-center;
     }
     label {
       @apply font-medium text-gray-800 text-2xl truncate;
@@ -28,6 +28,12 @@
     }
     .btn {
       @apply p-btn w-full bg-indigo-400;
+    }
+    span {
+      @apply flex truncate items-center
+    }
+    input[type="checkbox"] {
+      @apply p-0 h-4  flex-none w-min
     }
   }
 }

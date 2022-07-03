@@ -28,12 +28,13 @@
       <span>
         <input type="checkbox" checked="checked" name="remember" /> 记住密码
       </span>
-      <span><a href="#">忘记密码?</a></span>
+      <a href="#">忘记密码?</a>
     </div>
   </MForm>
 </template>
 
 <script setup>
+import { useThrottleFn } from '@vueuse/core';
 // data
 const props = defineProps({
   email: String,
