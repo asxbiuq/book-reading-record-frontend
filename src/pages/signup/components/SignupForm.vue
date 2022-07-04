@@ -1,5 +1,5 @@
 <template>
-  <MForm :form-label="'注册'" :btn-name="'注册'" :isPending="isPending">
+  <MForm :form-label="'注册'" :btn-name="'注册'">
     <MInput
       v-model:data="name"
       :placeholder="'用户名'"
@@ -54,7 +54,6 @@ const props = defineProps({
   email: String,
   password: String,
   name: String,
-  isPending: Boolean,
 })
 
 const pswRepeat = $ref('')

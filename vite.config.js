@@ -155,6 +155,7 @@ export default defineConfig({
       dirs: fileURLToPath(new URL('./src/dirs', import.meta.url)),
       store: fileURLToPath(new URL('./src/store', import.meta.url)),
       pages: fileURLToPath(new URL('./src/pages', import.meta.url)),
+      assets: fileURLToPath(new URL('./src/assets', import.meta.url)),
     },
   },
 })

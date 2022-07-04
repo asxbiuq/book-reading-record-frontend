@@ -15,7 +15,7 @@
             @click-btn="handleDelete(book)"
             @click-star="handleUpdate(book)"
             @click-image="handleDetails"
-            class="book-card"
+            class="book-card hover:scale-105 duration-200"
           />
         </li>
       </ul>

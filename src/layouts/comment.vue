@@ -1,5 +1,5 @@
 <template>
-  <div class="default-layout">
+  <div class="comment-layout">
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
         <!-- <Transition mode="out-in"> -->
@@ -18,7 +18,7 @@
   </div>
 </template>
 <style>
-.default-layout {
-  @apply flex justify-center items-center relative top-24;
+.comment-layout {
+  @apply flex justify-center items-center relative top-24 flex-col;
 }
 </style>
