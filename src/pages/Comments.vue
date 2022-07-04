@@ -31,12 +31,6 @@
 </template>
 
 <script setup>
-import CommentBox from 'components/CommentBox.vue'
-import DividerHorizontal from 'components/DividerHorizontal.vue'
-import CommentItem from 'components/CommentItem.vue'
-import ReplyBox from 'components/ReplyBox.vue'
-import ReplyContainer from 'components/ReplyContainer.vue'
-
 import face1 from 'assets/face1.png'
 import face2 from 'assets/face2.png'
 import face3 from 'assets/face3.png'
@@ -46,13 +40,15 @@ import face4 from 'assets/face4.png'
 const baseUrl = import.meta.env.VITE_POST_URL //http://localhost:8080/feed/post
 // const comments = ref([])
 
-
 // use
+const { book, changeBook } = useBook()
+
+
 const state = $(useState())
 const router = useRouter()
 const route = useRoute()
-const postId = route.params.postId
-
+const postId = book.id
+console.log(postId)
 const { useGets, useGet, useDelete, usePost } = $(
   useFetch(baseUrl, state.token)
 )

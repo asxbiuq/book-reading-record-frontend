@@ -105,8 +105,10 @@ const handleUpdate = async (book) => {
   }
   state.isPending = false
 }
-const handleDetails = (book) => {
-  router.push({ name: 'Comments', params: { postId: book._id } })
+const handleDetails = (_book) => {
+  const { book } = useBook()
+  book.id = _book._id
+  router.push({ name: 'Comments' })
 }
 onMounted(() => {
   hideElementOnScroll(target.value)
