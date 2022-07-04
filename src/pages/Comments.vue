@@ -43,32 +43,36 @@ import face3 from 'assets/face3.png'
 import face4 from 'assets/face4.png'
 
 // data
-const baseUrl = import.meta.env.VITE_POST_URL  //http://localhost:8080/feed/post
+const baseUrl = import.meta.env.VITE_POST_URL //http://localhost:8080/feed/post
 // const comments = ref([])
+
 
 // use
 const state = $(useState())
 const router = useRouter()
+const route = useRoute()
+const postId = route.params.postId
+
 const { useGets, useGet, useDelete, usePost } = $(
   useFetch(baseUrl, state.token)
 )
 
 // async function getAllComments() {
 //   const res = await fetch('/api/comments')
-//   comments.value = await res.json()
+//   comments.value = await res.json()props.postId
 // }
 
 // function
 
-  const {
-    isFetching,
-    error: useGetsError,
-    data: comments,
-  } = $(await useGets( postId + '/comment').json())
+const {
+  isFetching,
+  error: useGetsError,
+  data: comments,
+} = $(await useGets(postId + '/comment').json())
 
 const addNewComment = async (content, replyTo) => {
   console.log('addNewComment')
-  await usePost( postId + '/comment').post({
+  await usePost(postId + '/comment').post({
     content,
     ...(replyTo && { replyTo }),
   })
@@ -77,7 +81,7 @@ const addNewComment = async (content, replyTo) => {
     isFetching,
     error: useGetsError,
     data: newComments,
-  } = $(await useGets( postId + '/comment').json())
+  } = $(await useGets(postId + '/comment').json())
   comments = [...newComments]
 }
 

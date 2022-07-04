@@ -14,7 +14,7 @@
             :is-fav="book.isFav"
             @click-btn="handleDelete(book)"
             @click-star="handleUpdate(book)"
-            @click-image="handleDetails"
+            @click-image="handleDetails(book)"
             class="book-card hover:scale-105 duration-200"
           />
         </li>
@@ -105,8 +105,8 @@ const handleUpdate = async (book) => {
   }
   state.isPending = false
 }
-const handleDetails = () => {
-  console.log('handleDetails')
+const handleDetails = (book) => {
+  router.push({ name: 'Comments', params: { postId: book._id } })
 }
 onMounted(() => {
   hideElementOnScroll(target.value)
