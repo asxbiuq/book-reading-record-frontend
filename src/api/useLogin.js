@@ -1,11 +1,13 @@
 const error = $ref(null)
 const isPending = $ref(false)
+let resData
 
 const useLogin = (url) => {
   const login = async (email, password) => {
     error = null
     isPending = true
-    let token, userId, expiryDate
+
+    // let token, userId, expiryDate
 
     try {
       const res = await fetch(url, {
@@ -24,26 +26,24 @@ const useLogin = (url) => {
         throw new Error(resData.message)
       }
 
-      const resData = await res.json()
-      token = resData.token
-      userId = resData.userId
-      const remainingMilliseconds = 24 * 60 * 60 * 1000
-      expiryDate = new Date(new Date().getTime() + remainingMilliseconds)
+      resData = await res.json()
+      // token = resData.token
+      // userId = resData.userId
+      // const remainingMilliseconds = 24 * 60 * 60 * 1000
+      // expiryDate = new Date(new Date().getTime() + remainingMilliseconds)
 
       error = null
       isPending = false
+      return { resData }
     } catch (err) {
       console.log(err.message)
       error = err.message
       isPending = false
     }
-
-    return { token, userId, expiryDate }
   }
 
 
   return $$({ error, login, isPending })
-
 }
 
 

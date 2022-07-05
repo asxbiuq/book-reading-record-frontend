@@ -1,5 +1,5 @@
 <template>
-  <form action="" class="grid" @submit.prevent="handleSubmit">
+  <form class="grid" @submit.prevent="handleSubmit">
     <textarea
       v-model="content"
       name="comment"
@@ -23,15 +23,15 @@
 </template>
 
 <script setup>
-// data
-const content = $ref('')
+import { ref } from 'vue'
 
-// event
+const content = ref('')
+
 const emit = defineEmits(['submit'])
 
-// function
 const handleSubmit = () => {
-  content = ''
+  emit('submit', content.value)
+  content.value = ''
 }
 </script>
 

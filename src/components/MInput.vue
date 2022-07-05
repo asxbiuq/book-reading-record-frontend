@@ -3,10 +3,10 @@
     <input
       :type="type"
       :name="label"
-      :value="data"
       :placeholder="placeholder"
       @keydown="handleKeydown($event)"
       @change="checkSelectedFile"
+      :value="data"
       @input="$emit('update:data', $event.target.value)"
     />
   </div>

@@ -11,6 +11,8 @@
 </template>
 
 <script setup>
+import { useUser } from '../store/useUser'
+
 // data
 const email = $ref('')
 const password = $ref('')
@@ -24,11 +26,17 @@ const state = $(useState())
 // function
 const handleLogin = async () => {
   state.isPending = true
-  const { token, userId, expiryDate } = await login(email, password)
-  state.userId = userId
-  state.token = token
-  state.expiryDate = expiryDate
+  const { resData } = await login(email, password)
 
+  state.userId = resData.userId
+  state.token = resData.token
+  state.expiryDate = resData.expiryDate
+
+
+  const { user } = useUser()
+  user.userId = resData.userId
+  user.name = resData.name
+  console.log(resData)
   if (!error) {
     router.push('/')
   }

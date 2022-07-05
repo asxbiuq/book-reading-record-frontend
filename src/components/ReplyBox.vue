@@ -9,7 +9,7 @@
   <CommentBox
     v-if="showCommentBox"
     class="mb-4"
-    @submit.prevent="
+    @submit="
       emit('submit', $event);
       showCommentBox = false;
     "

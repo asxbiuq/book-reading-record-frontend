@@ -150,7 +150,7 @@ const useFetch = (baseUrl, token) => {
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
         options.headers.Authorization = `Bearer ${token}`
-        options.headers.ContentType = 'application/json'
+
         return { options }
       },
       // 在请求后处理数据，如：拦截错误、处理过期

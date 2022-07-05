@@ -10,8 +10,8 @@ export const useBook = defineStore('book', () => {
     book.name = 'book two'
   }
 
-  watchEffect(()=>{
-    console.log(book)
+  watch(book,()=>{
+    console.log('book: ',book)
   })
 
   return $$({

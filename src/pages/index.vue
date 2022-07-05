@@ -2,7 +2,7 @@
   <!-- top 定位 向上滚动 -->
   <div id="top"></div>
   <div ref="el" class="relative top-[5rem]">
-    <div v-if="state.userId">
+    <div v-if="state.userId" class="flex justify-center">
       <ul class="flex flex-col gap-10 justify-center">
         <li v-for="book in data.posts" :key="book._id">
           <BookCard
@@ -22,7 +22,7 @@
 
       <div
         ref="target"
-        class="container mx-auto flex justify-center bottom-6 fixed"
+        class="flex justify-center bottom-6 fixed"
       >
         <CreateBookForm @created="getBooks" />
       </div>
