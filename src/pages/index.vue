@@ -20,10 +20,7 @@
         </li>
       </ul>
 
-      <div
-        ref="target"
-        class="flex justify-center bottom-6 fixed"
-      >
+      <div ref="target" class="flex justify-center bottom-6 fixed">
         <CreateBookForm @created="getBooks" />
       </div>
     </div>
@@ -49,30 +46,20 @@ const target = ref(null)
 // composables
 const state = $(useState())
 const router = useRouter()
-const { useGets, useDelete, usePut } = $(
-  useFetch(baseUrl, state.token)
-)
-const {
-  isFetching,
-  error: useFetchDocsAllError,
-  data: newData,
-} = $(await useGets('/posts/' + state.userId).json())
+const { useGets, useDelete, usePut } = $(useFetch(baseUrl, state.token))
+const { isFetching, data: newData } = $(await useGets('/posts').json())
 
 // function
 data.posts = [...newData.posts]
 
 const getBooks = async () => {
-  const { data: newData } = $(
-    await useGets('/posts/' + state.userId).json()
-  )
+  const { data: newData } = $(await useGets('/posts').json())
   data.posts = [...newData.posts]
 }
 
 const handleDelete = async (book) => {
   state.isPending = true
-  const { error } = $(
-    await useDelete('/'+ book._id + '/' + state.userId).delete()
-  )
+  const { error } = $(await useDelete('/' + book._id).delete())
 
   if (!error) {
     data.posts = data.posts.filter((post) => post._id != book._id)
@@ -83,12 +70,10 @@ const handleDelete = async (book) => {
 const handleUpdate = async (book) => {
   state.isPending = true
   book.isFav = !book.isFav
-  console.log(book)
   const { data: UpdatedData, error } = $(
-    await usePut('/' + book._id  + '/' + state.userId)
+    await usePut('/' + book._id)
       .put(book)
       .json()
-
   )
 
   if (!error) {

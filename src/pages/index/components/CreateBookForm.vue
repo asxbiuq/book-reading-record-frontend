@@ -94,7 +94,7 @@ const handleSubmit = async (e) => {
     formData.append('image', file)
     formData.append('time', new Date())
 
-    await usePost('/' + state.userId).post(formData)
+    await usePost('/').post(formData)
 
     emits('created')
 

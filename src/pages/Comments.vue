@@ -43,7 +43,7 @@ import face3 from 'assets/face3.png'
 import face4 from 'assets/face4.png'
 
 // data
-const baseUrl = import.meta.env.VITE_POST_URL //http://localhost:8080/feed/post
+const baseUrl = import.meta.env.VITE_COMMENT_URL //http://localhost:8080/feed/post
 const content = $ref('')
 const comments = $ref([])
 const reply = $ref()
@@ -101,7 +101,7 @@ const addNewComment = async (content, commentId) => {
 
       // ...(replyTo && { replyTo }),
     }
-    await usePost(postId + '/comment').post(newComment)
+    await usePost(postId).post(newComment)
   } else {
     // 更新回复
     const newReply = {
@@ -120,7 +120,7 @@ const addNewComment = async (content, commentId) => {
     console.log(newReply)
 
     // newComment.replies.push(newReply)
-    await usePost(postId + '/comment/' + commentId).post(newReply)
+    await usePost(postId + '/' + commentId).post(newReply)
   } 
 
   content = ''
@@ -178,7 +178,7 @@ const addNewComment = async (content, commentId) => {
 const deleteComment = async (commentId) => {
   console.log('delete')
   const { error } = $(
-    await useDelete(postId + '/comment/' + commentId).delete()
+    await useDelete(postId + '/' + commentId).delete()
   )
   await getAllComments()
   // if (!error) {
