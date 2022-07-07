@@ -50,7 +50,7 @@
 
 <script setup>
 // data
-const baseUrl = import.meta.env.VITE_LOCATION_ORIGIN
+const baseUrl = import.meta.env.VITE_POST_URL
 const title = $ref('')
 const author = $ref('')
 const file = $ref(null)
@@ -60,7 +60,7 @@ const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 
 // composables
 const state = $(useState())
-const { useFetch_AddDoc } = $(useFetchDoc(baseUrl, state.token))
+const { usePost } = $(useFetch(baseUrl, state.token))
 
 // event
 const emits = defineEmits(['created'])
@@ -90,10 +90,11 @@ const handleSubmit = async (e) => {
     formData.append('title', title)
     formData.append('author', author)
     formData.append('isFav', false)
-    formData.append('userUid', state.userId)
+    formData.append('creator', state.userId)
     formData.append('image', file)
+    formData.append('time', new Date())
 
-    await useFetch_AddDoc('feed/post/').post(formData)
+    await usePost('/' + state.userId).post(formData)
 
     emits('created')
 

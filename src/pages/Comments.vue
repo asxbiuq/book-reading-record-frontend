@@ -2,7 +2,7 @@
   <main class="p-4 bg-gray-50 min-h-screen w-[80vw] max-w-3xl">
     <div class="max-w-screen-xl mx-auto bg-white p-8 rounded-lg shadow-2xl">
       <h2 class="text-3xl my-6">评论</h2>
-      <CommentBox @submit="addNewComment" />
+      <CommentBox @submit="addNewComment" @deleteComment="deleteComment"/>
       <!-- 分隔线 -->
       <DividerHorizontal />
       <div v-for="comment in comments" :key="comment._id">
@@ -12,6 +12,7 @@
           :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
           :time="comment.time"
           :content="comment.content"
+          @deleteComment="deleteComment(comment._id)"
         />
         <!-- 留言列表 -->
         <ReplyContainer v-if="comment.replies">
@@ -22,16 +23,20 @@
             :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
             :time="reply.time"
             :content="reply.content"
+            @deleteComment="deleteComment(reply.replyId)"
           />
         </ReplyContainer>
-        <ReplyBox @submit="addNewComment($event, comment._id)" />
+        <ReplyBox
+          @submit="addNewComment($event, comment._id)"
+        />
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
-import {find} from 'lodash-es'
+import { nanoid } from 'nanoid'
+import { find } from 'lodash-es'
 import face1 from 'assets/face1.png'
 import face2 from 'assets/face2.png'
 import face3 from 'assets/face3.png'
@@ -91,7 +96,7 @@ const addNewComment = async (content, commentId) => {
       creator: user.name,
       content: content,
       time: new Date(),
-      applyTo: postId,
+      postId: postId,
       replies: [],
 
       // ...(replyTo && { replyTo }),
@@ -104,18 +109,19 @@ const addNewComment = async (content, commentId) => {
       content: content,
       time: new Date(),
       commentId: commentId,
+      replyId: nanoid()
     }
-    const newComment = find(comments,(comment)=>{
-        return comment._id == commentId
-    })
+    // const newComment = find(comments, (comment) => {
+    //   return comment._id == commentId
+    // })
     // const newComment = comments.find((comment)=>{
     //     return comment._id == commentId
     // })
-    console.log(newComment)
-    
-    newComment.replies.push(newReply)
-    await usePut(postId + '/comment').put(newComment)
-  }
+    console.log(newReply)
+
+    // newComment.replies.push(newReply)
+    await usePost(postId + '/comment/' + commentId).post(newReply)
+  } 
 
   content = ''
 
@@ -168,6 +174,17 @@ const addNewComment = async (content, commentId) => {
 //   //   await getAllComments();
 //   // }, 1000);
 // }
+
+const deleteComment = async (commentId) => {
+  console.log('delete')
+  const { error } = $(
+    await useDelete(postId + '/comment/' + commentId).delete()
+  )
+  await getAllComments()
+  // if (!error) {
+  //   data.posts = data.posts.filter((post) => post._id != book._id)
+  // }
+}
 </script>
 <route lang="yaml">
 { meta: { layout: 'comment' } }

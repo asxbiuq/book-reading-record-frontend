@@ -1,7 +1,7 @@
 <script setup>
 const state = useState()
-const isOpenAlert = $ref(null)
-isOpenAlert = true
+const isOpenAlert = $ref(true)
+
 </script>
 
 <template>

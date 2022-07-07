@@ -42,39 +42,39 @@
 
 <script setup>
 // data
-const baseUrl = import.meta.env.VITE_FEED_URL
+const baseUrl = import.meta.env.VITE_POST_URL
 const data = reactive({})
 const target = ref(null)
 
 // composables
 const state = $(useState())
 const router = useRouter()
-const { useFetch_GetDocsAll, useFetch_DeleteDoc, useFetch_UpdateDoc } = $(
-  useFetchDoc(baseUrl, state.token)
+const { useGets, useDelete, usePut } = $(
+  useFetch(baseUrl, state.token)
 )
 const {
   isFetching,
   error: useFetchDocsAllError,
   data: newData,
-} = $(await useFetch_GetDocsAll('/posts/' + state.userId).json())
+} = $(await useGets('/posts/' + state.userId).json())
 
 // function
 data.posts = [...newData.posts]
 
 const getBooks = async () => {
   const { data: newData } = $(
-    await useFetch_GetDocsAll('/posts/' + state.userId).json()
+    await useGets('/posts/' + state.userId).json()
   )
   data.posts = [...newData.posts]
 }
 
 const handleDelete = async (book) => {
   state.isPending = true
-  const { error: useFetchDeleteDocError } = $(
-    await useFetch_DeleteDoc('/post/' + book._id).delete()
+  const { error } = $(
+    await useDelete('/'+ book._id + '/' + state.userId).delete()
   )
 
-  if (!useFetchDeleteDocError) {
+  if (!error) {
     data.posts = data.posts.filter((post) => post._id != book._id)
   }
   state.isPending = false
@@ -83,20 +83,15 @@ const handleDelete = async (book) => {
 const handleUpdate = async (book) => {
   state.isPending = true
   book.isFav = !book.isFav
-  console.log(book.imageUrl.toString())
-  const { data: UpdatedData, error: useFetchUpdateDocError } = $(
-    await useFetch_UpdateDoc('/post/' + book._id)
-      .put({
-        title: book.title,
-        author: book.author,
-        isFav: book.isFav,
-        userUid: book.userId,
-        imageUrl: book.imageUrl,
-      })
+  console.log(book)
+  const { data: UpdatedData, error } = $(
+    await usePut('/' + book._id  + '/' + state.userId)
+      .put(book)
       .json()
+
   )
 
-  if (!useFetchUpdateDocError) {
+  if (!error) {
     data.posts.forEach((post) => {
       if (post._id === UpdatedData.post._id) {
         post = UpdatedData.post
