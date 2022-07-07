@@ -2,7 +2,7 @@
   <main class="p-4 bg-gray-50 min-h-screen w-[80vw] max-w-3xl">
     <div class="max-w-screen-xl mx-auto bg-white p-8 rounded-lg shadow-2xl">
       <h2 class="text-3xl my-6">评论</h2>
-      <CommentBox @submit="addNewComment" @deleteComment="deleteComment"/>
+      <CommentBox @submit="addNewComment" />
       <!-- 分隔线 -->
       <DividerHorizontal />
       <div v-for="comment in comments" :key="comment._id">
@@ -23,12 +23,10 @@
             :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
             :time="reply.time"
             :content="reply.content"
-            @deleteComment="deleteComment(reply.replyId)"
+            @deleteComment="deleteReply(reply)"
           />
         </ReplyContainer>
-        <ReplyBox
-          @submit="addNewComment($event, comment._id)"
-        />
+        <ReplyBox @submit="addReply($event, comment._id)" />
       </div>
     </div>
   </main>
@@ -36,14 +34,15 @@
 
 <script setup>
 import { nanoid } from 'nanoid'
-import { find } from 'lodash-es'
+import { find,assign } from 'lodash-es'
 import face1 from 'assets/face1.png'
 import face2 from 'assets/face2.png'
 import face3 from 'assets/face3.png'
 import face4 from 'assets/face4.png'
 
 // data
-const baseUrl = import.meta.env.VITE_COMMENT_URL //http://localhost:8080/feed/post
+const commentBaseUrl = import.meta.env.VITE_COMMENT_URL
+const replyBaseUrl = import.meta.env.VITE_REPLY_URL
 const content = $ref('')
 const comments = $ref([])
 const reply = $ref()
@@ -59,8 +58,9 @@ const route = useRoute()
 const postId = book.id
 // console.log(postId)
 const { useGets, useGet, useDelete, usePost, usePut } = $(
-  useFetch(baseUrl, state.token)
+  useFetch(commentBaseUrl, state.token)
 )
+
 // const { reply } = useReply()
 // watchEffect(()=>{
 //   console.log(content)
@@ -81,6 +81,12 @@ const getAllComments = async () => {
     data: res,
   } = $(await useGets(postId + '/comments').json())
   comments = res.comments
+  comments.forEach(async (comment) => {
+    const replies = await getReplies(comment._id)
+    // console.log(replies)
+    assign(comment.replies, replies)
+  })
+
   console.log(comments)
 }
 getAllComments()
@@ -93,6 +99,7 @@ const addNewComment = async (content, commentId) => {
   if (!commentId) {
     // 增加评论
     newComment = {
+      creatorId: state.userId,
       creator: user.name,
       content: content,
       time: new Date(),
@@ -101,6 +108,7 @@ const addNewComment = async (content, commentId) => {
 
       // ...(replyTo && { replyTo }),
     }
+    console.log(newComment)
     await usePost(postId).post(newComment)
   } else {
     // 更新回复
@@ -109,7 +117,7 @@ const addNewComment = async (content, commentId) => {
       content: content,
       time: new Date(),
       commentId: commentId,
-      replyId: nanoid()
+      replyId: nanoid(),
     }
     // const newComment = find(comments, (comment) => {
     //   return comment._id == commentId
@@ -120,8 +128,8 @@ const addNewComment = async (content, commentId) => {
     console.log(newReply)
 
     // newComment.replies.push(newReply)
-    await usePost(postId + '/' + commentId).post(newReply)
-  } 
+    await usePost(commentId).post(newReply)
+  }
 
   content = ''
 
@@ -129,26 +137,61 @@ const addNewComment = async (content, commentId) => {
 
   await getAllComments()
 }
+const deleteComment = async (commentId) => {
+  console.log('delete')
+  const { error } = $(await useDelete(commentId).delete())
+  await getAllComments()
+  // if (!error) {
+  //   data.posts = data.posts.filter((post) => post._id != book._id)
+  // }
+}
+const addReply = async (content, commentId) => {
+  const { usePost } = $(useFetch(replyBaseUrl, state.token))
+  // const { content } = useContent()
+  console.log('addReply')
+  console.log('content:', content)
+  const newReply = {
+    creator: user.name,
+    creatorId: state.userId,
+    content: content,
+    time: new Date(),
+    commentId: commentId,
+  }
+  console.log('newReply', newReply)
 
-// const addReply = async (comment) => {
-//   const { content } = useContent()
-//   console.log('addReply')
-//   console.log('content:', content)
-//   const newReply = {
-//     creator: user.name,
-//     content: content,
-//     time: new Date(),
-//     applyTo: comment._id,
-//   }
-//   console.log('newReply', newReply)
+  content = ''
 
-//   content = ''
+  await usePost(commentId).post(newReply)
+  const {
+    isFetching,
+    error: useGetsError,
+    data: res,
+  } = $(await useGets(postId + '/comments').json())
+  comments = res.comments
+  console.log(comments)
+  // await getReplies()
+}
 
-//   await usePost(postId + '/comment').post(newReply)
+const deleteReply = async (replyId) => {
+  console.log(replyId)
+  console.log('delete')
+  const { useDelete } = $(useFetch(replyBaseUrl, state.token))
+  const { error } = $(await useDelete(replyId).delete())
+  await getAllComments()
+  // if (!error) {
+  //   data.posts = data.posts.filter((post) => post._id != book._id)
+  // }
+}
 
-//   await getAllComments()
-// }
-
+const getReplies = async (commentId) => {
+  const { useGets } = $(useFetch(replyBaseUrl, state.token))
+  const {
+    isFetching,
+    error: useGetsError,
+    data: res,
+  } = $(await useGets(commentId + '/replies').json())
+  return res.replies
+}
 // const addNewComment = async (content, replyTo) => {
 //   const res = await fetch(`/api/comments`, {
 //     method: 'POST',
@@ -174,17 +217,6 @@ const addNewComment = async (content, commentId) => {
 //   //   await getAllComments();
 //   // }, 1000);
 // }
-
-const deleteComment = async (commentId) => {
-  console.log('delete')
-  const { error } = $(
-    await useDelete(postId + '/' + commentId).delete()
-  )
-  await getAllComments()
-  // if (!error) {
-  //   data.posts = data.posts.filter((post) => post._id != book._id)
-  // }
-}
 </script>
 <route lang="yaml">
 { meta: { layout: 'comment' } }
