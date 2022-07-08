@@ -162,21 +162,14 @@ const addReply = async (content, commentId) => {
   content = ''
 
   await usePost(commentId).post(newReply)
-  const {
-    isFetching,
-    error: useGetsError,
-    data: res,
-  } = $(await useGets(postId + '/comments').json())
-  comments = res.comments
-  console.log(comments)
-  // await getReplies()
+  await getAllComments()
 }
 
-const deleteReply = async (replyId) => {
-  console.log(replyId)
+const deleteReply = async (reply) => {
+  console.log(reply)
   console.log('delete')
   const { useDelete } = $(useFetch(replyBaseUrl, state.token))
-  const { error } = $(await useDelete(replyId).delete())
+  const { error } = $(await useDelete(reply._id).delete())
   await getAllComments()
   // if (!error) {
   //   data.posts = data.posts.filter((post) => post._id != book._id)
