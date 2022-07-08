@@ -33,8 +33,9 @@
 </template>
 
 <script setup>
+import moment from 'moment/min/moment-with-locales'
 import { nanoid } from 'nanoid'
-import { find,assign } from 'lodash-es'
+import { find, assign, forIn, forEach } from 'lodash-es'
 import face1 from 'assets/face1.png'
 import face2 from 'assets/face2.png'
 import face3 from 'assets/face3.png'
@@ -74,22 +75,45 @@ const { useGets, useGet, useDelete, usePost, usePut } = $(
 const handleContent = (el) => {
   console.log(el)
 }
+const getReplies = async (commentId) => {
+  const { useGets } = $(useFetch(replyBaseUrl, state.token))
+  const {
+    isFetching,
+    error: useGetsError,
+    data: res,
+  } = $(await useGets(commentId + '/replies').json())
+  return res.replies
+}
 const getAllComments = async () => {
+  moment.locale('zh-cn')
   const {
     isFetching,
     error: useGetsError,
     data: res,
   } = $(await useGets(postId + '/comments').json())
-  comments = res.comments
-  comments.forEach(async (comment) => {
-    const replies = await getReplies(comment._id)
-    // console.log(replies)
-    assign(comment.replies, replies)
-  })
 
-  console.log(comments)
+  comments = res.comments
+
+  await comments.forEach(async (comment) => {
+    const replies = await getReplies(comment._id)
+    forEach(replies, (reply) => {
+      if (reply.time) {
+        reply.time = moment(reply.time).format('llll')
+        console.log(reply)
+      }
+    })
+    forIn(comments, (comment) => {
+      if (comment.time) {
+        comment.time = moment(comment.time).format('llll')
+      }
+    })
+    comment.replies= replies
+    // comment.replies.push(...replies)
+
+    console.log('comments:  ', comments)
+  })
 }
-getAllComments()
+await getAllComments()
 
 const addNewComment = async (content, commentId) => {
   // const { content } = useContent()
@@ -176,15 +200,6 @@ const deleteReply = async (reply) => {
   // }
 }
 
-const getReplies = async (commentId) => {
-  const { useGets } = $(useFetch(replyBaseUrl, state.token))
-  const {
-    isFetching,
-    error: useGetsError,
-    data: res,
-  } = $(await useGets(commentId + '/replies').json())
-  return res.replies
-}
 // const addNewComment = async (content, replyTo) => {
 //   const res = await fetch(`/api/comments`, {
 //     method: 'POST',

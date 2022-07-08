@@ -18,6 +18,7 @@
     "@vueuse/core": "^8.6.0",
     "daisyui": "^2.15.1",
     "lodash-es": "^4.17.21",
+    "moment": "^2.29.4",
     "nanoid": "^4.0.0",
     "pinia": "^2.0.14",
     "sequelize": "^6.21.2",

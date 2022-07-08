@@ -16,6 +16,7 @@ specifiers:
   eslint-plugin-vue: ^9.1.1
   jsdom: latest
   lodash-es: ^4.17.21
+  moment: ^2.29.4
   nanoid: ^4.0.0
   pinia: ^2.0.14
   postcss: ^8.4.14
@@ -44,6 +45,7 @@ dependencies:
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.6.0_vue@3.2.37
   daisyui: registry.npmmirror.com/daisyui/2.15.3_ugi4xkrfysqkt4c4y6hkyfj344
   lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+  moment: registry.npmmirror.com/moment/2.29.4
   nanoid: registry.npmmirror.com/nanoid/4.0.0
   pinia: registry.npmmirror.com/pinia/2.0.14_vue@3.2.37
   sequelize: registry.npmmirror.com/sequelize/6.21.2_sqlite3@5.0.8
@@ -2969,13 +2971,13 @@ packages:
     name: moment-timezone
     version: 0.5.34
     dependencies:
-      moment: registry.npmmirror.com/moment/2.29.3
+      moment: registry.npmmirror.com/moment/2.29.4
     dev: false
 
-  registry.npmmirror.com/moment/2.29.3:
-    resolution: {integrity: sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/moment/-/moment-2.29.3.tgz}
+  registry.npmmirror.com/moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/moment/-/moment-2.29.4.tgz}
     name: moment
-    version: 2.29.3
+    version: 2.29.4
     dev: false
 
   registry.npmmirror.com/ms/2.1.2:
@@ -3707,7 +3709,7 @@ packages:
       dottie: registry.npmmirror.com/dottie/2.0.2
       inflection: registry.npmmirror.com/inflection/1.13.2
       lodash: registry.npmmirror.com/lodash/4.17.21
-      moment: registry.npmmirror.com/moment/2.29.3
+      moment: registry.npmmirror.com/moment/2.29.4
       moment-timezone: registry.npmmirror.com/moment-timezone/0.5.34
       pg-connection-string: registry.npmmirror.com/pg-connection-string/2.5.0
       retry-as-promised: registry.npmmirror.com/retry-as-promised/5.0.0
