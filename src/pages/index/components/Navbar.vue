@@ -1,3 +1,22 @@
+<script setup lang="ts">
+// data
+
+// composables
+const { logout } = $(useLogout())
+const state = $(useState())
+const router = useRouter()
+
+// function
+const handleLogout = () => {
+  router.push({ name: 'Login' })
+  logout()
+}
+const el = ref(null)
+
+onMounted(() => {
+  hideElementOnScroll(el.value)
+})
+</script>
 <template>
   <div
     ref="el"
@@ -30,26 +49,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-// data
-
-// composables
-const { logout } = $(useLogout())
-const state = $(useState())
-const router = useRouter()
-
-// function
-const handleLogout = () => {
-  router.push({ name: 'Login' })
-  logout()
-}
-const el = ref(null)
-
-onMounted(() => {
-  hideElementOnScroll(el.value)
-})
-</script>
 
 <style>
 /* Add a black background color to the top navigation */

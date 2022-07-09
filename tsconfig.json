@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "types": ["vite-plugin-vue-layouts/client"],
+    "baseUrl": ".",	//添加基础路径
+    "paths": {
+      "@/*": ["./src/*"], //添加路径别名
+      "components/*": ["./src/components/*"],	
+      "composables/*": ["./src/composables/*"],	
+      "styles/*": ["./src/styles/*"],	
+      "plugins/*": ["./src/plugins/*"],	
+      "views/*": ["./src/views/*"],	
+      "layouts/*": ["./src/layouts/*"],	
+      "utils/*": ["./src/utils/*"],	
+      "apis/*": ["./src/apis/*"],	
+      "dirs/*": ["./src/dirs/*"],	
+      "store/*": ["./src/store/*"],	
+      "pages/*": ["./src/pages/*"],	
+      "assets/*": ["./src/assets/*"],	
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","./auto-imports.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
