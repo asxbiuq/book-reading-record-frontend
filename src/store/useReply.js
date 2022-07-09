@@ -5,17 +5,19 @@ const replyBaseUrl = import.meta.env.VITE_REPLY_URL
 
 const state = $(useState())
 const { useGets, usePost, useDelete } = $(useFetch(replyBaseUrl, state.token))
-const { user } = $(useUser())
 
 export const useReply = defineStore('reply', () => {
-  const replies = $ref({})
+  const replies = $ref([])
 
   const getReplies = async (commentId) => {
     const { isFetching, error, data } = $(
       await useGets(commentId + '/replies').json()
     )
-
-    replies = data.replies
+    if (!error) {
+      replies = data.replies
+    } else {
+      console.log(error)
+    }
   }
   const addReply = async (content, commentId) => {
     const newReply = {
@@ -26,11 +28,16 @@ export const useReply = defineStore('reply', () => {
       commentId: commentId,
     }
 
-    await usePost(commentId).post(newReply)
+    const { error } = await usePost(commentId).post(newReply)
   }
 
   const deleteReply = async (replyId) => {
     const { error } = $(await useDelete(replyId).delete())
+    if (!error) {
+      replies = replies.filter((reply) => reply._id !== replyId)
+    } else {
+      console.log(error)
+    }
   }
 
   watchEffect(() => {
