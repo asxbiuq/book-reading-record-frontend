@@ -6,5 +6,6 @@ export const useState = createGlobalState(() =>
     userId: null,
     token: null,
     expiryDate: null,
+    name:''
   })
 )

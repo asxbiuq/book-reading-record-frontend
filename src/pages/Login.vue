@@ -31,12 +31,12 @@ const handleLogin = async () => {
   state.userId = resData.userId
   state.token = resData.token
   state.expiryDate = resData.expiryDate
-
-
+  state.name = resData.name
+  console.log(resData)
   const { user } = useUser()
   user.userId = resData.userId
   user.name = resData.name
-  console.log(resData)
+  // console.log(resData)
   if (!error) {
     router.push('/')
   }

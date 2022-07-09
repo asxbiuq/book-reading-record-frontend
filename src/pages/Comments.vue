@@ -8,7 +8,7 @@
       <div v-for="comment in comments" :key="comment._id">
         <!-- 留言 -->
         <CommentItem
-          :user="comment.name"
+          :user="comment.creator"
           :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
           :time="comment.time"
           :content="comment.content"
@@ -18,15 +18,15 @@
         <ReplyContainer v-if="comment.replies">
           <CommentItem
             v-for="reply in comment.replies"
-            :key="reply.id"
-            :user="reply.user"
+            :key="reply._id"
+            :user="reply.creator"
             :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
             :time="reply.time"
             :content="reply.content"
-            @deleteComment="deleteReply(reply)"
+            @deleteComment="handleDeleteReply(reply._id)"
           />
         </ReplyContainer>
-        <ReplyBox @submit="addReply($event, comment._id)" />
+        <ReplyBox @submit="handleAddReply($event, comment._id)" />
       </div>
     </div>
   </main>
@@ -61,29 +61,13 @@ const postId = book.id
 const { useGets, useGet, useDelete, usePost, usePut } = $(
   useFetch(commentBaseUrl, state.token)
 )
+const { replies, getReplies, addReply, deleteReply } = $(useReply())
+// console.log('replies: ', replies)
 
-// const { reply } = useReply()
-// watchEffect(()=>{
-//   console.log(content)
-// })
-// async function getAllComments() {
-//   const res = await fetch('/api/comments')
-//   comments.value = await res.json()props.postId
+// const handleContent = (el) => {
+//   console.log(el)
 // }
 
-// function
-const handleContent = (el) => {
-  console.log(el)
-}
-const getReplies = async (commentId) => {
-  const { useGets } = $(useFetch(replyBaseUrl, state.token))
-  const {
-    isFetching,
-    error: useGetsError,
-    data: res,
-  } = $(await useGets(commentId + '/replies').json())
-  return res.replies
-}
 const getAllComments = async () => {
   moment.locale('zh-cn')
   const {
@@ -95,11 +79,11 @@ const getAllComments = async () => {
   comments = res.comments
 
   await comments.forEach(async (comment) => {
-    const replies = await getReplies(comment._id)
+    await getReplies(comment._id)
     forEach(replies, (reply) => {
       if (reply.time) {
         reply.time = moment(reply.time).format('llll')
-        console.log(reply)
+        // console.log(reply)
       }
     })
     forIn(comments, (comment) => {
@@ -107,11 +91,10 @@ const getAllComments = async () => {
         comment.time = moment(comment.time).format('llll')
       }
     })
-    comment.replies= replies
+    comment.replies = replies
     // comment.replies.push(...replies)
-
-    console.log('comments:  ', comments)
   })
+  console.log('comments:  ', comments)
 }
 await getAllComments()
 
@@ -134,30 +117,10 @@ const addNewComment = async (content, commentId) => {
     }
     console.log(newComment)
     await usePost(postId).post(newComment)
-  } else {
-    // 更新回复
-    const newReply = {
-      creator: user.name,
-      content: content,
-      time: new Date(),
-      commentId: commentId,
-      replyId: nanoid(),
-    }
-    // const newComment = find(comments, (comment) => {
-    //   return comment._id == commentId
-    // })
-    // const newComment = comments.find((comment)=>{
-    //     return comment._id == commentId
-    // })
-    console.log(newReply)
-
-    // newComment.replies.push(newReply)
-    await usePost(commentId).post(newReply)
   }
 
-  content = ''
 
-  // console.log('newComments', newComments)
+  content = ''
 
   await getAllComments()
 }
@@ -169,62 +132,30 @@ const deleteComment = async (commentId) => {
   //   data.posts = data.posts.filter((post) => post._id != book._id)
   // }
 }
-const addReply = async (content, commentId) => {
-  const { usePost } = $(useFetch(replyBaseUrl, state.token))
-  // const { content } = useContent()
-  console.log('addReply')
-  console.log('content:', content)
-  const newReply = {
-    creator: user.name,
-    creatorId: state.userId,
-    content: content,
-    time: new Date(),
-    commentId: commentId,
-  }
-  console.log('newReply', newReply)
+const handleAddComment = () => {
+  
+}
+const handleDeleteComment = () => {
+
+}
+const handleAddReply = async (content, commentId) => {
+  await addReply(content, commentId)
 
   content = ''
 
-  await usePost(commentId).post(newReply)
   await getAllComments()
 }
+const handleDeleteReply = async(replyId) => {
+  await deleteReply(replyId)
 
-const deleteReply = async (reply) => {
-  console.log(reply)
-  console.log('delete')
-  const { useDelete } = $(useFetch(replyBaseUrl, state.token))
-  const { error } = $(await useDelete(reply._id).delete())
+
   await getAllComments()
-  // if (!error) {
-  //   data.posts = data.posts.filter((post) => post._id != book._id)
-  // }
+//   // if (!error) {
+//   //   data.posts = data.posts.filter((post) => post._id != book._id)
+//   // }
 }
 
-// const addNewComment = async (content, replyTo) => {
-//   const res = await fetch(`/api/comments`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       content,
-//       ...(replyTo && { replyTo }),
-//     }),
-//   })
 
-//   const newComment = await res.json()
-//   if (!replyTo) {
-//     comments.value.unshift(newComment)
-//   } else {
-//     comments.value.find((c) => c.id === replyTo).replies.unshift(newComment)
-//   }
-
-//   // 新增完评论后，自动获取新的评论列表
-//   // Notion API 有延迟，在添加完 page 之后，需要过一会才能获取到新的评论列表
-//   // setTimeout(async () => {
-//   //   await getAllComments();
-//   // }, 1000);
-// }
 </script>
 <route lang="yaml">
 { meta: { layout: 'comment' } }
