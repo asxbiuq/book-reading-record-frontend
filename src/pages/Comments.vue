@@ -12,7 +12,7 @@
           :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
           :time="comment.time"
           :content="comment.content"
-          @deleteComment="handleDeleteComment(comment._id,comment.content)"
+          @deleteComment="handleDeleteComment(comment._id, comment.content)"
         />
         <!-- 留言列表 -->
         <ReplyContainer v-if="comment.replies">
@@ -35,20 +35,25 @@
 <script lang="ts" setup>
 import { forEach } from 'lodash-es'
 
-const Route = useRoute()
 let postId: string
-const { replies, getReplies, addReply, deleteReply } = useReply()
-const { comments, addComment, deleteComment, getComments } = useComment()
 
-// watchEffect(async()=>{
-// async()=>{
+const Route = useRoute()
+const { replies, getReplies, addReply, deleteReply } = $(useReply())
+const { comments, addComment, deleteComment, getComments, clearComment } = $(
+  useComment()
+)
 
-if (Route.params.id && typeof Route.params.id == 'string') {
+
+clearComment()
+if (Route.params.id && typeof Route.params.id == 'string' && !comments.length) {
   postId = Route.params.id
   await getComments(postId)
+} else {
+  const state = $(useLocalState())
+  postId = state.postId
+  await getComments(postId)
 }
-// }()
-// })
+
 
 const GetAndFormat = async () => {
   formatTime(comments)
@@ -61,19 +66,19 @@ const GetAndFormat = async () => {
 }
 await GetAndFormat()
 
-const handleAddComment = async (content : string) => {
+const handleAddComment = async (content: string) => {
   await addComment(content, postId)
 
   content = ''
 }
 
-const handleDeleteComment = async (commentId : string,content:string) => {
+const handleDeleteComment = async (commentId: string, content: string) => {
   await deleteComment(commentId)
 
   content = ''
 }
 
-const handleAddReply = async (content : string, commentId : string) => {
+const handleAddReply = async (content: string, commentId: string) => {
   await addReply(content, commentId)
 
   content = ''
@@ -81,7 +86,7 @@ const handleAddReply = async (content : string, commentId : string) => {
   await GetAndFormat()
 }
 
-const handleDeleteReply = async (replyId : string) => {
+const handleDeleteReply = async (replyId: string) => {
   await deleteReply(replyId)
 
   await GetAndFormat()

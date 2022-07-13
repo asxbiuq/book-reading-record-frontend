@@ -53,17 +53,17 @@ import { Ref } from 'vue';
 
 // data
 const baseUrl = import.meta.env.VITE_POST_URL
-const title = ref('')
-const author = ref('')
-const file:Ref<Blob|string> = ref('')
-const isOpen = ref(false)
-const target = ref(null)
+let title = $ref('')
+let author = $ref('')
+let file:Blob|string = $ref('')
+let isOpen = $ref(false)
+const target = $ref(null)
 const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 
 // composables
-const state = useLocalState()
-const { usePost } = useFetch(baseUrl, state.value.token)
-const {user} = useUser()
+const state = $(useLocalState())
+const { usePost } = useFetch(baseUrl, state.token)
+
 // event
 const emits = defineEmits(['created'])
 
@@ -71,16 +71,16 @@ const emits = defineEmits(['created'])
 onClickOutside(target, () => closeModal())
 
 const closeModal = () => {
-  isOpen.value = false
+  isOpen = false
 }
 const openModal = () => {
-  isOpen.value = true
+  isOpen = true
 }
 const handleFile = (f:File) => {
-  file.value = f
+  file = f
 }
 const handleSubmit = async (e :any) => {
-  state.value.isPending = true
+  state.isPending = true
   // 节流
   if (!e.target.t1) {
     e.target.t1 = Date.now()
@@ -89,27 +89,27 @@ const handleSubmit = async (e :any) => {
   let t2 = Date.now()
   if (t2 - t1 > 1000) {
     const formData = new FormData()
-    formData.append('title', title.value)
-    formData.append('author', author.value)
+    formData.append('title', title)
+    formData.append('author', author)
     formData.append('isFav', 'false')
-    formData.append('creator', user.userId)
-    formData.append('image', file.value)
+    formData.append('creator', state.userId)
+    formData.append('image', file)
     formData.append('time', new Date().toString())
 
     await usePost('/').post(formData)
 
     emits('created')
 
-    title.value = ''
-    author.value = ''
-    file.value = ''
+    title = ''
+    author = ''
+    file = ''
     // 节流的时间重置
     e.target.t1 = t2
 
     closeModal()
   }
 
-  state.value.isPending = false
+  state.isPending = false
 }
 </script>
 

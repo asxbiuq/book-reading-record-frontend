@@ -11,38 +11,41 @@
 </template>
 
 <script lang="ts" setup>
+import { assign } from 'lodash-es';
+
 // data
-const email = ref('')
-const password = ref('')
-const name = ref('')
+const email = $ref('')
+const password = $ref('')
+const name = $ref('')
 const url = import.meta.env.VITE_AUTH_URL + '/signup'
 
 // composables
-const {signup,error} = useSignup(url)
+const {signup,error} = $(useSignup(url))
 const router = useRouter()
-const state = useLocalState()
-const { user } = useUser()
+const state = $(useLocalState())
+
 
 // function
 const handleSignup = async () => {
 
-  state.value.isPending = true
+  state.isPending = true
 
-  const result = await signup(email.value, password.value, name.value)
+  const result = await signup(email, password, name)
 
   if (result) {
-    const { token, userId, expiryDate } = result
-    user.userId = userId
-    state.value.token = token
-    state.value.expiryDate = expiryDate
+    assign(state,result)
+    // const { token, userId, expiryDate } = result
+    // user.userId = userId
+    // state.token = token
+    // state.expiryDate = expiryDate
   }
 
 
-  if (! error.value) {
+  if (! error) {
     router.push('/')
   }
 
-  state.value.isPending = false
+  state.isPending = false
 }
 </script>
 

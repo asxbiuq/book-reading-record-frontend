@@ -52,15 +52,16 @@ interface Post {
 }
 interface Book extends Post {}
 
-const target = ref(null)
+const target = $ref(null)
 
 
 // composables
-const state = useLocalState()
-const { posts, getPosts, deletePost, UpdatePost } = usePost()
+const state = $(useLocalState())
+const { posts, getPosts, deletePost, UpdatePost } = $(usePost())
+const {clearComment} = useComment()
 const router = useRouter()
 
-  watch(posts,()=>{
+  watch($$(posts),()=>{
     console.log('posts: ',posts)
   })
 
@@ -68,26 +69,29 @@ const router = useRouter()
 const handleGetBooks = async() => {
   await getPosts()
 }
-
-await handleGetBooks()
+if (!posts.length) {
+  await handleGetBooks()
+}
 
 
 const handleDelete = async (book: Post) => {
-  state.value.isPending = true
+  state.isPending = true
 
   deletePost(book._id)
 
-  state.value.isPending = false
+  state.isPending = false
 }
 
 const handleUpdate = async (book: Post) => {
-  state.value.isPending = true
+  state.isPending = true
 
   UpdatePost(book)
 
-  state.value.isPending = false
+  state.isPending = false
 }
 const handleDetails = (_book: { _id: string }) => {
+  const state = $(useLocalState())
+  state.postId = _book._id
   router.push({
     name: 'Comments',
     params: {
@@ -96,7 +100,7 @@ const handleDetails = (_book: { _id: string }) => {
   })
 }
 onMounted(() => {
-  hideElementOnScroll(target.value)
+  hideElementOnScroll(target)
 })
 const throttledFn = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
@@ -111,7 +115,7 @@ const handleToTop = () => {
   })
 }
 
-if (!state.value.token) {
+if (!state.token) {
   router.push({ name: 'Login' })
 }
 </script>

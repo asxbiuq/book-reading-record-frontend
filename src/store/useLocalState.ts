@@ -1,16 +1,24 @@
 import { createGlobalState, useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 
-interface LocalState{
-  isPending:boolean,
-  token:string,
-  expiryDate:string
-}
+
 const state = useStorage('vue-use-locale-storage', {
   isPending: false,
   token: '',
   expiryDate: '',
+  postId:'',
+  userId:'',
+  name:''
 })
+
+const clearState = () => {
+  state.value.isPending= false,
+  state.value.token= '',
+  state.value.expiryDate= '',
+  state.value.postId='',
+  state.value.userId='',
+  state.value.name=''
+}
 
 const useLocalState = () => {
   return state
@@ -20,20 +28,5 @@ export default useLocalState
 
 
 
-// export const useLocaleState = defineStore('localeState', () => {
-  
-//   const state = useStorage('localeState', {
-//     isPending: false,
-//     token: '',
-//     expiryDate: '',
-//   })
 
-//   watch(state,()=>{
-//     console.log('user: ',state)
-//   })
-
-//   return {
-//     state,
-//   }
-// })
 

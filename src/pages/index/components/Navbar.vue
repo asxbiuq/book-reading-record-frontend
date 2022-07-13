@@ -2,7 +2,7 @@
 // data
 
 // composables
-const { logout } = useLogout()
+const { logout } = $(useLogout())
 const state = useLocalState()
 const router = useRouter()
 

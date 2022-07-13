@@ -1,3 +1,4 @@
+import { remove } from 'lodash-es'
 import { defineStore } from 'pinia'
 import { Ref } from 'vue'
 
@@ -11,52 +12,60 @@ interface Reply {
   commentId: string,
 }
 
-const replyBaseUrl = import.meta.env.VITE_REPLY_URL
-
-const state = useLocalState()
-const { useGets, usePost, useDelete } = useFetch(replyBaseUrl, state.value.token)
 
 export const useReply = defineStore('reply', () => {
-  const replies : Ref<Reply[]> = ref([])
+  const replyBaseUrl = import.meta.env.VITE_REPLY_URL
+  const state = $(useLocalState())
+  const { useGets, usePost, useDelete } = $(useFetch(replyBaseUrl, state.token))
+
+
+  const replies : Reply[] = $ref([])
 
   const getReplies = async (commentId :string) => {
-    const { isFetching, error, data } = await useGets(commentId + '/replies').json()
+    const { isFetching, error, data } = $(await useGets(commentId + '/replies').json())
     
-    if (!error.value) {
-      replies.value = data.replies
+    if (!error && data.replies) {
+      data.replies.forEach((reply:Reply) => {
+        replies.push(reply)
+      })
     } else {
-      console.log(error.value)
+      console.log(error)
     }
   }
   const addReply = async (content : string, commentId :string) => {
     const newReply = {
-      creator: state.value.name,
-      creatorId: state.value.userId,
+      creator: state.name,
+      creatorId: state.userId,
       content: content,
       time: new Date(),
       commentId: commentId,
     }
 
-    const { error } = await usePost(commentId).post(newReply)
+    const { error } = $(await usePost(commentId).post(newReply))
   }
 
   const deleteReply = async (replyId : string) => {
-    const { error } = await useDelete(replyId).delete()
-    if (!error.value) {
-      replies.value = replies.value.filter((reply) => reply._id !== replyId)
+    const { error } = $(await useDelete(replyId).delete())
+    if (!error && replies) {
+      remove(replies,(reply:Reply) => reply._id !== replyId)
     } else {
-      console.log(error.value)
+      console.log(error)
     }
   }
 
+  const clearReplies = () => {
+    remove(replies,(reply:Reply) => true)
+  }
+
   watchEffect(() => {
-    console.log('replies: ', replies.value)
+    console.log('replies: ', replies)
   })
 
-  return {
+  return $$({
     replies,
     getReplies,
     addReply,
     deleteReply,
-  }
+    clearReplies
+  })
 })

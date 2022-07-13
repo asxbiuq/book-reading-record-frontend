@@ -6,8 +6,6 @@ interface resData {
 }
 
 
-const error = ref(null)
-const isPending = ref(false)
 let resData :resData = {
   token:'',
   userId:'',
@@ -16,10 +14,12 @@ let resData :resData = {
 }
 
 const useLogin = (url:string) => {
+  let error = $ref(null)
+  let isPending = $ref(false)
   
   const login = async (email:string, password:string) => {
-    error.value = null
-    isPending.value = true
+    error = null
+    isPending = true
 
     // let token, userId, expiryDate
 
@@ -46,13 +46,13 @@ const useLogin = (url:string) => {
       // const remainingMilliseconds = 24 * 60 * 60 * 1000
       // expiryDate = new Date(new Date().getTime() + remainingMilliseconds)
 
-      error.value = null
-      isPending.value = false
+      error = null
+      isPending = false
       return  resData 
     } catch (err:any) {
       console.log(err.message)
-      error.value = err.message
-      isPending.value = false
+      error = err.message
+      isPending = false
     }
   }
 
