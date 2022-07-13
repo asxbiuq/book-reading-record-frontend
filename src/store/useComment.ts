@@ -67,7 +67,7 @@ export const useComment = defineStore('comment', () => {
     const { error } = $(await useDelete(commentId).delete())
 
     if (!error) {
-      remove(comments,(comment:Comment) => comment._id !== commentId)
+      remove(comments,(comment:Comment) => comment._id == commentId)
       // comments = comments.filter((comment) => comment._id !== commentId)
     } else {
       console.log(error)

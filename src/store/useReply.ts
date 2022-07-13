@@ -47,7 +47,7 @@ export const useReply = defineStore('reply', () => {
   const deleteReply = async (replyId : string) => {
     const { error } = $(await useDelete(replyId).delete())
     if (!error && replies) {
-      remove(replies,(reply:Reply) => reply._id !== replyId)
+      remove(replies,(reply:Reply) => reply._id == replyId)
     } else {
       console.log(error)
     }
