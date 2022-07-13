@@ -22,10 +22,10 @@ export const useReply = defineStore('reply', () => {
   const getReplies = async (commentId :string) => {
     const { isFetching, error, data } = await useGets(commentId + '/replies').json()
     
-    if (!error) {
+    if (!error.value) {
       replies.value = data.replies
     } else {
-      console.log(error)
+      console.log(error.value)
     }
   }
   const addReply = async (content : string, commentId :string) => {
@@ -42,10 +42,10 @@ export const useReply = defineStore('reply', () => {
 
   const deleteReply = async (replyId : string) => {
     const { error } = await useDelete(replyId).delete()
-    if (!error) {
+    if (!error.value) {
       replies.value = replies.value.filter((reply) => reply._id !== replyId)
     } else {
-      console.log(error)
+      console.log(error.value)
     }
   }
 

@@ -51,9 +51,7 @@ interface Post {
   _id: string
 }
 interface Book extends Post {}
-// data
-// const baseUrl = import.meta.env.VITE_POST_URL
-// let posts : Post[]   = reactive([])
+
 const target = ref(null)
 
 
@@ -61,8 +59,7 @@ const target = ref(null)
 const state = useLocalState()
 const { posts, getPosts, deletePost, UpdatePost } = usePost()
 const router = useRouter()
-// const { useGets, useDelete, usePut } = useFetch(baseUrl, state.value.token)
-// const { isFetching, data: newData } = await useGets('/posts').json()
+
   watch(posts,()=>{
     console.log('posts: ',posts)
   })
@@ -73,17 +70,7 @@ const handleGetBooks = async() => {
 }
 
 await handleGetBooks()
-  // await handleGetBooks()
-// watchEffect(()=>{
-//   handleGetBooks()
-// })
 
-// posts = [...newData.value.posts]
-
-// const getBooks = async () => {
-//   const { data: newData } = await useGets('/posts').json()
-//   posts = [...newData.value.posts]
-// }
 
 const handleDelete = async (book: Post) => {
   state.value.isPending = true

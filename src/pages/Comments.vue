@@ -12,7 +12,7 @@
           :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
           :time="comment.time"
           :content="comment.content"
-          @deleteComment="handleDeleteComment(comment._id)"
+          @deleteComment="handleDeleteComment(comment._id,comment.content)"
         />
         <!-- 留言列表 -->
         <ReplyContainer v-if="comment.replies">
@@ -61,19 +61,19 @@ const GetAndFormat = async () => {
 }
 await GetAndFormat()
 
-const handleAddComment = async (content) => {
+const handleAddComment = async (content : string) => {
   await addComment(content, postId)
 
   content = ''
 }
 
-const handleDeleteComment = async (commentId) => {
+const handleDeleteComment = async (commentId : string,content:string) => {
   await deleteComment(commentId)
 
   content = ''
 }
 
-const handleAddReply = async (content, commentId) => {
+const handleAddReply = async (content : string, commentId : string) => {
   await addReply(content, commentId)
 
   content = ''
@@ -81,7 +81,7 @@ const handleAddReply = async (content, commentId) => {
   await GetAndFormat()
 }
 
-const handleDeleteReply = async (replyId) => {
+const handleDeleteReply = async (replyId : string) => {
   await deleteReply(replyId)
 
   await GetAndFormat()
