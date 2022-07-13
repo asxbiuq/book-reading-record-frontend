@@ -32,16 +32,23 @@
   </main>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { forEach } from 'lodash-es'
 
+const Route = useRoute()
+let postId: string
+const { replies, getReplies, addReply, deleteReply } = useReply()
+const { comments, addComment, deleteComment, getComments } = useComment()
 
-const { book } = useBook()
-const postId = book.id
-const { replies, getReplies, addReply, deleteReply } = $(useReply())
-const { comments, addComment, deleteComment, getComments } = $(useComment())
+// watchEffect(async()=>{
+// async()=>{
 
-await getComments(postId)
+if (Route.params.id && typeof Route.params.id == 'string') {
+  postId = Route.params.id
+  await getComments(postId)
+}
+// }()
+// })
 
 const GetAndFormat = async () => {
   formatTime(comments)
@@ -53,7 +60,6 @@ const GetAndFormat = async () => {
   })
 }
 await GetAndFormat()
-
 
 const handleAddComment = async (content) => {
   await addComment(content, postId)

@@ -1,11 +1,25 @@
-const error = $ref(null)
-const isPending = $ref(false)
-let resData
+interface resData {
+  token:string,
+  userId:string,
+  name:string,
+  expiryDate:string
+}
 
-const useLogin = (url) => {
-  const login = async (email, password) => {
-    error = null
-    isPending = true
+
+const error = ref(null)
+const isPending = ref(false)
+let resData :resData = {
+  token:'',
+  userId:'',
+  name:'',
+  expiryDate:''
+}
+
+const useLogin = (url:string) => {
+  
+  const login = async (email:string, password:string) => {
+    error.value = null
+    isPending.value = true
 
     // let token, userId, expiryDate
 
@@ -22,7 +36,7 @@ const useLogin = (url) => {
       })
 
       if (res.status !== 200 && res.status !== 201) {
-        const resData = await res.json()
+        const resData :{message:string}= await res.json()
         throw new Error(resData.message)
       }
 
@@ -32,18 +46,18 @@ const useLogin = (url) => {
       // const remainingMilliseconds = 24 * 60 * 60 * 1000
       // expiryDate = new Date(new Date().getTime() + remainingMilliseconds)
 
-      error = null
-      isPending = false
-      return { resData }
-    } catch (err) {
+      error.value = null
+      isPending.value = false
+      return  resData 
+    } catch (err:any) {
       console.log(err.message)
-      error = err.message
-      isPending = false
+      error.value = err.message
+      isPending.value = false
     }
   }
 
 
-  return $$({ error, login, isPending })
+  return { error, login, isPending }
 }
 
 

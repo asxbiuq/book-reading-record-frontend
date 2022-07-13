@@ -2,13 +2,13 @@
   <!-- top 定位 向上滚动 -->
   <div id="top"></div>
   <div ref="el" class="relative top-[5rem]">
-    <div v-if="state.userId" class="flex justify-center">
+    <div v-if="state.token" class="flex justify-center">
       <ul class="flex flex-col gap-10 justify-center">
-        <li v-for="book in data.posts" :key="book._id">
+        <li v-for="book in posts" :key="book._id">
           <BookCard
             :title="book.title"
             :author="book.author"
-            :description="book.description"
+            :description="book.content"
             :btn-name="'删除'"
             :img-url="book.imageUrl"
             :is-fav="book.isFav"
@@ -21,7 +21,7 @@
       </ul>
 
       <div ref="target" class="flex justify-center bottom-6 fixed">
-        <CreateBookForm @created="getBooks" />
+        <CreateBookForm @created="handleGetBooks" />
       </div>
     </div>
     <div v-else>
@@ -37,58 +37,76 @@
   <!-- <Loading/> -->
 </template>
 
-<script setup>
+<script lang="ts" setup>
+interface Post {
+  title: string
+  imageUrl: string
+  content: string
+  creator: string
+  author: string
+  isFav: boolean
+  time: string
+  avatar: string
+  comments: any
+  _id: string
+}
+interface Book extends Post {}
 // data
-const baseUrl = import.meta.env.VITE_POST_URL
-const data = reactive({})
+// const baseUrl = import.meta.env.VITE_POST_URL
+// let posts : Post[]   = reactive([])
 const target = ref(null)
 
+
 // composables
-const state = $(useState())
+const state = useLocalState()
+const { posts, getPosts, deletePost, UpdatePost } = usePost()
 const router = useRouter()
-const { useGets, useDelete, usePut } = $(useFetch(baseUrl, state.token))
-const { isFetching, data: newData } = $(await useGets('/posts').json())
+// const { useGets, useDelete, usePut } = useFetch(baseUrl, state.value.token)
+// const { isFetching, data: newData } = await useGets('/posts').json()
+  watch(posts,()=>{
+    console.log('posts: ',posts)
+  })
 
 // function
-data.posts = [...newData.posts]
-
-const getBooks = async () => {
-  const { data: newData } = $(await useGets('/posts').json())
-  data.posts = [...newData.posts]
+const handleGetBooks = async() => {
+  await getPosts()
 }
 
-const handleDelete = async (book) => {
-  state.isPending = true
-  const { error } = $(await useDelete('/' + book._id).delete())
+await handleGetBooks()
+  // await handleGetBooks()
+// watchEffect(()=>{
+//   handleGetBooks()
+// })
 
-  if (!error) {
-    data.posts = data.posts.filter((post) => post._id != book._id)
-  }
-  state.isPending = false
+// posts = [...newData.value.posts]
+
+// const getBooks = async () => {
+//   const { data: newData } = await useGets('/posts').json()
+//   posts = [...newData.value.posts]
+// }
+
+const handleDelete = async (book: Post) => {
+  state.value.isPending = true
+
+  deletePost(book._id)
+
+  state.value.isPending = false
 }
 
-const handleUpdate = async (book) => {
-  state.isPending = true
-  book.isFav = !book.isFav
-  const { data: UpdatedData, error } = $(
-    await usePut('/' + book._id)
-      .put(book)
-      .json()
-  )
+const handleUpdate = async (book: Post) => {
+  state.value.isPending = true
 
-  if (!error) {
-    data.posts.forEach((post) => {
-      if (post._id === UpdatedData.post._id) {
-        post = UpdatedData.post
-      }
-    })
-  }
-  state.isPending = false
+  UpdatePost(book)
+
+  state.value.isPending = false
 }
-const handleDetails = (_book) => {
-  const { book } = useBook()
-  book.id = _book._id
-  router.push({ name: 'Comments' })
+const handleDetails = (_book: { _id: string }) => {
+  router.push({
+    name: 'Comments',
+    params: {
+      id: _book._id,
+    },
+  })
 }
 onMounted(() => {
   hideElementOnScroll(target.value)
@@ -106,7 +124,7 @@ const handleToTop = () => {
   })
 }
 
-if (!state.userId) {
+if (!state.value.token) {
   router.push({ name: 'Login' })
 }
 </script>

@@ -2,8 +2,8 @@
 // data
 
 // composables
-const { logout } = $(useLogout())
-const state = $(useState())
+const { logout } = useLogout()
+const state = useLocalState()
 const router = useRouter()
 
 // function
@@ -23,12 +23,12 @@ onMounted(() => {
     class="p-navbar bg-info text-primary-content fixed top-[0%] duration-700 z-10"
   >
     <div class="flex-1">
-      <div v-if="state.userId">
+      <div v-if="state.token">
         <router-link to="/" class="p-btn p-btn-ghost normal-case text-xl"
           ><i-ant-design:home-twotone style="color: white; font-size: 1.5rem"
         /></router-link>
       </div>
-      <div v-if="!state.userId">
+      <div v-if="!state.token">
         <router-link to="/login" class="p-btn p-btn-ghost normal-case text-xl"
           >登陆</router-link
         >
@@ -38,7 +38,7 @@ onMounted(() => {
       </div>
     </div>
     <div class="flex-none">
-      <div v-if="state.userId">
+      <div v-if="state.token">
         <button class="p-btn p-btn-square p-btn-ghost">
           <i-bytesize:sign-out
             style="color: white; font-size: 1.5rem"

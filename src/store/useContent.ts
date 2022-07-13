@@ -9,7 +9,7 @@ export const useContent = defineStore('content', () => {
     console.log('content: ',content)
   })
 
-  return $$({
+  return {
     content,
-  })
+  }
 })

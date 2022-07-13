@@ -3,8 +3,8 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
 
 const routes = setupLayouts(generatedRoutes)
-const { userId } = $(useState())
-// console.log(userId)
+const state = useLocalState()
+
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,7 +16,7 @@ router.beforeEach((to, from, next) => {
     to.name !== 'Login' &&
     to.name !== 'Signup' &&
     to.name == '/' &&
-    !userId
+    !state.value.token
   ) {
     next({ name: 'Login' })
   } else {

@@ -1,9 +1,11 @@
-const error = $ref(null)
-const isPending = $ref(false)
+const error = ref(null)
+const isPending = ref(false)
 
-const useSignup = (url) => {
-  const signup = async (email, password, name) => {
-    let userId, token, expiryDate
+const useSignup = (url:string) => {
+
+  const signup = async (email:string, password:string, name:string) => {
+
+    let userId :string, token :string, expiryDate :string
     try {
       const res = await fetch(url, {
         method: 'PUT',
@@ -25,20 +27,20 @@ const useSignup = (url) => {
       const resData = await res.json()
       console.log('resData: ', resData)
       const remainingMilliseconds = 24 * 60 * 60 * 1000
-      expiryDate = new Date(new Date().getTime() + remainingMilliseconds)
+      expiryDate = new Date(new Date().getTime() + remainingMilliseconds).toString()
       userId = resData.userId
       token = resData.token
-      error = null
-      isPending = false
-    } catch (err) {
+      error.value = null
+      isPending.value = false
+      return { userId, token, expiryDate }
+    } catch (err:any) {
       console.log(err.message)
-      error = err.message
-      isPending = false
+      error.value = err.message
+      isPending.value = false
     }
 
-    return { userId, token, expiryDate }
   }
 
-  return $$({ error, signup, isPending })
+  return { error, signup, isPending }
 }
 export default useSignup

@@ -10,38 +10,36 @@
   />
 </template>
 
-<script setup>
-import { useUser } from '../store/useUser'
-
+<script lang="ts" setup>
 // data
-const email = $ref('')
-const password = $ref('')
+const email = ref('')
+const password = ref('')
 const url = import.meta.env.VITE_AUTH_URL + '/login'
 
 // composables
-const { error, login, isPending: isPending_login } = $(useLogin(url))
 const router = useRouter()
-const state = $(useState())
+const state = useLocalState()
+const { user } = useUser()
+const { error, login } = useLogin(url)
 
 // function
 const handleLogin = async () => {
-  state.isPending = true
-  const { resData } = await login(email, password)
+  state.value.isPending = true
+  const resData: any = await login(email.value, password.value)
 
-  state.userId = resData.userId
-  state.token = resData.token
-  state.expiryDate = resData.expiryDate
-  state.name = resData.name
-  console.log(resData)
-  const { user } = useUser()
+  state.value.token = resData.token
+  state.value.expiryDate = resData.expiryDate
+
   user.userId = resData.userId
   user.name = resData.name
-  // console.log(resData)
-  if (!error) {
+
+  if (!error.value) {
     router.push('/')
+  } else {
+    console.log(error.value)
   }
 
-  state.isPending = false
+  state.value.isPending = false
 }
 </script>
 

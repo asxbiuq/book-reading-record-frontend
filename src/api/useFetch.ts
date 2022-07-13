@@ -1,6 +1,7 @@
 import { createFetch } from '@vueuse/core'
 
-const useFetch = (baseUrl, token) => {
+const useFetch = (baseUrl:string, token:string) => {
+
   const useGets = createFetch({
     baseUrl: baseUrl, // 基础路由
     options: {
@@ -8,6 +9,9 @@ const useFetch = (baseUrl, token) => {
       timeout: 30000, // 请求过期时间
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
+        if (!(token && baseUrl)) {
+          throw new Error(`Error happened in useFetch, token is ${token}, baseUrl is ${baseUrl}`);
+        }
         options.headers.Authorization = `Bearer ${token}`
 
         return { options }
@@ -41,6 +45,9 @@ const useFetch = (baseUrl, token) => {
       timeout: 30000, // 请求过期时间
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
+        if (!(token && baseUrl)) {
+          throw new Error(`Error happened in useFetch, token is ${token}, baseUrl is ${baseUrl}`);
+        }
         options.headers.Authorization = `Bearer ${token}`
 
         return { options }
@@ -77,6 +84,9 @@ const useFetch = (baseUrl, token) => {
       timeout: 30000, // 请求过期时间
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
+        if (!(token && baseUrl)) {
+          throw new Error(`Error happened in useFetch, token is ${token}, baseUrl is ${baseUrl}`);
+        }
         options.headers.Authorization = `Bearer ${token}`
 
         return { options }
@@ -92,7 +102,7 @@ const useFetch = (baseUrl, token) => {
         } else {
           console.log('Update the document')
         }
-        return { data, response }
+        return { data, response } 
       },
       // 请求错误
       async onFetchError({ data, error }) {
@@ -114,6 +124,9 @@ const useFetch = (baseUrl, token) => {
       timeout: 30000, // 请求过期时间
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
+        if (!(token && baseUrl)) {
+          throw new Error(`Error happened in useFetch, token is ${token}, baseUrl is ${baseUrl}`);
+        }
         options.headers.Authorization = `Bearer ${token}`
 
         return { options }
@@ -179,13 +192,13 @@ const useFetch = (baseUrl, token) => {
 
 
 
-  return $$({
+  return {
     useGets,
     useGet,
     usePost,
     useDelete,
     usePut,
-  })
+  }
 }
 
 export default useFetch

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-const state = useState()
-const isOpenAlert = ref(false)
+const state = useLocalState()
+const isOpenAlert  = ref(false)
 
 </script>
 

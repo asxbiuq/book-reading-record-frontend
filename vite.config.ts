@@ -64,6 +64,7 @@ export default defineConfig({
         'src/views',
         'src/store',
         'src/api',
+        'src/utils',
       ],
 
       // Filepath to generate corresponding .d.ts file.
