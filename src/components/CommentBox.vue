@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+let content = $ref('')
+
+const emit = defineEmits(['submit'])
+
+const handleSubmit = () => {
+  emit('submit', content)
+  content = ''
+}
+</script>
 <template>
   <form class="grid" @submit.prevent="handleSubmit">
     <textarea
@@ -21,18 +31,4 @@
     </fieldset>
   </form>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-
-const content = ref('')
-
-const emit = defineEmits(['submit'])
-
-const handleSubmit = () => {
-  emit('submit', content.value)
-  content.value = ''
-}
-</script>
-
 <style></style>

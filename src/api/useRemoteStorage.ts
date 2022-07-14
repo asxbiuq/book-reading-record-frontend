@@ -1,11 +1,3 @@
-import { storage } from '@/firebase/config'
-import { ref } from 'vue'
-import getUser from 'composables/getUser'
-import { uploadBytes, getDownloadURL } from 'firebase/storage'
-import { doc, deleteDoc } from 'firebase/firestore'
-import { db } from '../firebase/config'
-import { getStorage, ref as fireRef, deleteObject } from 'firebase/storage'
-
 const { user } = $(getUser())
 const isPending = $ref(false)
 const error = $ref(null)

@@ -1,44 +1,17 @@
-<template>
-  <!-- 对话框组件 -->
-  <teleport to="body">
-
-    <transition name="confirm-fade">
-
-      <div class="confirm " v-show="isModelOpen">
-        <div class="confirm-wrapper drop-shadow-xl">
-          <div class="confirm-content  overflow-hidden shadow-2xl border-2">
-
-            <p class="text">{{ text }}</p>
-
-            <div class="operate">
-              <div class="operate-btn  hover:bg-stone-800 hover:text-white" @click="confirm">
-                {{ confirmBtnText }}
-              </div>
-              <div class="operate-btn hover:bg-stone-800 hover:text-white" @click="cancel">
-                {{ cancelBtnText }}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </transition>
-
-  </teleport>
-</template>
-
-<script setup>
+<script lang="ts" setup>
 // 父组件传来的Props值为只读,无法更改
-const props = defineProps({
-  text: { type: String, default: '' },
-  confirmBtnText: { type: String, default: '确定' },
-  cancelBtnText: { type: String, default: '取消' },
-  isModelOpen: { type: Boolean, default: false },
-})
-
-
-
+interface Props {
+  text: string
+  confirmBtnText: string
+  cancelBtnText: string
+  isModelOpen: Boolean
+}
+const {
+  text = '',
+  confirmBtnText = '确定',
+  cancelBtnText = '取消',
+  isModelOpen = false,
+} = defineProps<Props>()
 
 const emit = defineEmits(['confirm', 'cancel'])
 
@@ -52,7 +25,35 @@ const cancel = () => {
   console.log('emit(cancel)')
 }
 </script>
+<template>
+  <!-- 对话框组件 -->
+  <teleport to="body">
+    <transition name="confirm-fade">
+      <div class="confirm" v-show="isModelOpen">
+        <div class="confirm-wrapper drop-shadow-xl">
+          <div class="confirm-content overflow-hidden shadow-2xl border-2">
+            <p class="text">{{ text }}</p>
 
+            <div class="operate">
+              <div
+                class="operate-btn hover:bg-stone-800 hover:text-white"
+                @click="confirm"
+              >
+                {{ confirmBtnText }}
+              </div>
+              <div
+                class="operate-btn hover:bg-stone-800 hover:text-white"
+                @click="cancel"
+              >
+                {{ cancelBtnText }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </teleport>
+</template>
 <style scoped lang="scss">
 $color-background-d: rgba(87, 88, 88, 0.244);
 $color-highlight-background: rgb(201, 199, 196);
@@ -70,10 +71,10 @@ $color-text: black;
   background-color: $color-background-d;
 
   &.confirm-fade-enter-active {
-    animation: confirm-fadein .3s;
+    animation: confirm-fadein 0.3s;
 
     .confirm-content {
-      animation: confirm-zoom-in .3s;
+      animation: confirm-zoom-in 0.3s;
     }
   }
 

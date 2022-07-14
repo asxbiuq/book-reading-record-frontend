@@ -1,3 +1,37 @@
+<script lang="ts" setup>
+// data
+interface Props {
+  title: string
+  author: string
+  description: string
+  imgUrl: string
+  btnName: string
+  isFav: boolean
+}
+const {
+  title = '标题',
+  author = '作者',
+  description = '简介',
+  imgUrl = 'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg',
+  btnName = '阅读',
+  isFav = false,
+} = defineProps<Props>()
+
+// event
+const emits = defineEmits(['clickBtn', 'clickStar', 'clickImage'])
+
+// function
+const handleClickBtn = () => {
+  emits('clickBtn')
+}
+const handleClickStar = () => {
+  emits('clickStar')
+}
+const handleClickImage = () => {
+  emits('clickImage')
+}
+</script>
+
 <template>
   <div>
     <div class="img-shell" @click="handleClickImage">
@@ -49,35 +83,4 @@
     </main>
   </div>
 </template>
-
-<script setup>
-// data
-const props = defineProps({
-  title: { type: String, default: '标题', required: false },
-  author: { type: String, default: '作者', required: false },
-  description: { type: String, default: '简介', required: false },
-  imgUrl: {
-    type: String,
-    default: 'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg',
-    required: false,
-  },
-  btnName: { type: String, default: '阅读', required: false },
-  isFav: { type: Boolean, default: false, required: false },
-})
-
-// event
-const emits = defineEmits(['clickBtn', 'clickStar', 'clickImage'])
-
-// function
-const handleClickBtn = () => {
-  emits('clickBtn')
-}
-const handleClickStar = () => {
-  emits('clickStar')
-}
-const handleClickImage = () => {
-  emits('clickImage')
-}
-</script>
-
 <style scoped></style>

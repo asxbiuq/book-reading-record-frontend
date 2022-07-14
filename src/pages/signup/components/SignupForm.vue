@@ -1,3 +1,24 @@
+<script lang="ts" setup>
+interface Props {
+  email: string
+  password: string
+  name: string
+}
+const {
+  email,
+  password,
+  name
+} = defineProps<Props>()
+
+const pswRepeat = $ref('')
+
+const emits = defineEmits([
+  'update:email', 
+  'update:password', 
+  'update:name'
+])
+</script>
+
 <template>
   <MForm :form-label="'注册'" :btn-name="'注册'">
     <MInput
@@ -48,16 +69,5 @@
     </div>
   </MForm>
 </template>
-
-<script setup>
-const props = defineProps({
-  email: String,
-  password: String,
-  name: String,
-})
-
-const pswRepeat = $ref('')
-const emits = defineEmits(['update:email', 'update:password', 'update:name'])
-</script>
 
 <style scoped></style>

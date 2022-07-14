@@ -1,3 +1,67 @@
+<script lang="ts" setup>
+// data
+const baseUrl = import.meta.env.VITE_POST_URL
+let title = $ref('')
+let author = $ref('')
+let file: Blob | null = $ref(null)
+let isOpen = $ref(false)
+const target = $ref<HTMLElement | null>(null)
+const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
+
+// composables
+const state = $(useLocalState())
+const { usePost } = useFetch(baseUrl, state.token)
+
+// event
+const emits = defineEmits(['created'])
+
+// function
+onClickOutside($$(target), () => closeModal())
+
+const closeModal = () => {
+  isOpen = false
+}
+const openModal = () => {
+  isOpen = true
+}
+const handleFile = (f: File) => {
+  file = f
+}
+
+const handleSubmit = async (e: any) => {
+  state.isPending = true
+  // 节流
+  if (!e.target.t1) {
+    e.target.t1 = Date.now()
+  }
+  let t1 = e.target.t1
+  let t2 = Date.now()
+  if (t2 - t1 > 1000 && file) {
+    const formData = new FormData()
+    formData.append('title', title)
+    formData.append('author', author)
+    formData.append('isFav', 'false')
+    formData.append('creator', state.userId)
+    formData.append('image', file)
+    formData.append('time', new Date().toString())
+
+    await usePost('/').post(formData)
+
+    emits('created')
+
+    title = ''
+    author = ''
+    file = null
+    // 节流的时间重置
+    e.target.t1 = t2
+
+    closeModal()
+  }
+
+  state.isPending = false
+}
+</script>
+
 <template>
   <div class="create-book-form">
     <div class="btn-info" @click="openModal">添加书籍</div>
@@ -47,70 +111,4 @@
     </MDialog>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { Ref } from 'vue';
-
-// data
-const baseUrl = import.meta.env.VITE_POST_URL
-let title = $ref('')
-let author = $ref('')
-let file:Blob|string = $ref('')
-let isOpen = $ref(false)
-const target = $ref(null)
-const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
-
-// composables
-const state = $(useLocalState())
-const { usePost } = useFetch(baseUrl, state.token)
-
-// event
-const emits = defineEmits(['created'])
-
-// function
-onClickOutside(target, () => closeModal())
-
-const closeModal = () => {
-  isOpen = false
-}
-const openModal = () => {
-  isOpen = true
-}
-const handleFile = (f:File) => {
-  file = f
-}
-const handleSubmit = async (e :any) => {
-  state.isPending = true
-  // 节流
-  if (!e.target.t1) {
-    e.target.t1 = Date.now()
-  }
-  let t1 = e.target.t1
-  let t2 = Date.now()
-  if (t2 - t1 > 1000) {
-    const formData = new FormData()
-    formData.append('title', title)
-    formData.append('author', author)
-    formData.append('isFav', 'false')
-    formData.append('creator', state.userId)
-    formData.append('image', file)
-    formData.append('time', new Date().toString())
-
-    await usePost('/').post(formData)
-
-    emits('created')
-
-    title = ''
-    author = ''
-    file = ''
-    // 节流的时间重置
-    e.target.t1 = t2
-
-    closeModal()
-  }
-
-  state.isPending = false
-}
-</script>
-
 <style scoped></style>

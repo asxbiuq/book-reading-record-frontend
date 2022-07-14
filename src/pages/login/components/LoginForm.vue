@@ -1,3 +1,32 @@
+<script lang="ts" setup>
+import { useThrottleFn } from '@vueuse/core'
+// data
+interface Props {
+  email: string
+  password: string
+  delay: number
+}
+const {
+  email,
+  password,
+  delay
+} = defineProps<Props>()
+
+
+// event
+const emits = defineEmits([
+  'login', 
+  'update:email', 
+  'update:password'
+])
+
+// function
+// 节流 登陆按钮
+const handleSubmit = useThrottleFn(() => {
+  emits('login')
+}, delay)
+</script>
+
 <template>
   <MForm
     :form-label="'登陆'"
@@ -32,26 +61,5 @@
     </div>
   </MForm>
 </template>
-
-<script setup>
-import { useThrottleFn } from '@vueuse/core'
-// data
-const props = defineProps({
-  email: String,
-  password: String,
-  delay: Number,
-})
-
-
-// event
-const emits = defineEmits(['login', 'update:email', 'update:password'])
-
-// function
-// 节流 登陆按钮
-const handleSubmit = useThrottleFn(() => {
-  // do something, it will be called at most 1 time per second
-  emits('login')
-}, props.delay)
-</script>
 
 <style scoped></style>

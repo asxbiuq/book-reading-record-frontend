@@ -1,7 +1,7 @@
-<script setup>
-defineProps({
-  isOpenAlert:Boolean
-})
+<script lang="ts" setup>
+defineProps<{
+  isOpenAlert: boolean
+}>()
 </script>
 
 <template>

@@ -1,4 +1,6 @@
-const hideElementOnScroll = (el) => {
+import { HtmlHTMLAttributes } from "vue"
+
+const hideElementOnScroll = (el:HTMLElement) => {
   let prevScrollpos = window.pageYOffset
 
   window.addEventListener('scroll', () => {

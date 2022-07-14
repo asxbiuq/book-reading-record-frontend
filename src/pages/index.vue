@@ -1,3 +1,88 @@
+<script lang="ts" setup>
+import { HtmlHTMLAttributes } from 'vue'
+
+interface Post {
+  title: string
+  imageUrl: string
+  content: string
+  creator: string
+  author: string
+  isFav: boolean
+  time: string
+  avatar: string
+  comments: any
+  _id: string
+}
+interface Book extends Post {}
+
+const target = $ref<HTMLElement  | null>(null)
+
+// composables
+const state = $(useLocalState())
+const { posts, getPosts, deletePost, UpdatePost,clearPosts } = $(usePost())
+const { clearComment } = useComment()
+const router = useRouter()
+
+watch($$(posts), () => {
+  console.log('posts: ', posts)
+})
+
+// function
+const handleGetBooks = async () => {
+  clearPosts()
+  await getPosts()
+}
+if (!posts.length) {
+  await handleGetBooks()
+}
+
+const handleDelete = async (book: Post) => {
+  state.isPending = true
+
+  deletePost(book._id)
+
+  state.isPending = false
+}
+
+const handleUpdate = async (book: Post) => {
+  state.isPending = true
+
+  UpdatePost(book)
+
+  state.isPending = false
+}
+const handleDetails = (_book: { _id: string }) => {
+  const state = $(useLocalState())
+  state.postId = _book._id
+  router.push({
+    name: 'Comments',
+    params: {
+      id: _book._id,
+    },
+  })
+}
+onMounted(() => {
+  if (target) {
+    hideElementOnScroll(target)
+  }
+})
+const throttledFn = useThrottleFn(() => {
+  // do something, it will be called at most 1 time per second
+  console.log('Throttle')
+}, 1000)
+document.addEventListener('scroll', throttledFn)
+
+const handleToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  })
+}
+
+if (!state.token) {
+  router.push({ name: 'Login' })
+}
+</script>
 <template>
   <!-- top 定位 向上滚动 -->
   <div id="top"></div>
@@ -36,89 +121,6 @@
   </div>
   <!-- <Loading/> -->
 </template>
-
-<script lang="ts" setup>
-interface Post {
-  title: string
-  imageUrl: string
-  content: string
-  creator: string
-  author: string
-  isFav: boolean
-  time: string
-  avatar: string
-  comments: any
-  _id: string
-}
-interface Book extends Post {}
-
-const target = $ref(null)
-
-
-// composables
-const state = $(useLocalState())
-const { posts, getPosts, deletePost, UpdatePost } = $(usePost())
-const {clearComment} = useComment()
-const router = useRouter()
-
-  watch($$(posts),()=>{
-    console.log('posts: ',posts)
-  })
-
-// function
-const handleGetBooks = async() => {
-  await getPosts()
-}
-if (!posts.length) {
-  await handleGetBooks()
-}
-
-
-const handleDelete = async (book: Post) => {
-  state.isPending = true
-
-  deletePost(book._id)
-
-  state.isPending = false
-}
-
-const handleUpdate = async (book: Post) => {
-  state.isPending = true
-
-  UpdatePost(book)
-
-  state.isPending = false
-}
-const handleDetails = (_book: { _id: string }) => {
-  const state = $(useLocalState())
-  state.postId = _book._id
-  router.push({
-    name: 'Comments',
-    params: {
-      id: _book._id,
-    },
-  })
-}
-onMounted(() => {
-  hideElementOnScroll(target)
-})
-const throttledFn = useThrottleFn(() => {
-  // do something, it will be called at most 1 time per second
-  console.log('Throttle')
-}, 1000)
-document.addEventListener('scroll', throttledFn)
-
-const handleToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  })
-}
-
-if (!state.token) {
-  router.push({ name: 'Login' })
-}
-</script>
 
 <style scoped>
 .home {

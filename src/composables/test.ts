@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash-es'
 
-const hideElementOnScroll = (el) => {
+const hideElementOnScroll = (el:HTMLElement) => {
   let prevScrollpos = window.pageYOffset
 
   window.addEventListener('scroll', () => {

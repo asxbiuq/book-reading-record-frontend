@@ -1,17 +1,5 @@
-<template>
-  <LoginForm
-    v-model:email="email"
-    v-model:password="password"
-    novalidate
-    :delay="1000"
-    @login="handleLogin"
-    class="form"
-    :isPending="state.isPending"
-  />
-</template>
-
 <script lang="ts" setup>
-import { assign } from 'lodash-es';
+import { assign } from 'lodash-es'
 
 // data
 const email = $ref('')
@@ -28,7 +16,7 @@ const handleLogin = async () => {
   state.isPending = true
   const resData: any = await login(email, password)
 
-  assign(state,resData)
+  assign(state, resData)
   // state.token = resData.token
   // state.expiryDate = resData.expiryDate
 
@@ -44,7 +32,17 @@ const handleLogin = async () => {
   state.isPending = false
 }
 </script>
-
+<template>
+  <LoginForm
+    v-model:email="email"
+    v-model:password="password"
+    novalidate
+    :delay="1000"
+    @login="handleLogin"
+    class="form"
+    :isPending="state.isPending"
+  />
+</template>
 <route lang="yaml">
 { meta: { layout: 'login' } }
 </route>

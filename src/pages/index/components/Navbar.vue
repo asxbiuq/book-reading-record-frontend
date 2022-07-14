@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// data
-
 // composables
 const { logout } = $(useLogout())
-const state = useLocalState()
+const state = $(useLocalState())
 const router = useRouter()
 
 // function
@@ -11,12 +9,13 @@ const handleLogout = () => {
   router.push({ name: 'Login' })
   logout()
 }
-const el = ref(null)
+const el = $ref<HTMLInputElement | null>(null)
 
 onMounted(() => {
-  hideElementOnScroll(el.value)
+  hideElementOnScroll(el)
 })
 </script>
+
 <template>
   <div
     ref="el"

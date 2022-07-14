@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+import {
+  TransitionRoot,
+  TransitionChild,
+  Dialog,
+  DialogPanel,
+} from '@headlessui/vue'
+
+const { isOpen } = defineProps<{ isOpen: boolean }>()
+</script>
 <template>
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" class="relative z-10">
@@ -35,17 +45,6 @@
     </Dialog>
   </TransitionRoot>
 </template>
-
-<script setup>
-import {
-  TransitionRoot,
-  TransitionChild,
-  Dialog,
-  DialogPanel,
-} from '@headlessui/vue'
-
-const props = defineProps(['isOpen'])
-</script>
 <style scoped>
 .dialog-panel {
   @apply w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all;

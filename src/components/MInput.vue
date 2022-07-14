@@ -1,37 +1,22 @@
-<template>
-  <div :data-tip="dataTip">
-    <input
-      :type="type"
-      :name="label"
-      :placeholder="placeholder"
-      @keydown="handleKeydown($event)"
-      @change="checkSelectedFile"
-      :value="data"
-      @input="$emit('update:data', $event.target.value)"
-    />
-  </div>
-</template>
-
-<script setup>
-const props = defineProps([
-  'label',
-  'reg',
-  'data',
-  'type',
-  'size',
-  'dataTip',
-  'fileType',
-  'placeholder',
-  'dataConfirm',
-  'inputStyle',
-  'isPending'
-])
+<script lang="ts" setup>
+const props = defineProps<{
+  label: string
+  reg?: RegExp
+  data?: string
+  type: string
+  size?: string
+  dataTip: string
+  fileType?: Array<string>
+  placeholder?: string
+  dataConfirm?: string
+  inputStyle?: string
+  isPending?: boolean
+}>()
 
 const emits = defineEmits(['update:data', 'emit_file', 'fileTypeError'])
 
-
-const checkSelectedFile = (e) => {
-  if (props.type === 'file') {
+const checkSelectedFile = (e: any) => {
+  if (props.type === 'file' && e.target) {
     const selected = e.target.files[0]
 
     if (selected && props.fileType.includes(selected.type)) {
@@ -49,7 +34,7 @@ const checkSelectedFile = (e) => {
   }
 }
 
-const handleKeydown = (e) => {
+const handleKeydown = (e:any) => {
   if (e.target.timeout) clearTimeout(e.target.timeout)
 
   e.target.timeout = setTimeout(() => {
@@ -78,10 +63,20 @@ const handleKeydown = (e) => {
     }
   }, 1000) // delay
 }
-
-
 </script>
-
+<template>
+  <div :data-tip="dataTip">
+    <input
+      :type="type"
+      :name="label"
+      :placeholder="placeholder"
+      @keydown="handleKeydown($event)"
+      @change="checkSelectedFile"
+      :value="data"
+      @input="$emit('update:data', $event.target.value)"
+    />
+  </div>
+</template>
 <style scoped>
 @layer components {
   .input-info {
@@ -100,7 +95,6 @@ const handleKeydown = (e) => {
       @apply z-20 opacity-100;
     }
   }
-
 }
 @tailwind components;
 </style>

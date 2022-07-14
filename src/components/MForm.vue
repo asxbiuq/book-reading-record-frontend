@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+const { formLabel, btnName, isPending } = defineProps<{
+  formLabel: string
+  btnName: string
+  isPending: boolean
+}>()
+</script>
 <template>
   <form>
     <slot name="above_label"></slot>
@@ -16,11 +23,6 @@
     <slot name="under_button"></slot>
   </form>
 </template>
-
-<script setup>
-const props = defineProps(['formLabel', 'btnName','isPending'])
-</script>
-
 <style scoped>
 @import 'styles/utilities.css';
 @import 'styles/components/btn.css';
