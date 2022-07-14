@@ -15,18 +15,18 @@ const handleSubmit = () => {
       name="comment"
       id=""
       placeholder="请输入你的评论"
-      class="bg-gray-50 p-2 rounded"
+      class="bg-[#d6d6cb]  p-2 rounded bg-opacity-[30%] h-[10rem] border-sky-300 border-[2px] focus-visible:outline-none focus-visible:border-sky-500"
     ></textarea>
     <fieldset class="py-4">
       <input
         type="submit"
         value="评论"
-        class="px-4 py-1 bg-blue-600 rounded text-white"
+        class="px-4 py-1 bg-sky-600 bg-opacity-[90%] text-white cursor-pointer rounded-2xl"
       />
       <input
         type="reset"
         value="取消"
-        class="px-4 py-1 bg-white rounded border ml-3"
+        class="px-4 py-1 bg-white bg-opacity-[90%] border ml-3 cursor-pointer rounded-2xl"
       />
     </fieldset>
   </form>

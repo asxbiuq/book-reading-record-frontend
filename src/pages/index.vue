@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { flatMap } from 'lodash-es'
 import { HtmlHTMLAttributes } from 'vue'
 
 interface Post {
@@ -15,13 +16,14 @@ interface Post {
 }
 interface Book extends Post {}
 
-const target = $ref<HTMLElement  | null>(null)
+const target = $ref<HTMLElement | null>(null)
 
 // composables
 const state = $(useLocalState())
-const { posts, getPosts, deletePost, UpdatePost,clearPosts } = $(usePost())
+const { posts, getPosts, deletePost, UpdatePost, clearPosts } = $(usePost())
 const { clearComment } = useComment()
 const router = useRouter()
+let  isScrollToTop  = $(useScrollToTop())
 
 watch($$(posts), () => {
   console.log('posts: ', posts)
@@ -66,18 +68,19 @@ onMounted(() => {
     hideElementOnScroll(target)
   }
 })
-const throttledFn = useThrottleFn(() => {
+const handleClickToTop = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
-  console.log('Throttle')
+  isScrollToTop = true
 }, 1000)
-document.addEventListener('scroll', throttledFn)
+// document.addEventListener('scroll', throttledFn)
 
-const handleToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  })
-}
+// const handleToTop = () => {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: 'smooth',
+//   })
+// }
+// const isScrollToTop = ref(false)
 
 if (!state.token) {
   router.push({ name: 'Login' })
@@ -100,7 +103,7 @@ if (!state.token) {
             @click-btn="handleDelete(book)"
             @click-star="handleUpdate(book)"
             @click-image="handleDetails(book)"
-            class="book-card hover:scale-105 duration-200"
+            class="book-card hover:scale-105 duration-200 drop-shadow-2xl shadow-2xl bg-blend-color-burn"
           />
         </li>
       </ul>
@@ -115,7 +118,7 @@ if (!state.token) {
   </div>
   <div
     class="fixed bottom-5 right-5 hover:text-blue-700 cursor-pointer click"
-    @click="handleToTop"
+    @click="handleClickToTop"
   >
     <i-bi:arrow-up-circle-fill style="font-size: 2em" />
   </div>

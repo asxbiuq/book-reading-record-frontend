@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 const state = useLocalState()
-const isOpenAlert  = ref(false)
-
 </script>
 
 <template>
-
-  <Alert :isOpenAlert="isOpenAlert" />
+  <Alert />
   <div v-if="state.isPending">
     <Loading />
   </div>
@@ -18,5 +15,6 @@ const isOpenAlert  = ref(false)
 <style>
 #app {
   height: 200vh;
+  background-image:  linear-gradient( #C1FFD7,#B5DEFF,#CAB8FF,#FCFFA6);
 }
 </style>

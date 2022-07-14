@@ -5,18 +5,23 @@ let postId: string
 
 const Route = useRoute()
 const { replies, getReplies, addReply, deleteReply } = $(useReply())
-const { comments, addComment, deleteComment, getComments, clearComment } = $(
-  useComment()
-)
+const { comments, addComment, deleteComment, getComments, clearComment } = $(useComment())
+const { clearReplies } = useReply()
+let isScrollToTop = $(useScrollToTop())
 
 clearComment()
+clearReplies()
+
+// 获取路由传递的postId , 如果没有就从本地存储里找
 if (Route.params.id && typeof Route.params.id == 'string' && !comments.length) {
   postId = Route.params.id
   await getComments(postId)
+  isScrollToTop = true
 } else {
   const state = $(useLocalState())
   postId = state.postId
   await getComments(postId)
+  isScrollToTop = true
 }
 
 const GetAndFormat = async () => {
@@ -58,8 +63,8 @@ const handleDeleteReply = async (replyId: string) => {
 </script>
 
 <template>
-  <main class="p-4 bg-gray-50 min-h-screen w-[80vw] max-w-3xl">
-    <div class="max-w-screen-xl mx-auto bg-white p-8 rounded-lg shadow-2xl">
+  <main class="p-4  min-h-screen w-[80vw] max-w-3xl">
+    <div class="max-w-screen-xl mx-auto  p-8 rounded-xl shadow-2xl bg-opacity-25">
       <h2 class="text-3xl my-6">评论</h2>
       <CommentBox @submit="handleAddComment" />
       <!-- 分隔线 -->

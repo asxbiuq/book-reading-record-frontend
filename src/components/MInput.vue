@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  label: string
+  label?: string
   reg?: RegExp
   data?: string
   type: string
@@ -16,7 +16,7 @@ const props = defineProps<{
 const emits = defineEmits(['update:data', 'emit_file', 'fileTypeError'])
 
 const checkSelectedFile = (e: any) => {
-  if (props.type === 'file' && e.target) {
+  if (props.type === 'file' && e.target && props.fileType) {
     const selected = e.target.files[0]
 
     if (selected && props.fileType.includes(selected.type)) {
@@ -61,7 +61,7 @@ const handleKeydown = (e:any) => {
         e.target.parentNode.classList.remove('tooltip-error')
       }
     }
-  }, 1000) // delay
+  }, 500) // delay
 }
 </script>
 <template>

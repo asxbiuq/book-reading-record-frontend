@@ -33,7 +33,7 @@ const handleClickImage = () => {
 </script>
 
 <template>
-  <div>
+  <div class=" bg-opacity-[20%]">
     <div class="img-shell" @click="handleClickImage">
       <img :src="imgUrl" alt="image" />
     </div>

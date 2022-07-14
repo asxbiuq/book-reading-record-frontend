@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Alert from '@/components/Alert.vue';
 // data
 const baseUrl = import.meta.env.VITE_POST_URL
 let title = $ref('')
@@ -11,7 +12,7 @@ const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 // composables
 const state = $(useLocalState())
 const { usePost } = useFetch(baseUrl, state.token)
-
+const { alertState } = useAlertState()
 // event
 const emits = defineEmits(['created'])
 
@@ -30,6 +31,15 @@ const handleFile = (f: File) => {
 
 const handleSubmit = async (e: any) => {
   state.isPending = true
+
+  if (!(title && author && file)) {
+    alertState.isOpenAlert = true
+    alertState.info = '书籍表单提交错误,请再次确认!'
+    setTimeout(()=>{
+      alertState.isOpenAlert = false
+    },1000)
+  }
+
   // 节流
   if (!e.target.t1) {
     e.target.t1 = Date.now()
@@ -63,6 +73,7 @@ const handleSubmit = async (e: any) => {
 </script>
 
 <template>
+
   <div class="create-book-form">
     <div class="btn-info" @click="openModal">添加书籍</div>
     <MDialog :is-open="isOpen">

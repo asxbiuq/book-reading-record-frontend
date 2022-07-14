@@ -11,6 +11,7 @@ specifiers:
   '@vue/test-utils': ^2.0.0
   '@vueuse/components': ^8.6.0
   '@vueuse/core': ^8.6.0
+  animate.css: ^4.1.1
   autoprefixer: ^10.4.7
   daisyui: ^2.15.1
   dayjs: ^1.11.3
@@ -52,6 +53,7 @@ dependencies:
   '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.6
   '@vueuse/components': registry.npmmirror.com/@vueuse/components/8.6.0_vue@3.2.37
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.6.0_vue@3.2.37
+  animate.css: registry.npmmirror.com/animate.css/4.1.1
   daisyui: registry.npmmirror.com/daisyui/2.15.3_ugi4xkrfysqkt4c4y6hkyfj344
   dayjs: registry.npmmirror.com/dayjs/1.11.3
   debug: registry.npmmirror.com/debug/4.3.4
@@ -727,6 +729,12 @@ packages:
       json-schema-traverse: registry.npmmirror.com/json-schema-traverse/0.4.1
       uri-js: registry.npmmirror.com/uri-js/4.4.1
     dev: true
+
+  registry.npmmirror.com/animate.css/4.1.1:
+    resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/animate.css/-/animate.css-4.1.1.tgz}
+    name: animate.css
+    version: 4.1.1
+    dev: false
 
   registry.npmmirror.com/ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ansi-regex/-/ansi-regex-5.0.1.tgz}
