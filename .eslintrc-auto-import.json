@@ -164,7 +164,6 @@
     "useLastChanged": true,
     "useLocalState": true,
     "useLocalStorage": true,
-    "useLocaleState": true,
     "useLogin": true,
     "useLogout": true,
     "useMagicKeys": true,

@@ -14,10 +14,13 @@
   "dependencies": {
     "@headlessui/vue": "^1.6.4",
     "@tailwindcss/nesting": "0.0.0-insiders.565cd3e",
+    "@types/debug": "^4.1.7",
     "@types/lodash-es": "^4.17.6",
     "@vueuse/components": "^8.6.0",
     "@vueuse/core": "^8.6.0",
     "daisyui": "^2.15.1",
+    "dayjs": "^1.11.3",
+    "debug": "^4.3.4",
     "lodash-es": "^4.17.21",
     "moment": "^2.29.4",
     "nanoid": "^4.0.0",
