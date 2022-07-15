@@ -1,6 +1,3 @@
-import { defineStore } from 'pinia'
-import { Ref } from 'vue'
-
 interface User {
   isPending: boolean
   token: string

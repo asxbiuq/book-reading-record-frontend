@@ -35,7 +35,7 @@ export default defineConfig({
         'vue-router',
         '@vueuse/core',
         'pinia',
-        { 'lodash-es': ['assign', 'remove', 'isPlainObject', 'merge'] },
+        { 'lodash-es': ['assign', 'remove', 'isPlainObject', 'merge','forEach','throttle'] },
         // custom
         {
           // '@vueuse/core': [

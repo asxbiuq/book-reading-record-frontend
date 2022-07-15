@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useThrottleFn } from '@vueuse/core'
 // data
 interface Props {
   email: string

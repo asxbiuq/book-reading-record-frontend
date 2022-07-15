@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { assign } from 'lodash-es'
-
 // data
 const email = $ref('')
 const password = $ref('')

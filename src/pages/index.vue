@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { flatMap } from 'lodash-es'
 import { HtmlHTMLAttributes } from 'vue'
 
 interface Post {

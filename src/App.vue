@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-const state = useLocalState()
+
 </script>
 
 <template>
   <Alert />
-  <div v-if="state.isPending">
-    <Loading />
-  </div>
-  <Navbar />
+  <Loading />
 
+  <Navbar />
   <router-view />
 </template>
 

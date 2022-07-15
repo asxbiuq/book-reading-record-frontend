@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { forEach } from 'lodash-es'
-
 let postId: string
 
 const Route = useRoute()

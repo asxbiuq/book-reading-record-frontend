@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-// defineProps<{
-//   info?:string
-//   isOpenAlert: boolean
-// }>()
 const { alertState } = useAlertState()
 </script>
 

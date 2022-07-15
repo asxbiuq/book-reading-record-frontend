@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 // 父组件传来的Props值为只读,无法更改
+const  {loadingState}  = $(useLoadingState())
 interface Props {
   text?: string
   confirmBtnText?: string
@@ -24,22 +25,27 @@ const cancel = () => {
   emit('cancel')
   console.log('emit(cancel)')
 }
+watch(loadingState,()=>{
+  console.log(loadingState.isLoading)
+})
 </script>
 <template>
   <teleport to="body">
-    <!-- 最外面的div起到遮罩作用 -->
-    <div
-      class="fixed top-[7%] left-[0%] flex justify-center items-center py-[50vh] px-[50vw] overflow-visible"
-    >
-      <div class="loadingio-spinner-bars-544xk61qn0j absolute top-[20vh]">
-        <div class="ldio-1ihc0eb0wqs">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+    <div v-if="loadingState.isLoading">
+      <!-- 最外面的div起到遮罩作用 -->
+      <div
+        class="fixed top-[7%] left-[0%] flex justify-center items-center py-[50vh] px-[50vw] overflow-visible"
+      >
+        <div class="loadingio-spinner-bars-544xk61qn0j absolute top-[20vh]">
+          <div class="ldio-1ihc0eb0wqs">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
+        <!-- <div class="btn-danger">取消</div> -->
       </div>
-      <!-- <div class="btn-danger">取消</div> -->
     </div>
   </teleport>
 </template>

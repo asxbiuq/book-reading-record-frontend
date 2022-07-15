@@ -1,6 +1,3 @@
-import { createGlobalState, useStorage } from '@vueuse/core'
-import { defineStore } from 'pinia'
-
 const state = useStorage('vue-use-locale-storage', {
   isPending: false,
   token: '',

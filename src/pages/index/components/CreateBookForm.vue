@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import Alert from '@/components/Alert.vue'
 // data
 const baseUrl = import.meta.env.VITE_POST_URL
 let title = $ref('')
@@ -29,7 +28,7 @@ const handleFile = (f: File) => {
   file = f
 }
 
-const handleSubmit = async (e: any) => {
+const handleSubmit = useThrottleFn(async(e: any) => {
   state.isPending = true
 
   if (!(title && author && file)) {
@@ -69,7 +68,7 @@ const handleSubmit = async (e: any) => {
   }
 
   state.isPending = false
-}
+},1000)
 </script>
 
 <template>
