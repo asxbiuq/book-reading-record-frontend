@@ -5,7 +5,9 @@ let postId: string
 
 const Route = useRoute()
 const { replies, getReplies, addReply, deleteReply } = $(useReply())
-const { comments, addComment, deleteComment, getComments, clearComment } = $(useComment())
+const { comments, addComment, deleteComment, getComments, clearComment } = $(
+  useComment()
+)
 const { clearReplies } = useReply()
 let isScrollToTop = $(useScrollToTop())
 
@@ -63,8 +65,10 @@ const handleDeleteReply = async (replyId: string) => {
 </script>
 
 <template>
-  <main class="p-4  min-h-screen w-[80vw] max-w-3xl">
-    <div class="max-w-screen-xl mx-auto  p-8 rounded-xl shadow-2xl bg-opacity-25">
+  <main class="p-4 min-h-screen w-[80vw] max-w-3xl">
+    <div
+      class="max-w-screen-xl mx-auto p-8 rounded-xl shadow-2xl bg-opacity-25"
+    >
       <h2 class="text-3xl my-6">评论</h2>
       <CommentBox @submit="handleAddComment" />
       <!-- 分隔线 -->

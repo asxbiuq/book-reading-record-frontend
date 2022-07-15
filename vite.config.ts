@@ -11,9 +11,6 @@ import IconsResolver from 'unplugin-icons/resolver'
 import { fileURLToPath } from 'url'
 import { Url } from 'url'
 
-
-
-
 // https://vitejs.dev/config/
 export default defineConfig({
   // assetsInclude: ['**/*.jfif'],
@@ -37,6 +34,8 @@ export default defineConfig({
         'vue',
         'vue-router',
         '@vueuse/core',
+        'pinia',
+        { 'lodash-es': ['assign', 'remove', 'isPlainObject', 'merge'] },
         // custom
         {
           // '@vueuse/core': [
@@ -140,7 +139,6 @@ export default defineConfig({
       defaultLayout: 'default',
     }),
     Icons({ autoInstall: true }),
-    
   ],
   resolve: {
     alias: {

@@ -4,19 +4,11 @@ interface Props {
   password: string
   name: string
 }
-const {
-  email,
-  password,
-  name
-} = defineProps<Props>()
+const { email, password, name } = defineProps<Props>()
 
 const pswRepeat = $ref('')
 
-const emits = defineEmits([
-  'update:email', 
-  'update:password', 
-  'update:name'
-])
+const emits = defineEmits(['update:email', 'update:password', 'update:name'])
 </script>
 
 <template>

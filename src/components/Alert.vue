@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 // defineProps<{
 //   info?:string
 //   isOpenAlert: boolean
@@ -9,11 +8,14 @@ const { alertState } = useAlertState()
 
 <template>
   <teleport to="body">
-    <transition 
-      enter-active-class="animate__animated animate__fadeIn animate__faster" 
+    <transition
+      enter-active-class="animate__animated animate__fadeIn animate__faster"
       leave-active-class="animate__animated animate__fadeOut"
     >
-      <div v-if="alertState.isOpenAlert" class="w-screen flex justify-center z-20 fixed">
+      <div
+        v-if="alertState.isOpenAlert"
+        class="w-screen flex justify-center z-20 fixed"
+      >
         <div
           class="p-alert p-alert-error shadow-lg w-[70vw] max-w-3xl top-12 z-20 fixed"
         >
@@ -39,6 +41,4 @@ const { alertState } = useAlertState()
   </teleport>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

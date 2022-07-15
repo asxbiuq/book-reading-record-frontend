@@ -5,7 +5,6 @@ import generatedRoutes from 'virtual:generated-pages'
 const routes = setupLayouts(generatedRoutes)
 const state = useLocalState()
 
-
 const router = createRouter({
   history: createWebHistory(),
   routes,

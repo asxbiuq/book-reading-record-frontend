@@ -23,7 +23,7 @@ const state = $(useLocalState())
 const { posts, getPosts, deletePost, UpdatePost, clearPosts } = $(usePost())
 const { clearComment } = useComment()
 const router = useRouter()
-let  isScrollToTop  = $(useScrollToTop())
+let isScrollToTop = $(useScrollToTop())
 
 watch($$(posts), () => {
   console.log('posts: ', posts)

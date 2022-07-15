@@ -1,23 +1,22 @@
 interface resData {
-  token:string,
-  userId:string,
-  name:string,
-  expiryDate:string
+  token: string
+  userId: string
+  name: string
+  expiryDate: string
 }
 
-
-let resData :resData = {
-  token:'',
-  userId:'',
-  name:'',
-  expiryDate:''
+let resData: resData = {
+  token: '',
+  userId: '',
+  name: '',
+  expiryDate: '',
 }
 
-const useLogin = (url:string) => {
+const useLogin = (url: string) => {
   let error = $ref(null)
   let isPending = $ref(false)
-  
-  const login = async (email:string, password:string) => {
+
+  const login = async (email: string, password: string) => {
     error = null
     isPending = true
 
@@ -36,7 +35,7 @@ const useLogin = (url:string) => {
       })
 
       if (res.status !== 200 && res.status !== 201) {
-        const resData :{message:string}= await res.json()
+        const resData: { message: string } = await res.json()
         throw new Error(resData.message)
       }
 
@@ -48,17 +47,15 @@ const useLogin = (url:string) => {
 
       error = null
       isPending = false
-      return  resData 
-    } catch (err:any) {
+      return resData
+    } catch (err: any) {
       console.log(err.message)
       error = err.message
       isPending = false
     }
   }
 
-
   return { error, login, isPending }
 }
-
 
 export default useLogin

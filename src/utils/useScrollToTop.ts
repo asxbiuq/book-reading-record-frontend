@@ -1,10 +1,9 @@
 import { Ref } from 'vue'
 
-let isScrollToTop =ref(false)
+let isScrollToTop = ref(false)
 
 const useScrollToTop = () => {
-  
-  watch(isScrollToTop,()=>{
+  watch(isScrollToTop, () => {
     if (isScrollToTop) {
       window.scrollTo({
         top: 0,

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Alert from '@/components/Alert.vue';
+import Alert from '@/components/Alert.vue'
 // data
 const baseUrl = import.meta.env.VITE_POST_URL
 let title = $ref('')
@@ -35,9 +35,9 @@ const handleSubmit = async (e: any) => {
   if (!(title && author && file)) {
     alertState.isOpenAlert = true
     alertState.info = '书籍表单提交错误,请再次确认!'
-    setTimeout(()=>{
+    setTimeout(() => {
       alertState.isOpenAlert = false
-    },1000)
+    }, 1000)
   }
 
   // 节流
@@ -73,7 +73,6 @@ const handleSubmit = async (e: any) => {
 </script>
 
 <template>
-
   <div class="create-book-form">
     <div class="btn-info" @click="openModal">添加书籍</div>
     <MDialog :is-open="isOpen">

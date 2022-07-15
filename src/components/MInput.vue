@@ -34,7 +34,7 @@ const checkSelectedFile = (e: any) => {
   }
 }
 
-const handleKeydown = (e:any) => {
+const handleKeydown = (e: any) => {
   if (e.target.timeout) clearTimeout(e.target.timeout)
 
   e.target.timeout = setTimeout(() => {

@@ -6,19 +6,10 @@ interface Props {
   password: string
   delay: number
 }
-const {
-  email,
-  password,
-  delay
-} = defineProps<Props>()
-
+const { email, password, delay } = defineProps<Props>()
 
 // event
-const emits = defineEmits([
-  'login', 
-  'update:email', 
-  'update:password'
-])
+const emits = defineEmits(['login', 'update:email', 'update:password'])
 
 // function
 // 节流 登陆按钮

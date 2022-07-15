@@ -10,9 +10,9 @@ const url = import.meta.env.VITE_AUTH_URL + '/login'
 const router = useRouter()
 const state = $(useLocalState())
 const { error, login } = $(useLogin(url))
-let  isScrollToTop  = $(useScrollToTop())
+let isScrollToTop = $(useScrollToTop())
 
-watchEffect(()=>{
+watchEffect(() => {
   isScrollToTop = true
 })
 

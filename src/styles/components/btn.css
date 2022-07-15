@@ -12,7 +12,6 @@
     &:active,
     &:focus {
       @apply bg-amber-200 text-red-500;
-      
     }
   }
   .btn-warning {
@@ -26,8 +25,8 @@
     }
   }
   .btn-loading {
-    @apply p-btn p-loading p-btn-wide rounded-3xl shadow-xl click p-btn-info p-btn-square ;
-    
+    @apply p-btn p-loading p-btn-wide rounded-3xl shadow-xl click p-btn-info p-btn-square;
+
     &:hover,
     &:active,
     &:focus {

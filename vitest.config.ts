@@ -1,4 +1,4 @@
-import { configDefaults,defineConfig } from 'vitest/config'
+import { configDefaults, defineConfig } from 'vitest/config'
 import AutoImport from 'unplugin-auto-import/vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath } from 'url'

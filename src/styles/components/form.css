@@ -30,10 +30,10 @@
       @apply p-btn w-full bg-indigo-400;
     }
     span {
-      @apply flex truncate items-center
+      @apply flex truncate items-center;
     }
-    input[type="checkbox"] {
-      @apply p-0 h-4  flex-none w-min
+    input[type='checkbox'] {
+      @apply p-0 h-4  flex-none w-min;
     }
   }
 }

@@ -15,7 +15,7 @@ const handleSubmit = () => {
       name="comment"
       id=""
       placeholder="请输入你的评论"
-      class="bg-[#d6d6cb]  p-2 rounded bg-opacity-[30%] h-[10rem] border-sky-300 border-[2px] focus-visible:outline-none focus-visible:border-sky-500"
+      class="bg-[#d6d6cb] p-2 rounded bg-opacity-[30%] h-[10rem] border-sky-300 border-[2px] focus-visible:outline-none focus-visible:border-sky-500"
     ></textarea>
     <fieldset class="py-4">
       <input

@@ -1,7 +1,6 @@
 import { createFetch } from '@vueuse/core'
 
-const useFetch = (baseUrl:string, token:string) => {
-
+const useFetch = (baseUrl: string, token: string) => {
   const useGets = createFetch({
     baseUrl: baseUrl, // 基础路由
     options: {
@@ -10,7 +9,9 @@ const useFetch = (baseUrl:string, token:string) => {
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
         if (!(token && baseUrl)) {
-          throw new Error(`Error happened in useFetch, token is ${token}, baseUrl is ${baseUrl}`);
+          throw new Error(
+            `Error happened in useFetch, token is ${token || null}, baseUrl is ${baseUrl}`
+          )
         }
         options.headers.Authorization = `Bearer ${token}`
 
@@ -46,7 +47,9 @@ const useFetch = (baseUrl:string, token:string) => {
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
         if (!(token && baseUrl)) {
-          throw new Error(`Error happened in useFetch, token is ${token}, baseUrl is ${baseUrl}`);
+          throw new Error(
+            `Error happened in useFetch, token is ${token || null}, baseUrl is ${baseUrl}`
+          )
         }
         options.headers.Authorization = `Bearer ${token}`
 
@@ -85,7 +88,9 @@ const useFetch = (baseUrl:string, token:string) => {
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
         if (!(token && baseUrl)) {
-          throw new Error(`Error happened in useFetch, token is ${token}, baseUrl is ${baseUrl}`);
+          throw new Error(
+            `Error happened in useFetch, token is ${token || null}, baseUrl is ${baseUrl}`
+          )
         }
         options.headers.Authorization = `Bearer ${token}`
 
@@ -96,13 +101,11 @@ const useFetch = (baseUrl:string, token:string) => {
         // code...
         if (response.status !== 200) {
           const resData = await data.json()
-          throw new Error(
-            'Could not update' + ' ' + resData.message
-          )
+          throw new Error('Could not update' + ' ' + resData.message)
         } else {
           console.log('Update the document')
         }
-        return { data, response } 
+        return { data, response }
       },
       // 请求错误
       async onFetchError({ data, error }) {
@@ -125,7 +128,9 @@ const useFetch = (baseUrl:string, token:string) => {
       // 在请求前修改配置，如：注入 token 值
       async beforeFetch({ options }) {
         if (!(token && baseUrl)) {
-          throw new Error(`Error happened in useFetch, token is ${token}, baseUrl is ${baseUrl}`);
+          throw new Error(
+            `Error happened in useFetch, token is ${token || null}, baseUrl is ${baseUrl}`
+          )
         }
         options.headers.Authorization = `Bearer ${token}`
 
@@ -189,8 +194,6 @@ const useFetch = (baseUrl:string, token:string) => {
     //   //credentials: 'include', // 请求时携带 cookie 值
     // },
   })
-
-
 
   return {
     useGets,

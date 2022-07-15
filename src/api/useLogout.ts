@@ -1,9 +1,9 @@
 let error = $ref(null)
 let isPending = $ref(false)
 
-const logout =  () => {
+const logout = () => {
   const state = $(useLocalState())
-  const {clearPosts} = $(usePost())
+  const { clearPosts } = $(usePost())
 
   error = null
   isPending = true
@@ -11,16 +11,16 @@ const logout =  () => {
   try {
     state.token = ''
     state.expiryDate = ''
-    state.isPending= false,
-    state.token= '',
-    state.expiryDate= '',
-    state.postId='',
-    state.userId='',
-    state.name=''
+    ;(state.isPending = false),
+      (state.token = ''),
+      (state.expiryDate = ''),
+      (state.postId = ''),
+      (state.userId = ''),
+      (state.name = '')
     isPending = false
     clearPosts()
     console.log('logout!')
-  } catch (err:any) {
+  } catch (err: any) {
     console.log(err.message)
     error = err.message
     isPending = false

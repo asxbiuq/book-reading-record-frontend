@@ -15,6 +15,6 @@ const state = useLocalState()
 <style>
 #app {
   height: 200vh;
-  background-image:  linear-gradient( #C1FFD7,#B5DEFF,#CAB8FF,#FCFFA6);
+  background-image: linear-gradient(#c1ffd7, #b5deff, #cab8ff, #fcffa6);
 }
 </style>
