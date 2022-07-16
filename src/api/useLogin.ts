@@ -19,7 +19,9 @@ const useLogin = (url: string) => {
   const login = async (email: string, password: string) => {
     error = null
     isPending = true
-
+    if (!(email||password)) {
+      throw new Error(`email : ${email || null}, password: ${password || null}`)
+    }
     // let token, userId, expiryDate
 
     try {

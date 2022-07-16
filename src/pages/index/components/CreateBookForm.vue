@@ -37,6 +37,8 @@ const handleSubmit = useThrottleFn(async(e: any) => {
     setTimeout(() => {
       alertState.isOpenAlert = false
     }, 1000)
+  } else {
+    throw new Error(`title: ${title}, author: ${author}, file: ${file}`);
   }
 
   // 节流

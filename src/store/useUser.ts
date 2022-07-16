@@ -1,29 +1,37 @@
+type UserId = string
+type Name = string
+interface Post {
+  title: string
+  imageUrl: string
+  content: string
+  creator: string
+  author: string
+  isFav: boolean
+  time: string
+  avatar: string
+  comments: any
+  _id: string
+}
 interface User {
-  isPending: boolean
-  token: string
-  expiryDate: string
-  postId: string
-  userId: string
-  name: string
+  posts:Post[]
+  comments:Comment[]
+  userId: UserId
+  name: Name
 }
 
 export const useUser = defineStore('user', () => {
   const user: User = $ref({
-    isPending: false,
-    token: '',
-    expiryDate: '',
-    postId: '',
     userId: '',
     name: '',
+    posts:[],
+    comments:[]
   })
 
   const clearUser = () => {
-    ;(user.isPending = false),
-      (user.token = ''),
-      (user.expiryDate = ''),
-      (user.postId = ''),
-      (user.userId = ''),
-      (user.name = '')
+    ;(user.userId = ''),
+      (user.name = ''),
+      (user.posts = []),
+      (user.comments = [])
   }
   watch(user, () => {
     console.log('user: ', user)

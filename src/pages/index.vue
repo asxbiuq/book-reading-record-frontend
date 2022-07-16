@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { HtmlHTMLAttributes } from 'vue'
+import { useRequest } from 'vue-request';
 
 interface Post {
   title: string
@@ -28,13 +29,23 @@ watch($$(posts), () => {
   console.log('posts: ', posts)
 })
 
+
+
 // function
+
+
+
+
 const handleGetBooks = async () => {
   clearPosts()
   await getPosts()
 }
+
+if (!state.token) {
+  router.push({ name: 'Login' })
+}
 if (!posts.length) {
-  await handleGetBooks()
+  handleGetBooks()
 }
 
 const handleDelete = async (book: Post) => {
@@ -81,10 +92,13 @@ const handleClickToTop = useThrottleFn(() => {
 // }
 // const isScrollToTop = ref(false)
 
-if (!state.token) {
-  router.push({ name: 'Login' })
-}
+
 </script>
+<route lang="yaml">
+meta:
+  requiresAuth: true
+</route>
+
 <template>
   <!-- top 定位 向上滚动 -->
   <div id="top"></div>

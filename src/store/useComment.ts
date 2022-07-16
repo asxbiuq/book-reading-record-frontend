@@ -1,3 +1,11 @@
+interface Reply {
+  _id: string
+  creator: string
+  creatorId: string
+  content: string
+  time: Date
+  commentId: string
+}
 interface Comment {
   _id: string
   creatorId: string
@@ -5,7 +13,7 @@ interface Comment {
   content: string
   time: Date
   postId: string
-  replies: Array<any>
+  replies: Reply[]
 }
 
 export const useComment = defineStore('comment', () => {
@@ -46,7 +54,9 @@ export const useComment = defineStore('comment', () => {
       console.log(data)
       comments.push(data.comment)
     } else {
-      console.log(error)
+      const {open} = $(useAlertState())
+      open('输入错误!')
+      throw new Error(`error: ${error}, data: ${data}`);
     }
   }
 

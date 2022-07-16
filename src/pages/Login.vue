@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useRequest } from 'vue-request';
 // data
 const email = $ref('')
 const password = $ref('')
@@ -18,7 +19,9 @@ watchEffect(() => {
 const handleLogin = async () => {
   state.isPending = true
   const resData: any = await login(email, password)
-
+  // const { data, run } = useRequest(getUser)
+  // run(email,password)
+  // console.log('useRequest',data.value)
   assign(state, resData)
   // state.token = resData.token
   // state.expiryDate = resData.expiryDate
@@ -33,6 +36,10 @@ const handleLogin = async () => {
   }
 
   state.isPending = false
+}
+beforeEnter: (to:any, from:any, next:any) => {
+  // ...
+  from.meta.requiresAuth 
 }
 </script>
 <template>

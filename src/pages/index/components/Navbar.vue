@@ -12,7 +12,11 @@ const handleLogout = () => {
 const el = $ref<HTMLInputElement | null>(null)
 
 onMounted(() => {
-  hideElementOnScroll(el)
+  if (el) {
+    hideElementOnScroll(el)
+  }else {
+    throw new Error(`el is ${el}`)
+  }
 })
 </script>
 

@@ -2,7 +2,13 @@ const error = ref(null)
 const isPending = ref(false)
 
 const useSignup = (url: string) => {
+  if (!url) {
+    throw new Error(`url is ${url || null}`)
+  }
   const signup = async (email: string, password: string, name: string) => {
+    if (!(email||password||name)) {
+      throw new Error(`email is ${email || null}, password is ${password || null}, name is ${name || null},`)
+    }
     let userId: string, token: string, expiryDate: string
     try {
       const res = await fetch(url, {

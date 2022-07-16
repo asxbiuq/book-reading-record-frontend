@@ -1,3 +1,20 @@
+interface Reply {
+  _id: string
+  creator: string
+  creatorId: string
+  content: string
+  time: Date
+  commentId: string
+}
+interface Comment {
+  _id: string
+  creatorId: string
+  creator: string
+  content: string
+  time: Date
+  postId: string
+  replies: Reply[]
+}
 interface Post {
   title: string
   imageUrl: string
@@ -7,7 +24,7 @@ interface Post {
   isFav: boolean
   time: string
   avatar: string
-  comments: any
+  comments: Comment[]
   _id: string
 }
 

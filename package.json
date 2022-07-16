@@ -19,6 +19,7 @@
     "@vueuse/components": "^8.6.0",
     "@vueuse/core": "^8.6.0",
     "animate.css": "^4.1.1",
+    "axios": "^0.27.2",
     "daisyui": "^2.15.1",
     "dayjs": "^1.11.3",
     "debug": "^4.3.4",
@@ -30,6 +31,7 @@
     "sequelize": "^6.21.2",
     "sqlite3": "^5.0.8",
     "vue": "^3.2.25",
+    "vue-request": "2.0.0-rc.3",
     "vue-router": "^4.0.13"
   },
   "devDependencies": {
@@ -53,7 +55,6 @@
     "unplugin-icons": "^0.14.5",
     "unplugin-vue-components": "^0.19.6",
     "vite": "^2.9.9",
-    "vite-plugin-components": "^0.13.3",
     "vite-plugin-iconify": "^0.1.1",
     "vite-plugin-pages": "^0.23.0",
     "vite-plugin-vue-layouts": "^0.6.0",

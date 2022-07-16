@@ -22,10 +22,14 @@ const handleSignup = async () => {
     // user.userId = userId
     // state.token = token
     // state.expiryDate = expiryDate
+  } else {
+    throw new Error(`result is ${result}`)
   }
 
   if (!error) {
     router.push('/')
+  } else {
+    throw new Error(`result is ${error}`)
   }
 
   state.isPending = false
