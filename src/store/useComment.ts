@@ -1,20 +1,4 @@
-interface Reply {
-  _id: string
-  creator: string
-  creatorId: string
-  content: string
-  time: Date
-  commentId: string
-}
-interface Comment {
-  _id: string
-  creatorId: string
-  creator: string
-  content: string
-  time: Date
-  postId: string
-  replies: Reply[]
-}
+
 
 export const useComment = defineStore('comment', () => {
   const commentBaseUrl = import.meta.env.VITE_COMMENT_URL

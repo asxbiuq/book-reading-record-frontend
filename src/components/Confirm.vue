@@ -4,7 +4,7 @@ interface Props {
   text: string
   confirmBtnText: string
   cancelBtnText: string
-  isModelOpen: Boolean
+  isModelOpen: boolean
 }
 const {
   text = '',

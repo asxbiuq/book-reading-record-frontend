@@ -1,11 +1,5 @@
-interface Reply {
-  _id: string
-  creator: string
-  creatorId: string
-  content: string
-  time: Date
-  commentId: string
-}
+import { nanoid } from "nanoid"
+
 
 export const useReply = defineStore('reply', () => {
   const replyBaseUrl = import.meta.env.VITE_REPLY_URL
@@ -18,7 +12,7 @@ export const useReply = defineStore('reply', () => {
     const { isFetching, error, data } = $(
       await useGets(commentId + '/replies').json()
     )
-
+    let replies:Reply[] = []
     if (!error && data.replies) {
       data.replies.forEach((reply: Reply) => {
         replies.push(reply)
@@ -36,13 +30,26 @@ export const useReply = defineStore('reply', () => {
       commentId: commentId,
     }
 
-    const { error } = $(await usePost(commentId).post(newReply))
+    const { error,data } = $(await usePost(commentId).post(newReply).json())
+    if (!error) {
+      const {comments} = $(useComment())
+      comments.forEach((comment)=>{
+        if (comment._id === commentId) {
+          comment.replies.push(data.reply)
+        }
+      })
+    }
   }
 
-  const deleteReply = async (replyId: string) => {
-    const { error } = $(await useDelete(replyId).delete())
-    if (!error && replies) {
-      remove(replies, (reply: Reply) => reply._id == replyId)
+  const deleteReply = async (reply: Reply) => {
+    const { error } = $(await useDelete(reply._id).delete())
+    if (!error) {
+      const {comments} = $(useComment())
+      comments.forEach((comment)=>{
+        if (comment._id === reply.commentId) {
+          remove(comment.replies, (item: Reply) => item._id === reply._id)
+        }
+      })
     } else {
       console.log(error)
     }

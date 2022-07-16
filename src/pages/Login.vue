@@ -37,10 +37,7 @@ const handleLogin = async () => {
 
   state.isPending = false
 }
-beforeEnter: (to:any, from:any, next:any) => {
-  // ...
-  from.meta.requiresAuth 
-}
+
 </script>
 <template>
   <LoginForm

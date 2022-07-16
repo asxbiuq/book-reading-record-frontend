@@ -24,16 +24,20 @@ if (Route.params.id && typeof Route.params.id == 'string' && !comments.length) {
   isScrollToTop = true
 }
 
-const GetAndFormat = async () => {
-  formatTime(comments)
+// const GetAndFormat = async () => {
+//   formatTime(comments)
 
-  forEach(comments, async (comment) => {
-    await getReplies(comment._id)
-    formatTime(replies)
-    comment.replies = replies
-  })
-}
-await GetAndFormat()
+//   forEach(comments, async (comment) => {
+//     await getReplies(comment._id)
+//     if (replies.length) {
+//       console.log(replies)
+//       formatTime(replies)
+//       comment.replies = replies
+//       clearReplies()
+//     }
+//   })
+// }
+// await GetAndFormat()
 
 const handleAddComment = async (content: string) => {
   await addComment(content, postId)
@@ -52,13 +56,13 @@ const handleAddReply = async (content: string, commentId: string) => {
 
   content = ''
 
-  await GetAndFormat()
+  // await GetAndFormat()
 }
 
-const handleDeleteReply = async (replyId: string) => {
-  await deleteReply(replyId)
+const handleDeleteReply = async (reply: Reply) => {
+  await deleteReply(reply)
 
-  await GetAndFormat()
+  // await GetAndFormat()
 }
 </script>
 
@@ -89,7 +93,7 @@ const handleDeleteReply = async (replyId: string) => {
             :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
             :time="reply.time"
             :content="reply.content"
-            @deleteComment="handleDeleteReply(reply._id)"
+            @deleteComment="handleDeleteReply(reply)"
           />
         </ReplyContainer>
         <ReplyBox @submit="handleAddReply($event, comment._id)" />

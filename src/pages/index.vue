@@ -2,19 +2,6 @@
 import { HtmlHTMLAttributes } from 'vue'
 import { useRequest } from 'vue-request';
 
-interface Post {
-  title: string
-  imageUrl: string
-  content: string
-  creator: string
-  author: string
-  isFav: boolean
-  time: string
-  avatar: string
-  comments: any
-  _id: string
-}
-interface Book extends Post {}
 
 const target = $ref<HTMLElement | null>(null)
 
