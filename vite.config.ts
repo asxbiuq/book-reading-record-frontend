@@ -10,6 +10,9 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { fileURLToPath } from 'url'
 import { Url } from 'url'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import removeConsole from 'vite-plugin-remove-console'
+import { ViteTips } from 'vite-plugin-tips'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -139,6 +142,9 @@ export default defineConfig({
       defaultLayout: 'default',
     }),
     Icons({ autoInstall: true }),
+    vueJsx(),
+    removeConsole(), //打包时自动移除console.log
+    ViteTips()
   ],
   resolve: {
     alias: {
