@@ -21,6 +21,14 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+router.beforeEach((to, from, next) => {
+// 404页面
+if (!to.matched.length) {
+next({name:'404page'});
+} else {
+next();
+}
+});
 // console.log(router)
 
 export default router
