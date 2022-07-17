@@ -11,7 +11,7 @@ const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 // composables
 const state = $(useLocalState())
 const { usePost } = useFetch(baseUrl, state.token)
-const { alertState } = useAlert()
+const { open } = useAlert()
 // event
 const emits = defineEmits(['created'])
 
@@ -32,12 +32,8 @@ const handleSubmit = useThrottleFn(async(e: any) => {
   state.isPending = true
 
   if (!(title && author && file)) {
-    alertState.isOpenAlert = true
-    alertState.info = '书籍表单提交错误,请再次确认!'
-    setTimeout(() => {
-      alertState.isOpenAlert = false
-    }, 1000)
-  } else {
+    open('书籍表单提交错误,请再次确认!')
+    state.isPending = false
     throw new Error(`title: ${title}, author: ${author}, file: ${file}`);
   }
 
@@ -55,8 +51,11 @@ const handleSubmit = useThrottleFn(async(e: any) => {
     formData.append('creator', state.userId)
     formData.append('image', file)
     formData.append('time', new Date().toString())
-
-    await usePost('/').post(formData)
+    try {
+      await usePost('/').post(formData)
+    } catch (error:any) {
+      open(error)
+    }
 
     emits('created')
 
@@ -70,7 +69,7 @@ const handleSubmit = useThrottleFn(async(e: any) => {
   }
 
   state.isPending = false
-},1000)
+},100)
 </script>
 
 <template>

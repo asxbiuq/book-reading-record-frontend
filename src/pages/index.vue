@@ -81,6 +81,42 @@ const handleClickToTop = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
   isScrollToTop = true
 }, 1000)
+// 初始化页数，默认为1
+let pageIndex = 1
+
+// console.log(showList)
+const maxPageNum = $computed(() => {
+  return 999
+})
+const handlePageNext = async () => {
+  const { open, close } = useLoading()
+  open()
+  try {
+    pageIndex++
+    await getPosts(pageIndex)
+  } catch (error: any) {
+    pageIndex--
+    console.log(error)
+    const { open } = useAlert()
+    open(error)
+  }
+  close()
+}
+const handlePagePre = async () => {
+  const { open, close } = useLoading()
+  open()
+  if (pageIndex <= 1) {
+    console.log('The first page!')
+    const { open } = useAlert()
+    open('已经是第一页!')
+    return
+  } else {
+    pageIndex--
+    await getPosts(pageIndex)
+    console.log('CurrentPage:', pageIndex)
+  }
+  close()
+}
 </script>
 <route lang="yaml">
 meta:
@@ -107,6 +143,7 @@ meta:
             class="book-card hover:scale-105 duration-200 drop-shadow-2xl shadow-2xl bg-blend-color-burn"
           />
         </li>
+        <Pagination @PagePre="handlePagePre" @PageNext="handlePageNext" />
       </ul>
 
       <div ref="target" class="flex justify-center bottom-6 fixed">
@@ -123,7 +160,6 @@ meta:
   >
     <i-bi:arrow-up-circle-fill style="font-size: 2em" />
   </div>
-  <!-- <Loading/> -->
 </template>
 
 <style scoped>
