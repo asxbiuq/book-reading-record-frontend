@@ -1,33 +1,33 @@
 <script lang="ts" setup>
 // 父组件传来的Props值为只读,无法更改
-const  {loadingState}  = $(useLoadingState())
-interface Props {
-  text?: string
-  confirmBtnText?: string
-  cancelBtnText?: string
-  isModelOpen?: Boolean
-}
-const {
-  text = '',
-  confirmBtnText = '确定',
-  cancelBtnText = '取消',
-  isModelOpen = false,
-} = defineProps<Props>()
+const  {loadingState}  = $(useLoading())
+// interface Props {
+//   text?: string
+//   confirmBtnText?: string
+//   cancelBtnText?: string
+//   isModelOpen?: Boolean
+// }
+// const {
+//   text = '',
+//   confirmBtnText = '确定',
+//   cancelBtnText = '取消',
+//   isModelOpen = false,
+// } = defineProps<Props>()
 
-const emit = defineEmits(['confirm', 'cancel'])
+// const emit = defineEmits(['confirm', 'cancel'])
 
-const confirm = () => {
-  emit('confirm')
-  console.log('emit(confirm)')
-}
-// 取消
-const cancel = () => {
-  emit('cancel')
-  console.log('emit(cancel)')
-}
-watch(loadingState,()=>{
-  console.log(loadingState.isLoading)
-})
+// const confirm = () => {
+//   emit('confirm')
+//   console.log('emit(confirm)')
+// }
+// // 取消
+// const cancel = () => {
+//   emit('cancel')
+//   console.log('emit(cancel)')
+// }
+// watch(loadingState,()=>{
+//   console.log(loadingState.isLoading)
+// })
 </script>
 <template>
   <teleport to="body">

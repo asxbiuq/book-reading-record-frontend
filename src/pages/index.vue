@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { HtmlHTMLAttributes } from 'vue'
-import { useRequest } from 'vue-request';
-
+import { useRequest } from 'vue-request'
 
 const target = $ref<HTMLElement | null>(null)
 
@@ -16,12 +15,7 @@ watch($$(posts), () => {
   console.log('posts: ', posts)
 })
 
-
-
 // function
-
-
-
 
 const handleGetBooks = async () => {
   clearPosts()
@@ -36,19 +30,35 @@ if (!posts.length) {
 }
 
 const handleDelete = async (book: Post) => {
+  const { open, close } = useLoading()
+  open()
   state.isPending = true
 
-  deletePost(book._id)
-
+  try {
+    await deletePost(book._id)
+  } catch (error: any) {
+    console.log(error)
+    const { open } = useAlert()
+    open(error)
+  }
   state.isPending = false
+  close()
 }
 
 const handleUpdate = async (book: Post) => {
+  const { open, close } = useLoading()
+  open()
   state.isPending = true
 
-  UpdatePost(book)
-
+  try {
+    await UpdatePost(book)
+  } catch (error: any) {
+    console.log(error)
+    const { open } = useAlert()
+    open(error)
+  }
   state.isPending = false
+  close()
 }
 const handleDetails = (_book: { _id: string }) => {
   const state = $(useLocalState())
@@ -63,23 +73,14 @@ const handleDetails = (_book: { _id: string }) => {
 onMounted(() => {
   if (target) {
     hideElementOnScroll(target)
+  } else {
+    throw new Error(`target is ${target || null}`)
   }
 })
 const handleClickToTop = useThrottleFn(() => {
   // do something, it will be called at most 1 time per second
   isScrollToTop = true
 }, 1000)
-// document.addEventListener('scroll', throttledFn)
-
-// const handleToTop = () => {
-//   window.scrollTo({
-//     top: 0,
-//     behavior: 'smooth',
-//   })
-// }
-// const isScrollToTop = ref(false)
-
-
 </script>
 <route lang="yaml">
 meta:

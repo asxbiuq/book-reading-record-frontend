@@ -1,9 +1,25 @@
-<script lang="ts" setup>
-const { alertState } = useAlert()
-</script>
+import { defineComponent, onMounted, ref } from 'vue';
 
-<template>
-  <teleport to="body">
+export default defineComponent({
+  // props: ['xx'],
+  setup(props,{ emit }) {
+    const { isOpen } = defineProps<{ isOpen: boolean }>()
+    const alertState = $ref({ isOpenAlert: false, info: '发生了错误' })
+
+    const open = (info='发生了错误',time=1000) => {
+      alertState.info = info
+      alertState.isOpenAlert = true
+      setTimeout(()=>{
+        alertState.isOpenAlert = false
+        alertState.info = '发生了错误'
+      },time)
+    }
+    watch($$(alertState), () => {
+      console.log('alertState: ', alertState)
+    })
+  
+    return () => (
+      <teleport to="body">
     <transition
       enter-active-class="animate__animated animate__fadeIn animate__faster"
       leave-active-class="animate__animated animate__fadeOut"
@@ -35,6 +51,6 @@ const { alertState } = useAlert()
       </div>
     </transition>
   </teleport>
-</template>
-
-<style scoped></style>
+    )
+  }
+})

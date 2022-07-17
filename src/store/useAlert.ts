@@ -1,5 +1,6 @@
 
-export const useAlertState = defineStore('alertState', () => {
+export const useAlert = defineStore('alertState', () => {
+  
   const alertState = $ref({ isOpenAlert: false, info: '发生了错误' })
 
   const open = (info='发生了错误',time=1000) => {
@@ -10,9 +11,6 @@ export const useAlertState = defineStore('alertState', () => {
       alertState.info = '发生了错误'
     },time)
   }
-  watch($$(alertState), () => {
-    console.log('alertState: ', alertState)
-  })
 
   return $$({
     alertState,

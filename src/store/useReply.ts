@@ -12,15 +12,20 @@ export const useReply = defineStore('reply', () => {
     const { isFetching, error, data } = $(
       await useGets(commentId + '/replies').json()
     )
-    let replies:Reply[] = []
+    const {comments} = useComment()
+    // let replies:Reply[] = []
     if (!error && data.replies) {
-      data.replies.forEach((reply: Reply) => {
-        replies.push(reply)
+      console.log(`get data : ${data}`)
+      comments.forEach((comment:Comment)=>{
+        if (comment._id === commentId) {
+          comment.replies = data.replies
+        }
       })
     } else {
-      console.log(error)
+      throw new Error(`getReplies failed, error: ${error}`);
     }
   }
+
   const addReply = async (content: string, commentId: string) => {
     const newReply = {
       creator: state.name,

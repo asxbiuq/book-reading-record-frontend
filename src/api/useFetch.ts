@@ -28,8 +28,8 @@ const useFetch = (baseUrl: string, token: string) => {
       },
       // 请求错误
       async onFetchError({ data, error }) {
-        const resData = await JSON.parse(data)
-        console.log(resData.message)
+        // const resData = await JSON.parse(data)
+        console.log(data.message)
         return { data, error }
       },
     },
@@ -69,8 +69,8 @@ const useFetch = (baseUrl: string, token: string) => {
       },
       // 请求错误
       async onFetchError({ data, error }) {
-        const resData = await JSON.parse(data)
-        console.log(resData.message)
+        // const resData = await JSON.parse(data)
+        console.log(data.message)
         return { data, error }
       },
     },
@@ -109,8 +109,8 @@ const useFetch = (baseUrl: string, token: string) => {
       },
       // 请求错误
       async onFetchError({ data, error }) {
-        const resData = await JSON.parse(data)
-        console.log(resData.message)
+        // const resData = await JSON.parse(data)
+        console.log(data.message)
         return { data, error }
       },
     },
@@ -149,8 +149,8 @@ const useFetch = (baseUrl: string, token: string) => {
       },
       // 请求错误
       async onFetchError({ data, error }) {
-        const resData = await JSON.parse(data)
-        console.log(resData.message)
+        // const resData = await JSON.parse(data)
+        console.log(data.message)
         return { data, error }
       },
     },
@@ -184,8 +184,8 @@ const useFetch = (baseUrl: string, token: string) => {
       },
       // 请求错误
       async onFetchError({ data, error }) {
-        const resData = await JSON.parse(data)
-        console.log(resData.message)
+        // const resData = await JSON.parse(data)
+        console.log(data.message)
         return { data, error }
       },
     },

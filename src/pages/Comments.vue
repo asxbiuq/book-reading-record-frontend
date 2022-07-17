@@ -40,29 +40,68 @@ if (Route.params.id && typeof Route.params.id == 'string' && !comments.length) {
 // await GetAndFormat()
 
 const handleAddComment = async (content: string) => {
-  await addComment(content, postId)
+  const { open, close } = useLoading()
+  open()
+
+  try {
+    await addComment(content, postId)
+  } catch (error: any) {
+    console.log(error)
+    const { open } = useAlert()
+    open(error)
+  }
 
   content = ''
+  close()
 }
 
 const handleDeleteComment = async (commentId: string, content: string) => {
-  await deleteComment(commentId)
+  const { open, close } = useLoading()
+  open()
+
+  try {
+    await deleteComment(commentId)
+  } catch (error: any) {
+    console.log(error)
+    const { open } = useAlert()
+    open(error)
+  }
 
   content = ''
+  close()
 }
 
 const handleAddReply = async (content: string, commentId: string) => {
-  await addReply(content, commentId)
+  const { open, close } = useLoading()
+  open()
+
+  try {
+    await addReply(content, commentId)
+  } catch (error: any) {
+    console.log(error)
+    const { open } = useAlert()
+    open(error)
+  }
 
   content = ''
-
+  close()
   // await GetAndFormat()
 }
 
 const handleDeleteReply = async (reply: Reply) => {
-  await deleteReply(reply)
+  const { open, close } = useLoading()
+  open()
+
+  try {
+    await deleteReply(reply)
+  } catch (error: any) {
+    console.log(error)
+    const { open } = useAlert()
+    open(error)
+  }
 
   // await GetAndFormat()
+  close()
 }
 </script>
 

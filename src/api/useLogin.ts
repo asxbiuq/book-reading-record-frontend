@@ -57,7 +57,7 @@ const useLogin = (url: string) => {
     }
   }
 
-  return { error, login, isPending }
+  return $$({ error, login, isPending })
 }
 
 export default useLogin

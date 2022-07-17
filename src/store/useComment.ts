@@ -15,11 +15,13 @@ export const useComment = defineStore('comment', () => {
     )
 
     if (!error) {
+      const {getReplies} = useReply()
       data.comments.forEach((comment: Comment) => {
         comments.push(comment)
+        getReplies(comment._id)
       })
     } else {
-      console.log(error)
+      throw(`getComments failed, ${data.message}`)
     }
   }
 
@@ -34,24 +36,22 @@ export const useComment = defineStore('comment', () => {
     }
     const { error, data } = $(await usePost(postId).post(newComment).json())
 
-    if (!error && data.comment) {
-      console.log(data)
+    if (!error) {
+      console.log(data.comment)
       comments.push(data.comment)
     } else {
-      const {open} = $(useAlertState())
-      open('输入错误!')
-      throw new Error(`error: ${error}, data: ${data}`);
+      throw new Error(` ${data.message}`);
     }
   }
 
   const deleteComment = async (commentId: string) => {
-    const { error } = $(await useDelete(commentId).delete())
+    const { error,data } = $(await useDelete(commentId).delete().json())
 
     if (!error) {
       remove(comments, (comment: Comment) => comment._id == commentId)
       // comments = comments.filter((comment) => comment._id !== commentId)
     } else {
-      console.log(error)
+      throw new Error(` ${data.message}`);
     }
   }
 

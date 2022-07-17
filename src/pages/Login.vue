@@ -18,23 +18,26 @@ watchEffect(() => {
 // function
 const handleLogin = async () => {
   state.isPending = true
+  const {open,close} = $(useLoading())
+  open()
   const resData: any = await login(email, password)
   // const { data, run } = useRequest(getUser)
   // run(email,password)
   // console.log('useRequest',data.value)
-  assign(state, resData)
   // state.token = resData.token
   // state.expiryDate = resData.expiryDate
 
   // state.userId = resData.userId
   // state.name = resData.name
-
   if (!error) {
+    assign(state, resData)
     router.push('/')
   } else {
-    console.log(error)
+    const {open} = $(useAlert())
+    open(error)
+    console.log(error)  
   }
-
+  close()
   state.isPending = false
 }
 

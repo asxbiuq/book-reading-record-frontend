@@ -11,7 +11,7 @@ const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 // composables
 const state = $(useLocalState())
 const { usePost } = useFetch(baseUrl, state.token)
-const { alertState } = useAlertState()
+const { alertState } = useAlert()
 // event
 const emits = defineEmits(['created'])
 
