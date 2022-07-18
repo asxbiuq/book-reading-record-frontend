@@ -1,5 +1,5 @@
 import daisyui from "daisyui"
-
+import tailwindcssContainerQuery from 'tailwindcss-container-query'
 export default {
   content: ['./*.html', './src/**/*.{vue,js,ts,jsx,tsx,css}'],
   theme: {
@@ -8,7 +8,7 @@ export default {
   variants: {
     extend: {},
   },
-  plugins: [daisyui],
+  plugins: [daisyui,tailwindcssContainerQuery],
   daisyui: {
     styled: true,
     themes: [

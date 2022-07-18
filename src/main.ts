@@ -5,6 +5,7 @@ import 'styles/tailwind.css'
 import { createPinia } from 'pinia'
 import 'animate.css'
 import { setGlobalOptions } from 'vue-request';
+import "container-query-polyfill"
 
 setGlobalOptions({
   manual: true,
