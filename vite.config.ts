@@ -13,6 +13,8 @@ import { Url } from 'url'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import removeConsole from 'vite-plugin-remove-console'
 import { ViteTips } from 'vite-plugin-tips'
+import postcss from './postcss.config.js'
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -162,5 +164,8 @@ export default defineConfig({
       pages: fileURLToPath(new URL('./src/pages', import.meta.url)),
       assets: fileURLToPath(new URL('./src/assets', import.meta.url)),
     },
+  },
+  css: {
+    postcss,
   },
 })

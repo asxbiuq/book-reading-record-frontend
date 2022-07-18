@@ -160,51 +160,9 @@ meta:
   >
     <i-bi:arrow-up-circle-fill style="font-size: 2em" />
   </div>
+
 </template>
 
 <style scoped>
-.home {
-  display: flex;
-  align-items: center;
-}
 
-.home ul {
-  padding: 0;
-}
-
-.home li {
-  list-style-type: none;
-  background: #fff;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 12px;
-  display: flex;
-}
-
-.home li .details {
-  margin-right: auto;
-}
-
-.home li h3 {
-  margin: 0;
-  margin-bottom: 4px;
-}
-
-.home li h3:hover {
-  cursor: pointer;
-  text-decoration: line-through;
-}
-
-.home li p {
-  margin: 0;
-}
-
-.icon {
-  color: #bbbbbb;
-  cursor: pointer;
-}
-
-.icon.fav {
-  color: #f83f5e;
-}
 </style>
