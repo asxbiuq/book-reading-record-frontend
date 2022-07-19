@@ -14,7 +14,7 @@ const el = $ref<HTMLInputElement | null>(null)
 onMounted(() => {
   if (el) {
     hideElementOnScroll(el)
-  }else {
+  } else {
     throw new Error(`el is ${el}`)
   }
 })
@@ -40,8 +40,11 @@ onMounted(() => {
         >
       </div>
     </div>
-    <div class="flex-none">
-      <div v-if="state.token">
+    <div class="flex-none items-align">
+      <div v-if="state.token" class="flex">
+          <router-link to="/fav" class="p-btn p-btn-ghost normal-case text-xl"
+            >收藏夹</router-link
+          >
         <button class="p-btn p-btn-square p-btn-ghost">
           <i-bytesize:sign-out
             style="color: white; font-size: 1.5rem"
@@ -53,33 +56,6 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
-/* Add a black background color to the top navigation */
-.top-nav {
-  background-color: #333;
-  overflow: hidden;
-  @apply flex justify-between;
-}
+<style scoped>
 
-/* Style the links inside the navigation bar */
-.top-nav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.top-nav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.top-nav a.active {
-  background-color: #04aa6d;
-  color: white;
-}
 </style>

@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+let pageIndex = 1
 
 const { favs, gets, unfav } = useFav()
+const router = useRouter()
 // console.log(data)
 gets()
-
 
 const handleUnfav = async (book: Post) => {
   const { open, close } = useLoading()
@@ -21,7 +22,7 @@ const handleUnfav = async (book: Post) => {
 }
 const handleDetails = (_book: { _id: string }) => {
   const state = $(useLocalState())
-  const router = useRouter()
+
   state.postId = _book._id
   router.push({
     name: 'Comments',
@@ -30,11 +31,39 @@ const handleDetails = (_book: { _id: string }) => {
     },
   })
 }
+const handlePageNext = async () => {
+  const { open, close } = useLoading()
+  open()
+  try {
+    pageIndex++
+    await gets(pageIndex)
+  } catch (error: any) {
+    pageIndex--
+    console.log(pageIndex)
+    const { open } = useAlert()
+    open(error)
+  }
+  close()
+}
+const handlePagePre = async () => {
+  const { open, close } = useLoading()
+  open()
+  if (pageIndex <= 1) {
+    console.log('The first page!')
+    const { open } = useAlert()
+    open('已经是第一页!')
+    return
+  } else {
+    pageIndex--
+    await gets(pageIndex)
+    console.log('CurrentPage:', pageIndex)
+  }
+  close()
+}
 </script>
 
 <template>
   <div class="flex flex-col justify-center items-center gap-7">
-    <p class="text-violet-400 text-3xl font-bold">我的收藏</p>
     <ul class="flex flex-col gap-10 justify-center">
       <li v-for="book in favs" :key="book._id">
         <BookCard
@@ -50,6 +79,9 @@ const handleDetails = (_book: { _id: string }) => {
           class="book-card hover:scale-105 duration-200 drop-shadow-2xl shadow-2xl bg-blend-color-burn"
         />
       </li>
+      <div v-if="favs.length !== 0">
+        <Pagination @PagePre="handlePagePre" @PageNext="handlePageNext" />
+      </div>
     </ul>
   </div>
 </template>

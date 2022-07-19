@@ -1,12 +1,15 @@
 @layer components {
   /* btn */
   .btn {
-    @apply p-btn p-btn-wide rounded-3xl shadow-xl click;
+    @apply p-btn p-btn-wide rounded-3xl shadow-xl click w-full;
+
+    /* @apply sm: */
   }
   .btn-danger {
     @apply btn p-btn-error;
     background: #cf4747;
     color: #fffaf8;
+
 
     &:hover,
     &:active,

@@ -1,7 +1,7 @@
 @layer components {
   /* card */
   .book-card {
-    @apply container mx-auto bg-teal-400 rounded-2xl w-[95vw] 
+    @apply container mx-auto bg-teal-400 rounded-2xl w-[70vw] 
     flex flex-col items-center  p-12 gap-10 max-w-[40rem] transition-all text-white
     duration-150 ease-out hover:ease-in  
 
@@ -17,7 +17,9 @@
       @apply truncate font-thin;
     }
     main {
-      @apply font-normal;
+      @apply font-normal w-[50vw];
+      
+      /* sm:w-[4rem]; */
     }
     .img-shell {
       @apply w-full  max-w-4xl container-f click

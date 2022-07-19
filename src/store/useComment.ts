@@ -1,15 +1,15 @@
 
 
 export const useComment = defineStore('comment', () => {
+  
+  const comments: Comment[] = $ref([])
   const commentBaseUrl = import.meta.env.VITE_COMMENT_URL
   const state = $(useLocalState())
-  const { useGets, usePost, useDelete } = $(
-    useFetch(commentBaseUrl, state.token)
-  )
-
-  const comments: Comment[] = $ref([])
 
   const getComments = async (postId: string) => {
+    const { useGets } = $(
+      useFetch(commentBaseUrl, state.token)
+    )
     const { isFetching, error, data } = $(
       await useGets(postId + '/comments').json()
     )
@@ -26,6 +26,9 @@ export const useComment = defineStore('comment', () => {
   }
 
   const addComment = async (content: string, postId: string) => {
+    const { usePost } = $(
+      useFetch(commentBaseUrl, state.token)
+    )
     const newComment = {
       creatorId: state.userId,
       creator: state.name,
@@ -45,6 +48,9 @@ export const useComment = defineStore('comment', () => {
   }
 
   const deleteComment = async (commentId: string) => {
+    const { useDelete } = $(
+      useFetch(commentBaseUrl, state.token)
+    )
     const { error,data } = $(await useDelete(commentId).delete().json())
 
     if (!error) {
@@ -61,6 +67,11 @@ export const useComment = defineStore('comment', () => {
 
   watchEffect(() => {
     console.log('comments: ', comments)
+  })
+
+  watch(state,()=>{
+    useFetch(commentBaseUrl, state.token)
+    console.log('侦测到用户改变,重新加载useFetch')
   })
 
   return $$({

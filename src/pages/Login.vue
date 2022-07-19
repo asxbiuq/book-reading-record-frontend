@@ -31,6 +31,7 @@ const handleLogin = async () => {
   // state.name = resData.name
   if (!error) {
     assign(state, resData)
+
     router.push('/')
   } else {
     const {open} = $(useAlert())

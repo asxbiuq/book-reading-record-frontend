@@ -13,17 +13,22 @@ const handlePagePre = () => {
   <div class="btn-group grid grid-cols-2">
     <button
       @click="handlePagePre"
-      class="btn text-4xl hover:opacity-70 overflow-visible"
+      class="pagination"
     >
       «
     </button>
     <button
       @click="handlePageNext"
-      class="btn text-4xl hover:opacity-70 overflow-visible"
+      class="pagination"
     >
       »
     </button>
   </div>
 </template>
 
-<style></style>
+<style scoped>
+.pagination {
+  @apply btn bg-sky-400 hover:bg-sky-600 text-4xl border-0
+  hover:opacity-70 overflow-visible w-[45vw] sm:w-[16rem];
+}
+</style>
