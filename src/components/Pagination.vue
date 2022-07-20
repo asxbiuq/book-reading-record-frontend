@@ -27,8 +27,5 @@ const handlePagePre = () => {
 </template>
 
 <style scoped>
-.pagination {
-  @apply btn bg-sky-400 hover:bg-sky-600 text-4xl border-0
-  hover:opacity-70 overflow-visible w-[45vw] sm:w-[16rem];
-}
+
 </style>

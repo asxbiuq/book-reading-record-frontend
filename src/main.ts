@@ -8,7 +8,7 @@ import { setGlobalOptions } from 'vue-request';
 import "container-query-polyfill"
 
 setGlobalOptions({
-  manual: true,
+  manual: false,
   // ...
 })
 

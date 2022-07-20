@@ -123,6 +123,7 @@
     "useAsyncQueue": true,
     "useAsyncState": true,
     "useAttrs": true,
+    "useAxiosService": true,
     "useBase64": true,
     "useBattery": true,
     "useBreakpoints": true,

@@ -74,6 +74,15 @@ export const useComment = defineStore('comment', () => {
     console.log('侦测到用户改变,重新加载useFetch')
   })
 
+  watch(
+    comments,
+    (state) => {
+      // 每当它发生变化时，将整个状态持久化到本地存储
+      localStorage.setItem('piniaState', JSON.stringify(state))
+    },
+    { deep: true }
+  )
+
   return $$({
     comments,
     addComment,

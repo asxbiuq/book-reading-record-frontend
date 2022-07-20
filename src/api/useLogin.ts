@@ -20,7 +20,7 @@ const useLogin = (url: string) => {
     error = null
     isPending = true
     if (!(email||password)) {
-      throw new Error(`email : ${email || null}, password: ${password || null}`)
+      throw new Error(`email : ${email ?? null}, password: ${password ?? null}`)
     }
     // let token, userId, expiryDate
 

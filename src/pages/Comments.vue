@@ -1,6 +1,9 @@
 <script lang="ts" setup>
+
+
 let postId: string
 
+const state = $(useLocalState())
 const Route = useRoute()
 const { replies, getReplies, addReply, deleteReply } = $(useReply())
 const { comments, addComment, deleteComment, getComments, clearComment } = $(
@@ -103,6 +106,20 @@ const handleDeleteReply = async (reply: Reply) => {
   // await GetAndFormat()
   close()
 }
+
+
+// try {
+  
+//   const { service } = useAxiosService()
+//   const response = await service({
+//     method: 'get',
+//     url: postId +'/comments',
+//   })
+//   console.log('axios:  ',response);
+
+// } catch (error) {
+//   console.error(error)
+// }
 </script>
 
 <template>
