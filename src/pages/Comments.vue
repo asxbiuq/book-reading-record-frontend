@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-
-
 let postId: string
 
 const state = $(useLocalState())
@@ -27,20 +25,6 @@ if (Route.params.id && typeof Route.params.id == 'string' && !comments.length) {
   isScrollToTop = true
 }
 
-// const GetAndFormat = async () => {
-//   formatTime(comments)
-
-//   forEach(comments, async (comment) => {
-//     await getReplies(comment._id)
-//     if (replies.length) {
-//       console.log(replies)
-//       formatTime(replies)
-//       comment.replies = replies
-//       clearReplies()
-//     }
-//   })
-// }
-// await GetAndFormat()
 
 const handleAddComment = async (content: string) => {
   const { open, close } = useLoading()
@@ -107,19 +91,6 @@ const handleDeleteReply = async (reply: Reply) => {
   close()
 }
 
-
-// try {
-  
-//   const { service } = useAxiosService()
-//   const response = await service({
-//     method: 'get',
-//     url: postId +'/comments',
-//   })
-//   console.log('axios:  ',response);
-
-// } catch (error) {
-//   console.error(error)
-// }
 </script>
 
 <template>

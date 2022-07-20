@@ -18,6 +18,7 @@ export const useReply = defineStore('reply', () => {
       console.log(`get data : ${data}`)
       comments.forEach((comment:Comment)=>{
         if (comment._id === commentId) {
+          formatTime(data.replies)
           comment.replies = data.replies
         }
       })

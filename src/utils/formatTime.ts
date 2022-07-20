@@ -13,5 +13,9 @@ export const formatTime = (items: Array<any>) => {
     if (item.time) {
       item.time = dayjs().to(item.time)
     }
+    if (item.replies) {
+      console.info(item.replies)
+      formatTime(item.replies)
+    }
   })
 }
