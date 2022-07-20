@@ -1,14 +1,16 @@
+import dayjs from "dayjs"
 import { nanoid } from "nanoid"
 
 
 export const useReply = defineStore('reply', () => {
   const replyBaseUrl = import.meta.env.VITE_REPLY_URL
   const state = $(useLocalState())
-  const { useGets, usePost, useDelete } = $(useFetch(replyBaseUrl, state.token))
+  
 
   const replies: Reply[] = $ref([])
 
   const getReplies = async (commentId: string) => {
+    const { useGets} = $(useFetch(replyBaseUrl, state.token))
     const { isFetching, error, data } = $(
       await useGets(commentId + '/replies').json()
     )
@@ -28,6 +30,7 @@ export const useReply = defineStore('reply', () => {
   }
 
   const addReply = async (content: string, commentId: string) => {
+    const {usePost } = $(useFetch(replyBaseUrl, state.token))
     const newReply = {
       creator: state.name,
       creatorId: state.userId,
@@ -41,6 +44,7 @@ export const useReply = defineStore('reply', () => {
       const {comments} = $(useComment())
       comments.forEach((comment)=>{
         if (comment._id === commentId) {
+          data.reply.time = dayjs().to(data.reply.time)
           comment.replies.push(data.reply)
         }
       })
@@ -48,7 +52,8 @@ export const useReply = defineStore('reply', () => {
   }
 
   const deleteReply = async (reply: Reply) => {
-    const { error } = $(await useDelete(reply._id).delete())
+    const { useDelete } = $(useFetch(replyBaseUrl, state.token))
+    const { error,data } = $(await useDelete(reply._id).delete().json())
     if (!error) {
       const {comments} = $(useComment())
       comments.forEach((comment)=>{
@@ -57,7 +62,8 @@ export const useReply = defineStore('reply', () => {
         }
       })
     } else {
-      console.log(error)
+      throw new Error(data.message);
+      
     }
   }
 

@@ -10,12 +10,12 @@ dayjs.locale('zh-cn')
 
 export const formatTime = (items: Array<any>) => {
   forEach(items, (item) => {
-    if (item.time) {
-      item.time = dayjs().to(item.time)
-    }
-    if (item.replies) {
-      console.info(item.replies)
-      formatTime(item.replies)
+    try {
+      if (item.time) {
+        item.time = dayjs().to(item.time)
+      }
+    } catch (error) {
+      throw new Error(`格式化时间出错${item.time}`);
     }
   })
 }

@@ -1,3 +1,4 @@
+import dayjs from "dayjs"
 
 
 export const useComment = defineStore('comment', () => {
@@ -41,7 +42,8 @@ export const useComment = defineStore('comment', () => {
     const { error, data } = $(await usePost(postId).post(newComment).json())
 
     if (!error) {
-      console.log(data.comment)
+      data.comment.time = dayjs().to(data.comment.time)
+      // console.log(data.comment)
       comments.push(data.comment)
     } else {
       throw new Error(` ${data.message}`);
