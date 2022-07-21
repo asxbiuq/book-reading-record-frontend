@@ -11,7 +11,9 @@ const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 // composables
 const state = $(useLocalState())
 const { usePost } = useFetch(baseUrl, state.token)
-const { open } = useAlert()
+const { open:openAlert } = useAlert()
+const {open:openLoading,close:closeLoading} = useLoading()
+
 // event
 const emits = defineEmits(['created'])
 
@@ -28,48 +30,48 @@ const handleFile = (f: File) => {
   file = f
 }
 
-const handleSubmit = useThrottleFn(async(e: any) => {
-  state.isPending = true
+const handleSubmit = useThrottleFn(async (e: any) => {
+  openLoading()
+  // state.isPending = true
 
   if (!(title && author && file)) {
-    open('书籍表单提交错误,请再次确认!')
-    state.isPending = false
-    throw new Error(`title: ${title}, author: ${author}, file: ${file}`);
+    openAlert('书籍表单提交错误,请再次确认!')
+    // state.isPending = false
+    closeLoading()
+    throw new Error(`title: ${title ?? null}, author: ${author ?? null}, file: ${file ?? null}`)
   }
 
-  // 节流
-  if (!e.target.t1) {
-    e.target.t1 = Date.now()
-  }
-  let t1 = e.target.t1
-  let t2 = Date.now()
-  if (t2 - t1 > 1000 && file) {
-    const formData = new FormData()
-    formData.append('title', title)
-    formData.append('author', author)
-    formData.append('isFav', 'false')
-    formData.append('creator', state.userId)
-    formData.append('image', file)
-    formData.append('time', new Date().toString())
-    try {
-      await usePost('/').post(formData)
-    } catch (error:any) {
-      open(error)
+  const formData = new FormData()
+  formData.append('title', title)
+  formData.append('author', author)
+  formData.append('isFav', 'false')
+  formData.append('creator', state.userId)
+  formData.append('image', file)
+  formData.append('time', new Date().toString())
+
+  const { error, data } = $(await usePost('/').post(formData).json())
+
+  try {
+    if (error) {
+      throw new Error(` ${data.message}`)
     }
-
-    emits('created')
-
-    title = ''
-    author = ''
-    file = null
-    // 节流的时间重置
-    e.target.t1 = t2
-
-    closeModal()
+  } catch (error: any) {
+    closeLoading()
+    openAlert(error)
   }
 
-  state.isPending = false
+  emits('created')
+
+  title = ''
+  author = ''
+  file = null
+
+  closeModal()
+
+  // state.isPending = false
+  closeLoading()
 },100)
+// },100)
 </script>
 
 <template>
