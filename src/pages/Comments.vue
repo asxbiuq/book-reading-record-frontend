@@ -106,7 +106,7 @@ const handleDeleteReply = async (reply: Reply) => {
         <!-- 留言 -->
         <CommentItem
           :user="comment.creator"
-          :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
+          :avatar="'src\\assets\\default avatar.jpg'"
           :time="comment.time"
           :content="comment.content"
           @deleteComment="handleDeleteComment(comment._id, comment.content)"
@@ -117,7 +117,7 @@ const handleDeleteReply = async (reply: Reply) => {
             v-for="reply in comment.replies"
             :key="reply._id"
             :user="reply.creator"
-            :avatar="'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
+            :avatar="'src\\assets\\default avatar.jpg'"
             :time="reply.time"
             :content="reply.content"
             @deleteComment="handleDeleteReply(reply)"
