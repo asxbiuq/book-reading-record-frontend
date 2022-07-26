@@ -57,4 +57,4 @@ const handleLogin = async () => {
 { meta: { layout: 'login' } }
 </route>
 
-<style></style>
+<style ></style>

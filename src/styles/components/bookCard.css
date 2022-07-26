@@ -8,7 +8,7 @@
     @media screen(sm) {
       @apply flex-row w-[90vw] h-[50vh];
     }
-    h {
+    h1 {
       @apply truncate font-bold;
     }
     h2 {
@@ -52,7 +52,7 @@
       &:active,
       &:focus {
         background: #4ccdf7;
-        color: #white;
+        color: white;
       }
     }
     .icon {

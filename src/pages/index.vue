@@ -186,22 +186,16 @@ meta:
   }
 }
 
-@media (480px <= width < 768px) {
+@media (480px < width < 768px) {
   .test{
     background-color: rgb(68, 50, 50);
   }
 }
 
-@media (width >= 768px) {
+@media (width > 768px) {
   .test{
     background-color: rgb(104, 98, 226);
   }
 }
 
-@player a{
-
-}
-@player b{
-
-}
 </style>

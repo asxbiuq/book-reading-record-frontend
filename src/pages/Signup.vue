@@ -50,4 +50,4 @@ const handleSignup = async () => {
 { meta: { layout: 'signup' } }
 </route>
 
-<style></style>
+<style ></style>

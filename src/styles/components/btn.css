@@ -45,24 +45,4 @@
       color: white;
     }
   }
-  .btn-warning {
-    @apply p-btn p-btn-warning p-btn-wide rounded-3xl shadow-xl click;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background: #4ccdf7;
-      color: #111111;
-    }
-  }
-  .btn-warning {
-    @apply p-btn p-btn-error p-btn-wide rounded-3xl shadow-xl click;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background: #4ccdf7;
-      color: #111111;
-    }
-  }
 }

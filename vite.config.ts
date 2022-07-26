@@ -20,6 +20,7 @@ import progress from 'vite-plugin-progress'
 import colors from 'picocolors'
 
 
+
 // https://vitejs.dev/config/
 export default defineConfig({
   // assetsInclude: ['**/*.jfif'],
