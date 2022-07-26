@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-
 const { favs, gets, unfav } = useFav()
 // console.log(data)
 gets()
-
 
 const handleUnfav = async (book: Post) => {
   const { open, close } = useLoading()

@@ -1,16 +1,13 @@
-
-
 export const useLoading = defineStore('loadingState', () => {
-  const loadingState = $ref({isLoading:false,info:''})
+  const loadingState = $ref({ isLoading: false, info: '' })
 
-
-  const open = (info='正在加载中...',time=5000) => {
+  const open = (info = '正在加载中...', time = 5000) => {
     loadingState.info = info
     loadingState.isLoading = true
-    setTimeout(()=>{
+    setTimeout(() => {
       loadingState.isLoading = false
       loadingState.info = ''
-    },time)
+    }, time)
   }
 
   const close = () => {
@@ -21,6 +18,6 @@ export const useLoading = defineStore('loadingState', () => {
   return $$({
     loadingState,
     open,
-    close
+    close,
   })
 })

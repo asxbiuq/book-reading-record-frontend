@@ -1,11 +1,9 @@
-
-
 export const useUser = defineStore('user', () => {
   const user: User = $ref({
     userId: '',
     name: '',
-    posts:[],
-    comments:[]
+    posts: [],
+    comments: [],
   })
 
   const clearUser = () => {

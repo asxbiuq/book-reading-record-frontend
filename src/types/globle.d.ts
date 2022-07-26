@@ -1,9 +1,9 @@
 interface AjaxSettings {
   method?: 'GET' | 'POST'
-  data?: any;
+  data?: any
 }
 declare namespace jQuery {
-  function ajax(url: string, settings?: AjaxSettings): void;
+  function ajax(url: string, settings?: AjaxSettings): void
 }
 
 interface Reply {
@@ -39,8 +39,8 @@ interface Post {
 type UserId = string
 type Name = string
 interface User {
-  posts:Post[]
-  comments:Comment[]
+  posts: Post[]
+  comments: Comment[]
   userId: UserId
   name: Name
 }

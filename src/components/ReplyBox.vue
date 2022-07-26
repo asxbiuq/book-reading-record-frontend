@@ -16,7 +16,7 @@ const emit = defineEmits(['submit'])
   <CommentBox
     v-if="showCommentBox"
     class="mb-4"
-    @submit="emit('submit', $event);showCommentBox = false;"
+    @submit="emit('submit', $event);showCommentBox = false"
   />
 </template>
 <style></style>

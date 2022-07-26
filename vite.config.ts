@@ -14,16 +14,28 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import removeConsole from 'vite-plugin-remove-console'
 import { ViteTips } from 'vite-plugin-tips'
 import postcss from './postcss.config.js'
+import Inspector from "vite-plugin-vue-inspector"
+import strip from '@rollup/plugin-strip';
+import progress from 'vite-plugin-progress'
+import colors from 'picocolors'
 
 
 // https://vitejs.dev/config/
 export default defineConfig({
   // assetsInclude: ['**/*.jfif'],
   plugins: [
+    progress({
+        format:  `${colors.green(colors.bold('Bouilding'))} ${colors.cyan('[:bar]')} :percent`,
+        total: 200,
+        width: 60,
+        complete: '=',
+        incomplete: '',
+    }),
     vue({
       //$语法糖
       reactivityTransform: true,
     }),
+    Inspector(), //点击浏览器元素直接跳转到IDE中该代码
     AutoImport({
       // targets to transform
       include: [
@@ -40,7 +52,16 @@ export default defineConfig({
         'vue-router',
         '@vueuse/core',
         'pinia',
-        { 'lodash-es': ['assign', 'remove', 'isPlainObject', 'merge','forEach','throttle'] },
+        {
+          'lodash-es': [
+            'assign',
+            'remove',
+            'isPlainObject',
+            'merge',
+            'forEach',
+            'throttle',
+          ],
+        },
         // custom
         {
           // '@vueuse/core': [
@@ -144,9 +165,11 @@ export default defineConfig({
       defaultLayout: 'default',
     }),
     Icons({ autoInstall: true }),
-    vueJsx(),
-    removeConsole(), //打包时自动移除console.log
-    ViteTips()
+    ViteTips(), //提供vite构建信息
+    strip({
+      include:'**/*.(mjs|js|ts)',
+      labels: ['unittest']
+    }),
   ],
   resolve: {
     alias: {
@@ -167,10 +190,11 @@ export default defineConfig({
   },
   css: {
     postcss,
+    devSourcemap: true,
   },
   build: {
     rollupOptions: {
-      // https://rollupjs.org/guide/en/#big-list-of-options
-    }
-  }
+        /* */ 
+    },
+  },
 })

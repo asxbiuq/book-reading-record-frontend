@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // 父组件传来的Props值为只读,无法更改
-const  {loadingState}  = $(useLoading())
+const { loadingState } = $(useLoading())
 // interface Props {
 //   text?: string
 //   confirmBtnText?: string

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRequest } from 'vue-request';
+import { useRequest } from 'vue-request'
 // data
 const email = $ref('')
 const password = $ref('')
@@ -18,7 +18,7 @@ watchEffect(() => {
 // function
 const handleLogin = async () => {
   state.isPending = true
-  const {open,close} = $(useLoading())
+  const { open, close } = $(useLoading())
   open()
   const resData: any = await login(email, password)
   // const { data, run } = useRequest(getUser)
@@ -34,14 +34,13 @@ const handleLogin = async () => {
 
     router.push('/')
   } else {
-    const {open} = $(useAlert())
+    const { open } = $(useAlert())
     open(error)
-    console.log(error)  
+    console.log(error)
   }
   close()
   state.isPending = false
 }
-
 </script>
 <template>
   <LoginForm

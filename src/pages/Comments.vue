@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import avatar from '/public/assets/default_avatar.jpg'
+// const avatar = new URL('/public/assets/default_avatar.jpg', import.meta.url)
+//   .href
 let postId: string
 
 const state = $(useLocalState())
@@ -24,7 +27,6 @@ if (Route.params.id && typeof Route.params.id == 'string' && !comments.length) {
   await getComments(postId)
   isScrollToTop = true
 }
-
 
 const handleAddComment = async (content: string) => {
   const { open, close } = useLoading()
@@ -90,7 +92,6 @@ const handleDeleteReply = async (reply: Reply) => {
   // await GetAndFormat()
   close()
 }
-
 </script>
 
 <template>
@@ -106,7 +107,7 @@ const handleDeleteReply = async (reply: Reply) => {
         <!-- 留言 -->
         <CommentItem
           :user="comment.creator"
-          :avatar="'src\\assets\\default avatar.jpg'"
+          :avatar="avatar"
           :time="comment.time"
           :content="comment.content"
           @deleteComment="handleDeleteComment(comment._id, comment.content)"
@@ -117,7 +118,7 @@ const handleDeleteReply = async (reply: Reply) => {
             v-for="reply in comment.replies"
             :key="reply._id"
             :user="reply.creator"
-            :avatar="'src\\assets\\default avatar.jpg'"
+            :avatar="avatar"
             :time="reply.time"
             :content="reply.content"
             @deleteComment="handleDeleteReply(reply)"

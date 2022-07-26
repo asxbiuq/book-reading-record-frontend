@@ -1,4 +1,3 @@
-
 export const useContent = defineStore('content', () => {
   const content = $ref({ msg: '' })
 

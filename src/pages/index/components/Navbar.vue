@@ -42,9 +42,9 @@ onMounted(() => {
     </div>
     <div class="flex-none items-align">
       <div v-if="state.token" class="flex">
-          <router-link to="/fav" class="p-btn p-btn-ghost normal-case text-xl"
-            >收藏夹</router-link
-          >
+        <router-link to="/fav" class="p-btn p-btn-ghost normal-case text-xl"
+          >收藏夹</router-link
+        >
         <button class="p-btn p-btn-square p-btn-ghost">
           <i-bytesize:sign-out
             style="color: white; font-size: 1.5rem"
@@ -56,6 +56,4 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

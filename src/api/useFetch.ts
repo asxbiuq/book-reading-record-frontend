@@ -10,7 +10,9 @@ const useFetch = (baseUrl: string, token: string) => {
       async beforeFetch({ options }) {
         if (!(token && baseUrl)) {
           throw new Error(
-            `Error happened in useFetch, token is ${token ?? null}, baseUrl is ${baseUrl??null}`
+            `Error happened in useFetch, token is ${
+              token ?? null
+            }, baseUrl is ${baseUrl ?? null}`
           )
         }
         options.headers.Authorization = `Bearer ${token}`
@@ -48,7 +50,9 @@ const useFetch = (baseUrl: string, token: string) => {
       async beforeFetch({ options }) {
         if (!(token && baseUrl)) {
           throw new Error(
-            `Error happened in useFetch, token is ${token ?? null}, baseUrl is ${baseUrl}`
+            `Error happened in useFetch, token is ${
+              token ?? null
+            }, baseUrl is ${baseUrl}`
           )
         }
         options.headers.Authorization = `Bearer ${token}`
@@ -89,7 +93,9 @@ const useFetch = (baseUrl: string, token: string) => {
       async beforeFetch({ options }) {
         if (!(token && baseUrl)) {
           throw new Error(
-            `Error happened in useFetch, token is ${token ?? null}, baseUrl is ${baseUrl}`
+            `Error happened in useFetch, token is ${
+              token ?? null
+            }, baseUrl is ${baseUrl}`
           )
         }
         options.headers.Authorization = `Bearer ${token}`
@@ -129,7 +135,9 @@ const useFetch = (baseUrl: string, token: string) => {
       async beforeFetch({ options }) {
         if (!(token && baseUrl)) {
           throw new Error(
-            `Error happened in useFetch, token is ${token ?? null}, baseUrl is ${baseUrl}`
+            `Error happened in useFetch, token is ${
+              token ?? null
+            }, baseUrl is ${baseUrl}`
           )
         }
         options.headers.Authorization = `Bearer ${token}`

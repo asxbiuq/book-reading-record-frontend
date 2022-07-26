@@ -174,6 +174,34 @@ meta:
       </div>
     </div>
   </div> -->
+  <div class="test">test</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+@media (width < 480px) {
+  .test{
+    /* background-color: red; */
+    @apply bg-red-500;
+  }
+}
+
+@media (480px <= width < 768px) {
+  .test{
+    background-color: rgb(68, 50, 50);
+  }
+}
+
+@media (width >= 768px) {
+  .test{
+    background-color: rgb(104, 98, 226);
+  }
+}
+
+@player a{
+
+}
+@player b{
+
+}
+</style>

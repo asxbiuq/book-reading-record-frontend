@@ -15,7 +15,7 @@ export const formatTime = (items: Array<any>) => {
         item.time = dayjs().to(item.time)
       }
     } catch (error) {
-      throw new Error(`格式化时间出错${item.time}`);
+      throw new Error(`格式化时间出错${item.time}`)
     }
   })
 }

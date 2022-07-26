@@ -39,7 +39,9 @@ const handleDeleteComment = () => {
           class="p-dropdown-content p-menu shadow relative truncate top-20"
         >
           <li>
-            <a class="py-2 hover:bg-red-400 bg-slate-200" @click="handleDeleteComment"
+            <a
+              class="py-2 hover:bg-red-400 bg-slate-200"
+              @click="handleDeleteComment"
               >删除</a
             >
           </li>

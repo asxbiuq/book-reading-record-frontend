@@ -11,24 +11,20 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (
-    to.name !== 'Login' &&
-    to.name !== 'Signup' &&
-    !state.value.token
-  ) {
+  if (to.name !== 'Login' && to.name !== 'Signup' && !state.value.token) {
     next({ name: 'Login' })
   } else {
     next()
   }
 })
 router.beforeEach((to, from, next) => {
-// 404页面
-if (!to.matched.length) {
-next({name:'404page'});
-} else {
-next();
-}
-});
+  // 404页面
+  if (!to.matched.length) {
+    next({ name: '404page' })
+  } else {
+    next()
+  }
+})
 // console.log(router)
 
 export default router

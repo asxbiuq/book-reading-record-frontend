@@ -1,5 +1,3 @@
-
-
 export const usePost = defineStore('post', () => {
   const baseUrl = import.meta.env.VITE_POST_URL
   const state = $(useLocalState())
@@ -7,18 +5,18 @@ export const usePost = defineStore('post', () => {
   const { clearComment } = useComment()
 
   const posts: Post[] = $ref([])
-// 默认得到第一页的数据,一页的数据为3
-  const getPosts = async (page=1) => {
-    console.log('page: ',page)
+  // 默认得到第一页的数据,一页的数据为3
+  const getPosts = async (page = 1) => {
+    console.log('page: ', page)
     const { data } = $(await useGets(`/posts/${page}`).json())
     if (data.posts.length) {
       clearPosts()
       data.posts.forEach((post: Post) => {
         posts.push(post)
       })
-      console.log('posts: ',posts)
+      console.log('posts: ', posts)
     } else {
-      throw new Error("没有更多的数据了!");
+      throw new Error('没有更多的数据了!')
     }
   }
 

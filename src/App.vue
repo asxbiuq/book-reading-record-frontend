@@ -1,6 +1,4 @@
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <Alert />
@@ -20,15 +18,15 @@
   /* width: 2vw; */
   height: 5px;
 }
- *::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
   border-radius: 1rem;
-  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
-  @apply bg-blue-400
-  }
-  *::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  @apply bg-blue-400;
+}
+*::-webkit-scrollbar-track {
   /*滚动条里面轨道*/
-  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background   : #ededed;
-  }
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #ededed;
+}
 </style>

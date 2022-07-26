@@ -1,60 +1,15 @@
-import daisyui from "daisyui"
-import tailwindcssContainerQuery from 'tailwindcss-container-query'
-export default {
-  content: ['./*.html', './src/**/*.{vue,js,ts,jsx,tsx,css}'],
-  theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [daisyui,tailwindcssContainerQuery],
-  daisyui: {
+module.exports={
+	content:[
+		"./index.html",
+		"./src/**/*.{vue,js,ts,jsx,tsx}",
+	],
+	theme:{
+		extend:{},
+	},
+	plugins:[require("daisyui")],
+	daisyui: {
     styled: true,
-    themes: [
-      "light",
-      "dark",
-      "cupcake",
-      "bumblebee",
-      "emerald",
-      "corporate",
-      "synthwave",
-      "retro",
-      "cyberpunk",
-      "valentine",
-      "halloween",
-      "garden",
-      "forest",
-      "aqua",
-      "lofi",
-      "pastel",
-      "fantasy",
-      "wireframe",
-      "black",
-      "luxury",
-      "dracula",
-      "cmyk",
-      "autumn",
-      "business",
-      "acid",
-      "lemonade",
-      "night",
-      "coffee",
-      "winter",
-      {
-        mytheme: {
-          primary: "#570DF8",
-          secondary: "#F000B8",
-          accent: "#37CDBE",
-          neutral: "#3D4451",
-          "base-100": "#FFFFFF",
-          info: "#3ABFF8",
-          success: "#36D399",
-          warning: "#FBBD23",
-          error: "#F87272",
-        },
-      },
-    ],
+    themes: true,
     base: true,
     utils: true,
     logs: true,

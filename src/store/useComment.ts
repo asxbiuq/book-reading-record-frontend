@@ -1,36 +1,30 @@
-import dayjs from "dayjs"
-
+import dayjs from 'dayjs'
 
 export const useComment = defineStore('comment', () => {
-  
   const comments: Comment[] = $ref([])
   const commentBaseUrl = import.meta.env.VITE_COMMENT_URL
   const state = $(useLocalState())
 
   const getComments = async (postId: string) => {
-    const { useGets } = $(
-      useFetch(commentBaseUrl, state.token)
-    )
+    const { useGets } = $(useFetch(commentBaseUrl, state.token))
     const { isFetching, error, data } = $(
       await useGets(postId + '/comments').json()
     )
 
     if (!error) {
-      const {getReplies} = useReply()
+      const { getReplies } = useReply()
       data.comments.forEach((comment: Comment) => {
         comments.push(comment)
         getReplies(comment._id)
       })
       formatTime(comments)
     } else {
-      throw(`getComments failed, ${data.message}`)
+      throw `getComments failed, ${data.message}`
     }
   }
 
   const addComment = async (content: string, postId: string) => {
-    const { usePost } = $(
-      useFetch(commentBaseUrl, state.token)
-    )
+    const { usePost } = $(useFetch(commentBaseUrl, state.token))
     const newComment = {
       creatorId: state.userId,
       creator: state.name,
@@ -46,21 +40,19 @@ export const useComment = defineStore('comment', () => {
       // console.log(data.comment)
       comments.push(data.comment)
     } else {
-      throw new Error(` ${data.message}`);
+      throw new Error(` ${data.message}`)
     }
   }
 
   const deleteComment = async (commentId: string) => {
-    const { useDelete } = $(
-      useFetch(commentBaseUrl, state.token)
-    )
-    const { error,data } = $(await useDelete(commentId).delete().json())
+    const { useDelete } = $(useFetch(commentBaseUrl, state.token))
+    const { error, data } = $(await useDelete(commentId).delete().json())
 
     if (!error) {
       remove(comments, (comment: Comment) => comment._id == commentId)
       // comments = comments.filter((comment) => comment._id !== commentId)
     } else {
-      throw new Error(` ${data.message}`);
+      throw new Error(` ${data.message}`)
     }
   }
 
@@ -71,7 +63,6 @@ export const useComment = defineStore('comment', () => {
   watchEffect(() => {
     console.log('comments: ', comments)
   })
-
 
   // watch(
   //   comments,

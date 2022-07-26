@@ -11,21 +11,9 @@ const handlePagePre = () => {
 </script>
 <template>
   <div class="btn-group grid grid-cols-2">
-    <button
-      @click="handlePagePre"
-      class="pagination"
-    >
-      «
-    </button>
-    <button
-      @click="handlePageNext"
-      class="pagination"
-    >
-      »
-    </button>
+    <button @click="handlePagePre" class="pagination">«</button>
+    <button @click="handlePageNext" class="pagination">»</button>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -7,9 +7,11 @@ export const getFav = createFetch({
     // 在请求前修改配置，如：注入 token 值
     async beforeFetch({ options }) {
       const state = $(useLocalState())
-      if (!(state.token)) {
+      if (!state.token) {
         throw new Error(
-          `Error happened in useFetch, token is ${state.token ?? null}, baseUrl is ${import.meta.env.VITE_LOCATION_ORIGIN??null}`
+          `Error happened in useFetch, token is ${
+            state.token ?? null
+          }, baseUrl is ${import.meta.env.VITE_LOCATION_ORIGIN ?? null}`
         )
       }
       options.headers.Authorization = `Bearer ${state.token}`

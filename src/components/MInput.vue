@@ -78,23 +78,5 @@ const handleKeydown = (e: any) => {
   </div>
 </template>
 <style scoped>
-@layer components {
-  .input-info {
-    @apply p-input p-input-info rounded-xl w-full;
-    background-color: #cffafe;
-  }
-  .input-error {
-    @apply p-input p-input-error rounded-xl w-full;
-    background-color: #fce4e4;
-  }
-  .tooltip-error {
-    @apply p-tooltip p-tooltip-open p-tooltip-bottom p-tooltip-error;
 
-    &:before,
-    &:after {
-      @apply z-20 opacity-100;
-    }
-  }
-}
-@tailwind components;
 </style>

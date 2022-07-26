@@ -1,12 +1,13 @@
 @layer components {
-  /* card */
   .book-card {
     @apply container mx-auto bg-teal-400 rounded-2xl w-[70vw] 
     flex flex-col items-center  p-12 gap-10 max-w-[40rem] transition-all text-white
-    duration-150 ease-out hover:ease-in  
+    duration-150 ease-out hover:ease-in;
 
-    sm:flex-row sm:w-[90vw] sm:h-[50vh];
 
+    @media screen(sm) {
+      @apply flex-row w-[90vw] h-[50vh];
+    }
     h {
       @apply truncate font-bold;
     }
@@ -18,19 +19,22 @@
     }
     main {
       @apply font-normal w-[50vw];
-      
-      /* sm:w-[4rem]; */
+
     }
     .img-shell {
-      @apply w-full  max-w-4xl container-f click
-      sm:w-full sm:h-full;
+      @apply w-full  max-w-4xl container-f click;
+
+      @media screen(sm) {
+        @apply w-full h-full;
+      }
     }
     img {
       @apply container mx-auto w-[100%] click
-      transition-all shadow-lg hover:scale-105 duration-[.3s]  object-cover max-h-full
+      transition-all shadow-lg hover:scale-105 duration-[.3s]  object-cover max-h-full;
 
-      sm:w-[12rem] sm:max-w-sm sm:max-h-60
-      sm:aspect-vertical;
+      @media screen(sm) {
+        @apply w-[12rem] max-w-sm max-h-60 aspect-vertical;
+      }
     }
 
     button {
