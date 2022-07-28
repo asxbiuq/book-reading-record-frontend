@@ -6,7 +6,7 @@ export const useFav = defineStore('favs', () => {
     console.log('page: ', page)
     const { error, data } = $(await useFetchFav(`fav/${page}`).json())
     // const { data } = $(await useGets(`/posts/${page}`).json())
-    if (data.favs) {
+    if (data.favs.length) {
       assign(favs, data.favs)
     } else {
       throw new Error('没有更多的数据了!')
