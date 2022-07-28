@@ -106,6 +106,7 @@ const handlePageNext = async () => {
     await getPosts(pageIndex)
   } catch (error: any) {
     pageIndex--
+    await getPosts(pageIndex)
     console.log(error)
     const { open } = useAlert()
     open(error)
@@ -119,7 +120,6 @@ const handlePagePre = async () => {
     console.log('The first page!')
     const { open } = useAlert()
     open('已经是第一页!')
-    return
   } else {
     pageIndex--
     await getPosts(pageIndex)

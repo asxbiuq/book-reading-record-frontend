@@ -45,6 +45,9 @@ onMounted(() => {
         <router-link to="/fav" class="p-btn p-btn-ghost normal-case text-xl"
           >收藏夹</router-link
         >
+        <router-link to="/mypost" class="p-btn p-btn-ghost normal-case text-xl"
+          >我的书单</router-link
+        >
         <button class="p-btn p-btn-square p-btn-ghost">
           <i-bytesize:sign-out
             style="color: white; font-size: 1.5rem"

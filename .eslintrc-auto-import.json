@@ -199,6 +199,7 @@
     "useMouseInElement": true,
     "useMousePressed": true,
     "useMutationObserver": true,
+    "useMyPost": true,
     "useNavigatorLanguage": true,
     "useNetwork": true,
     "useNow": true,
