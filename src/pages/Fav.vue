@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 let pageIndex = 1
 
-const { favs, gets, unfav } = useFav()
+const { favs, gets, deleteFav } = useFav()
 const router = useRouter()
 // console.log(data)
 gets()
@@ -11,7 +11,7 @@ const handleUnfav = async (book: Post) => {
   open()
 
   try {
-    unfav(book)
+    deleteFav(book)
   } catch (error: any) {
     console.log(error)
     const { open } = useAlert()

@@ -10,6 +10,7 @@ const router = useRouter()
 const state = $(useLocalState())
 const { error, login } = $(useLogin(url))
 let isScrollToTop = $(useScrollToTop())
+const {posts} = $(usePost())
 
 watchEffect(() => {
   isScrollToTop = true

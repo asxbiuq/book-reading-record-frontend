@@ -167,6 +167,7 @@
     "useFav": true,
     "useFavicon": true,
     "useFetch": true,
+    "useFetchFav": true,
     "useFileSystemAccess": true,
     "useFocus": true,
     "useFocusWithin": true,

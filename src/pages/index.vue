@@ -10,6 +10,7 @@ const { posts, getPosts, deletePost, UpdatePost, clearPosts } = $(usePost())
 const { clearComment } = useComment()
 const router = useRouter()
 let isScrollToTop = $(useScrollToTop())
+const { addFav, deleteFav } = useFav()
 
 watch($$(posts), () => {
   console.log('posts: ', posts)
@@ -55,7 +56,12 @@ const handleUpdate = async (book: Post) => {
   state.isPending = true
 
   try {
-    await UpdatePost(book)
+    if (book.isFav) {
+      await deleteFav(book)
+    } else {
+      await addFav(book)
+    }
+    // await UpdatePost(book)
   } catch (error: any) {
     console.log(error)
     const { open } = useAlert()
@@ -178,24 +184,22 @@ meta:
 </template>
 
 <style scoped>
-
 @media (width < 480px) {
-  .test{
+  .test {
     /* background-color: red; */
     @apply bg-red-500;
   }
 }
 
 @media (480px < width < 768px) {
-  .test{
+  .test {
     background-color: rgb(68, 50, 50);
   }
 }
 
 @media (width > 768px) {
-  .test{
+  .test {
     background-color: rgb(104, 98, 226);
   }
 }
-
 </style>
