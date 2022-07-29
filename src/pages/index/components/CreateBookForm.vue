@@ -95,9 +95,9 @@ const handleSubmit = useThrottleFn(async (e: any) => {
           class="input"
           v-model:data="title"
           :label="'书名'"
-          :reg="/^\S{4,10}$/"
+          :reg="/^\S{1,10}$/"
           :type="'text'"
-          :data-tip="'长度需要为4-10'"
+          :data-tip="'长度需要为1-10'"
           :placeholder="'书名'"
         />
 
@@ -106,9 +106,9 @@ const handleSubmit = useThrottleFn(async (e: any) => {
           class="input"
           v-model:data="author"
           :label="'作者'"
-          :reg="/^\S{4,10}$/"
+          :reg="/^\S{1,10}$/"
           :type="'text'"
-          :data-tip="'长度需要为4-10'"
+          :data-tip="'长度需要为1-10'"
           :placeholder="'作者'"
         />
 

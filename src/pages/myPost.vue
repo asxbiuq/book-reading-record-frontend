@@ -6,8 +6,7 @@ const target = $ref<HTMLElement | null>(null)
 
 // composables
 const state = $(useLocalState())
-const {  getPosts, deletePost, UpdatePost, clearPosts } = $(usePost())
-const { clearComment } = useComment()
+const {  deletePost } = $(usePost())
 const router = useRouter()
 let isScrollToTop = $(useScrollToTop())
 const { addFav, deleteFav } = useFav()
@@ -97,18 +96,16 @@ const handleClickToTop = useThrottleFn(() => {
 let pageIndex = 1
 
 // console.log(showList)
-const maxPageNum = $computed(() => {
-  return 999
-})
+
 const handlePageNext = async () => {
   const { open, close } = useLoading()
   open()
   try {
     pageIndex++
-    await getPosts(pageIndex)
+    await getMyPosts(pageIndex)
   } catch (error: any) {
     pageIndex--
-    await getPosts(pageIndex)
+    await getMyPosts(pageIndex)
     console.log(error)
     const { open } = useAlert()
     open(error)
@@ -124,7 +121,7 @@ const handlePagePre = async () => {
     open('已经是第一页!')
   } else {
     pageIndex--
-    await getPosts(pageIndex)
+    await getMyPosts(pageIndex)
     console.log('CurrentPage:', pageIndex)
   }
   close()

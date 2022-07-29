@@ -7,8 +7,7 @@ export const useMyPost = defineStore('myPost', () => {
   // 默认得到第一页的数据,一页的数据为3
   const getMyPosts = async (page = 1) => {
     const { useGets, useDelete, usePut } = $(useFetch(baseUrl, state.token))
-    clearMyPosts()
-    console.log('page: ', page)
+
     const { data } = $(await useGets(`/myposts/${page}`).json())
     if (data.posts.length) {
       clearMyPosts()
@@ -39,7 +38,9 @@ export const useMyPost = defineStore('myPost', () => {
       assign(myPosts,newPosts)
   }
   const clearMyPosts = () => {
-    remove(myPosts, (post) => true)
+    remove(myPosts, (post) => {
+      return true
+    })
     console.log('clearPosts: ',myPosts)
   }
 
