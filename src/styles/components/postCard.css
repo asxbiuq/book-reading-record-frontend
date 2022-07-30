@@ -1,5 +1,5 @@
 @layer components {
-  .book-card {
+  .post-card {
     @apply container mx-auto bg-teal-400 rounded-2xl w-[70vw] 
     flex flex-col items-center  p-12 gap-10 max-w-[40rem] transition-all text-white
     duration-150 ease-out hover:ease-in;

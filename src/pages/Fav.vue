@@ -3,15 +3,17 @@ let pageIndex = 1
 
 const { favs, gets, deleteFav } = useFav()
 const router = useRouter()
+const state = $(useLocalState())
+const {  deletePost } = $(usePost())
 // console.log(data)
 gets()
 
-const handleUnfav = async (book: Post) => {
+const handleUnfav = async (post: Post) => {
   const { open, close } = useLoading()
   open()
 
   try {
-    deleteFav(book)
+    deleteFav(post)
   } catch (error: any) {
     console.log(error)
     const { open } = useAlert()
@@ -20,14 +22,29 @@ const handleUnfav = async (book: Post) => {
 
   close()
 }
-const handleDetails = (_book: { _id: string }) => {
+const handleDelete = async (post: Post) => {
+  const { open, close } = useLoading()
+  open()
+  state.isPending = true
+
+  try {
+    await deletePost(post._id)
+  } catch (error: any) {
+    console.log(error)
+    const { open } = useAlert()
+    open(error)
+  }
+  state.isPending = false
+  close()
+}
+const handleDetails = (_post: { _id: string }) => {
   const state = $(useLocalState())
 
-  state.postId = _book._id
+  state.postId = _post._id
   router.push({
     name: 'Comments',
     params: {
-      id: _book._id,
+      id: _post._id,
     },
   })
 }
@@ -60,23 +77,27 @@ const handlePagePre = async () => {
   }
   close()
 }
+watchEffect(()=>{
+  console.log('favs: ',favs)
+})
 </script>
 
 <template>
   <div class="flex flex-col justify-center items-center gap-7">
     <ul class="flex flex-col gap-10 justify-center">
-      <li v-for="book in favs" :key="book._id">
-        <BookCard
-          :title="book.title"
-          :author="book.author"
-          :description="book.content"
-          :btn-name="'取消收藏'"
-          :img-url="book.imageUrl"
-          :is-fav="book.isFav"
-          @click-btn="handleUnfav(book)"
-          @click-star="handleUnfav(book)"
-          @click-image="handleDetails(book)"
-          class="book-card hover:scale-105 duration-200 drop-shadow-2xl shadow-2xl bg-blend-color-burn"
+      <li v-for="post in favs" :key="post._id">
+        <PostCard
+          :creatorId="post.creator"
+          :title="post.title"
+          :author="post.author"
+          :description="post.content"
+          :btn-name="'删除'"
+          :img-url="post.imageUrl || 'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
+          :is-fav="post.isFav"
+          @click-btn="handleDelete(post)"
+          @click-star="handleUnfav(post)"
+          @click-image="handleDetails(post)"
+          class="post-card hover:scale-105 duration-200 drop-shadow-2xl shadow-2xl bg-blend-color-burn"
         />
       </li>
       <div v-if="favs.length !== 0">

@@ -2,18 +2,21 @@
 // data
 const baseUrl = import.meta.env.VITE_POST_URL
 let title = $ref('')
-let author = $ref('')
 let file: Blob | null = $ref(null)
 let isOpen = $ref(false)
 const target = $ref<HTMLElement | null>(null)
 const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
+let content = $ref('')
 
 // composables
 const state = $(useLocalState())
-const { usePost } = useFetch(baseUrl, state.token)
+// const { usePost } = useFetch(baseUrl, state.token)
 const { open: openAlert } = useAlert()
 const { open: openLoading, close: closeLoading } = useLoading()
-
+const {addPost} = usePost()
+// watchEffect(()=>{
+//   console.log(content)
+// })
 // event
 const emits = defineEmits(['created'])
 
@@ -34,31 +37,35 @@ const handleSubmit = useThrottleFn(async (e: any) => {
   openLoading()
   // state.isPending = true
 
-  if (!(title && author && file)) {
-    openAlert('书籍表单提交错误,请再次确认!')
+  if (!(title && content )) {
+    openAlert('提交错误,标题和内容不能为空,请再次确认!')
     // state.isPending = false
     closeLoading()
-    throw new Error(
-      `title: ${title ?? null}, author: ${author ?? null}, file: ${
-        file ?? null
-      }`
-    )
+    // throw new Error(
+    //   `title: ${title ?? null}, content: ${
+    //     content ?? null
+    //   }`
+    // )
   }
-
-  const formData = new FormData()
-  formData.append('title', title)
-  formData.append('author', author)
-  formData.append('isFav', 'false')
-  formData.append('creator', state.userId)
-  formData.append('image', file)
-  formData.append('time', new Date().toString())
-
-  const { error, data } = $(await usePost('/').post(formData).json())
+  
+  // const formData = new FormData()
+  // formData.append('title', title)
+  // formData.append('author', state.name)
+  // formData.append('content', content)
+  // formData.append('isFav', 'false')
+  // formData.append('creator', state.userId)
+  // if (file) {
+  //   formData.append('image', file)
+  // }
+  // formData.append('time', new Date().toString())
+  // console.log('formData: ',formData)
+  // const { error, data } = $(await usePost('/').post(formData).json())
 
   try {
-    if (error) {
-      throw new Error(` ${data.message}`)
-    }
+    // if (error) {
+    //   throw new Error(` ${data.message}`)
+    // }
+    addPost(title,content,file)
   } catch (error: any) {
     closeLoading()
     openAlert(error)
@@ -67,7 +74,7 @@ const handleSubmit = useThrottleFn(async (e: any) => {
   emits('created')
 
   title = ''
-  author = ''
+  content = ''
   file = null
 
   closeModal()
@@ -80,38 +87,44 @@ const handleSubmit = useThrottleFn(async (e: any) => {
 
 <template>
   <div class="create-book-form">
-    <div class="btn-info" @click="openModal">添加书籍</div>
+    <div class="btn-info" @click="openModal">添加新的帖子</div>
     <MDialog :is-open="isOpen">
       <MForm
         class="form"
         ref="target"
-        :form-label="'添加新的书籍'"
+        :form-label="'添加新的帖子'"
         :btn-name="'添加'"
         @submit.prevent="handleSubmit($event)"
         :isPending="state.isPending"
       >
         <!-- 书名输入栏 -->
-        <MInput
+        <!-- <MInput
           class="input"
           v-model:data="title"
-          :label="'书名'"
+          :label="'标题'"
           :reg="/^\S{1,10}$/"
           :type="'text'"
           :data-tip="'长度需要为1-10'"
-          :placeholder="'书名'"
-        />
+          :placeholder="'标题'"
+        /> -->
 
         <!-- 作者输入栏 -->
-        <MInput
+        <!-- <MInput
           class="input"
           v-model:data="author"
-          :label="'作者'"
-          :reg="/^\S{1,10}$/"
+          :label="'内容'"
+          :reg="/^\S{1,100}$/"
           :type="'text'"
-          :data-tip="'长度需要为1-10'"
-          :placeholder="'作者'"
-        />
-
+          :data-tip="'长度需要为1-100'"
+          :placeholder="'内容'"
+        /> -->
+        <input type="post" v-model="title" placeholder="标题">
+        <textarea
+          v-model="content"
+          name="content"
+          id=""
+          placeholder="请输入你的内容"
+        ></textarea>
         <!-- 作图片输入栏 -->
         <!-- file_type 需要为数组 -->
 

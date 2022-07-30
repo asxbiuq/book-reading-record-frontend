@@ -19,7 +19,7 @@ const checkSelectedFile = (e: any) => {
   if (props.type === 'file' && e.target && props.fileType) {
     const selected = e.target.files[0]
 
-    if (selected && props.fileType.includes(selected.type)) {
+    if (props.fileType.includes(selected.type)) {
       e.target.classList.remove('input-error')
       e.target.classList.add('input-info')
       e.target.parentNode.classList.remove('tooltip-error')
@@ -31,7 +31,9 @@ const checkSelectedFile = (e: any) => {
       // emits('fileTypeError')
       console.log('fileType  Error')
     }
+
   }
+
 }
 
 const handleKeydown = (e: any) => {

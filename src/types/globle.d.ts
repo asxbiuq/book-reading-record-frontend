@@ -1,10 +1,5 @@
-interface AjaxSettings {
-  method?: 'GET' | 'POST'
-  data?: any
-}
-declare namespace jQuery {
-  function ajax(url: string, settings?: AjaxSettings): void
-}
+
+
 
 interface Reply {
   _id: string
@@ -25,6 +20,7 @@ interface Comment {
 }
 
 interface Post {
+  content:string
   title: string
   imageUrl: string
   content: string
@@ -43,4 +39,10 @@ interface User {
   comments: Comment[]
   userId: UserId
   name: Name
+}
+
+interface Fav {
+  _id: string
+  creator: string
+  postId: string
 }

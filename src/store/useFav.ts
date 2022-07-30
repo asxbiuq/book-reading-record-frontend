@@ -2,6 +2,7 @@ export const useFav = defineStore('favs', () => {
   // const { deletePost, UpdatePost,posts } = $(usePost())
 
   const favs: Post[] = $ref([])
+
   const gets = async (page = 1) => {
     console.log('page: ', page)
     const { error, data } = $(await useFetchFav(`fav/${page}`).json())
@@ -12,46 +13,49 @@ export const useFav = defineStore('favs', () => {
       throw new Error('没有更多的数据了!')
     }
   }
-  const addFav = async (book: Post) => {
-    const { deletePost, UpdatePost,posts } = $(usePost())
-    const {data,error}=$(await useFetchFav(`fav/${book._id}`).post().json())
+
+  const addFav = async (_post: Post) => {
+    const { posts } = $(usePost())
+    const {error}=$(await useFetchFav(`fav/${_post._id}`).post().json())
     if (!error) {
-      favs.push(data.fav)
+      favs.push(_post)
+    } else {
+      throw new Error(`${error}`);
     }
     const newPost = posts.map((post:Post)=>{
-      if (post._id == book._id) {
+      if (post._id === _post._id) {
         post.isFav = true
       }
       return post
     })
     assign(posts,newPost)
   }
-  const deleteFav = async (book: Post) => {
-    const { deletePost, UpdatePost,posts } = $(usePost())
-    const {data,error} = $(await useFetchFav(`fav/${book._id}`).delete())
+  const deleteFav = async (_post: Post) => {
+    const { posts } = $(usePost())
+    const {error} = $(await useFetchFav(`fav/${_post._id}`).delete().json())
     if (!error) {
       remove(favs, (fav) => {
-        return fav._id === book._id
+        return fav._id === _post._id
       })
       const newPosts = posts.map((post:Post)=>{
-        if (post._id === book._id) {
+        if (post._id === _post._id) {
           post.isFav = false
         }
         return post
       })
       assign(posts,newPosts)
-      // posts.forEach((post:Post)=>{
-      //   if (post._id === book._id) {
-      //     post.isFav = false
-      //   }
-
-      // })
+    } else {
+      throw new Error(`${error}`);
     }
   }
 
   const clearFav = () => {
     remove(favs, (fav) => true)
   }
+
+  watchEffect(()=>{
+    console.log('favs: ',favs)
+  })
   return $$({
     gets,
     favs,

@@ -22,7 +22,7 @@ if (new Date(state.expiryDate).getTime() - new Date().getTime() < 0) {
   open('登陆认证已失效,请重新登陆')
   router.push({ name: 'Login' })
 }
-const handleGetBooks = async () => {
+const handleGetPosts = async () => {
   clearPosts()
   await getPosts()
 }
@@ -31,16 +31,16 @@ if (!state.token) {
   router.push({ name: 'Login' })
 }
 if (!posts.length) {
-  handleGetBooks()
+  handleGetPosts()
 }
 
-const handleDelete = async (book: Post) => {
+const handleDelete = async (post: Post) => {
   const { open, close } = useLoading()
   open()
   state.isPending = true
 
   try {
-    await deletePost(book._id)
+    await deletePost(post._id)
   } catch (error: any) {
     console.log(error)
     const { open } = useAlert()
@@ -50,18 +50,18 @@ const handleDelete = async (book: Post) => {
   close()
 }
 
-const handleUpdate = async (book: Post) => {
+const handleUpdate = async (post: Post) => {
   const { open, close } = useLoading()
   open()
   state.isPending = true
 
   try {
-    if (book.isFav) {
-      await deleteFav(book)
+    if (post.isFav) {
+      await deleteFav(post)
     } else {
-      await addFav(book)
+      await addFav(post)
     }
-    // await UpdatePost(book)
+    // await UpdatePost(post)
   } catch (error: any) {
     console.log(error)
     const { open } = useAlert()
@@ -70,13 +70,13 @@ const handleUpdate = async (book: Post) => {
   state.isPending = false
   close()
 }
-const handleDetails = (_book: { _id: string }) => {
+const handleDetails = (_post: { _id: string }) => {
   const state = $(useLocalState())
-  state.postId = _book._id
+  state.postId = _post._id
   router.push({
     name: 'Comments',
     params: {
-      id: _book._id,
+      id: _post._id,
     },
   })
 }
@@ -139,18 +139,19 @@ meta:
   <div ref="el" class="relative top-[5rem]">
     <div v-if="state.token" class="flex justify-center">
       <ul class="flex flex-col gap-10 justify-center">
-        <li v-for="book in posts" :key="book._id">
-          <BookCard
-            :title="book.title"
-            :author="book.author"
-            :description="book.content"
+        <li v-for="post in posts" :key="post._id">
+          <PostCard
+            :creatorId="post.creator"
+            :title="post.title"
+            :author="post.author"
+            :description="post.content"
             :btn-name="'删除'"
-            :img-url="book.imageUrl"
-            :is-fav="book.isFav"
-            @click-btn="handleDelete(book)"
-            @click-star="handleUpdate(book)"
-            @click-image="handleDetails(book)"
-            class="book-card hover:scale-105 duration-200 drop-shadow-2xl shadow-2xl bg-blend-color-burn"
+            :img-url="post.imageUrl || 'https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg'"
+            :is-fav="post.isFav"
+            @click-btn="handleDelete(post)"
+            @click-star="handleUpdate(post)"
+            @click-image="handleDetails(post)"
+            class="post-card hover:scale-105 duration-200 drop-shadow-2xl shadow-2xl bg-blend-color-burn"
           />
         </li>
         <div v-if="posts.length !== 0">
@@ -159,7 +160,7 @@ meta:
       </ul>
 
       <div ref="target" class="flex justify-center bottom-6 fixed">
-        <CreateBookForm @created="handleGetBooks" />
+        <CreatePostForm @created="handleGetPosts" />
       </div>
     </div>
     <div v-else>
