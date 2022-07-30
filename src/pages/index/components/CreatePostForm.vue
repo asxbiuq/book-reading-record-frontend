@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 // data
 const baseUrl = import.meta.env.VITE_POST_URL
 let title = $ref('')
@@ -18,6 +19,8 @@ const {addPost} = usePost()
 //   console.log(content)
 // })
 // event
+
+
 const emits = defineEmits(['created'])
 
 // function
@@ -65,6 +68,7 @@ const handleSubmit = useThrottleFn(async (e: any) => {
     // if (error) {
     //   throw new Error(` ${data.message}`)
     // }
+    
     addPost(title,content,file)
   } catch (error: any) {
     closeLoading()

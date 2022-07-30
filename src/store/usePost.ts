@@ -38,7 +38,8 @@ export const usePost = defineStore('post', () => {
     formData.append('time', new Date().toString())
     console.log('formData: ',formData)
     const { error, data } = $(await usePost('/').post(formData).json())
-    getMyPosts()
+    await getMyPosts()
+    await getPosts()
   }
 
   const deletePost = async (postId: string) => {

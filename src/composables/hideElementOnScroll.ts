@@ -7,12 +7,14 @@ const hideElementOnScroll = (el: HTMLElement) => {
     let currentScrollPos = window.pageYOffset
     if (prevScrollpos > currentScrollPos) {
       el.style.opacity = '100%'
+
       // el.style.top = "0"
-      // el.style.display = "flex"
+      el.style.display = "flex"
     } else {
       // el.classList.toggle("0")
-      // el.style.display = "none"
+      el.style.display = "none"
       el.style.opacity = '0'
+
       // el.style.top = "-100%"
     }
     prevScrollpos = currentScrollPos
