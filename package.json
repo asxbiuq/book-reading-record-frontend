@@ -6,15 +6,17 @@
     "node": "16.x"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "npx cap run android",
+    "dev:ide": "npx cap open android",
+    "build": "vite build & npx cap sync",
     "lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@capacitor/android": "^4.0.1",
+    "@capacitor/core": "^4.0.1",
     "@headlessui/vue": "^1.6.4",
     "@tailwindcss/nesting": "0.0.0-insiders.565cd3e",
     "@types/debug": "^4.1.7",
@@ -38,6 +40,7 @@
     "vue-router": "^4.0.13"
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.0.1",
     "@iconify/json": "^2.1.63",
     "@iconify/vue": "^3.2.1",
     "@rollup/plugin-strip": "^2.1.0",
@@ -52,6 +55,7 @@
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-vue": "^9.1.1",
+    "ionic": "^5.4.16",
     "jsdom": "latest",
     "picocolors": "^1.0.0",
     "postcss": "^8.4.14",

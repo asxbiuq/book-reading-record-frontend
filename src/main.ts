@@ -6,7 +6,7 @@ import { createPinia } from 'pinia'
 import 'animate.css'
 import { setGlobalOptions } from 'vue-request'
 import 'container-query-polyfill'
-
+import { IonicVue } from '@ionic/vue';
 setGlobalOptions({
   manual: false,
   // ...
@@ -16,4 +16,8 @@ const pinia = createPinia()
 
 
 
-createApp(App).use(router).use(pinia).mount('#app')
+const  app = createApp(App).use(IonicVue).use(router).use(pinia)
+
+router.isReady().then(() => {
+  app.mount('#app');
+});
