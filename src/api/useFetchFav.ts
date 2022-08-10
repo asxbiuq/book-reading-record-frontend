@@ -10,7 +10,7 @@ export const useFetchFav = createFetch({
     // 在请求前修改配置，如：注入 token 值
     async beforeFetch({ options }) {
 
-      const state = $(useLocalState())
+      const state = $(useSession())
       if (!state.token) {
         throw new Error(
           `Error happened in useFetch, token is ${

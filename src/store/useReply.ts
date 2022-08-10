@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 
 export const useReply = defineStore('reply', () => {
   const replyBaseUrl = import.meta.env.VITE_REPLY_URL
-  const state = $(useLocalState())
+  const state = $(useSession())
 
   const replies: Reply[] = $ref([])
 

@@ -10,7 +10,7 @@ const fileType = ['image/png', 'image/jpeg'] // 允许上传的数据类型
 let content = $ref('')
 
 // composables
-const state = $(useLocalState())
+const state = $(useSession())
 // const { usePost } = useFetch(baseUrl, state.token)
 const { open: openAlert } = useAlert()
 const { open: openLoading, close: closeLoading } = useLoading()

@@ -3,7 +3,7 @@ let pageIndex = 1
 
 const { favs, gets, deleteFav } = useFav()
 const router = useRouter()
-const state = $(useLocalState())
+const state = $(useSession())
 const {  deletePost } = $(usePost())
 // console.log(data)
 gets()
@@ -38,7 +38,7 @@ const handleDelete = async (post: Post) => {
   close()
 }
 const handleDetails = (_post: { _id: string }) => {
-  const state = $(useLocalState())
+  const state = $(useSession())
 
   state.postId = _post._id
   router.push({

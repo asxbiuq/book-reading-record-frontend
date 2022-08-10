@@ -8,7 +8,7 @@ const url = import.meta.env.VITE_AUTH_URL + '/signup'
 // composables
 const { signup, error } = $(useSignup(url))
 const router = useRouter()
-const state = $(useLocalState())
+const state = $(useSession())
 
 // function
 const handleSignup = async () => {

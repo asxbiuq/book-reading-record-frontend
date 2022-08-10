@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // composables
 const { logout } = $(useLogout())
-const state = $(useLocalState())
+const state = $(useSession())
 const router = useRouter()
 
 // function

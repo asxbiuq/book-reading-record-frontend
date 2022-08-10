@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 export const useComment = defineStore('comment', () => {
   const comments: Comment[] = $ref([])
   const commentBaseUrl = import.meta.env.VITE_COMMENT_URL
-  const state = $(useLocalState())
+  const state = $(useSession())
 
   const getComments = async (postId: string) => {
     const { useGets } = $(useFetch(commentBaseUrl, state.token))

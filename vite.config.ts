@@ -32,6 +32,9 @@ export default ({ mode }) => {
 
 
       return defineConfig({
+        server: {
+          port: 5186,
+        },
       // assetsInclude: ['**/*.jfif'],
       plugins: [
         pro && progress({

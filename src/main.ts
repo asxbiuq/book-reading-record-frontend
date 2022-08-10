@@ -14,4 +14,6 @@ setGlobalOptions({
 
 const pinia = createPinia()
 
+
+
 createApp(App).use(router).use(pinia).mount('#app')

@@ -19,7 +19,7 @@ const {
   isFav = false,
 } = defineProps<Props>()
 
-const state = $(useLocalState())
+const state = $(useSession())
 
 // event
 const emits = defineEmits(['clickBtn', 'clickStar', 'clickImage'])

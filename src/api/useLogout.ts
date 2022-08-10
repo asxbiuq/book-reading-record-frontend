@@ -2,7 +2,7 @@ let error = $ref(null)
 let isPending = $ref(false)
 
 const logout = () => {
-  const state = $(useLocalState())
+  const state = $(useSession())
   const { clearPosts } = $(usePost())
   const { clearFav } = $(useFav())
 
