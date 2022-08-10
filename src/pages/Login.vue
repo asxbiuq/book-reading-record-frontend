@@ -7,10 +7,11 @@ const url = import.meta.env.VITE_AUTH_URL + '/login'
 
 // composables
 const router = useRouter()
-const state = $(useLocalState())
+const state = $(useSession())
 const { error, login } = $(useLogin(url))
 let isScrollToTop = $(useScrollToTop())
-const {posts} = $(usePost())
+const {posts} = $(usePost()) 
+const {setLocal} = useLocal()
 
 watchEffect(() => {
   isScrollToTop = true
@@ -32,7 +33,7 @@ const handleLogin = async () => {
   // state.name = resData.name
   if (!error) {
     assign(state, resData)
-
+    setLocal(JSON.stringify(state))
     router.push('/')
   } else {
     const { open } = $(useAlert())

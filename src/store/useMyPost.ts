@@ -2,7 +2,7 @@ import { ComputedVariable } from "vue/macros"
 
 export const useMyPost = defineStore('myPost', () => {
   const baseUrl = import.meta.env.VITE_POST_URL
-  const state = $(useLocalState())
+  const state = $(useSession())
   const { posts } = usePost()
 
   

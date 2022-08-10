@@ -5,7 +5,7 @@ import { useRequest } from 'vue-request'
 const target = $ref<HTMLElement | null>(null)
 
 // composables
-const state = $(useLocalState())
+const state = $(useSession())
 const { posts, getPosts, deletePost, UpdatePost, clearPosts } = $(usePost())
 const { clearComment } = useComment()
 const router = useRouter()
@@ -71,7 +71,7 @@ const handleUpdate = async (post: Post) => {
   close()
 }
 const handleDetails = (_post: { _id: string }) => {
-  const state = $(useLocalState())
+  const state = $(useSession())
   state.postId = _post._id
   router.push({
     name: 'Comments',

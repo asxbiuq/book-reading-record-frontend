@@ -1,6 +1,6 @@
 export const usePost = defineStore('post', () => {
   const baseUrl = import.meta.env.VITE_POST_URL
-  const state = $(useLocalState())
+  const state = $(useSession())
 
   
   const posts: Post[] = $ref([])
@@ -23,7 +23,7 @@ export const usePost = defineStore('post', () => {
 
   const addPost = async(title:string,content:string,file:any) =>{
     const {getMyPosts} = $(useMyPost())
-    const state = $(useLocalState())
+    const state = $(useSession())
     const { usePost } = useFetch(baseUrl, state.token)
 
     const formData = new FormData()

@@ -4,7 +4,7 @@ import avatar from '/public/assets/default_avatar.jpg'
 //   .href
 let postId: string
 
-const state = $(useLocalState())
+const state = $(useSession())
 const Route = useRoute()
 const { replies, getReplies, addReply, deleteReply } = $(useReply())
 const { comments, addComment, deleteComment, getComments, clearComment } = $(
@@ -22,7 +22,7 @@ if (Route.params.id && typeof Route.params.id == 'string' && !comments.length) {
   await getComments(postId)
   isScrollToTop = true
 } else {
-  const state = $(useLocalState())
+  const state = $(useSession())
   postId = state.postId
   await getComments(postId)
   isScrollToTop = true

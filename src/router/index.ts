@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
+import useSession from '@/store/useSession'
 
 const routes = setupLayouts(generatedRoutes)
-const state = useLocalState()
+const state = useSession()
 
 const router = createRouter({
   history: createWebHistory(),
