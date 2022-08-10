@@ -13,6 +13,8 @@
     "start:ios": "ionic cap open ios",
     "live-ios":"ionic cap run ios -l --external",
     "live-android":"ionic cap run android -l --external",
+    "ionic:build": "vite build",
+    "ionic:serve": "vite",
     "lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
     "test": "vitest",
