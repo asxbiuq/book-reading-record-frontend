@@ -6,9 +6,13 @@ import useSession from '@/store/useSession'
 const routes = setupLayouts(generatedRoutes)
 const state = useSession()
 
+// const router = createRouter({
+//   history: createWebHistory(),
+//   routes,
+// })
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes
 })
 
 router.beforeEach((to, from, next) => {

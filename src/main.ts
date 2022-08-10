@@ -7,6 +7,8 @@ import 'animate.css'
 import { setGlobalOptions } from 'vue-request'
 import 'container-query-polyfill'
 import { IonicVue } from '@ionic/vue';
+
+
 setGlobalOptions({
   manual: false,
   // ...

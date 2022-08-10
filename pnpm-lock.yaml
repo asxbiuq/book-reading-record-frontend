@@ -4,9 +4,12 @@ specifiers:
   '@capacitor/android': ^4.0.1
   '@capacitor/cli': ^4.0.1
   '@capacitor/core': ^4.0.1
+  '@capacitor/ios': ^4.0.1
   '@headlessui/vue': ^1.6.4
   '@iconify/json': ^2.1.63
   '@iconify/vue': ^3.2.1
+  '@ionic/vue': 6.0.0-rc.4
+  '@ionic/vue-router': 6.0.0-rc.4
   '@rollup/plugin-strip': ^2.1.0
   '@tailwindcss/nesting': 0.0.0-insiders.565cd3e
   '@types/debug': ^4.1.7
@@ -22,6 +25,7 @@ specifiers:
   axios: ^0.27.2
   concurrently: ^7.2.2
   container-query-polyfill: ^0.1.2
+  crypto-js: ^4.1.1
   cssnano: ^5.1.12
   daisyui: ^2.15.1
   dayjs: ^1.11.3
@@ -75,7 +79,10 @@ specifiers:
 dependencies:
   '@capacitor/android': registry.npmmirror.com/@capacitor/android/4.0.1_@capacitor+core@4.0.1
   '@capacitor/core': registry.npmmirror.com/@capacitor/core/4.0.1
+  '@capacitor/ios': registry.npmmirror.com/@capacitor/ios/4.0.1_@capacitor+core@4.0.1
   '@headlessui/vue': registry.npmmirror.com/@headlessui/vue/1.6.4_vue@3.2.37
+  '@ionic/vue': registry.npmmirror.com/@ionic/vue/6.0.0-rc.4
+  '@ionic/vue-router': registry.npmmirror.com/@ionic/vue-router/6.0.0-rc.4
   '@tailwindcss/nesting': registry.npmmirror.com/@tailwindcss/nesting/0.0.0-insiders.565cd3e_postcss@8.4.14
   '@types/debug': registry.npmmirror.com/@types/debug/4.1.7
   '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.6
@@ -83,6 +90,7 @@ dependencies:
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.6.0_vue@3.2.37
   animate.css: registry.npmmirror.com/animate.css/4.1.1
   axios: registry.npmmirror.com/axios/0.27.2
+  crypto-js: registry.npmmirror.com/crypto-js/4.1.1
   daisyui: registry.npmmirror.com/daisyui/2.15.3_ugi4xkrfysqkt4c4y6hkyfj344
   dayjs: registry.npmmirror.com/dayjs/1.11.3
   lodash-es: registry.npmmirror.com/lodash-es/4.17.21
@@ -586,6 +594,17 @@ packages:
       tslib: registry.npmmirror.com/tslib/2.4.0
     dev: false
 
+  registry.npmmirror.com/@capacitor/ios/4.0.1_@capacitor+core@4.0.1:
+    resolution: {integrity: sha512-46qigDiPKHXxihSSjXDIbuF8/1O9xWVgMzJpEFJhhhav+vHy6/SDc2liKLhmqCwH2OzZGxk+IlSGlkc4Oyorkw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@capacitor/ios/-/ios-4.0.1.tgz}
+    id: registry.npmmirror.com/@capacitor/ios/4.0.1
+    name: '@capacitor/ios'
+    version: 4.0.1
+    peerDependencies:
+      '@capacitor/core': ^4.0.0
+    dependencies:
+      '@capacitor/core': registry.npmmirror.com/@capacitor/core/4.0.1
+    dev: false
+
   registry.npmmirror.com/@csstools/postcss-cascade-layers/1.0.5_postcss@8.4.14:
     resolution: {integrity: sha512-Id/9wBT7FkgFzdEpiEWrsVd4ltDxN0rI0QS0SChbeQiSuux3z21SJCRLu6h2cvCEUmaRi+VD0mHFj+GJD4GFnw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@csstools/postcss-cascade-layers/-/postcss-cascade-layers-1.0.5.tgz}
     id: registry.npmmirror.com/@csstools/postcss-cascade-layers/1.0.5
@@ -915,6 +934,16 @@ packages:
       - supports-color
     dev: true
 
+  registry.npmmirror.com/@ionic/core/6.0.0-rc.4:
+    resolution: {integrity: sha512-bQmF2U07/HwN9x6xquNeXQyRDWDUfLmkDV5F/foOxdQk0qd78v9x4xdX3Yr9ypsn2sxlu6U83wALYqmw6fF8Fg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ionic/core/-/core-6.0.0-rc.4.tgz}
+    name: '@ionic/core'
+    version: 6.0.0-rc.4
+    dependencies:
+      '@stencil/core': registry.npmmirror.com/@stencil/core/2.11.0
+      ionicons: registry.npmmirror.com/ionicons/6.0.2
+      tslib: registry.npmmirror.com/tslib/2.4.0
+    dev: false
+
   registry.npmmirror.com/@ionic/discover/2.0.8:
     resolution: {integrity: sha512-Bk/JPL2J/Qq4FAkBrgxPdosx8rtLHXXwqsfiDWDcpW2LpsFytpzlysWsI59++h6bzp1n/w9/M/lLflfMtK6mdw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ionic/discover/-/discover-2.0.8.tgz}
     name: '@ionic/discover'
@@ -1133,6 +1162,21 @@ packages:
       - supports-color
     dev: true
 
+  registry.npmmirror.com/@ionic/vue-router/6.0.0-rc.4:
+    resolution: {integrity: sha512-ZZd8ViZQGBczAMDl8Wxh2A2+9X6JQfZBXUULMeIn3Pgou9YU+RynsqrNBJDmjd1Uc111BTPdjkhlNGWNnCHIWQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ionic/vue-router/-/vue-router-6.0.0-rc.4.tgz}
+    name: '@ionic/vue-router'
+    version: 6.0.0-rc.4
+    dev: false
+
+  registry.npmmirror.com/@ionic/vue/6.0.0-rc.4:
+    resolution: {integrity: sha512-zIJaDBvZimu09rFBIH1Fp6PLEDv6yQILcX4+XPehMC/SX8PeK/C0jqIRXeyHtso8j1WPUjKWIP//ba5hxPxRZA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ionic/vue/-/vue-6.0.0-rc.4.tgz}
+    name: '@ionic/vue'
+    version: 6.0.0-rc.4
+    dependencies:
+      '@ionic/core': registry.npmmirror.com/@ionic/core/6.0.0-rc.4
+      ionicons: registry.npmmirror.com/ionicons/6.0.2
+    dev: false
+
   registry.npmmirror.com/@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz}
     name: '@jridgewell/gen-mapping'
@@ -1295,6 +1339,22 @@ packages:
       estree-walker: registry.npmmirror.com/estree-walker/2.0.2
       picomatch: registry.npmmirror.com/picomatch/2.3.1
     dev: true
+
+  registry.npmmirror.com/@stencil/core/2.11.0:
+    resolution: {integrity: sha512-/IubCWhVXCguyMUp/3zGrg3c882+RJNg/zpiKfyfJL3kRCOwe+/MD8OoAXVGdd+xAohZKIi1Ik+EHFlsptsjLg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@stencil/core/-/core-2.11.0.tgz}
+    name: '@stencil/core'
+    version: 2.11.0
+    engines: {node: '>=12.10.0', npm: '>=6.0.0'}
+    hasBin: true
+    dev: false
+
+  registry.npmmirror.com/@stencil/core/2.16.1:
+    resolution: {integrity: sha512-s/UJp9qxExL3DyQPT70kiuWeb3AdjbUZM+5lEIXn30I2DLcLYPOPXfsoWJODieQywq+3vPiLZeIdkoqjf6jcSw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@stencil/core/-/core-2.16.1.tgz}
+    name: '@stencil/core'
+    version: 2.16.1
+    engines: {node: '>=12.10.0', npm: '>=6.0.0'}
+    hasBin: true
+    dev: false
 
   registry.npmmirror.com/@tailwindcss/nesting/0.0.0-insiders.565cd3e_postcss@8.4.14:
     resolution: {integrity: sha512-WhHoFBx19TnH/c+xLwT/sxei6+4RpdfiyG3MYXfmLaMsADmVqBkF7B6lDalgZD9YdM459MF7DtxVbWkOrV7IaQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tailwindcss/nesting/-/nesting-0.0.0-insiders.565cd3e.tgz}
@@ -2551,6 +2611,12 @@ packages:
       shebang-command: registry.npmmirror.com/shebang-command/2.0.0
       which: registry.npmmirror.com/which/2.0.2
     dev: true
+
+  registry.npmmirror.com/crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/crypto-js/-/crypto-js-4.1.1.tgz}
+    name: crypto-js
+    version: 4.1.1
+    dev: false
 
   registry.npmmirror.com/css-blank-pseudo/3.0.3_postcss@8.4.14:
     resolution: {integrity: sha512-VS90XWtsHGqoM0t4KpH053c4ehxZ2E6HtGI7x68YFV0pTo/QmkV/YFA+NnlvK8guxZVNWGQhVNJGC39Q8XF4OQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-blank-pseudo/-/css-blank-pseudo-3.0.3.tgz}
@@ -4807,6 +4873,14 @@ packages:
       - supports-color
       - utf-8-validate
     dev: true
+
+  registry.npmmirror.com/ionicons/6.0.2:
+    resolution: {integrity: sha512-AyKfFaUKVoBz4eB8XkU7H1R5HFnVsgq5ijqSdbXC0lES9PDK/J6LUQz6XUJq0mVVQF5k9kczSPOLMW3mszG0mQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ionicons/-/ionicons-6.0.2.tgz}
+    name: ionicons
+    version: 6.0.2
+    dependencies:
+      '@stencil/core': registry.npmmirror.com/@stencil/core/2.16.1
+    dev: false
 
   registry.npmmirror.com/ip/1.1.8:
     resolution: {integrity: sha512-PuExPYUiu6qMBQb4l06ecm6T6ujzhmh+MeJcW9wa89PoAz5pvd4zPgN5WJV104mb6S2T1AwNIAaB70JNrLQWhg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ip/-/ip-1.1.8.tgz}
