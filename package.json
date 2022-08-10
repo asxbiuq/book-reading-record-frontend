@@ -5,9 +5,10 @@
   "engines": {
     "node": "16.x"
   },
-  "scripts": {
+  "main": "dist/electron/main/index.js",
+  "scripts": {  
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && electron-builder",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
@@ -23,6 +24,7 @@
     "@vueuse/core": "^8.6.0",
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
+    "crypto-js": "^4.1.1",
     "daisyui": "^2.15.1",
     "dayjs": "^1.11.3",
     "lodash-es": "^4.17.21",
@@ -30,8 +32,6 @@
     "pinia": "^2.0.14",
     "postcss-media-minmax": "^5.0.0",
     "save-dev": "0.0.1-security",
-    "sequelize": "^6.21.2",
-    "sqlite3": "^5.0.8",
     "tailwindcss-container-query": "^1.1.0",
     "vue": "^3.2.37",
     "vue-request": "2.0.0-rc.3",
@@ -41,6 +41,7 @@
     "@iconify/json": "^2.1.63",
     "@iconify/vue": "^3.2.1",
     "@rollup/plugin-strip": "^2.1.0",
+    "@types/crypto-js": "^4.1.1",
     "@vitejs/plugin-legacy": "^1.0.0",
     "@vitejs/plugin-vue": "^2.3.3",
     "@vitejs/plugin-vue-jsx": "^1.0.0",
@@ -49,6 +50,8 @@
     "concurrently": "^7.2.2",
     "container-query-polyfill": "^0.1.2",
     "cssnano": "^5.1.12",
+    "electron": "^19.0.8",
+    "electron-builder": "^23.1.0",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-vue": "^9.1.1",
@@ -71,6 +74,7 @@
     "unplugin-icons": "^0.14.5",
     "unplugin-vue-components": "^0.19.6",
     "vite": "^2.9.12",
+    "vite-plugin-electron": "^0.8.1",
     "vite-plugin-iconify": "^0.1.1",
     "vite-plugin-pages": "^0.23.0",
     "vite-plugin-progress": "^0.0.3",
@@ -81,11 +85,23 @@
     "vite-plugin-vue-inspector": "^1.0.1",
     "vite-plugin-vue-layouts": "^0.6.0",
     "vitest": "^0.16.0",
+    "vue": "^3.2.37",
     "vue-eslint-parser": "^9.0.3",
     "vue-tsc": "^0.38.2"
   },
   "prettier": {
     "singleQuote": true,
     "semi": false
-  }
+  },
+  "env": {
+    "VITE_DEV_SERVER_HOST": "127.0.0.1",
+    "VITE_DEV_SERVER_PORT": 3344
+  },
+  "keywords": [
+    "electron",
+    "rollup",
+    "vite",
+    "vue3",
+    "vue"
+  ]
 }

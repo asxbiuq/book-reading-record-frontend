@@ -6,7 +6,7 @@ import { createPinia } from 'pinia'
 import 'animate.css'
 import { setGlobalOptions } from 'vue-request'
 import 'container-query-polyfill'
-
+// import './samples/node-api'
 setGlobalOptions({
   manual: false,
   // ...
@@ -14,6 +14,16 @@ setGlobalOptions({
 
 const pinia = createPinia()
 
+createApp(App)
+  .use(router)
+  .use(pinia)
+  .mount('#app')
+  .$nextTick(() => {
+    postMessage({ payload: 'removeLoading' }, '*')
+  })
 
 
-createApp(App).use(router).use(pinia).mount('#app')
+
+
+
+
