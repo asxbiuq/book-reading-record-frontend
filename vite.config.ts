@@ -18,7 +18,7 @@ import Inspector from "vite-plugin-vue-inspector"
 import strip from '@rollup/plugin-strip';
 import progress from 'vite-plugin-progress'
 import colors from 'picocolors'
-
+import { visualizer } from "rollup-plugin-visualizer";
 
 
 // https://vitejs.dev/config/
@@ -33,10 +33,15 @@ export default ({ mode }) => {
 
       return defineConfig({
         server: {
-          port: 5186,
+          port: 9625,
         },
-      // assetsInclude: ['**/*.jfif'],
-      plugins: [
+        // assetsInclude: ['**/*.jfif'],
+        plugins: [
+        pro && strip({
+          include:'**/*.(mjs|js|ts)',
+          labels: ['unittest']
+        }),
+        pro && visualizer(),
         pro && progress({
             format:  `${colors.green(colors.bold('Bouilding'))} ${colors.cyan('[:bar]')} :percent`,
             total: 200,
@@ -48,7 +53,7 @@ export default ({ mode }) => {
           //$语法糖
           reactivityTransform: true,
         }),
-        Inspector(), //点击浏览器元素直接跳转到IDE中该代码
+        // Inspector(), //点击浏览器元素直接跳转到IDE中该代码
         AutoImport({
           // targets to transform
           include: [
@@ -179,10 +184,6 @@ export default ({ mode }) => {
         }),
         Icons({ autoInstall: true }),
         ViteTips(), //提供vite构建信息
-        pro && strip({
-          include:'**/*.(mjs|js|ts)',
-          labels: ['unittest']
-        }),
       ],
       resolve: {
         alias: {

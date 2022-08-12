@@ -26,3 +26,7 @@ dist-ssr
 *.cache
 
 .env*
+
+stats.html
+electron
+release

@@ -19,6 +19,7 @@ specifiers:
   axios: ^0.27.2
   concurrently: ^7.2.2
   container-query-polyfill: ^0.1.2
+  crypto-js: ^4.1.1
   cssnano: ^5.1.12
   daisyui: ^2.15.1
   dayjs: ^1.11.3
@@ -38,6 +39,7 @@ specifiers:
   postcss-preset-env: ^7.7.2
   prettier: 2.7.1
   rollup: ^2.77.1
+  rollup-plugin-visualizer: ^5.7.1
   save-dev: 0.0.1-security
   sequelize: ^6.21.2
   sqlite3: ^5.0.8
@@ -77,6 +79,7 @@ dependencies:
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.6.0_vue@3.2.37
   animate.css: registry.npmmirror.com/animate.css/4.1.1
   axios: registry.npmmirror.com/axios/0.27.2
+  crypto-js: registry.npmmirror.com/crypto-js/4.1.1
   daisyui: registry.npmmirror.com/daisyui/2.15.3_ugi4xkrfysqkt4c4y6hkyfj344
   dayjs: registry.npmmirror.com/dayjs/1.11.3
   lodash-es: registry.npmmirror.com/lodash-es/4.17.21
@@ -115,6 +118,7 @@ devDependencies:
   postcss-preset-env: registry.npmmirror.com/postcss-preset-env/7.7.2_postcss@8.4.14
   prettier: registry.npmmirror.com/prettier/2.7.1
   rollup: registry.npmmirror.com/rollup/2.77.1
+  rollup-plugin-visualizer: registry.npmmirror.com/rollup-plugin-visualizer/5.7.1_rollup@2.77.1
   stylelint: registry.npmmirror.com/stylelint/14.9.1
   stylelint-config-recommended: registry.npmmirror.com/stylelint-config-recommended/8.0.0_stylelint@14.9.1
   stylelint-config-recommended-vue: registry.npmmirror.com/stylelint-config-recommended-vue/1.4.0_stylelint@14.9.1
@@ -1367,7 +1371,7 @@ packages:
         optional: true
     dependencies:
       vue: registry.npmmirror.com/vue/3.2.37
-      vue-demi: registry.npmmirror.com/vue-demi/0.13.6_vue@3.2.37
+      vue-demi: registry.npmmirror.com/vue-demi/0.13.7_vue@3.2.37
 
   registry.npmmirror.com/abab/2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/abab/-/abab-2.0.6.tgz}
@@ -2052,6 +2056,12 @@ packages:
       which: registry.npmmirror.com/which/2.0.2
     dev: true
 
+  registry.npmmirror.com/crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/crypto-js/-/crypto-js-4.1.1.tgz}
+    name: crypto-js
+    version: 4.1.1
+    dev: false
+
   registry.npmmirror.com/css-blank-pseudo/3.0.3_postcss@8.4.14:
     resolution: {integrity: sha512-VS90XWtsHGqoM0t4KpH053c4ehxZ2E6HtGI7x68YFV0pTo/QmkV/YFA+NnlvK8guxZVNWGQhVNJGC39Q8XF4OQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-blank-pseudo/-/css-blank-pseudo-3.0.3.tgz}
     id: registry.npmmirror.com/css-blank-pseudo/3.0.3
@@ -2380,6 +2390,13 @@ packages:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/deep-is/-/deep-is-0.1.4.tgz}
     name: deep-is
     version: 0.1.4
+    dev: true
+
+  registry.npmmirror.com/define-lazy-prop/2.0.0:
+    resolution: {integrity: sha512-Ds09qNh8yw3khSjiJjiUInaGX9xlqZDY7JVryGxdxV7NPeuqQfplOpQ66yJFZut3jLa5zOwkXw1g9EI2uKh4Og==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/define-lazy-prop/-/define-lazy-prop-2.0.0.tgz}
+    name: define-lazy-prop
+    version: 2.0.0
+    engines: {node: '>=8'}
     dev: true
 
   registry.npmmirror.com/define-properties/1.1.4:
@@ -4056,6 +4073,14 @@ packages:
       has-tostringtag: registry.npmmirror.com/has-tostringtag/1.0.0
     dev: true
 
+  registry.npmmirror.com/is-docker/2.2.1:
+    resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-docker/-/is-docker-2.2.1.tgz}
+    name: is-docker
+    version: 2.2.1
+    engines: {node: '>=8'}
+    hasBin: true
+    dev: true
+
   registry.npmmirror.com/is-extglob/2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-extglob/-/is-extglob-2.1.1.tgz}
     name: is-extglob
@@ -4221,6 +4246,15 @@ packages:
     dependencies:
       call-bind: registry.npmmirror.com/call-bind/1.0.2
       get-intrinsic: registry.npmmirror.com/get-intrinsic/1.1.2
+    dev: true
+
+  registry.npmmirror.com/is-wsl/2.2.0:
+    resolution: {integrity: sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-wsl/-/is-wsl-2.2.0.tgz}
+    name: is-wsl
+    version: 2.2.0
+    engines: {node: '>=8'}
+    dependencies:
+      is-docker: registry.npmmirror.com/is-docker/2.2.1
     dev: true
 
   registry.npmmirror.com/isarray/2.0.5:
@@ -5007,6 +5041,17 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       mimic-fn: registry.npmmirror.com/mimic-fn/2.1.0
+    dev: true
+
+  registry.npmmirror.com/open/8.4.0:
+    resolution: {integrity: sha512-XgFPPM+B28FtCCgSb9I+s9szOC1vZRSwgWsRUA5ylIxRTgKozqjOCrVOqGsYABPYK5qnfqClxZTFBa8PKt2v6Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/open/-/open-8.4.0.tgz}
+    name: open
+    version: 8.4.0
+    engines: {node: '>=12'}
+    dependencies:
+      define-lazy-prop: registry.npmmirror.com/define-lazy-prop/2.0.0
+      is-docker: registry.npmmirror.com/is-docker/2.2.1
+      is-wsl: registry.npmmirror.com/is-wsl/2.2.0
     dev: true
 
   registry.npmmirror.com/optionator/0.8.3:
@@ -6362,6 +6407,23 @@ packages:
     dependencies:
       glob: registry.npmmirror.com/glob/7.2.3
 
+  registry.npmmirror.com/rollup-plugin-visualizer/5.7.1_rollup@2.77.1:
+    resolution: {integrity: sha512-E/IgOMnmXKlc6ICyf53ok1b6DxPeNVUs3R0kYYPuDpGfofT4bkiG+KtSMlGjMACFmfwbbqTVDZBIF7sMZVKJbA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-5.7.1.tgz}
+    id: registry.npmmirror.com/rollup-plugin-visualizer/5.7.1
+    name: rollup-plugin-visualizer
+    version: 5.7.1
+    engines: {node: '>=14'}
+    hasBin: true
+    peerDependencies:
+      rollup: ^2.0.0
+    dependencies:
+      nanoid: registry.npmmirror.com/nanoid/3.3.4
+      open: registry.npmmirror.com/open/8.4.0
+      rollup: registry.npmmirror.com/rollup/2.77.1
+      source-map: registry.npmmirror.com/source-map/0.7.4
+      yargs: registry.npmmirror.com/yargs/17.5.1
+    dev: true
+
   registry.npmmirror.com/rollup/2.77.1:
     resolution: {integrity: sha512-GhutNJrvTYD6s1moo+kyq7lD9DeR5HDyXo4bDFlDSkepC9kVKY+KK/NSZFzCmeXeia3kEzVuToQmHRdugyZHxw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/rollup/-/rollup-2.77.1.tgz}
     name: rollup
@@ -6630,6 +6692,13 @@ packages:
     name: source-map
     version: 0.6.1
     engines: {node: '>=0.10.0'}
+
+  registry.npmmirror.com/source-map/0.7.4:
+    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/source-map/-/source-map-0.7.4.tgz}
+    name: source-map
+    version: 0.7.4
+    engines: {node: '>= 8'}
+    dev: true
 
   registry.npmmirror.com/sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz}
@@ -7701,11 +7770,11 @@ packages:
     dependencies:
       vue: registry.npmmirror.com/vue/3.2.37
 
-  registry.npmmirror.com/vue-demi/0.13.6_vue@3.2.37:
-    resolution: {integrity: sha512-02NYpxgyGE2kKGegRPYlNQSL1UWfA/+JqvzhGCOYjhfbLWXU5QQX0+9pAm/R2sCOPKr5NBxVIab7fvFU0B1RxQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.13.6.tgz}
-    id: registry.npmmirror.com/vue-demi/0.13.6
+  registry.npmmirror.com/vue-demi/0.13.7_vue@3.2.37:
+    resolution: {integrity: sha512-hbhlvpx1gFW3TB5HxJ0mNxyA9Jh5iQt409taOs6zkhpvfJ7YzLs1rsLufJmDsjH5PI1cOyfikY1fE/meyHfU5A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.13.7.tgz}
+    id: registry.npmmirror.com/vue-demi/0.13.7
     name: vue-demi
-    version: 0.13.6
+    version: 0.13.7
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
@@ -7752,7 +7821,7 @@ packages:
         optional: true
     dependencies:
       vue: registry.npmmirror.com/vue/3.2.37
-      vue-demi: registry.npmmirror.com/vue-demi/0.13.6_vue@3.2.37
+      vue-demi: registry.npmmirror.com/vue-demi/0.13.7_vue@3.2.37
     dev: false
 
   registry.npmmirror.com/vue-router/4.0.16_vue@3.2.37:
