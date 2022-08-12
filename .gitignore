@@ -53,3 +53,4 @@ dist-ssr
 
 release
 .vscode/.debug.env
+electron
